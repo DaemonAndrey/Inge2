@@ -6,6 +6,12 @@
         <legend><?= __('Add User') ?></legend>
         <?= $this->Form->input('username') ?>
         <?= $this->Form->input('password') ?>
+        <?= $this->Form->input('first_name') ?>
+        <?= $this->Form->input('last_name') ?>
+        <?= $this->Form->input('department') ?>
+        <?= $this->Form->input('position') ?>
+        <?= $this->Form->input('telephone_number') ?>
+        
    </fieldset>
 <?= $this->Form->button(__('Submit')); ?>
 <?= $this->Form->end() ?>
