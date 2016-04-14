@@ -39,14 +39,7 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
-	</head>
-
- <body data-spy="scroll" data-target=".navbar-fixed-top">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-     
-        <header id="section_header" class="navbar-fixed-top main-nav" role="banner">
+        
             <div class="container">
                  <!-- <div class="row"> -->
                  <div class="navbar-header ">
@@ -72,7 +65,14 @@
                     </ul>
                  </nav>
             </div><!-- /.container-fluid -->
-        </header>
+	</head>
+
+ <body data-spy="scroll" data-target=".navbar-fixed-top">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+     
+      
      
     <?= $this->fetch('content') ?>
 
