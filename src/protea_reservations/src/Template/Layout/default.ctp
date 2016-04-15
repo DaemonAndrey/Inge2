@@ -7,7 +7,7 @@
     <!-- Basic Page Needs
     ================================================== -->
         <meta charset="utf-8">
-        <title>Cypras-One page html5 template</title>
+        <title>PROTEA Reservaciones</title>
         <meta name="description" content="">
         <!-- Mobile Specific Metas
     ================================================== -->
@@ -55,13 +55,12 @@
                  </div><!--Navbar header End-->
                  <nav class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1" role="navigation">
                     <ul class="nav navbar-nav navbar-right ">
-                        <li class="active"> <a href="#slider_part" class="page-scroll">Home </a></li>
-                        <li><a href="#service"  class="page-scroll">Services</a> </li>
-                        <li><a href="#portfolio" class="page-scroll" >Portfolio</a> </li>
-                        <li><a href="#about" class="page-scroll">About Us </a> </li>
-                        <li><a href="#team" class="page-scroll">Our Team </a> </li>
-                        <li><a href="#blog" class="page-scroll">Blog</a> </li>
-                        <li><a href="#contact" class="page-scroll">Contact Us</a> </li>
+                        <li class="active"><?php echo $this->Html->link('Inicio', array('controller'=>'pages','action' => 'home'),
+                                                                                array('target' => '_self', 'escape' => false)) ?> </li>
+                        <li><?php echo $this->Html->link('Registro',    array('controller'=>'users','action' => 'add')) ?> </li>
+                        <li><?php echo $this->Html->link('Acerca de',   array('controller'=>'pages','action' => 'home'),
+                                                                        array('target' => '_self', 'escape' => false)) ?> </li>
+                        <!-- <li><a href="#contact" class="page-scroll">Contacto</a> </li> -->
                     </ul>
                  </nav>
             </div><!-- /.container-fluid -->
