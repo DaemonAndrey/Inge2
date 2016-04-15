@@ -1,29 +1,29 @@
 
 <!-- src/Template/Users/add.ctp -->
-
+<?php echo $this->Html->css('registro.css'); ?>
 <div class="users form">
 <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Formulario de registro') ?></legend>
-        <div class='col-sm-12 col-md-6'>
-            <?= $this->Form->input('username', ['type' => 'email','label' => 'Correo Institucional: ', 'placeholder' => 'username@ucr.ac.cr', 'class' => 'form-control']) ?>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
+            <?= $this->Form->input('username', ['type' => 'email','label' => 'Correo Institucional: ', 'placeholder' => 'usuario@ucr.ac.cr', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('password', ['type' => 'password', 'label' => 'Contraseña: ', 'placeholder' => '********', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('first_name', ['label' => 'Nombre: ', 'placeholder' => 'Carlos', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('last_name', ['label' => 'Apellidos: ', 'placeholder' => 'Brenes Aguilar', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '88999900', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('department', ['label' => 'Escuela/Institución: ', 'placeholder' => 'Educación/Protea', 'class' => 'form-control']) ?>
         </div>
-        <div class='col-sm-12 col-md-6'>
+        <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('position', ['label' => 'Posición: ', 'options' => array(
                                                                                               0 => 'Administrativo',
                                                                                               1 => 'Docente',
@@ -32,9 +32,11 @@
             ), 'class' => 'form-control']); ?>
         </div>
    </fieldset>
-<div class='col-sm-12 col-md-6'>
-    <?= $this->Form->button(__('Enviar Solicitud',['class' => 'form-control'])); ?>
-</div>
+    <div class='row'>
+        <div class='col-md-12 col-sm-12 col-xs-12 '>
+            <?= $this->Form->button(__('Enviar Solicitud'), ['class' => 'btn btn-success']); ?>
+        </div>
+    </div>
 <?= $this->Form->end() ?>
 </div>
 
