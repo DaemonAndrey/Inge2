@@ -35,7 +35,7 @@ create table Users
 	last_name varchar( 50 ) not null,
 	telephone_number varchar( 50 ) not null,
 	department varchar( 70 ) not null,
-	position int unsigned not null, -- 0: Docente, 1: Administrativo, 2: Otro
+	position varchar( 20 ) not null, 
 	state bit not null default 0, -- 0: Pendiente, 1: Aceptado
 	role_id int unsigned not null default 1, -- 0: Administrador, 1: Usuario normal, 2: Otro 
 	
