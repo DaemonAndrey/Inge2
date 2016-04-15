@@ -40,11 +40,7 @@ class UsersTable extends Table
                                     'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
                                     'message' => 'Solo ingresar letras.'
             ])
-            ->notEmpty('position', 'Seleccione una de las opciones')
-            ->add('position', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
-                                    'message' => 'Solo ingresar letras.'
-            ]);
+            ->notEmpty('position', 'Seleccione una de las opciones');
     }    
 
 }
