@@ -79,7 +79,7 @@
                                                              array('controller'=>'users','action' => 'add'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'users','action' => 'login'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
                                                              array('controller'=>'pages','action' => 'home'),
@@ -97,7 +97,7 @@
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'users','action' => 'logout'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                         </ul>
                     </nav>
@@ -114,14 +114,6 @@
 
 
 <!-- Footer Area Start -->
-    
-    <div id="g-map" class="no-padding">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="map" id="map"></div>
-		</div>
-	</div>
-</div>
 
 <section id="footer">
     <div class="footer_top">
