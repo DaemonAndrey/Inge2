@@ -16,6 +16,7 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
+        $this->set('user_username', $this->Auth->User('username'));
         $this->Auth->allow(['add', 'logout']);
     }
 
@@ -42,7 +43,7 @@ class UsersController extends AppController
             {
                 if ($this->Users->save($user))
                 {
-                    $this->Flash->success(__('Su solicitud de registro ha sido procesada, por favor espere la confirmación.'));
+                    $this->Flash->success('Su solicitud de registro ha sido procesada, por favor espere la confirmación.');
                     return $this->redirect(['controller' => 'Pages','action' => 'home']);
                 }
             }
@@ -52,9 +53,9 @@ class UsersController extends AppController
             }
         }
         $this->set('user', $user);
-    }
+    }    
     
-        public function login()
+    public function login()
     {
         if ($this->request->is('post'))
         {
@@ -63,7 +64,7 @@ class UsersController extends AppController
             if ($user)
             {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect(['controller' => 'Pages','action' => 'home']);
             }
             
             $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, intenta de nuevo.'));

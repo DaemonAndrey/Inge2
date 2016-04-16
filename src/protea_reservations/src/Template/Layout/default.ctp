@@ -77,12 +77,21 @@
                             <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
                                                                             array('controller'=>'pages','action' => 'home'),
                                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                            <?php if($user_username == NULL){?>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registro',
                                                              array('controller'=>'users','action' => 'add'),
+                                                             array('target' => '_self', 'escape' => false)) ?> </li>  
+                            <?php } ?>
+                            <?php if($user_username != NULL){?>
+                            <li><?php echo $this->Html->link( $user_username,
+                                                             array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                            <?php } ?>
+                            <?php if($user_username == NULL){?>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
                                                              array('controller'=>'users','action' => 'login'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                            <?php } ?>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
