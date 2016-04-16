@@ -35,6 +35,8 @@
         // Responsive -->
 		echo $this->Html->css('responsive.css');
 		echo $this->Html->css('jquery.fancybox.css');
+        
+        echo $this->Html->css('mensajes.css');
         ?>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
