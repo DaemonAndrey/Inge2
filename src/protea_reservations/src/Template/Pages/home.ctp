@@ -1,4 +1,6 @@
- <!-- Slider start -->
+<!--FontAwesome -->
+		<?php echo $this->Html->css('font-awesome.min.css'); ?>
+<!-- Slider start -->
     <section id="slider_part">
          <div class="carousel slide" id="carousel-example-generic" data-ride="carousel">
             <!-- Indicators -->
@@ -17,7 +19,7 @@
                	 		<div class="col-md-12 col-xs-12 text-center">
                       <h2>PROTEA</h2>
                	 			<h3 class="animated2"> <b>Conexiones</b> para aprender </h3>
-               	 			<div class="line"></div>
+               	 			<!--<div class="line"></div>-->
                	 			<p class="animated3">Escuela de Educación</p>
                	 		</div>
            	 		</div>
@@ -30,8 +32,8 @@
                	 		<div class="col-md-12 col-xs-12 text-center">
                     <h2>PROTEA</h2>
                	 			<h3 class="animated3"> <b>Conexiones</b> para aprender </h3>
-               	 			<div class="line"></div>
-               	 			<p class="animated2">Reservaciones de recursos</p>
+               	 			<!--<div class="line"></div>-->
+               	 			<p class="animated2">Reservación de recursos</p>
                	 		</div>
            	 		</div>
            	 	</div>
@@ -43,7 +45,7 @@
                	 		<div class="col-md-12 col-xs-12 text-center">
                     <h2>PROTEA</h2>
                	 			<h3 class="animated3"> <b>Conexiones</b> para aprender </h3>
-               	 			<div class="line"></div>
+               	 			<!-- <div class="line"></div> -->
                	 			<p class="animated2">Universidad de Costa Rica</p>
                	 		</div>
            	 		</div>
@@ -66,10 +68,3 @@
 
 <hr>
 
-<div id="g-map" class="no-padding">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="map" id="map"></div>
-		</div>
-	</div>
-</div>
