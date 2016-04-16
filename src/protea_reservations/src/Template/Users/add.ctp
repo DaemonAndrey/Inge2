@@ -18,7 +18,7 @@
             <?= $this->Form->input('last_name', ['label' => 'Apellidos: ', 'placeholder' => 'Brenes Aguilar', 'class' => 'form-control']) ?>
         </div>
         <div class='col-md-5 col-sm-12 col-xs-12 '>
-            <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '88999900', 'class' => 'form-control']) ?>
+            <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '88888888', 'class' => 'form-control']) ?>
         </div>
         <div class='col-md-5 col-sm-12 col-xs-12 '>
             <?= $this->Form->input('department', ['label' => 'Escuela/Institución: ', 'placeholder' => 'Educación/Protea', 'class' => 'form-control']) ?>

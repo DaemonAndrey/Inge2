@@ -12,35 +12,40 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         return $validator
-            ->notEmpty('username', 'Ingrese su correo')
+            ->notEmpty('username', 'Ingrese su correo institucional')
+            ->add('username', 'validFormat', [
+                                    'rule' => array('custom', '/^[a-zA-Z0-9._ \-]*@ucr.ac.cr$/'),
+                                    'message' => 'Debe usar el correo institucional'
+            ])
             ->notEmpty('password', 'Ingrese su contraseña')
             ->add('password', [
                             'length' => [
                                         'rule' => ['minLength', 8],
-                                        'message' => 'La contraseña tiene que tener al menos 8 caractéres',
+                                        'message' => 'Debe contener mínimo 8 caracteres',
                                         ]
             ])
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', 'validFormat', [
                                     'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
-                                    'message' => 'Solo ingresar letras.'
+                                    'message' => 'Debe contener sólamente letras'
             ])
             ->notEmpty('last_name', 'Ingrese su apellido')
             ->add('last_name', 'validFormat', [
                                     'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
-                                    'message' => 'Solo ingresar letras.'
+                                    'message' => 'Debe contener sólamente letras'
             ])
             ->notEmpty('telephone_number', 'Ingrese su telefono')
             ->add('telephone_number', 'validFormat', [
                                     'rule' => array('custom', '/^[0-9 \-]*$/'),
-                                    'message' => 'Solo ingresar números.'
+                                    'rule' => ['minLength', 8],
+                                    'message' => 'Debe contener al menos 8 dígitos'
             ])
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
             ->add('department', 'validFormat', [
                                     'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
-                                    'message' => 'Solo ingresar letras.'
+                                    'message' => 'Debe contener sólamente letras'
             ])
-            ->notEmpty('position', 'Seleccione una de las opciones');
+            ->notEmpty('position', 'Seleccione una opción');
     }    
 
 }

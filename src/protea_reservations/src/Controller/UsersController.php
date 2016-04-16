@@ -33,26 +33,40 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
+        
+        if ($this->request->is('post'))
+        {
             $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Su solicitud ha sido procesada, espere la confirmación.'));
-                return $this->redirect(['action' => 'add']);
+            
+            try
+            {
+                if ($this->Users->save($user))
+                {
+                    $this->Flash->success(__('Su solicitud de registro ha sido procesada, por favor espere la confirmación.'));
+                    return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                }
             }
-            $this->Flash->error(__('No ha sido posible procesar su solicitud.'));
+            catch(Exception $ex)
+            {
+                $this->Flash->error(__('No ha sido posible procesar su solicitud.'));
+            }
         }
         $this->set('user', $user);
     }
     
         public function login()
     {
-        if ($this->request->is('post')) {
+        if ($this->request->is('post'))
+        {
             $user = $this->Auth->identify();
-            if ($user) {
+            
+            if ($user)
+            {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            
+            $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, intenta de nuevo'));
         }
     }
 
@@ -60,7 +74,6 @@ class UsersController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
-
 }
 
 ?>

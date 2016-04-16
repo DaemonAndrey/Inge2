@@ -79,7 +79,7 @@
                                                              array('controller'=>'users','action' => 'add'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'users','action' => 'login'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
                                                              array('controller'=>'pages','action' => 'home'),
@@ -97,7 +97,7 @@
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'users','action' => 'logout'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                         </ul>
                     </nav>
