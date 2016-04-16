@@ -155,7 +155,7 @@ a{
     border: medium none;
     vertical-align: middle;
     cursor: pointer;
-    border:1px solid#EE3B24;
+    border:1px solid#00A3C5;
     white-space: nowrap;
     font-size: 16px;
     line-height: 1.42857;
@@ -167,7 +167,7 @@ a{
     transition: all .3s ease-in-out;
 }
 .btn-dark:hover{
-    background: #EE3B24;
+    background: #00A3C5;
     color: #fff;
 }
 .feature-tab,.team-items,.pricing,.single_blog ,#testimonial .owl-carousel .owl-wrapper,.contact_full{
@@ -972,10 +972,10 @@ padding: 8px 15px;
     margin-top: 20px;
 }
 .main-tab-content .c-tab a{
-    color: #EE3B24;
+    color: #00A3C5;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid#EE3B24;
+    border-bottom: 1px solid#00A3C5;
     padding-top: 7px;
 }
 .feature-tab{
@@ -1830,8 +1830,8 @@ padding: 8px 15px;
     
    
 #back-top .btn-primary{
-    background: #EE3B24;
-    border-color: #EE3B24;
+    background: #00A3C5;
+    border-color: #00A3C5;
     padding: 0px;
     font-size: 18px;
     width: 36px;
@@ -1839,7 +1839,7 @@ padding: 8px 15px;
 }
   
 #back-top a:hover{
-    background: #EE3B24;
+    background: #00A3C5;
     opacity: 1;
 }
 
@@ -1899,7 +1899,7 @@ padding: 8px 15px;
     clear:both;
 }
 .single_blog h4:hover{
-    color: #EE3B24;
+    color: #00A3C5;
 }
 .single_blog p{
     margin: 8px 0px;
@@ -2371,7 +2371,7 @@ padding: 8px 15px;
     font-weight: 600;
 }
 .hero-title span{
-    color: #EE3B24;
+    color: #00A3C5;
 }
 .hero-description {
     margin-bottom: 30px;
@@ -2460,7 +2460,7 @@ iframe{
 .video-text .panel-default{}
 .video-text .panel-group .panel-heading{
     border-radius: 0px;
-    border-color: #EE3B24;
+    border-color: #00A3C5;
     position: relative;
     padding: 7px 15px;
     background: #FAFAFA;
@@ -2483,7 +2483,7 @@ iframe{
 }
 .video-text .panel-group  h4.panel-title a:after {
     font-family: FontAwesome;
-    color: #EE3B24;
+    color: #00A3C5;
     font-size: 14px;
     right: 0px;
     position: absolute;
@@ -2497,7 +2497,7 @@ iframe{
 }
 
 .video-text .panel-group .panel-heading.active{
-    border: 1px solid#EE3B24;
+    border: 1px solid#00A3C5;
 }
 
 
@@ -2561,7 +2561,7 @@ iframe{
     border-bottom-left-radius: 5px;
 }
 .video-text .panel-group .p2.active{
-    background:#EE3B24;
+    background:#00A3C5;
     color: #fff;
     padding: 7px 0px;
     padding-left: 15px;
@@ -2613,7 +2613,7 @@ iframe{
     position: absolute;
     width: 2px;
     height: 110px;
-    background: #EE3B24;
+    background: #00A3C5;
     left: 10px;
     top: -10px;
 
@@ -2623,7 +2623,7 @@ iframe{
     position: absolute;
     width: 2px;
     height: 110px;
-    background: #EE3B24;
+    background: #00A3C5;
     right: 10px;
     top: -10px;
 }
