@@ -40,7 +40,7 @@ class AppController extends Controller
     public function initialize()
     {
         
-         parent::initialize();
+        parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
@@ -77,7 +77,13 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-
+    
+    public function isAuthorized($user)
+    {
+        // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
+        if(isset($user['role_id']) && $user['role_id'] === 1 && $user['state'] == 1 )
+            return true;
+    }
 }
 
 ?>

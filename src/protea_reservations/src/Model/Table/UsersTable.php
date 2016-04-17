@@ -26,28 +26,39 @@ class UsersTable extends Table
             ])
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
+                                    'rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
                                     'message' => 'Debe contener solamente letras.'
             ])
             ->notEmpty('last_name', 'Ingrese su apellido')
             ->add('last_name', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
+                                    'rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
                                     'message' => 'Debe contener solamente letras.'
             ])
             ->notEmpty('telephone_number', 'Ingrese su telefono')
             ->add('telephone_number', 'validFormat', [
                                     'rule' => array('custom', '/^[0-9 \-]*$/'),
                                     'rule' => ['minLength', 8],
+                                    'rule' => ['maxLength', 15], // En caso de que se especifique el 506 o espacios cada 2 o 4 números
                                     'message' => 'Debe contener al menos 8 dígitos.'
             ])
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
             ->add('department', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-Z \-]*$/'),
+                                    'rule' => array('custom', '/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\' \-]*$/'),
                                     'message' => 'Debe contener solamente letras.'
             ])
             ->notEmpty('position', 'Seleccione una opción.');
     }    
-
+    
+    public function registrationConfirmed($userId)
+    {
+        $user = $this->get($userId);
+        
+        // Si el usuario tiene estado 0 es porque todavía está pendiente su solicitud de registro
+        if($user['state'] == 0)
+            return false;
+        
+        return true;
+    }
 }
 
 ?>

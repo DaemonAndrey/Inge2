@@ -4,7 +4,10 @@
 <!-- File: src/Template/Users/login.ctp -->
 
 <div class="users form">
-<?= $this->Flash->render('auth') ?>
+    <div style="text-align:center">
+        <?= $this->Flash->render('loginError') ?>
+        <?= $this->Flash->render('loginPendiente') ?>
+    </div>
 <?= $this->Form->create() ?>
     <fieldset>
         <div class="row">

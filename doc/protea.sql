@@ -1,117 +1,131 @@
-create table Roles
+CREATE TABLE Roles
 (
-	id int unsigned auto_increment,
-	role_name varchar(50) unique not null,
+	id 				INT UNSIGNED AUTO_INCREMENT,
+	role_name 	VARCHAR(50) UNIQUE NOT NULL,
 	
-	primary key ( id )
+	PRIMARY KEY ( id )
 );
 
-create table Functions
+CREATE TABLE Functions
 (
-	id int unsigned auto_increment,
-	function_name varchar(100) unique not null,
+	id 						INT UNSIGNED AUTO_INCREMENT,
+	function_name 	VARCHAR(100) UNIQUE NOT NULL,
 	
-	primary key ( id )
+	PRIMARY KEY ( id )
 );
 
-create table Functions_Roles
+CREATE TABLE Functions_Roles
 (
-	id int unsigned auto_increment,
-	function_id int unsigned not null,
-	role_id int unsigned not null,
+	id 						INT UNSIGNED AUTO_INCREMENT,
+	function_id 		INT UNSIGNED NOT NULL,
+	role_id 				INT UNSIGNED NOT NULL,
 	
-	primary key ( id ),
-	foreign key ( function_id ) references Functions ( id ),
-	foreign key ( role_id ) references Roles ( id ),
-	unique key (function_id, role_id)
+	PRIMARY KEY ( id ),
+	FOREIGN KEY ( function_id ) REFERENCES Functions ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY ( role_id ) REFERENCES Roles ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	UNIQUE KEY ( function_id, role_id )
 );
 
-create table Users
+CREATE TABLE Users
 (
-	id int unsigned auto_increment,
-	username varchar( 64 ) unique not null,
-	password varchar( 255 ) not null,
-	first_name varchar( 50 ) not null,
-	last_name varchar( 50 ) not null,
-	telephone_number varchar( 50 ) not null,
-	department varchar( 70 ) not null,
-	position varchar( 20 ) not null, 
-	state bit not null default 0, -- 0: Pendiente, 1: Aceptado
-	role_id int unsigned not null default 1, -- 0: Administrador, 1: Usuario normal, 2: Otro 
+	id 							INT UNSIGNED AUTO_INCREMENT,
+	username 				VARCHAR( 64 ) UNIQUE NOT NULL,
+	password 				VARCHAR( 255 ) NOT NULL,
+	first_name 				VARCHAR( 50 ) NOT NULL,
+	last_name 				VARCHAR( 50 ) NOT NULL,
+	telephone_number 	VARCHAR( 50 ) NOT NULL,
+	department 			VARCHAR( 70 ) NOT NULL,
+	position 					VARCHAR( 20 ) NOT NULL, 
+	state 					BIT NOT NULL DEFAULT 0, -- 0: Pendiente, 1: Aceptado
+	role_id 					INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Administrador, 2: Usuario normal, 3: Otro 
 	
-	primary key ( id ),
-	foreign key ( role_id ) references Roles( id )
+	PRIMARY KEY ( id ),
+	FOREIGN KEY ( role_id ) REFERENCES Roles( id )
+		ON DELETE NO ACTION
+		ON UPDATE CASCADE
 );
 
-create table Resources
+CREATE TABLE Resources
 (
-	id int unsigned auto_increment,
-	resource_name varchar( 70 ) unique not null,
-	description text,
+	id 						INT UNSIGNED AUTO_INCREMENT,
+	resource_name 	VARCHAR( 70 ) UNIQUE NOT NULL,
+	description 			TEXT,
 	
-	primary key ( id )
+	PRIMARY KEY ( id )
 );
 
-create table Resources_Users
+CREATE TABLE Resources_Users
 (
-	id int unsigned auto_increment,
-	resource_id int unsigned not null,
-	user_id int unsigned not null,
+	id 				INT UNSIGNED AUTO_INCREMENT,
+	resource_id INT UNSIGNED NOT NULL,
+	user_id 		INT UNSIGNED NOT NULL,
 	
-	primary key ( id ),
-	foreign key ( resource_id ) references Resources ( id ),
-	foreign key ( user_id ) references Users ( id ),
-	unique key(resource_id, user_id)
+	PRIMARY KEY ( id ),
+	FOREIGN KEY ( resource_id ) REFERENCES Resources ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY ( user_id ) REFERENCES Users ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	UNIQUE KEY ( resource_id, user_id )
 );
 
-create table Reservations
+CREATE TABLE Reservations
 (
-	id int unsigned auto_increment,
-	start_date datetime not null,
-	end_date datetime not null,
-	resource_id int unsigned not null,
-	user_comment text,
-	administrator_comment text,
-	state int unsigned not null default 0, -- 0: Pendiente, 1: Aceptada, 2: Rechazada, 3: Cancelada
-	user_seen bit default 0, -- 0: No visto, 1: Visto
-	administrator_seen bit default 0, -- 0: No visto, 1: Visto
-	requesting_user_id int unsigned not null,
-	course_name varchar( 70 ),
-	course_id varchar( 10 ),
+	id 								INT UNSIGNED AUTO_INCREMENT,
+	start_date 					DATETIME NOT NULL,
+	end_date 					DATETIME NOT NULL,
+	resource_id 				INT UNSIGNED NOT NULL,
+	user_comment 			TEXT,
+	administrator_comment	TEXT,
+	state 						INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
+	user_seen 					BIT DEFAULT 0, -- 0: No visto, 1: Visto
+	administrator_seen 		BIT DEFAULT 0, -- 0: No visto, 1: Visto
+	requesting_user_id 		INT UNSIGNED NOT NULL,
+	course_name 				VARCHAR( 70 ),
+	course_id 					VARCHAR( 10 ),
 	
-	primary key ( id ),
-	foreign key ( resource_id ) references Resources( id ),
-	foreign key ( requesting_user_id ) references Users ( id ),
-	unique key(start_date,resource_id)
+	PRIMARY KEY ( id ),
+	FOREIGN KEY ( resource_id ) REFERENCES Resources( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY ( requesting_user_id ) REFERENCES Users ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	UNIQUE KEY ( start_date,resource_id )
 );
 
-create table HistoricReservations
+CREATE TABLE HistoricReservations
 (
-	id int unsigned auto_increment,
-	reservation_start_date datetime,
-	resource_name varchar( 70 ),
-	reservation_end_date datetime,
-	user_username varchar( 50 ),
-	user_first_name varchar( 64 ),
-	user_last_name varchar( 64 ),
-	user_comment text,
-	administrator_comment text,
-	state int unsigned,
+	id 								INT UNSIGNED AUTO_INCREMENT,
+	reservation_start_date	DATETIME,
+	resource_name 			VARCHAR( 70 ),
+	reservation_end_date 	DATETIME,
+	user_username 			VARCHAR( 50 ),
+	user_first_name 			VARCHAR( 64 ),
+	user_last_name 			VARCHAR( 64 ),
+	user_comment 			TEXT,
+	administrator_comment	TEXT,
+	state 						INT UNSIGNED,
 	
-	primary key ( id ),
-	unique key(reservation_start_date,resource_name,user_username)
+	PRIMARY KEY ( id ),
+	UNIQUE KEY ( reservation_start_date, resource_name, user_username )
 );
 
-create table Configurations
+CREATE TABLE Configurations
 (
-	id int unsigned auto_increment,
-	registration_rejected_message text,
-	registration_accepted_message text,
-	reservation_rejected_message text,
-	reservation_accepted_message text,
-	days_before_reservation int unsigned,
-	reservation_schedule_weekdays varchar( 10 ),
-	reservation_schedule_weekends varchar( 10 ),
+	id 											INT UNSIGNED AUTO_INCREMENT,
+	registration_rejected_message 	TEXT,
+	registration_accepted_message 	TEXT,
+	reservation_rejected_message 	TEXT,
+	reservation_accepted_message 	TEXT,
+	days_before_reservation 			INT UNSIGNED,
+	reservation_schedule_weekdays	VARCHAR( 10 ),
+	reservation_schedule_weekends	VARCHAR( 10 ),
 	
-	primary key ( id )
+	PRIMARY KEY ( id )
 );
