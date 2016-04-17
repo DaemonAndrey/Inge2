@@ -85,7 +85,7 @@ CREATE TABLE Reservations
 	state 						INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
 	user_seen 					BIT DEFAULT 0, -- 0: No visto, 1: Visto
 	administrator_seen 		BIT DEFAULT 0, -- 0: No visto, 1: Visto
-	requesting_user_id 		INT UNSIGNED NOT NULL,
+	user_id 						INT UNSIGNED NOT NULL,
 	course_name 				VARCHAR( 70 ),
 	course_id 					VARCHAR( 10 ),
 	
@@ -93,7 +93,7 @@ CREATE TABLE Reservations
 	FOREIGN KEY ( resource_id ) REFERENCES Resources( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY ( requesting_user_id ) REFERENCES Users ( id )
+	FOREIGN KEY ( user_id ) REFERENCES Users ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	UNIQUE KEY ( start_date,resource_id )
