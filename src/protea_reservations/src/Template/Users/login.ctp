@@ -8,7 +8,7 @@
 <?= $this->Form->create() ?>
     <fieldset>
         <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-xs-12 '>
+            <div class='col-md-4 col-md-offset-4 col-sm-8 col-xs-12 '>
                 <h1>Ingresar</h1>
             </div>
         </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-xs-12 '>
+            <div class='col-md-4 col-md-offset-4 col-sm-8 col-xs-12 '>
                 <?=  $this->Form->input('username', [
                                                     'placeholder' => 'Correo Institucional',
                                                     'class' => 'form-control',
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-xs-12 '>
+            <div class='col-md-4 col-md-offset-4 col-sm-8 col-xs-12 '>
                 <?=  $this->Form->input('password', [
                                                     'placeholder' => 'Contraseña',
                                                     'class' => 'form-control',
