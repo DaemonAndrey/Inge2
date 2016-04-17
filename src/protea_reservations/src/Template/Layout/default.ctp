@@ -2,297 +2,376 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-    <!-- Basic Page Needs
-    ================================================== -->
-        <meta charset="utf-8">
-        <title>PROTEA Reservaciones</title>
-        <meta name="description" content="">
-        <!-- Mobile Specific Metas
-    ================================================== -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<!-- HEAD ================================================= -->
+<head>
+    <!-- META ============================================= -->
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Mobile Specific Metas -->
+    <!-- FIN META ========================================= -->
+    
+    
+    <!-- TITULO  ========================================== -->
+    <title>PROTEA Reservaciones</title>
+    <!-- ================================================== -->
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-         <!-- CSS
-         ================================================== -->
-        <!-- Bootstrap -->
-		<?php echo $this->Html->css('bootstrap.min.css');
-        // FontAwesome -->
-        echo $this->Html->css('font-awesome.css');
-		echo $this->Html->css('font-awesome.min.css');
-        // Animation -->
-		echo $this->Html->css('animate.css');
-        // Owl Carousel -->
-		echo $this->Html->css('owl.carousel.css');
-		echo $this->Html->css('owl.theme.css');
-        // Pretty Photo -->
-		echo $this->Html->css('prettyPhoto.css');
-        // Main color style -->
-		echo $this->Html->css('red.css');
-        // Template styles-->
-		echo $this->Html->css('custom.css');
-        // Responsive -->
-		echo $this->Html->css('responsive.css');
-		echo $this->Html->css('jquery.fancybox.css');
-        
-        echo $this->Html->css('mensajes.css');
-        ?>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
-        </head>
+    
+    <!-- CSS ============================================== -->
+    <?php
+    echo $this->Html->css('bootstrap.min.css');         // Bootstrap
+    echo $this->Html->css('font-awesome.css');          // FontAwesome
+    echo $this->Html->css('font-awesome.min.css');      // FontAwesome
+    echo $this->Html->css('animate.css');               // Animation
+    echo $this->Html->css('owl.carousel.css');          // Owl Carousel
+    echo $this->Html->css('owl.theme.css');             // Owl Carousel
+    echo $this->Html->css('prettyPhoto.css');           // Pretty Photo
+    echo $this->Html->css('red.css');                   // Main color style
+    echo $this->Html->css('custom.css');                // Template styles
+    echo $this->Html->css('responsive.css');            // Responsive
+    echo $this->Html->css('jquery.fancybox.css');       // Responsive
+    echo $this->Html->css('mensajes.css');
+    ?>
+    <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:400,300'>
+    <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
+    <!-- FIN CSS ========================================== -->
+    
+    
+    <!-- SCRIPTS ========================================== -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- FIN SRIPTS ======================================= --> 
+</head> <!-- FIN HEAD ===================================== -->
 
+
+<!-- ENCABEZADO =========================================== -->
 <header>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                     <div class="navbar-header ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
 
-                        <!-- LOGO DE PROTEA -->
-                        <a class="navbar-brand" href="#">
-                            <?php 
-                                // Crea la imagen
-                                $imgLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'width' => '150'));
+                <!-- NAVBAR HEADER ================== -->
+                <div class="navbar-header ">
+                    <!-- LOGO PROTEA ================== -->
+                    <a class="navbar-brand" href="#">
+                        <?php 
+                        // Crea la imagen
+                        $imgLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'width' => '150'));
 
-                                // Hace el link con la imagen
-                                echo $this->Html->link($imgLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
-                                                       array('target'=>'_blank', 'escape' => false));
-                            ?>
-                        </a>
+                        // Hace el link con la imagen
+                        echo $this->Html->link($imgLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+                                               array('target'=>'_blank', 'escape' => false));
+                        ?>
+                    </a> <!-- FIN LOGO ================ -->
 
-                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                     </div><!--Navbar header End-->
+                    <!-- COLAPSAR ==================== -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button> <!-- FIN COLAPSAR ========= -->
+                </div> <!-- FIN NAVBAR HEADER ========== -->
 
-                    <nav class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1" role="navigation">
-                        <ul class="nav navbar-nav navbar-right ">
-                            <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
-                                                                            array('controller'=>'pages','action' => 'home'),
-                                                                            array('target' => '_self', 'escape' => false)) ?> </li>
-                            <?php if($user_username == NULL){?>
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registro',
-                                                             array('controller'=>'users','action' => 'add'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>  
-                            <?php } ?>
-                            <?php if($user_username != NULL){?>
-                            <li><?php echo $this->Html->link( $user_username,
+                <!-- NAVEGACION ================== -->
+                <nav class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1" role="navigation">
+                    <!-- OPCIONES ================ -->
+                    <ul class="nav navbar-nav navbar-right ">
+                        <!-- INICIO -->
+                        <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
+                                                                        array('controller'=>'pages','action' => 'home'),
+                                                                        array('target' => '_self', 'escape' => false)) ?> </li>
+                        <?php
+                        // SI NO ESTA LOGGEADO
+                        if($user_username == NULL)
+                        {   ?>
+                            <!-- ACERCA DE -->
+                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
-                            <?php } ?>
-                            <?php if($user_username == NULL){?>
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
-                                                             array('controller'=>'users','action' => 'login'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
-                            <?php } ?>
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-cog"></span> Mi Cuenta',
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
-                            <!--<li><?php /*echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) */?> </li>-->
+                            <!-- CONTACTO -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-phone"></span> Contacto',
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                            <!-- REGISTRAR -->
+                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
+                                                             array('controller'=>'users','action' => 'add'),
+                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                            <!-- LOGIN -->
+                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
+                                                             array('controller'=>'users','action' => 'login'),
+                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                            <?php
+                        } ?>
+
+                        <?php
+                        // SI ESTA LOGGEADO
+                        if($user_username != NULL)
+                        {   // SI ES USUARIO
+                            if($user_role_id == '1')
+                            {
+                                ?>
+                                <!-- ACERCA DE -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                <!-- CONTACTO -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-phone"></span> Contacto',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                <!-- RESERVAR -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                <?php
+                            } 
+                            // SI ES ADMINISTRADOR
+                            if($user_role_id == '0')
+                            {
+                                ?>
+                                <!-- ADMINISTRAR -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                <?php
+                            } ?>
+                            <!-- MI CUENTA -->
+                            <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$user_username,
+                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                            <!-- LOGOUT -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
                                                              array('controller'=>'users','action' => 'logout'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="lead text-info" style="text-align:center;">
+                            <?php
+                        } ?>    
+                    </ul> <!-- FIN OPCIONES =========== -->
+                </nav> <!-- FIN NAVEGACION ============ -->
+            </div>
+            <div class="lead text-info" style="text-align:center;">
                     <br>
                     <?= $this->Flash->render('addUserSuccess') ?>
-                </div>
-            </div><!-- class row -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div><!-- class row -->
+    </div><!-- /.container-fluid -->
 </header>
+<!-- FIN ENCABEZADO ======================================= -->
 
+
+<!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
      
-      
-     
-    <?= $this->fetch('content') ?>
+    <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
 
 
-<!-- Footer Area Start -->
+    <!-- PIE DE PAGINA ======================================== -->
+    <section id="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h3 class="menu_head">Menú Principal</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <!-- INICIO -->
+                                <li><?php echo $this->Html->link('Inicio',
+                                                                        array('controller'=>'pages','action' => 'home'),
+                                                                        array('target' => '_self', 'escape' => false)) ?> </li>
+                                <?php
+                                // SI NO ESTA LOGGEADO
+                                if($user_username == NULL)
+                                {   ?>
+                                    <!-- ACERCA DE -->
+                                    <li><?php echo $this->Html->link('Acerca de',
+                                                                     array('controller'=>'pages','action' => 'home'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <!-- CONTACTO -->
+                                    <li><?php echo $this->Html->link('Contacto',
+                                                                     array('controller'=>'pages','action' => 'home'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <!-- REGISTRAR -->
+                                    <li><?php echo $this->Html->link('Registrar',
+                                                                     array('controller'=>'users','action' => 'add'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <!-- LOGIN -->
+                                    <li><?php echo $this->Html->link('Ingresar',
+                                                                     array('controller'=>'users','action' => 'login'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                } ?>
 
-<section id="footer">
-    <div class="footer_top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <h3 class="menu_head">Main Menu</h3>
-                    <div class="footer_menu">
-                        <ul>
-                            <li><a href="#about">Home</a></li>
-                            <li><a href="#service">Service</a></li>
-                            <li><a href="#portfolio">Portfolio</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
+                                <?php
+                                // SI ESTA LOGGEADO
+                                if($user_username != NULL)
+                                {   // SI ES USUARIO
+                                    if($user_role_id == '1')
+                                    {
+                                        ?>
+                                        <!-- ACERCA DE -->
+                                        <li><?php echo $this->Html->link('Acerca de',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                        <!-- CONTACTO -->
+                                        <li><?php echo $this->Html->link('Contacto',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                        <!-- RESERVAR -->
+                                        <li><?php echo $this->Html->link('Reservar',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                        <?php
+                                    } 
+                                    // SI ES ADMINISTRADOR
+                                    if($user_role_id == '0')
+                                    {
+                                        ?>
+                                        <!-- ADMINISTRAR -->
+                                        <li><?php echo $this->Html->link('Administrar',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                        <?php
+                                    } ?>
+                                    <!-- MI CUENTA -->
+                                    <li><?php echo $this->Html->link( 'Mi Cuenta',
+                                                                     array('controller'=>'pages','action' => 'home'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <!-- LOGOUT -->
+                                    <li><?php echo $this->Html->link('Salir',
+                                                                     array('controller'=>'users','action' => 'logout'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                } ?>    
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <h3 class="menu_head">Useful Links</h3>
-                    <div class="footer_menu">
-                        <ul>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#"> inventore natus ullam eum</a></li>
-                            <li><a href="#">consectetur adipisicing elit.</a></li>
-                            <li><a href="#">Frequently Asked Questions</a></li>
-                        </ul>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h3 class="menu_head">Enlaces</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="#">Términos de uso</a></li>
+                                <li><a href="#">Política de privacidad</a></li>
+                                <li><a href="#">Preguntas frecuentes</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <h3 class="menu_head">Contact us</h3>
-                    <div class="footer_menu_contact">
-                        <ul>
-                            <li> <i class="fa fa-home"></i>
-                                <span> 12 Segun Bagicha, 10th Floor </span></li>
-                            <li><i class="fa fa-globe"></i>
-                                <span> +880-12345678</span></li>
-                            <li><i class="fa fa-phone"></i>
-                                <span> info@mail.com</span></li>
-                            <li><i class="fa fa-map-marker"></i>
-                            <span> www.web.com</span></li>
-                        </ul>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h3 class="menu_head">Contacto</h3>
+                        <div class="footer_menu_contact">
+                            <ul>
+                                <li> <i class="fa fa-calendar"></i>
+                                    <span> Lun a Vie 8am-12md y 1pm-5pm</span></li>
+                                <li> <i class="fa fa-map-marker"></i>
+                                    <span> 2do piso, Facultad de Educación</span></li>
+                                <li><i class="fa fa-phone"></i>
+                                    <span> (506) 2511-5387 / 2511-8868</span></li>
+                                <li><i class="fa fa-fax"></i>
+                                    <span> (506) 2511-6123</span></li>
+                                <li><i class="fa fa-send"></i>
+                                    <span> protea.educacion@ucr.ac.cr</span></li>
+                                <li><i class="fa fa-globe"></i>
+                                    <span> facultadeducacion.ucr.ac.cr/protea</span></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <h3 class="menu_head">Tags</h3>
-                    <div class="footer_menu tags">
-                        <a href="#"> Design</a>
-                        <a href="#"> User Interface</a>
-                        <a href="#"> Graphics</a>
-                        <a href="#"> Web Design</a>
-                        <a href="#"> Development</a>
-                        <a href="#"> Asp.net</a>
-                        <a href="#"> Bootstrap</a>
-                        <a href="#"> Joomla</a>
-                        <a href="#"> SEO</a>
-                        <a href="#"> Wordepress</a>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h3 class="menu_head">Etiquetas</h3>
+                        <div class="footer_menu tags">
+                            <a href="#"> Diseño</a>
+                            <a href="#"> Interfaz de usuario</a>
+                            <a href="#"> Gráficos</a>
+                            <a href="#"> Diseño Web</a>
+                            <a href="#"> Desarrollo</a>
+                            <a href="#"> Asp.net</a>
+                            <a href="#"> Bootstrap</a>
+                            <a href="#"> Joomla</a>
+                            <a href="#"> SEO</a>
+                            <a href="#"> Wordepress</a>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer_b">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="footer_bottom">
-                        <p class="text-block"> &copy; Copyright reserved to <span>Cyprass </span></p>
+        <div class="footer_b">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer_bottom">
+                            <p class="text-block"> En colaboración con <span>ECCI UCR </span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer_mid pull-right">
+                            <ul class="social-contact list-inline">
+                                <li><a target="_blank" href="http://www.facebook.com/proteaucr"><i class="fa fa-facebook"></i></a></li>
+                                <li><a target="_blank" href="http://www.twitter.com/proteaed"><i class="fa fa-twitter"></i></a></li>
+                                <li><a target="_blank" href="http://www.youtube.com/proteaeducacion"><i class="fa fa-youtube-play"></i></a></li>
+                                <!--
+                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i> </a></li>
+                                <li><a href="#"> <i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"> <i class="fa fa-pinterest"></i></a></li>
+                                -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="footer_mid pull-right">
-                        <ul class="social-contact list-inline">
-                            <li> <a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li> <a href="#"><i class="fa fa-rss"></i></a></li>
-                            <li> <a href="#"><i class="fa fa-google-plus"></i> </a></li>
-                            <li><a href="#"> <i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"> <i class="fa fa-pinterest"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
-</section>
-<!-- Footer Area End -->
+    </section>
+    <!-- FIN PIE DE PAGINA ==================================== -->
 
 
+    <!-- JAVASCRIPT =========================================== -->
+    <?php
+    echo $this->Html->script('jquery.js');                  // Main jquery
+    echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
+    echo $this->Html->script('owl.carousel.min.js');        // Owl Carousel
+    echo $this->Html->script('jquery.isotope.js');          // Isotope
+    echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
+    echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
+    echo $this->Html->script('jquery.fancybox.pack.js');    // Image Fancybox
+    echo $this->Html->script('jquery.counterup.min.js');    // Counter
+    echo $this->Html->script('waypoints.min.js');           // waypoints
+    echo $this->Html->script('jquery.bxslider.min.js');     // Bx slider
+    echo $this->Html->script('jquery.scrollTo.js');         // Scroll to top
+    echo $this->Html->script('jquery.easing.1.3.js');       // Easing
+    echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
+    echo $this->Html->script('wow.min.js');                 // Wow Animation
+    echo $this->Html->script('gmaps.js');                   // Google Map  Source
+    echo $this->Html->script('custom.js');                  // Custom
+    ?>
 
-<!-- Javascript Files
-    ================================================== -->
-    <!-- initialize jQuery Library -->
-
-		<!-- initialize jQuery Library -->
-        <!-- Main jquery -->
-		 <?php
-        echo $this->Html->script('jquery.js');
-        // Bootstrap jQuery -->
-        echo $this->Html->script('bootstrap.min.js');
-        // Owl Carousel -->
-        echo $this->Html->script('owl.carousel.min.js');
-        // Isotope -->
-        echo $this->Html->script('jquery.isotope.js');
-        // Pretty Photo -->
-        echo $this->Html->script('jquery.prettyPhoto.js');
-        // SmoothScroll -->
-        echo $this->Html->script('smooth-scroll.js');
-        // Image Fancybox -->
-        echo $this->Html->script('jquery.fancybox.pack.js');
-        // Counter  -->
-        echo $this->Html->script('jquery.counterup.min.js');
-        // waypoints -->
-        echo $this->Html->script('waypoints.min.js');
-        // Bx slider -->
-        echo $this->Html->script('jquery.bxslider.min.js');
-        // Scroll to top -->
-        echo $this->Html->script('jquery.scrollTo.js');
-        // Easing js -->
-        echo $this->Html->script('jquery.easing.1.3.js');
-   		// PrettyPhoto -->
-        echo $this->Html->script('jquery.singlePageNav.js');
-      	// Wow Animation -->
-        echo $this->Html->script('wow.min.js');
-        // Google Map  Source -->
-        echo $this->Html->script('gmaps.js');
-        // Custom js -->
-        echo $this->Html->script('custom.js');
-        ?>
+    <script>
+        // Google Map - with support of gmaps.js
+        var map;
         
-	     <script>
-        var imgMap = {
-    url: 'http://lh4.ggpht.com/Tr5sntMif9qOPrKV_UVl7K8A_V3xQDgA7Sw_qweLUFlg76d_vGFA7q1xIKZ6IcmeGqg=w100'}
-        
-         // Google Map - with support of gmaps.js
-         var map;
-            map = new GMaps({
-              div: '#map',
-              lat: 9.936099,
-              lng: -84.048795,
-              zoom: 18,
-              scrollwheel: false,
-              panControl: false,
-              zoomControl: true,
-            });
+        // Mapa
+        map = new GMaps({
+            div: '#map',
+            lat: 9.936099,      // Facultad Educacion Latitud
+            lng: -84.048795,    // Facultad Educacion Longitud
+            zoom: 18,
+            scrollwheel: false,
+            panControl: false,
+            zoomControl: true,
+        });
 
-            map.addMarker({
-                div: '#map',
-              lat: 9.936099,
-              lng: -84.048795,
-              animation: google.maps.Animation.BOUNCE,
-              animation: google.maps.Animation.BOUNCE,
-              title: 'Facultad de Educación',
-              infoWindow: { 
-                content: '<p> Facultad de Educación, <br>Universidad de Costa Rica</p>'
-              },
-              icon: imgMap,
-            });
-             
-      	</script>
- 
-    </body>
+        // Marcador
+        map.addMarker({
+            div: '#map',
+            lat: 9.936099,      // Facultad Educacion Latitud
+            lng: -84.048795,    // Facultad Educacion Longitud
+            animation: google.maps.Animation.BOUNCE,
+            title: 'Facultad de Educación',
+            infoWindow: {content: '<p> Facultad de Educación, <br>Universidad de Costa Rica</p>'},
+            icon: 'http://lh4.ggpht.com/Tr5sntMif9qOPrKV_UVl7K8A_V3xQDgA7Sw_qweLUFlg76d_vGFA7q1xIKZ6IcmeGqg=w100'
+        });
+    </script>
+    <!-- FIN JAVASCRIPT =============================== -->
+</body> <!-- FIN CUERPO =============================== -->
 </html>

@@ -17,27 +17,27 @@
             <?= $this->Form->input('password', ['type' => 'password', 'label' => 'Contraseña: ', 'placeholder' => 'Al menos 8 caractéres', 'class' => 'form-control']) ?>
             <br>
         </div>
-        
+
         <div class='col-md-5 col-sm-6 col-xs-10 '>
             <?= $this->Form->input('first_name', ['label' => 'Nombre: ', 'placeholder' => 'Luis Carlos ', 'class' => 'form-control']) ?>
             <br>
         </div>
-        
+
         <div class='col-md-5 col-sm-6 col-xs-10 '>
             <?= $this->Form->input('last_name', ['label' => 'Apellidos: ', 'placeholder' => 'Brenes Aguilar', 'class' => 'form-control']) ?>
             <br>
         </div>
-        
+
         <div class='col-md-5 col-sm-6 col-xs-10 '>
             <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '80808080', 'class' => 'form-control']) ?>
             <br>
         </div>
-        
+
         <div class='col-md-5 col-sm-6 col-xs-10 '>
             <?= $this->Form->input('department', ['label' => 'Escuela/Institución: ', 'placeholder' => 'Educación/Protea', 'class' => 'form-control']) ?>
             <br>
         </div>
-        
+
         <div class='col-md-5 col-sm-6 col-xs-10 '>
             <?= $this->Form->input('position', ['label' => 'Posición: ', 'options' => array(
                                                                                               'Administrativo'  => 'Administrativo',
