@@ -32,6 +32,12 @@
     echo $this->Html->css('responsive.css');            // Responsive
     echo $this->Html->css('jquery.fancybox.css');       // Responsive
     echo $this->Html->css('mensajes.css');
+
+        //Calendario
+
+    echo $this->Html->css('fullcalendar/fullcalendar.css');  
+    echo $this->Html->css('fullcalendar/style.css');  
+    echo $this->Html->script('jquery.min.js');                  // Main jquery -> Debe cargar primero para evitar conflictos
     ?>
     <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:400,300'>
     <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500'>
@@ -324,7 +330,7 @@
 
     <!-- JAVASCRIPT =========================================== -->
     <?php
-    echo $this->Html->script('jquery.js');                  // Main jquery
+    //echo $this->Html->script('jquery.js'); 
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
     echo $this->Html->script('owl.carousel.min.js');        // Owl Carousel
     echo $this->Html->script('jquery.isotope.js');          // Isotope
@@ -339,7 +345,14 @@
     echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
     echo $this->Html->script('wow.min.js');                 // Wow Animation
     echo $this->Html->script('gmaps.js');                   // Google Map  Source
-    echo $this->Html->script('custom.js');                  // Custom
+    echo $this->Html->script('custom.js');                 // Custom
+
+        //Calendario
+    echo $this->Html->script('moment.min.js');
+    echo $this->Html->script('fullcalendar.js');  
+    
+
+
     ?>
 
     <script>

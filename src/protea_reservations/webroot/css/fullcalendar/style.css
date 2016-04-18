@@ -1,0 +1,25 @@
+#calendar
+{
+	width: 70%;
+	margin:auto;
+	margin-top: 50px;
+}
+
+#calendar h2
+{
+	font-size: 50px;
+}
+
+@media screen and (max-width: 768px)
+{
+	#calendar
+	{
+		width: 100%;
+	}
+
+	#calendar h2
+	{
+		font-size: 35px;
+	}
+
+}
