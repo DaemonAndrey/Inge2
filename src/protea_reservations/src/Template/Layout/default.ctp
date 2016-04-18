@@ -150,6 +150,11 @@
                     </ul> <!-- FIN OPCIONES =========== -->
                 </nav> <!-- FIN NAVEGACION ============ -->
             </div>
+            <div class="lead text-info" style="text-align:center; color: #00A3C5">
+                    <br>
+                    <?= $this->Flash->render('addUserSuccess') ?>
+                    <?= $this->Flash->render('logoutSuccess') ?>
+            </div>
         </div><!-- class row -->
     </div><!-- /.container-fluid -->
 </header>
