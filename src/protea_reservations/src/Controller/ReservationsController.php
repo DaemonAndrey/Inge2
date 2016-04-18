@@ -6,5 +6,8 @@ use Cake\ORM\TableRegistry;
 
 class ReservationsController extends AppController
 {
-
+	public function index()
+	{
+		
+	}
 }
