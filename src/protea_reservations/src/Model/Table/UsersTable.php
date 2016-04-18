@@ -38,8 +38,7 @@ class UsersTable extends Table
             ->add('telephone_number', 'validFormat', [
                                     'rule' => array('custom', '/^[0-9 \-]*$/'),
                                     'rule' => ['minLength', 8],
-                                    'rule' => ['maxLength', 15], // En caso de que se especifique el 506 o espacios cada 2 o 4 números
-                                    'message' => 'Debe contener al menos 8 dígitos.'
+                                    'message' => 'Debe contener al menos 8 dígitos'
             ])
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
             ->add('department', 'validFormat', [

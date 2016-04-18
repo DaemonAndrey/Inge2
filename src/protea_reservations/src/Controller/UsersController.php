@@ -81,7 +81,13 @@ class UsersController extends AppController
 
     public function logout()
     {
-        return $this->redirect($this->Auth->logout());
+        $logout = $this->Auth->logout();
+        
+        if($logout)
+        {
+            $this->Flash->success('Se ha cerrado su sesión exitosamente.', ['key' => 'logoutSuccess']);
+            return $this->redirect($logout);
+        }
     }
     
     public function isAuthorized($user)

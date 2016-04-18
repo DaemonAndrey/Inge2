@@ -4,7 +4,7 @@
 <!-- File: src/Template/Users/login.ctp -->
 
 <div class="users form">
-    <div style="text-align:center">
+    <div style="text-align:center; color:red">
         <?= $this->Flash->render('loginError') ?>
         <?= $this->Flash->render('loginPendiente') ?>
     </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-12 '>
+            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-10 '>
                 <?=  $this->Form->input('username', [
                                                     'placeholder' => 'Correo Institucional',
                                                     'class' => 'form-control',
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-12 '>
+            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-10 '>
                 <?=  $this->Form->input('password', [
                                                     'placeholder' => 'Contraseña',
                                                     'class' => 'form-control',
@@ -47,7 +47,7 @@
         </div>
     </fieldset>
     <div class='row'>
-        <div class='col-md-4 col-md-offset-7 col-sm-offset-2 col-xs-12 '>
+        <div class='col-md-4 col-sm-8 col-md-offset-7 col-sm-offset-2 col-xs-8 '>
             <?= $this->Form->button(__('Ingresar'), ['class' => 'btn btn-info']); ?>
         </div>
     </div>

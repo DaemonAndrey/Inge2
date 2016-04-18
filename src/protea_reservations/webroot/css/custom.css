@@ -1620,7 +1620,7 @@ padding: 8px 15px;
     color: #7F7F7F;
     padding: 15px 15px 12px;
     border-radius:0px;
-    text-transform: capitalize!important;
+    /* text-transform: capitalize!important; */
     padding-left: 70px;
 }
  .right textarea{
