@@ -17,6 +17,7 @@ class UsersTable extends Table
                                     'rule' => array('custom', '/^[a-zA-Z0-9._ \-]*@ucr.ac.cr$/'),
                                     'message' => 'Debe usar el correo institucional.'
             ])
+            
             ->notEmpty('password', 'Ingrese su contraseña')
             ->add('password', [
                             'length' => [
@@ -24,21 +25,35 @@ class UsersTable extends Table
                                         'message' => 'Debe contener mínimo 8 caracteres.',
                                         ]
             ])
+            
+            ->notEmpty('repass', 'Ingrese su contraseña de nuevo.')
+            ->add('repass', [
+                    'compare' => [
+                                'rule' => ['compareWith','password'],
+                                'message' => 'Las contraseñas no coinciden.'
+                    ]])
+            ->requirePresence('repass')
+            
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', 'validFormat', [
                                     'rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
                                     'message' => 'Debe contener solamente letras.'
             ])
+            
             ->notEmpty('last_name', 'Ingrese su apellido')
             ->add('last_name', 'validFormat', [
                                     'rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
                                     'message' => 'Debe contener solamente letras.'
             ])
+            
             ->notEmpty('telephone_number', 'Ingrese su telefono')
-            ->add('telephone_number', 'validFormat', [
-                                    'rule' => array('custom', '/^[0-9 \-]*$/'),
-                                    'rule' => ['minLength', 8],
-                                    'message' => 'Debe contener al menos 8 dígitos'
+            ->add('telephone_number', [
+                                    'lengthBetween' => ['rule' => ['lengthBetween', 8, 16],
+                                                        'message' => ('Digite un número de teléfono válido.')
+                                                        ],
+                                    'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]*$/'),
+                                                        'message' => ('Debe contener solamente números.')
+                                                        ]   
             ])
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
             ->add('department', 'validFormat', [
@@ -58,6 +73,17 @@ class UsersTable extends Table
         
         return true;
     }
+    
+    public function equaltofield($check,$otherfield)
+    {
+        //get name of field
+        $fname = '';
+        foreach ($check as $key => $value){
+            $fname = $key;
+            break;
+        }
+        return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
+    } 
 }
 
 ?>
