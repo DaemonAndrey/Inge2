@@ -13,3 +13,4 @@ INSERT INTO Resources ( resource_name, description ) VALUES
 ( 'Sala SITEA'					, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
 ( 'Sala de audiovisuales'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
 ( 'Laboratorio de Computo'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								);
+
