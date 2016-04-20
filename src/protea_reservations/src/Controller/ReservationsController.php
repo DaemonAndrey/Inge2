@@ -8,6 +8,13 @@ class ReservationsController extends AppController
 {
 	public function index()
 	{
+		$this->loadModel('Users');
 		
+		$resources = $this->Users->find()
+					->hydrate(false);
+		/**
+		$resources = $resources->toArray();
+		$this->set('resources',$resources);
+		**/
 	}
 }

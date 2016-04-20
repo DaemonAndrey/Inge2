@@ -5,6 +5,11 @@
 	</div>
 </div>
 
+<?php
+
+debug($resources);
+
+?>
 
 <script>
 	$(document).ready(function() { // page is now ready, initialize the calendar...
