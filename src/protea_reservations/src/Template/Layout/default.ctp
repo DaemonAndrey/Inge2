@@ -116,7 +116,7 @@
                         // SI ESTA LOGGEADO
                         if($user_username != NULL)
                         {   // SI ES USUARIO
-                            if($user_role_id == '1')
+                            if($user_role_id == '2')
                             {
                                 ?>
                                 <!-- ACERCA DE -->
@@ -129,12 +129,12 @@
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <!-- RESERVAR -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
-                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('controller'=>'reservations','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } 
                             // SI ES ADMINISTRADOR
-                            if($user_role_id == '0')
+                            if($user_role_id == '1')
                             {
                                 ?>
                                 <!-- ADMINISTRAR -->
@@ -155,6 +155,11 @@
                         } ?>    
                     </ul> <!-- FIN OPCIONES =========== -->
                 </nav> <!-- FIN NAVEGACION ============ -->
+            </div>
+            <div class="lead text-info" style="text-align:center; color: #00A3C5">
+                    <br>
+                    <?= $this->Flash->render('addUserSuccess') ?>
+                    <?= $this->Flash->render('logoutSuccess') ?>
             </div>
         </div><!-- class row -->
     </div><!-- /.container-fluid -->
@@ -208,7 +213,7 @@
                                 // SI ESTA LOGGEADO
                                 if($user_username != NULL)
                                 {   // SI ES USUARIO
-                                    if($user_role_id == '1')
+                                    if($user_role_id == '2')
                                     {
                                         ?>
                                         <!-- ACERCA DE -->
@@ -221,12 +226,12 @@
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <!-- RESERVAR -->
                                         <li><?php echo $this->Html->link('Reservar',
-                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('controller'=>'reservations','action' => 'index'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <?php
                                     } 
                                     // SI ES ADMINISTRADOR
-                                    if($user_role_id == '0')
+                                    if($user_role_id == '1')
                                     {
                                         ?>
                                         <!-- ADMINISTRAR -->
