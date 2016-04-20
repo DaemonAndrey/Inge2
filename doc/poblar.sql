@@ -7,4 +7,9 @@ INSERT INTO Users ( username, password, first_name, last_name, telephone_number,
 ( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'				, 'Otro'				, 2 ), -- usuariousuario
 ( 'docente@ucr.ac.cr'		, '$2y$10$sx1rvA2rNrGkCwGy1.ut.O06fQHYxwH.IAsxfyjYudD7xSIGT4zeK'			, 'Docente'			, 'Docente'			, '77777777'	, 'Enseñanza del inglés'	, 'Docente'			, 2 ), -- 987654321
 ( 'investigador@ucr.ac.cr'	, '$2y$10$14TTkEDdAQy/sF.619uYkeArhx7vunbB2r0addAvyFtXQfclGLAl.'			, 'Investigador'	, 'Investigador'	, '66666666'	, 'INIE'						, 'Investigador'	, 2 ), -- 12345678
-( 'otro'							, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'				, 'Otro',				, '99999999'	, 'ECCI'						, 'Otro'				, 2 )  -- 122345678
+( 'otro'							, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'				, 'Otro',				, '99999999'	, 'ECCI'						, 'Otro'				, 2 ); -- 122345678
+
+INSERT INTO Resources ( resource_name, description ) VALUES
+( 'Sala SITEA'					, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
+( 'Sala de audiovisuales'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
+( 'Laboratorio de Computo'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								);
