@@ -156,6 +156,10 @@
                     </ul> <!-- FIN OPCIONES =========== -->
                 </nav> <!-- FIN NAVEGACION ============ -->
             </div>
+            <div class="lead text-info" style="text-align:center;">
+                    <br>
+                    <?= $this->Flash->render('addUserSuccess') ?>
+            </div>
         </div><!-- class row -->
     </div><!-- /.container-fluid -->
 </header>
