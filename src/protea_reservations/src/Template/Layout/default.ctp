@@ -53,7 +53,7 @@
 
 
 <!-- ENCABEZADO =========================================== -->
-<header style="background: #B2B3B7">
+<header style="background: #91BB1B">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12">
@@ -64,11 +64,10 @@
                     <a class="navbar-brand" href="#">
                         <?php 
                         // Crea la imagen
-                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '65'));
-                        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '65'));
-                        $imgFaceduLogo = $this->Html->image('logo-facedu.png', array( 'alt' => 'Protea', 'height' => '65'));
+                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgFaceduLogo = $this->Html->image('logo-facedu.png', array( 'alt' => 'Protea', 'height' => '50'));
                         
-
                         // Hace el link con la imagen
                         echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
                                                array('target'=>'_blank', 'escape' => false));
