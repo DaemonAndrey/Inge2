@@ -364,6 +364,7 @@
         //Calendario
     echo $this->Html->script('moment.min.js');
     echo $this->Html->script('fullcalendar.js');  
+    echo $this->Html->script('lang/es.js'); 
     
 
 
