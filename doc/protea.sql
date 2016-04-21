@@ -52,6 +52,7 @@ CREATE TABLE Users
 CREATE TABLE Resources
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
+	resource_type		VARCHAR( 20 ) NOT NULL,
 	resource_name 	VARCHAR( 70 ) UNIQUE NOT NULL,
 	description 			TEXT,
 	
