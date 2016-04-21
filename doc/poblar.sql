@@ -26,12 +26,8 @@ INSERT INTO Resources ( resource_type, resource_name, description ) VALUES
 ( 'Sala'			, 'Laboratorio de Computo3'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
 ( 'Televisor'		, 'Televisor LG abc3'		, 'Televisor de 20 pulgadas' 																					),
 ( 'DVD'				, 'DVD Philips3'				, '' 																													),
-( 'Proyector'		, 'Proyector Epson3'			, 'Proyector de 1000 lumens' 																					),
-( 'Sala'			, 'Sala SITEA3'				, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales3'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
-( 'Sala'			, 'Laboratorio de Computo3'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc3'		, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'				, 'DVD Philips3'				, '' 																													);
+( 'Proyector'		, 'Proyector Epson3'			, 'Proyector de 1000 lumens' 																					);
+
 
 INSERT INTO Resources_Users ( resource_id, user_id ) VALUES
 ( '1'	, '1' ),

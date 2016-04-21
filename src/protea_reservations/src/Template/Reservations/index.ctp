@@ -30,7 +30,7 @@
 **/
 
   $.ajax({
-     url: '/protea/src/protea_reservations/reservations/index',
+     url: '/prot/src/protea_reservations/reservations/index',
      type: 'POST',
      data: 'type=fetch',
      async: false,
