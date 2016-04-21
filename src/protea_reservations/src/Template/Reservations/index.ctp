@@ -48,8 +48,9 @@
         center: 'month,agendaWeek,agendaDay',
         right: 'today prev,next'
        },
-
+        
         events: JSON.parse(json_events),
+        
         eventLimit: true, // for all non-agenda views
         views: {
             agenda: {
