@@ -5,14 +5,40 @@
 	</div>
 </div>
 
-<?php
-
-debug($resources);
-
-?>
 
 <script>
+
 	$(document).ready(function() { // page is now ready, initialize the calendar...
+
+/**
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+        
+        if(xhttp.readyState == 4 && xhttp.status == 200)
+        {
+           alert (xhttp.responseText);
+        }
+        
+          
+           
+    };
+
+    xhttp.open("POST", '/PROTEA/src/protea_reservations/reservations/index');
+    xhttp.setRequestHeader("type", "fetch");
+    xhttp.send();    
+**/
+
+  $.ajax({
+     url: '/PROTEA/src/protea_reservations/reservations/index',
+     type: 'POST',
+     data: 'type=fetch',
+     async: false,
+     success: function(response){
+       json_events = response;
+
+     }
+  });
 
     $('#calendar').fullCalendar({ // put your options and callbacks here
         
@@ -21,7 +47,8 @@ debug($resources);
         center: 'month,agendaWeek,agendaDay',
         right: 'today prev,next'
        },
-        
+
+        events: JSON.parse(json_events),
         monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ], 
        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
        dayNames: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
