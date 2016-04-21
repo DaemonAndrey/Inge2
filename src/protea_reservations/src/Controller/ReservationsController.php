@@ -11,13 +11,13 @@ class ReservationsController extends AppController
 		if($this->request->is('post'))
 		{
 			$resources = $this->Reservations->find()
-							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'user_comment'])
+							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'reservation_title'])
 
-							->hydrate(false)
-							  ->where(function ($exp, $q) {
-        			return $exp->notEq('user_comment', "");
+							->hydrate(false);
+							  /*->where(function ($exp, $q) {
+        			return $exp->notEq('reservation_title', "");
     				});
-					
+					*/
 			
 			$resources = $resources->toArray();
 
