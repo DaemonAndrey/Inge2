@@ -45,9 +45,16 @@
                                                     ]); ?>
             </div>
         </div>
+        <div class="row text-center">
+            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-10 '>
+                <?php
+                echo $this->Html->link('¿Olvidaste tu contraseña?', '#');
+                ?>
+            </div>
+        </div>
     </fieldset>
-    <div class='row'>
-        <div class='col-md-4 col-sm-8 col-md-offset-7 col-sm-offset-2 col-xs-8 '>
+    <div class="row text-center">
+        <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-10 '>
             <?= $this->Form->button(__('Ingresar'), ['class' => 'btn btn-info']); ?>
         </div>
     </div>
