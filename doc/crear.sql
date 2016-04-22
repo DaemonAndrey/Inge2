@@ -1,4 +1,4 @@
-CREATE TABLE Roles
+CREATE TABLE roles
 (
 	id 			INT UNSIGNED AUTO_INCREMENT,
 	role_name 	VARCHAR(50) UNIQUE NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE Roles
 	PRIMARY KEY ( id )
 );
 
-CREATE TABLE Functions
+CREATE TABLE functions
 (
 	id 				INT UNSIGNED AUTO_INCREMENT,
 	function_name 	VARCHAR(100) UNIQUE NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Functions
 	PRIMARY KEY ( id )
 );
 
-CREATE TABLE Functions_Roles
+CREATE TABLE functions_roles
 (
 	id 				INT UNSIGNED AUTO_INCREMENT,
 	function_id 	INT UNSIGNED NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE Functions_Roles
 	UNIQUE KEY ( function_id, role_id )
 );
 
-CREATE TABLE Users
+CREATE TABLE users
 (
 	id 					INT UNSIGNED AUTO_INCREMENT,
 	username 			VARCHAR( 64 ) UNIQUE NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE Users
 		ON UPDATE CASCADE
 );
 
-CREATE TABLE Resources
+CREATE TABLE resources
 (
 	id 				INT UNSIGNED AUTO_INCREMENT,
 	resource_type	VARCHAR( 20 ) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE Resources
 	PRIMARY KEY ( id )
 );
 
-CREATE TABLE Resources_Users
+CREATE TABLE resources_users
 (
 	id 			INT UNSIGNED AUTO_INCREMENT,
 	resource_id INT UNSIGNED NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE Resources_Users
 	UNIQUE KEY ( resource_id, user_id )
 );
 
-CREATE TABLE Reservations
+CREATE TABLE reservations
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
 	start_date 				DATETIME NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE Reservations
 	UNIQUE KEY ( start_date,resource_id )
 );
 
-CREATE TABLE HistoricReservations
+CREATE TABLE historic_reservations
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
 	reservation_start_date	DATETIME,
@@ -118,7 +118,7 @@ CREATE TABLE HistoricReservations
 	UNIQUE KEY ( reservation_start_date, resource_name, user_username )
 );
 
-CREATE TABLE Configurations
+CREATE TABLE configurations
 (
 	id 								INT UNSIGNED AUTO_INCREMENT,
 	registration_rejected_message 	TEXT,
