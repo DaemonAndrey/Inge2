@@ -29,8 +29,7 @@ class ReservationsController extends AppController
 			$events =  json_encode($events);
 
 			$events = str_replace(".",",",$events);
-			//$events = str_replace("]","",$events);		
-			//$events = str_replace("[","",$events);	
+	
 			$events = substr($events, 1,strlen($events)-2);
 			die($events);			
 		}

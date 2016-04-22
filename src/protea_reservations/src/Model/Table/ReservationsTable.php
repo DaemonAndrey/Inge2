@@ -1,6 +1,4 @@
 <?php
-
-// src/Model/Table/UsersTable.php
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
@@ -15,6 +13,3 @@ class ReservationsTable extends Table
         $this->belongsTo('Resources');
     }
 }
-
-
-?>
