@@ -26,7 +26,23 @@
            
     };
 
-    xhttp.open("POST", window.location.pathname+'index',false);
+    //
+    var path = window.location.pathname;
+    var append = "";
+
+    if(path.charAt(path.length -1).localeCompare("/") == 0)
+    {
+        append = "index";
+    }
+    else
+    {
+      if(path.charAt(path.length -1).localeCompare("x") != 0)
+      {
+        append = "/index";
+      }
+    }
+
+    xhttp.open("POST", path+append,false);
     xhttp.setRequestHeader("type", "fetch");
     xhttp.send();    
 
