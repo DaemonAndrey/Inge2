@@ -21,10 +21,10 @@ CREATE TABLE functions_roles
 	role_id 		INT UNSIGNED NOT NULL,
 	
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( function_id ) REFERENCES Functions ( id )
+	FOREIGN KEY ( function_id ) REFERENCES functions ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY ( role_id ) REFERENCES Roles ( id )
+	FOREIGN KEY ( role_id ) REFERENCES roles ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	UNIQUE KEY ( function_id, role_id )
@@ -44,7 +44,7 @@ CREATE TABLE users
 	role_id 			INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Administrador, 2: Usuario normal, 3: Otro 
 	
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( role_id ) REFERENCES Roles( id )
+	FOREIGN KEY ( role_id ) REFERENCES roles( id )
 		ON DELETE NO ACTION
 		ON UPDATE CASCADE
 );
@@ -66,10 +66,10 @@ CREATE TABLE resources_users
 	user_id 	INT UNSIGNED NOT NULL,
 	
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( resource_id ) REFERENCES Resources ( id )
+	FOREIGN KEY ( resource_id ) REFERENCES resources ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY ( user_id ) REFERENCES Users ( id )
+	FOREIGN KEY ( user_id ) REFERENCES users ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	UNIQUE KEY ( resource_id, user_id )
@@ -92,10 +92,10 @@ CREATE TABLE reservations
 	course_id 				VARCHAR( 10 ),
 	
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( resource_id ) REFERENCES Resources( id )
+	FOREIGN KEY ( resource_id ) REFERENCES resources( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY ( user_id ) REFERENCES Users ( id )
+	FOREIGN KEY ( user_id ) REFERENCES users ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	UNIQUE KEY ( start_date,resource_id )
