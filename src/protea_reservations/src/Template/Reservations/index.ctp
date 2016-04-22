@@ -10,36 +10,40 @@
 
 	$(document).ready(function() { // page is now ready, initialize the calendar...
 
-/**
+
     var xhttp = new XMLHttpRequest();
+    var json_events = "";
     xhttp.onreadystatechange = function()
     {
         
         if(xhttp.readyState == 4 && xhttp.status == 200)
         {
-           alert (xhttp.responseText);
+          json_events = xhttp.responseText;
+
         }
         
           
            
     };
 
-    xhttp.open("POST", '/PROTEA/src/protea_reservations/reservations/index');
+    xhttp.open("POST", window.location.pathname+'index',false);
     xhttp.setRequestHeader("type", "fetch");
     xhttp.send();    
-**/
 
+
+/**
   $.ajax({
-     url: '/prot/src/protea_reservations/reservations/index',
+     url: '/PROTEA/src/protea_reservations/reservations/index',
      type: 'POST',
-     data: 'type=fetch',
      async: false,
      success: function(response){
+       alert(response);
        json_events = response;
       
 
      }
   });
+**/
 
     $('#calendar').fullCalendar({ // put your options and callbacks here
         
