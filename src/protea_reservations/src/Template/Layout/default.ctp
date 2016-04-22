@@ -10,6 +10,13 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Mobile Specific Metas -->
+    <?= $this->Html->meta(
+    'favicon.ico',
+    '/logo-facedu.png',
+    ['type' => 'icon']
+);
+?>
+    
     <!-- FIN META ========================================= -->
     
     
@@ -32,6 +39,12 @@
     echo $this->Html->css('responsive.css');            // Responsive
     echo $this->Html->css('jquery.fancybox.css');       // Responsive
     echo $this->Html->css('mensajes.css');
+
+        //Calendario
+
+    echo $this->Html->css('fullcalendar/fullcalendar.css');  
+    echo $this->Html->css('fullcalendar/style.css');  
+    echo $this->Html->script('jquery.min.js');                  // Main jquery -> Debe cargar primero para evitar conflictos
     ?>
     <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:400,300'>
     <link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500'>
@@ -47,21 +60,27 @@
 
 
 <!-- ENCABEZADO =========================================== -->
-<header>
+<header style="background: #91BB1B">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12">
 
                 <!-- NAVBAR HEADER ================== -->
                 <div class="navbar-header ">
-                    <!-- LOGO PROTEA ================== -->
+                    <!-- LOGO ================== -->
                     <a class="navbar-brand" href="#">
                         <?php 
                         // Crea la imagen
-                        $imgLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'width' => '150'));
-
+                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgFaceduLogo = $this->Html->image('logo-facedu.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        
                         // Hace el link con la imagen
-                        echo $this->Html->link($imgLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+                        echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
+                                               array('target'=>'_blank', 'escape' => false));
+                        echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+                                               array('target'=>'_blank', 'escape' => false));
+                        echo $this->Html->link($imgFaceduLogo,'http://www.facultadeducacion.ucr.ac.cr',
                                                array('target'=>'_blank', 'escape' => false));
                         ?>
                     </a> <!-- FIN LOGO ================ -->
@@ -110,7 +129,7 @@
                         // SI ESTA LOGGEADO
                         if($user_username != NULL)
                         {   // SI ES USUARIO
-                            if($user_role_id == '1')
+                            if($user_role_id == '2')
                             {
                                 ?>
                                 <!-- ACERCA DE -->
@@ -123,12 +142,12 @@
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <!-- RESERVAR -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
-                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('controller'=>'reservations','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } 
                             // SI ES ADMINISTRADOR
-                            if($user_role_id == '0')
+                            if($user_role_id == '1')
                             {
                                 ?>
                                 <!-- ADMINISTRAR -->
@@ -150,18 +169,26 @@
                     </ul> <!-- FIN OPCIONES =========== -->
                 </nav> <!-- FIN NAVEGACION ============ -->
             </div>
+            <div class="lead text-info" style="text-align:center; color: #00A3C5">
+                    <br>
+                    <?= $this->Flash->render('addUserSuccess') ?>
+                    <?= $this->Flash->render('logoutSuccess') ?>
+            </div>
         </div><!-- class row -->
     </div><!-- /.container-fluid -->
 </header>
 <!-- FIN ENCABEZADO ======================================= -->
-
+    
 
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
      
+    <hr>
+    
     <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
 
-
+    <hr>
+    
     <!-- PIE DE PAGINA ======================================== -->
     <section id="footer">
         <div class="footer_top">
@@ -202,7 +229,7 @@
                                 // SI ESTA LOGGEADO
                                 if($user_username != NULL)
                                 {   // SI ES USUARIO
-                                    if($user_role_id == '1')
+                                    if($user_role_id == '2')
                                     {
                                         ?>
                                         <!-- ACERCA DE -->
@@ -215,12 +242,12 @@
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <!-- RESERVAR -->
                                         <li><?php echo $this->Html->link('Reservar',
-                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('controller'=>'reservations','action' => 'index'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <?php
                                     } 
                                     // SI ES ADMINISTRADOR
-                                    if($user_role_id == '0')
+                                    if($user_role_id == '1')
                                     {
                                         ?>
                                         <!-- ADMINISTRAR -->
@@ -324,7 +351,7 @@
 
     <!-- JAVASCRIPT =========================================== -->
     <?php
-    echo $this->Html->script('jquery.js');                  // Main jquery
+    //echo $this->Html->script('jquery.js'); 
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
     echo $this->Html->script('owl.carousel.min.js');        // Owl Carousel
     echo $this->Html->script('jquery.isotope.js');          // Isotope
@@ -339,7 +366,15 @@
     echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
     echo $this->Html->script('wow.min.js');                 // Wow Animation
     echo $this->Html->script('gmaps.js');                   // Google Map  Source
-    echo $this->Html->script('custom.js');                  // Custom
+    echo $this->Html->script('custom.js');                 // Custom
+
+        //Calendario
+    echo $this->Html->script('moment.min.js');
+    echo $this->Html->script('fullcalendar.js');  
+    echo $this->Html->script('lang/es.js'); 
+    
+
+
     ?>
 
     <script>

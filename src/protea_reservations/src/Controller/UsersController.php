@@ -8,20 +8,18 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 
 class UsersController extends AppController
-{
-
+{    
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
-        // cause problems with normal functioning of AuthComponent.
         $this->set('user_username', $this->Auth->User('username'));
         $this->Auth->allow(['add', 'logout']);
     }
 
-     public function index()
-     {
+    public function index()
+    {
         $this->set('users', $this->Users->find('all'));
     }
 
@@ -43,13 +41,13 @@ class UsersController extends AppController
             {
                 if ($this->Users->save($user))
                 {
-                    $this->Flash->success('Su solicitud de registro ha sido procesada, por favor espere la confirmación.');
+                    $this->Flash->success('Su solicitud de registro ha sido procesada, por favor espere la confirmación.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Pages','action' => 'home']);
                 }
             }
             catch(Exception $ex)
             {
-                $this->Flash->error(__('No ha sido posible procesar su solicitud.'));
+                $this->Flash->error(__('No ha sido posible procesar su solicitud.'), ['key' => 'addUserError']);
             }
         }
         $this->set('user', $user);
@@ -60,20 +58,53 @@ class UsersController extends AppController
         if ($this->request->is('post'))
         {
             $user = $this->Auth->identify();
-            
-            if ($user)
+
+            if($user)
             {
-                $this->Auth->setUser($user);
-                return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                if($this->isAuthorized($user))
+                {
+                    $this->Auth->setUser($user);
+                    return $this->redirect($this->Auth->redirectUrl());
+                    //return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                }
+                else
+                {               
+                    $this->Flash->error('Su solicitud de registro todavía no ha sido procesada, por favor espere.', ['key' => 'loginPendiente']);
+                }
             }
-            
-            $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, intenta de nuevo.'));
+            else
+            {
+                $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, por favor inténtelo de nuevo.'), ['key' => 'loginError']);
+            }
         }
     }
 
     public function logout()
     {
-        return $this->redirect($this->Auth->logout());
+        $logout = $this->Auth->logout();
+        
+        if($logout)
+        {
+            $this->Flash->success('Se ha cerrado su sesión exitosamente.', ['key' => 'logoutSuccess']);
+            return $this->redirect($logout);
+        }
+    }
+    
+    public function isAuthorized($user)
+    {
+        // Todos los usuarios se pueden registrar
+        if ($this->request->action === 'add') {
+            return true;
+        }
+
+        // Solo los usuarios confirmados pueden loguearse exitosamente
+        if (in_array($this->request->action, ['login'])) 
+        {
+            if ($this->Users->registrationConfirmed($user['id'])) 
+                return true;
+        }
+
+        return parent::isAuthorized($user);
     }
 }
 
