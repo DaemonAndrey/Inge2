@@ -34,7 +34,7 @@ ul.navbar-nav > li > a:hover{
     color:#00A3C5;!important;
 }
 ul.navbar-nav > .active > a,ul.navbar-nav > li > a:hover,.carousel-caption h4{
-    color:#00A3C5;!important;
+    color:#FFFFFF;!important;
 }
 .navbar-toggle .icon-bar{
     background:#000; 
@@ -47,7 +47,7 @@ ul.navbar-nav > .active > a,ul.navbar-nav > li > a:hover,.carousel-caption h4{
     color:#000;
 }
 ul.navbar-nav a {
-    color: #3a3a3a;
+    color: #000000;
 }
 ul.navbar-nav > .active> a:hover{
     color:#000 !important;

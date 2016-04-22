@@ -7,7 +7,59 @@
 
 
 <script>
+
 	$(document).ready(function() { // page is now ready, initialize the calendar...
+
+
+    var xhttp = new XMLHttpRequest();
+    var json_events = "";
+    xhttp.onreadystatechange = function()
+    {
+        
+        if(xhttp.readyState == 4 && xhttp.status == 200)
+        {
+          json_events = xhttp.responseText;
+
+        }
+        
+          
+           
+    };
+
+    //
+    var path = window.location.pathname;
+    var append = "";
+
+    if(path.charAt(path.length -1).localeCompare("/") == 0)
+    {
+        append = "index";
+    }
+    else
+    {
+      if(path.charAt(path.length -1).localeCompare("x") != 0)
+      {
+        append = "/index";
+      }
+    }
+
+    xhttp.open("POST", path+append,false);
+    xhttp.setRequestHeader("type", "fetch");
+    xhttp.send();    
+
+
+/**
+  $.ajax({
+     url: '/PROTEA/src/protea_reservations/reservations/index',
+     type: 'POST',
+     async: false,
+     success: function(response){
+       alert(response);
+       json_events = response;
+      
+
+     }
+  });
+**/
 
     $('#calendar').fullCalendar({ // put your options and callbacks here
         
@@ -17,17 +69,14 @@
         right: 'today prev,next'
        },
         
-        monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ], 
-       monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-       dayNames: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-       dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-       buttonText: {
-        today: 'hoy',
-        month: 'mes',
-        week: 'semana',
-        day: 'día'
-       }
+        events: JSON.parse(json_events),
+        
+        eventLimit: true, // for all non-agenda views
+        views: {
+            agenda: {
+                eventLimit: 6 // adjust to 6 only for agendaWeek/agendaDay
+            }
+        },
     });
-
 });
 </script>
