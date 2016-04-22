@@ -39,6 +39,7 @@
     echo $this->Html->css('responsive.css');            // Responsive
     echo $this->Html->css('jquery.fancybox.css');       // Responsive
     echo $this->Html->css('mensajes.css');
+    //echo $this->Html->css('style.css');
 
         //Calendario
 
@@ -60,8 +61,8 @@
 
 
 <!-- ENCABEZADO =========================================== -->
-<header style="background: #91BB1B">
-    <div class="container">
+<header>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-xs-12">
 
@@ -71,17 +72,16 @@
                     <a class="navbar-brand" href="#">
                         <?php 
                         // Crea la imagen
-                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea'));
                         $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
-                        $imgFaceduLogo = $this->Html->image('logo-facedu.png', array( 'alt' => 'Protea', 'height' => '50'));
+
                         
                         // Hace el link con la imagen
                         echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
                                                array('target'=>'_blank', 'escape' => false));
                         echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
                                                array('target'=>'_blank', 'escape' => false));
-                        echo $this->Html->link($imgFaceduLogo,'http://www.facultadeducacion.ucr.ac.cr',
-                                               array('target'=>'_blank', 'escape' => false));
+
                         ?>
                     </a> <!-- FIN LOGO ================ -->
 
@@ -183,11 +183,11 @@
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
      
-    <hr>
+    
     
     <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
 
-    <hr>
+    
     
     <!-- PIE DE PAGINA ======================================== -->
     <section id="footer">

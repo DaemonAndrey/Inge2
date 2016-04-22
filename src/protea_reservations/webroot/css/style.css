@@ -243,12 +243,15 @@ a {
     font-size: 40px;
     color: #222;
 }
+header {
+    background: #91BB1B;
+    padding-bottom: 20px;
+}
 
-.navbar-brand img {
-    height: 180%;
-    width: auto;
-    vertical-align: middle;
-    max-width: 100%;
+.navbar-header a img {
+    height: 60px;
+    width: 70px;
+    margin: 20px 10px 0 10px;
 }
 
 .navbar {
