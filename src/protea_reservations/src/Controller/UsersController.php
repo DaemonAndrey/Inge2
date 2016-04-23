@@ -17,7 +17,7 @@ class UsersController extends AppController
         $this->set('user_username', $this->Auth->User('username'));
         $this->Auth->allow(['add', 'logout']);
     }
-
+    
     public function index()
     {
         $this->set('users', $this->Users->find('all'));
