@@ -98,6 +98,12 @@
                 <nav class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1" role="navigation">
                     <!-- OPCIONES ================ -->
                     <ul class="nav navbar-nav navbar-right ">
+                        
+                        <!-- INICIO -->
+                        <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
+                                                                        array('controller'=>'pages','action' => 'home'),
+                                                                        array('target' => '_self', 'escape' => false)) ?> </li>
+                        
                         <?php
                         // SI NO ESTA LOGGEADO
                         if($user_username == NULL)
@@ -106,6 +112,7 @@
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
                                                              array('controller'=>'pages','action' => 'about'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                        
                             <!-- CONTACTO -->            
                             <li><a href="#footer" class="page-scroll"><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
                         
@@ -113,6 +120,7 @@
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
                                                              array('controller'=>'users','action' => 'add'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                        
                             <!-- LOGIN -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
                                                              array('controller'=>'users','action' => 'login'),
@@ -123,14 +131,7 @@
                         <?php
                         // SI ESTA LOGGEADO
                         if($user_username != NULL)
-                        {   
-                            ?>
-                            <!-- INICIO -->
-                            <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
-                                                                            array('controller'=>'pages','action' => 'home'),
-                                                                            array('target' => '_self', 'escape' => false)) ?> </li>
-                            <?php
-                                
+                        {                                  
                             // SI ES USUARIO
                             if($user_role_id == '2')
                             {
@@ -141,6 +142,7 @@
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } 
+                            
                             // SI ES ADMINISTRADOR
                             if($user_role_id == '1')
                             {
@@ -151,10 +153,12 @@
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } ?>
+                        
                             <!-- MI CUENTA -->
                             <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$user_username,
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
+                        
                             <!-- LOGOUT -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
                                                              array('controller'=>'users','action' => 'logout'),
@@ -190,6 +194,11 @@
                         <h3 class="menu_head">Menú Principal</h3>
                         <div class="footer_menu">
                             <ul>
+                                <!-- INICIO -->
+                                <li class="active"><?php echo $this->Html->link('Inicio',
+                                                                                array('controller'=>'pages','action' => 'home'),
+                                                                                array('target' => '_self', 'escape' => false)) ?> </li>
+                                
                                 <?php
                                 // SI NO ESTA LOGGEADO
                                 if($user_username == NULL)
@@ -213,14 +222,7 @@
                                 <?php
                                 // SI ESTA LOGGEADO
                                 if($user_username != NULL)
-                                {   
-                                    ?>
-                                    <!-- INICIO -->
-                                    <li class="active"><?php echo $this->Html->link('Inicio',
-                                                                                    array('controller'=>'pages','action' => 'home'),
-                                                                                    array('target' => '_self', 'escape' => false)) ?> </li>
-                                    <?php
-                                        
+                                {    
                                     // SI ES USUARIO
                                     if($user_role_id == '2')
                                     {
