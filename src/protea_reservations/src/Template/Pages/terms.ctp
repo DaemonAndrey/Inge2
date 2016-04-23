@@ -9,7 +9,7 @@
                 <center>
                     <b>
                         <br>
-                        <?= __('Reservación de Recursos del PROTEA') ?>
+                        <?= __('Términos de Uso') ?>
                         <br>
                     </b>
                 </center>

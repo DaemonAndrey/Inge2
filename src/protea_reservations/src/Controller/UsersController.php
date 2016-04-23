@@ -41,13 +41,13 @@ class UsersController extends AppController
             {
                 if ($this->Users->save($user))
                 {
-                    $this->Flash->success('Su solicitud de registro ha sido procesada, por favor espere la confirmación.', ['key' => 'addUserSuccess']);
+                    $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Pages','action' => 'home']);
                 }
             }
             catch(Exception $ex)
             {
-                $this->Flash->error(__('No ha sido posible procesar su solicitud.'), ['key' => 'addUserError']);
+                $this->Flash->error(__('No se ha podido procesar su solicitud'), ['key' => 'addUserError']);
             }
         }
         $this->set('user', $user);
@@ -69,12 +69,12 @@ class UsersController extends AppController
                 }
                 else
                 {               
-                    $this->Flash->error('Su solicitud de registro todavía no ha sido procesada, por favor espere.', ['key' => 'loginPendiente']);
+                    $this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
                 }
             }
             else
             {
-                $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, por favor inténtelo de nuevo.'), ['key' => 'loginError']);
+                $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, inténtelo otra vez'), ['key' => 'loginError']);
             }
         }
     }
@@ -85,7 +85,7 @@ class UsersController extends AppController
         
         if($logout)
         {
-            $this->Flash->success('Se ha cerrado su sesión exitosamente.', ['key' => 'logoutSuccess']);
+            $this->Flash->success('Se ha cerrado su sesión exitosamente', ['key' => 'logoutSuccess']);
             return $this->redirect($logout);
         }
     }

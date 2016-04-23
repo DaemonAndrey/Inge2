@@ -37,10 +37,10 @@ ul.navbar-nav > .active > a,ul.navbar-nav > li > a:hover,.carousel-caption h4{
     color:#FFFFFF;!important;
 }
 .navbar-toggle .icon-bar{
-    background:#000; 
+    background:#FFFFFF; 
 }
 .navbar-toggle {
-    background: #B2B3B7;;
+    background: #00A3C5;;
 }
 
 .navbar-brand span{
@@ -209,7 +209,7 @@ figcaption .links a:hover{
 }
  #team .owl-theme .owl-controls .owl-buttons .owl-prev:hover
 ,#team .owl-theme .owl-controls .owl-buttons .owl-next:hover {
-   background: #B2B3B7;;
+   background: #00A3C5;
    color: #636366;
 }
 
