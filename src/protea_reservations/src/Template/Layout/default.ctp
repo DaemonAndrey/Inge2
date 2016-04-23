@@ -66,10 +66,9 @@
             <div class="col-md-12 col-xs-12">
 
                 <!-- NAVBAR HEADER ================== -->
-                <div class="navbar-header ">
+                <div class="navbar-header">
                     <!-- LOGO ================== -->
-                    <a class="navbar-brand" href="#">
-                        <?php 
+                    <?php 
                         // Crea la imagen
                         $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '50'));
                         $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
@@ -80,10 +79,10 @@
                                                array('target'=>'_blank', 'escape' => false));
                         echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
                                                array('target'=>'_blank', 'escape' => false));
-                        echo $this->Html->link($imgFaceduLogo,'http://www.facultadeducacion.ucr.ac.cr',
-                                               array('target'=>'_blank', 'escape' => false));
+                        /*echo $this->Html->link($imgFaceduLogo,'http://www.facultadeducacion.ucr.ac.cr',
+                                               array('target'=>'_blank', 'escape' => false));*/
                         ?>
-                    </a> <!-- FIN LOGO ================ -->
+                    <!-- FIN LOGO ================ -->
 
                     <!-- COLAPSAR ==================== -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
