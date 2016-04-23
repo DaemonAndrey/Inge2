@@ -10,6 +10,13 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Mobile Specific Metas -->
+    <?= $this->Html->meta(
+    'favicon.ico',
+    '/logo-facedu.png',
+    ['type' => 'icon']
+);
+?>
+    
     <!-- FIN META ========================================= -->
     
     
@@ -53,21 +60,27 @@
 
 
 <!-- ENCABEZADO =========================================== -->
-<header>
+<header style="background: #91BB1B">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12">
 
                 <!-- NAVBAR HEADER ================== -->
                 <div class="navbar-header ">
-                    <!-- LOGO PROTEA ================== -->
+                    <!-- LOGO ================== -->
                     <a class="navbar-brand" href="#">
                         <?php 
                         // Crea la imagen
-                        $imgLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'width' => '150'));
-
+                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        $imgFaceduLogo = $this->Html->image('logo-facedu.png', array( 'alt' => 'Protea', 'height' => '50'));
+                        
                         // Hace el link con la imagen
-                        echo $this->Html->link($imgLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+                        echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
+                                               array('target'=>'_blank', 'escape' => false));
+                        echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+                                               array('target'=>'_blank', 'escape' => false));
+                        echo $this->Html->link($imgFaceduLogo,'http://www.facultadeducacion.ucr.ac.cr',
                                                array('target'=>'_blank', 'escape' => false));
                         ?>
                     </a> <!-- FIN LOGO ================ -->
@@ -165,14 +178,17 @@
     </div><!-- /.container-fluid -->
 </header>
 <!-- FIN ENCABEZADO ======================================= -->
-
+    
 
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
      
+    <hr>
+    
     <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
 
-
+    <hr>
+    
     <!-- PIE DE PAGINA ======================================== -->
     <section id="footer">
         <div class="footer_top">
@@ -355,6 +371,7 @@
         //Calendario
     echo $this->Html->script('moment.min.js');
     echo $this->Html->script('fullcalendar.js');  
+    echo $this->Html->script('lang/es.js'); 
     
 
 
