@@ -107,7 +107,7 @@
                         {   ?>
                             <!-- ACERCA DE -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'pages','action' => 'about'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <!-- CONTACTO -->            
                             <li><a href="#footer" class="page-scroll"><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
@@ -132,8 +132,8 @@
                                 ?>
                                 <!-- ACERCA DE -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
-                                                                 array('controller'=>'pages','action' => 'home'),
-                                                                 array('target' => '#footer', 'escape' => false)) ?> </li>
+                                                                 array('controller'=>'pages','action' => 'about'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
                                 <!-- CONTACTO -->
                                 <li><a href="#footer" class="page-scroll"><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
                         
@@ -202,7 +202,7 @@
                                 {   ?>
                                     <!-- ACERCA DE -->
                                     <li><?php echo $this->Html->link('Acerca de',
-                                                                     array('controller'=>'pages','action' => 'home'),
+                                                                     array('controller'=>'pages','action' => 'about'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
                                     
                                     <!-- REGISTRAR -->
@@ -225,7 +225,7 @@
                                         ?>
                                         <!-- ACERCA DE -->
                                         <li><?php echo $this->Html->link('Acerca de',
-                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('controller'=>'pages','action' => 'about'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         
                                         <!-- RESERVAR -->
