@@ -10,16 +10,16 @@
     </div>
 <?= $this->Form->create() ?>
     <fieldset>
-        <div class="row">
-            <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-10 col-xs-12 '>
-                <h1>Ingresar</h1>
-            </div>
+        <div class='text-center'>
+            <h1>Ingresar</h1>
         </div>
+
         <div class="row">
             <div class='col-md-12 col-xs-12 '>
-                <legend></legend>
+                <hr>
             </div>
         </div>
+        
         <div class="row">
             <div class='col-md-4 col-md-offset-4 col-sm-offset-2 col-sm-8 col-xs-10 '>
                 <?=  $this->Form->input('username', [
