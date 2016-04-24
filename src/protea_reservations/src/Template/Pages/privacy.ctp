@@ -6,13 +6,11 @@
     <div class='row'>
         <div class='col-md-12 col-xs-12 '>
             <legend>
-                <center>
-                    <b>
-                        <br>
-                        <?= __('Política de Privacidad') ?>
-                        <br>
-                    </b>
-                </center>
+                <div class='text-center'>
+                    <br>
+                    <h1>Política de Privacidad</h1>
+                    <br>
+                </div>
             </legend>
         </div>
     </div>

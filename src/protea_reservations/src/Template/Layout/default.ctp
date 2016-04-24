@@ -270,7 +270,7 @@
                                                                  array('controller'=>'pages','action' => 'faq'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <!-- TÉRMINOS DE USO -->
-                                <li><?php echo $this->Html->link( 'Términos de uso',
+                                <li><?php echo $this->Html->link( 'Condiciones de uso',
                                                                  array('controller'=>'pages','action' => 'terms'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <!-- POLÍTICA DE PRIVACIDAD -->
