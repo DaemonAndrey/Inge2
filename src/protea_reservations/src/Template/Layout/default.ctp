@@ -101,7 +101,7 @@
                         <!-- INICIO -->
                         <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
                                                                         array('controller'=>'pages','action' => 'home'),
-                                                                        array('target' => '_self', 'escape' => false)) ?> </li>
+                                                                        array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
                         <?php
                         // SI NO ESTA LOGGEADO
                         if($user_username == NULL)
@@ -109,19 +109,19 @@
                             <!-- ACERCA DE -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
                                                              array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                                                             array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
                             <!-- CONTACTO -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-phone"></span> Contacto',
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                                                             array('controller'=>'pages','action' => '#cont'),
+                                                             array('target' => '_self', 'escape' => false, 'title'=>'¡Contactanos!')) ?> </li>
                             <!-- REGISTRAR -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
                                                              array('controller'=>'users','action' => 'add'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                                                             array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
                             <!-- LOGIN -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
                                                              array('controller'=>'users','action' => 'login'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+                                                             array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
                             <?php
                         } ?>
 
@@ -279,7 +279,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-3 col-sm-6 col-xs-12" id="cont">
                         <h3 class="menu_head">Contacto</h3>
                         <div class="footer_menu_contact">
                             <ul>
