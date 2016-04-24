@@ -52,7 +52,9 @@
     <div class="row" align="center" style="font-size:16px">
         <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
             <?php
-            echo $this->Html->link('¿Olvidaste tu contraseña?', '#');
+            echo $this->Html->link('¿Olvidaste tu contraseña?',
+                                   array('controller'=>'pages','action' => 'recovery'),
+                                   array('target' => '_self', 'escape' => false));
             ?>
         </div>
     </div>
