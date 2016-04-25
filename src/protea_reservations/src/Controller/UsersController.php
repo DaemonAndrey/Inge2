@@ -15,7 +15,7 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         $this->set('user_username', $this->Auth->User('username'));
-        $this->Auth->allow(['add', 'logout']);
+        $this->Auth->allow(['registrar', 'logout']);
     }
     
     public function index()
@@ -29,7 +29,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
-    public function add()
+    public function registrar()
     {
         $user = $this->Users->newEntity();
         
@@ -93,7 +93,7 @@ class UsersController extends AppController
     public function isAuthorized($user)
     {
         // Todos los usuarios se pueden registrar
-        if ($this->request->action === 'add') {
+        if ($this->request->action === 'registrar') {
             return true;
         }
 

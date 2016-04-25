@@ -1,7 +1,7 @@
-<!-- src/Template/Users/add.ctp -->
+<!-- src/Template/Users/ingresar.ctp -->
 <?php echo $this->Html->css('login.css'); ?>
 
-<!-- File: src/Template/Users/login.ctp -->
+<!-- File: src/Template/Users/ingresar.ctp -->
 <br>
 <div class="users form">
     <!-- MENSAJES -->

@@ -118,7 +118,7 @@
                         
                             <!-- REGISTRAR -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
-                                                             array('controller'=>'users','action' => 'add'),
+                                                             array('controller'=>'users','action' => 'registrar'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                         
                             <!-- LOGIN -->
@@ -210,7 +210,7 @@
                                     
                                     <!-- REGISTRAR -->
                                     <li><?php echo $this->Html->link('Registrar',
-                                                                     array('controller'=>'users','action' => 'add'),
+                                                                     array('controller'=>'users','action' => 'registrar'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
                                     <!-- LOGIN -->
                                     <li><?php echo $this->Html->link('Ingresar',
