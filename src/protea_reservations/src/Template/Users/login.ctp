@@ -11,7 +11,7 @@
     </div>
     
     <?= $this->Form->create() ?>
-    <fieldset>
+    <fieldset>        
         <!-- USERNAME -->
         <div class="row">
             <div class='col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
