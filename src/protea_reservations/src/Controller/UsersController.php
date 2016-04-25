@@ -8,7 +8,11 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 
 class UsersController extends AppController
-{    
+{   
+    /** 
+     * Permite comprobar si hay una sesión activa y verificar los permisos de usuario.
+     * @param Event $event
+     */
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -23,12 +27,20 @@ class UsersController extends AppController
         $this->set('users', $this->Users->find('all'));
     }
 
+    /**
+     * Para futuras vistas
+     * @param  integer $id
+     */
     public function view($id)
     {
         $user = $this->Users->get($id);
         $this->set(compact('user'));
     }
-
+    
+    /**
+     * Se encarga del registro de usuarios, se pasa a la vista de REGISTRO.
+     * Indica si se proceso la solicitud de registro o no.
+     */
     public function add()
     {
         $user = $this->Users->newEntity();
@@ -52,7 +64,10 @@ class UsersController extends AppController
         }
         $this->set('user', $user);
     }    
-    
+    /**
+    * Se encarga del inicio de sesión de un usuario y se pasa a la vista de LOGIN.
+    * Verifica si el usuario esta debidamente registrado y que los datos ingresados sean correctos.
+    */
     public function login()
     {
         if ($this->request->is('post'))
@@ -78,7 +93,10 @@ class UsersController extends AppController
             }
         }
     }
-
+    /**
+    * Se encarga del cierre de sesión de un usuario.
+    * Se pasa a la pagina principal. 
+    */
     public function logout()
     {
         $logout = $this->Auth->logout();
@@ -90,6 +108,10 @@ class UsersController extends AppController
         }
     }
     
+    /*
+     * Verifica si un usuario tiene autorización para poder loguearse o no 
+     * @param $user
+     */
     public function isAuthorized($user)
     {
         // Todos los usuarios se pueden registrar

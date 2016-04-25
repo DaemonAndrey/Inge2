@@ -9,6 +9,10 @@ use Cake\Validation\Validator;
 class UsersTable extends Table
 {
 
+    /*
+     * Se encarga de validar los campos del formulario de registro
+     * @param Validator $validator
+     */
     public function validationDefault(Validator $validator)
     {
         return $validator
@@ -63,6 +67,11 @@ class UsersTable extends Table
             ->notEmpty('position', 'Seleccione una opción.');
     }    
     
+    /*
+     * Se encarga de verificar si una solicitud de registro fue confirmada o no
+     * @param $userId
+     * @return bool
+     */
     public function registrationConfirmed($userId)
     {
         $user = $this->get($userId);
