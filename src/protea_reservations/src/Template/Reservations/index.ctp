@@ -74,18 +74,18 @@
 
         header: {
         left: 'title',
-        center: 'month,agendaWeek,agendaDay',
+        center: 'month,basicWeek,agendaDay',
         right: 'today prev,next'
        },
 
         events: JSON.parse(json_events),
-
-        eventLimit: true, // for all non-agenda views
+        
+        eventLimit: true,
         views: {
-            agenda: {
-                eventLimit: 6 // adjust to 6 only for agendaWeek/agendaDay
+            basic: {
+                eventLimit: 20// options apply to basicWeek and basicDay views
             }
-        },
+        }
     });
 });
 </script>
