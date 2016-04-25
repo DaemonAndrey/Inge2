@@ -1,0 +1,86 @@
+PRUEBAS FUNCIONALES
+
+- REGISTRO
+	01- Correo
+		a- Correo no institucional
+		b- Correo repetido
+		c- Correo sin @ 							(*El navegador por defecto revisa que tenga un @ y un dominio)
+		d- Correo vacío 							(*El navegador por defecto hace la verificación a los campos requeridos)
+		e- Correo institucional correcto		(*Se cumple en el caso 08)
+	02- Nombre
+		a- Nombre con números
+		b- Nombre con más de 20 caracteres
+		c- Nombre vacío 							(*El navegador por defecto hace la verificación a los campos requeridos)
+		d- Nombre correcto						(*Se cumple en el caso 08)
+	03- Apellidos
+		a- Apellidos con números
+		b- Apellidos con más de 30 caracteres
+		c- Apellidos vacíos 						(*El navegador por defecto hace la verificación a los campos requeridos)
+		d- Apellidos correctos					(*Se cumple en el caso 08)
+	04- Teléfono
+		a- Menos de 8 números
+		b- Más de 16 números
+		c- Letras o símbolos
+		d- 8 números 								(*Se cumple en el caso 08)
+		e- 16 números 							(*Se cumple en el caso 08)
+		f- Entre 9-15 números 					(*Se cumple en el caso 08)
+		g- Teléfono vacío 						(*El navegador por defecto hace la verificación a los campos requeridos)
+	05- Contraseña
+		a- Menos de 8 caracteres
+		b- 8 caracteres 							(*Se cumple en el caso 08)
+		c- Más de 8 caracteres 				(*Se cumple en el caso 08)
+		d- Contraseña vacía 					(*El navegador por defecto hace la verificación a los campos requeridos)
+	06- Repass
+		a- Repass diferente a la contraseña
+		b- 8 caracteres 							(*Aunque tenga 8 caracteres si es diferente a la contraseña entonces se activa el mensaje del caso 06a)
+		c- Más de 8 caracteres 				(*Aunque tenga 8 caracteres si es diferente a la contraseña entonces se activa el mensaje del caso 06a)
+		d- Menos de 8 caracteres 				(*Aunque sea igual igual a la contraseña se activa el mensaje del caso 05a)
+		e- Repass igual a la contraseña 		(*Se cumple en el caso 08)
+		f- Repass vacío 							(*El navegador por defecto hace la verificación a los campos requeridos)
+	07- Escuela (*¿Cuánto máximo y mínimo?)
+		a- Escuela con números
+		b- Escuela vacía 							(*El navegador por defecto hace la verificación a los campos requeridos)
+		c- Escuela correcta						(*Se cumple en el caso 08)
+	08- Registro exitoso
+	09- Registro no exitoso (BD desconectada) (*Pendiente porque hace falta hacer pantallas predeterminadas para errores)
+		
+- LOGIN
+	01- Usuario vacío y contraseña vacía
+	02- Usuario vacío y contraseña no vacía
+	03- Usuario no vacío y contraseña vacía
+	04- Usuario válido y contraseña inválida
+	05- Usuario administrador confirmado 	(*Requiere que en la BD el campo 'state' esté en 1)
+	06- Cierre de sesión exitoso
+	07- Usuario regular sin confirmar
+	08- Usuario regular confirmado 			(*Requiere que en la BD el campo 'state' esté en 1)
+		
+- NAVEGAR POR CALENDARIO
+	01- Por mes
+		a- Un evento
+		b- 2-3 eventos
+		c- Más de 3 eventos
+	02- Por semana
+		a- Un evento
+		b- 2-3 eventos
+		c- Más de 3 eventos
+	03- Por día
+		a- Un evento
+		b- 2-3 eventos
+		c- Más de 3 eventos
+		
+- NAVEGACIÓN EN GENERAL
+	01- Links externos (*Pendientes)
+		a- Link de la UCR
+		b- Link de la Facultad de Educación
+		c- Link de Facebook
+		d- Link de Twitter
+		e- Link de Youtube
+	02- Links internos
+		a- Ingresar
+		b- Registrar
+		c- Inicio
+		d- Contacto
+		e- Reservar				(*Requiere que en la BD el campo 'state' esté en 1 para el usuario con el que se hace la prueba)
+		f- Acerca de			(*Pantalla pendiente para próximas iteraciones)
+		g- Administrar			(*Pantalla pendiente para próximas iteraciones)
+	

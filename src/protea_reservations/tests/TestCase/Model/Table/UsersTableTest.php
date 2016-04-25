@@ -21,8 +21,6 @@ class UsersTableTest extends TestCase
         parent::setUp();
         $this->Users = TableRegistry::get('Users');
     }
-
-
 }
 
->?
+?>
