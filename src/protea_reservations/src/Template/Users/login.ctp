@@ -16,13 +16,15 @@
         <!-- USERNAME -->
         <div class="row">
             <div class='col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
-                <?=  $this->Form->input('username', 
-                                        ['placeholder' => 'Correo Institucional',
-                                         'class' => 'form-control',
-                                         'label' => 'Correo Institucional: ',
-                                         'templates' => ['formGroup' => '<div class="left-inner-addon"><i class="glyphicon glyphicon-user"></i>{{input}}</div>'
-                                                       ]
-                                        ]); ?>
+                <?=  $this->Form->input('username', [
+                                                    'placeholder' => 'Correo Institucional',
+                                                    'class' => 'form-control',
+                                                    'label' => 'Correo Institucional: ',
+                                                    'required',
+                                                    'templates' => [
+                                                    'formGroup' => '<div class="left-inner-addon"><i class="glyphicon glyphicon-user"></i>{{input}}</div>'
+                                                                   ]
+                                                    ]); ?>
                 
             </div>
         </div>
@@ -30,13 +32,15 @@
         <!-- PASSWORD -->
         <div class="row">
             <div class='col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
-                <?=  $this->Form->input('password',
-                                        ['placeholder' => 'Contraseña',
-                                         'class' => 'form-control',
-                                         'label' => 'Contraseña: ',
-                                         'templates' => ['formGroup' => '<div class="left-inner-addon"><i class="glyphicon glyphicon-lock"></i>{{input}}</div>'
-                                                        ]
-                                        ]); ?>
+                <?=  $this->Form->input('password', [
+                                                    'placeholder' => 'Contraseña',
+                                                    'class' => 'form-control',
+                                                    'label' => 'Contraseña: ',
+                                                    'required',
+                                                    'templates' => [
+                                                    'formGroup' => '<div class="left-inner-addon"><i class="glyphicon glyphicon-lock"></i>{{input}}</div>'
+                                                                   ]
+                                                    ]); ?>
             </div>
         </div>
     </fieldset>
