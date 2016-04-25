@@ -8,12 +8,12 @@
 <?= $this->Form->create($user) ?>
     <fieldset>
         <legend>
-            <br>
-                <div class="text-center">
-                    <?= __('Formulario de registro') ?>
+                <div class='text-center'>
+                    <br>
+                    <h1>Formulario de Registro</h1>
+                    <br>
                 </div>
-            <br>
-        </legend>
+            </legend>
         
         <div class='row'>
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1'>

@@ -42,7 +42,7 @@
     
     <!-- BOTÓN -->
     <div class="row" align="center" id="btnIngresar">
-        <div class='col-lg-1 col-lg-offset-5 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
+        <div class='col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10'>
             <?= $this->Form->button(__('Ingresar'), ['class' => 'btn btn-info']); ?>
         </div>
     </div>
