@@ -5,9 +5,10 @@ use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 class ReservationsController extends AppController
-{
+{    
 	public function index()
 	{
+        
 		if($this->request->is('post'))
 		{
 			$resources = $this->Reservations->find()

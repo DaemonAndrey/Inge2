@@ -7,9 +7,9 @@
 <br>
 
 <div class="row">
-	<div class="col-xs-12">
-		<div id='calendar'></div>	
-	</div>
+    <div class="col-xs-12">
+        <div id='calendar'></div>	
+    </div>
 </div>
 <br>
 <br>
@@ -17,22 +17,22 @@
 
 <script>
 
-	$(document).ready(function() { // page is now ready, initialize the calendar...
+    $(document).ready(function() { // page is now ready, initialize the calendar...
 
 
     var xhttp = new XMLHttpRequest();
     var json_events = "";
     xhttp.onreadystatechange = function()
     {
-        
+
         if(xhttp.readyState == 4 && xhttp.status == 200)
         {
           json_events = xhttp.responseText;
 
         }
-        
-          
-           
+
+
+
     };
 
     //
@@ -64,22 +64,22 @@
      success: function(response){
        alert(response);
        json_events = response;
-      
+
 
      }
   });
 **/
 
     $('#calendar').fullCalendar({ // put your options and callbacks here
-        
+
         header: {
         left: 'title',
         center: 'month,agendaWeek,agendaDay',
         right: 'today prev,next'
        },
-        
+
         events: JSON.parse(json_events),
-        
+
         eventLimit: true, // for all non-agenda views
         views: {
             agenda: {
