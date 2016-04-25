@@ -3,7 +3,8 @@
 <?php echo $this->Html->css('registro.css'); ?>
 <div class="users form">
     <div style="text-align:center">
-        <?= $this->Flash->render('addUserError') ?>      
+        <?= $this->Flash->render('addUserError') ?>   
+        <br>
     </div>
 <?= $this->Form->create($user) ?>
     <fieldset>
