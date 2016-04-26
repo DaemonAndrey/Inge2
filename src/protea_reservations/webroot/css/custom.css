@@ -211,7 +211,7 @@ section{
 ================================================== */
 /* Header area
 =========================================================== */
-header
+.navbar
 {
     background: #91BB1B;
     padding-bottom: 20px;
@@ -221,15 +221,15 @@ header
 
 
 .navbar-header a img {
-    height: 50px;
-    width: 95px;
+    height: 60px;
+    width: 80px;
     margin: 20px 10px 0 10px;
 }
-
 
 @media screen and (max-width: 768px)
 {
     .navbar-header a img {
+        height: 40px;
         width: 60px;
         margin: 20px 10px 0 10px;
     }
@@ -240,11 +240,12 @@ header
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px)
+@media screen and (min-width: 768px) and (max-width: 991px)
 {
     .navbar-header a img {
-        width: 20px;
-        float:left;
+        height: 45px;
+        width: 53px;
+        margin: 20px 5px 0 15px;
     }
 
 }
