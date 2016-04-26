@@ -108,15 +108,14 @@
                             <!-- ACERCA DE -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
 
-                                                             array('controller'=>'pages','action' => 'home'),
+                                                             array('controller'=>'pages','action' => 'about'),
                                                              array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
                             <!-- CONTACTO -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-phone"></span> Contacto',
-                                                             array('controller'=>'pages','action' => '#cont'),
-                                                             array('target' => '_self', 'escape' => false, 'title'=>'¡Contactanos!')) ?> </li>
+                            <li><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
+                        
                             <!-- REGISTRAR -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
-                                                             array('controller'=>'users','action' => 'add'),
+                                                             array('controller'=>'users','action' => 'registrar'),
                                                              array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                             <!-- LOGIN -->
@@ -179,22 +178,9 @@
 </nav>
 
 
-
-
-
-
-
-
-
-
-
-
-
-     
-    
     
     <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
-
+    
 
     
     <!-- PIE DE PAGINA ======================================== -->
@@ -209,67 +195,72 @@
                                 <!-- INICIO -->
                                 <li class="active"><?php echo $this->Html->link('Inicio',
                                                                                 array('controller'=>'pages','action' => 'home'),
-                                                                                array('target' => '_self', 'escape' => false)) ?> </li>
-                                
+                                                                                array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
+
                                 <?php
                                 // SI NO ESTA LOGGEADO
-                                if($user_username == NULL)
+                                if(is_null($this->request->session()->read('Auth.User.username')))
                                 {   ?>
                                     <!-- ACERCA DE -->
                                     <li><?php echo $this->Html->link('Acerca de',
                                                                      array('controller'=>'pages','action' => 'about'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
-                                    
+                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
+                                
                                     <!-- REGISTRAR -->
                                     <li><?php echo $this->Html->link('Registrar',
-                                                                     array('controller'=>'users','action' => 'add'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                                                     array('controller'=>'users','action' => 'registrar'),
+                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
+
                                     <!-- LOGIN -->
                                     <li><?php echo $this->Html->link('Ingresar',
                                                                      array('controller'=>'users','action' => 'login'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                                                     array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
                                     <?php
                                 } ?>
 
                                 <?php
+
                                 // SI ESTA LOGGEADO
-                                if($user_username != NULL)
-                                {    
+                                if(!is_null($this->request->session()->read('Auth.User.username')))
+                                {                                  
                                     // SI ES USUARIO
-                                    if($user_role_id == '2')
+                                    if($this->request->session()->read('Auth.User.role_id') == '2')
                                     {
-                                        ?>
+                                        ?> 
                                         <!-- ACERCA DE -->
                                         <li><?php echo $this->Html->link('Acerca de',
-                                                                         array('controller'=>'pages','action' => 'about'),
-                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
-                                        
+                                                                     array('controller'=>'pages','action' => 'about'),
+                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
+                                
                                         <!-- RESERVAR -->
                                         <li><?php echo $this->Html->link('Reservar',
                                                                          array('controller'=>'reservations','action' => 'index'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <?php
                                     } 
+
                                     // SI ES ADMINISTRADOR
-                                    if($user_role_id == '1')
+                                    if($this->request->session()->read('Auth.User.role_id') == '1')
                                     {
-                                        ?>
+                                        ?>                            
                                         <!-- ADMINISTRAR -->
                                         <li><?php echo $this->Html->link('Administrar',
                                                                          array('controller'=>'pages','action' => 'home'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <?php
                                     } ?>
+
                                     <!-- MI CUENTA -->
-                                    <li><?php echo $this->Html->link( 'Mi Cuenta',
+                                    <li><?php echo $this->Html->link( $this->request->session()->read('Auth.User.username'),
                                                                      array('controller'=>'pages','action' => 'home'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
+
                                     <!-- LOGOUT -->
                                     <li><?php echo $this->Html->link('Salir',
                                                                      array('controller'=>'users','action' => 'logout'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
                                     <?php
-                                } ?>    
+                                } ?>   
                             </ul>
                         </div>
                     </div>
