@@ -154,7 +154,7 @@
                             } ?>
                         
                             <!-- MI CUENTA -->
-                            <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$user_username,
+                            <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                         

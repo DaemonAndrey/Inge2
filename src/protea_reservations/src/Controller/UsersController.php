@@ -22,13 +22,6 @@ class UsersController extends AppController
     {
         parent::initialize();
 
-
-        //$this->Auth->config('authorize',['Users']);
-        /**
-        $this->loadComponent('Auth', [
-            'authorize' => 'Users',
-        ]);
-        **/
     }
 
     public function index()
@@ -81,8 +74,10 @@ class UsersController extends AppController
         {
             if ($this->request->is('post'))
             {
-                $this->Auth->userScope = array('User.state'=>1);
+               
                 $user = $this->Auth->identify();
+
+                
 
                 if($user)
                 {
@@ -99,7 +94,9 @@ class UsersController extends AppController
                 }
                 else
                 {
+
                     $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, inténtelo otra vez'), ['key' => 'loginError']);
+                    
                 }
             }            
         }
