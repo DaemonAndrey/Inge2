@@ -60,44 +60,38 @@
 </head> <!-- FIN HEAD ===================================== -->
 
 
-<!-- ENCABEZADO =========================================== -->
-<header>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                
-                <!-- NAVBAR HEADER ================== -->
-                <div class="navbar-header">
-                    <!-- LOGO ================== -->
-                    <?php 
-                        // Crea la imagen
 
-                        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea'));
-                        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+    
+
+<!-- CUERPO =============================================== -->
+<body data-spy="scroll" data-target=".navbar-fixed-top">
 
 
-                        
+<nav class="navbar">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <?php
+        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea'));
+        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+
                         // Hace el link con la imagen
-                        echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
+        echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
                                                array('target'=>'_blank', 'escape' => false));
-                        echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
+        echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
                                                array('target'=>'_blank', 'escape' => false));
-                        ?>
-                    <!-- FIN LOGO ================ -->
+     ?>
+    </div>
 
-                    <!-- COLAPSAR ==================== -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button> <!-- FIN COLAPSAR ========= -->
-                </div> <!-- FIN NAVBAR HEADER ========== -->
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <!-- NAVEGACION ================== -->
-                <nav class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1" role="navigation">
-                    <!-- OPCIONES ================ -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right ">
                         
                         <!-- INICIO -->
@@ -171,21 +165,30 @@
                             <?php
                         } ?>    
                     </ul> <!-- FIN OPCIONES =========== -->
-                </nav> <!-- FIN NAVEGACION ============ -->
-            </div>
+
+
+
             <div class="lead text-info" style="text-align:center; color: #FFFFFF">
                     <br>
                     <?= $this->Flash->render('addUserSuccess') ?>
                     <?= $this->Flash->render('logoutSuccess') ?>
             </div>
-        </div><!-- class row -->
-    </div><!-- /.container-fluid -->
-</header>
-<!-- FIN ENCABEZADO ======================================= -->
-    
 
-<!-- CUERPO =============================================== -->
-<body data-spy="scroll" data-target=".navbar-fixed-top">
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
      
     
