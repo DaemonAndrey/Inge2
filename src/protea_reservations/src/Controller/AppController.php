@@ -45,6 +45,12 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'authenticate'=>[
+                'form'=>[
+                    'finder'=> 'auth'
+                ]
+            ],
             'loginRedirect' => [
                 'controller' => 'Pages',
                 'action' => 'home'
@@ -53,6 +59,7 @@ class AppController extends Controller
                 'controller' => 'Pages',
                 'action' => 'home'
             ]
+
         ]);
 
     }
@@ -61,7 +68,7 @@ class AppController extends Controller
     {
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role_id', $this->Auth->User('role_id'));
-        $this->Auth->allow(['view', 'display']);
+        $this->Auth->allow([ 'display']);
     }
 
     /**
@@ -84,6 +91,8 @@ class AppController extends Controller
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
         if(isset($user['role_id']) && $user['role_id'] === 1 && $user['state'] == 1 )
             return true;
+
+        return false;
     }
 }
 

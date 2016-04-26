@@ -109,7 +109,7 @@
 
                         <?php
                         // SI NO ESTA LOGGEADO
-                        if($user_username == NULL)
+                        if(is_null($this->request->session()->read('Auth.User.username')))
                         {   ?>
                             <!-- ACERCA DE -->
                             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
@@ -133,11 +133,12 @@
                         } ?>
 
                         <?php
+
                         // SI ESTA LOGGEADO
-                        if($user_username != NULL)
+                        if(!is_null($this->request->session()->read('Auth.User.username')))
                         {                                  
                             // SI ES USUARIO
-                            if($user_role_id == '2')
+                            if($this->request->session()->read('Auth.User.role_id') == '2')
                             {
                                 ?>                        
                                 <!-- RESERVAR -->
@@ -148,7 +149,7 @@
                             } 
                             
                             // SI ES ADMINISTRADOR
-                            if($user_role_id == '1')
+                            if($this->request->session()->read('Auth.User.role_id') == '1')
                             {
                                 ?>
                                 <!-- ADMINISTRAR -->

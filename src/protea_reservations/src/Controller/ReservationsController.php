@@ -36,4 +36,20 @@ class ReservationsController extends AppController
 		}
 	
 	}
+
+    public function isAuthorized($user)
+    {
+
+        // Todos los usuarios se pueden registrar
+        
+        if ($this->request->action === 'index') {
+            return true;            
+        }
+
+        return parent::isAuthorized($user);
+
+        
+    }
+
+
 }

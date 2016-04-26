@@ -5,7 +5,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\ORM\Query;
 
 class UsersTable extends Table
 {
@@ -100,6 +100,14 @@ class UsersTable extends Table
     }
 
 
+    public function findAuth(Query $query, array $options)
+    {
+        $query
+            ->select(['id', 'username', 'password','role_id'])
+            ->where(['Users.state' => 1]);
+
+        return $query;
+    }
 
 }
 
