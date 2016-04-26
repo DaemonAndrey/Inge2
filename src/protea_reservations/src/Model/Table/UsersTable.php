@@ -6,8 +6,10 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+
 class UsersTable extends Table
 {
+
 
     public function validationDefault(Validator $validator)
     {
@@ -95,7 +97,10 @@ class UsersTable extends Table
             break;
         }
         return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
-    } 
+    }
+
+
+
 }
 
 ?>
