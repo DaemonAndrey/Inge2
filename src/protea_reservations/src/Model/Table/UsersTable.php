@@ -22,17 +22,21 @@ class UsersTable extends Table
                                             'message' => 'Este correo ya está registrado.'
                                           ],
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[a-zA-Z0-9._ \-]*@ucr.ac.cr$/'),
+                                            'rule' => array('custom', '/^[a-zA-Z0-9._\-]+@ucr.ac.cr$/'),
                                             'message' => 'Debe usar el correo institucional.'
                                             ]
             ])
             
             ->notEmpty('password', 'Ingrese su contraseña')
             ->add('password', [
-                            'length' => [
-                                        'rule' => ['minLength', 8],
-                                        'message' => 'Debe contener mínimo 8 caracteres.',
-                                        ]
+                           
+                            'lengthBetween' => ['rule' => ['lengthBetween', 8, 50],
+                                        'message' => 'Debe contener mínimo 8 y máximo 50 caracteres.',
+                                        ],
+                            'validFormat' => [
+                                            'rule' => array('custom', '/^[a-zA-Z0-9._]+$/'),
+                                            'message' => 'Solo puede usar: números, letras, puntos y guiones bajos'
+                                            ]
             ])
             
             ->notEmpty('repass', 'Ingrese su contraseña de nuevo.')
@@ -69,9 +73,16 @@ class UsersTable extends Table
             ])
             
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
-            ->add('department', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\' \-]*$/'),
-                                    'message' => 'Debe contener solamente letras.'
+            ->add('department', [
+                                'validFormat'=> [
+                                'rule' => array('custom', '/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\' \-]+$/'),
+                                'message' => ('Debe contener solamente letras.')
+                                ],
+
+                                'lengthBetween' => ['rule' => ['lengthBetween', 1, 100],
+                                        'message' => 'Debe contener mínimo 1 y máximo 100 caracteres.',
+                                        ]
+
             ])
             
             ->notEmpty('position', 'Seleccione una opción.');

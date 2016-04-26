@@ -81,19 +81,16 @@ class UsersController extends AppController
 
                 if($user)
                 {
-                   // if($this->isAuthorized($user))
-                  //  {
-                        $this->Auth->setUser($user);
-                        return $this->redirect($this->Auth->redirectUrl());
-                        //return $this->redirect(['controller' => 'Pages','action' => 'home']);
-                  //  }
-                  //  else
-                  //  {               
-                        //$this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
-                  //  }
+
+                    $this->Auth->setUser($user);
+                    return $this->redirect($this->Auth->redirectUrl());
+
                 }
                 else
                 {
+                    //TODO: Mostar $this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
+
+                    //Se puede hacer con un if que verifique los datos de $this->request->data['username'] contra la base
 
                     $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, inténtelo otra vez'), ['key' => 'loginError']);
                     
