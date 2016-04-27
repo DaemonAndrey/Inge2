@@ -18,6 +18,12 @@ class UsersController extends AppController
         $this->Auth->allow(['registrar', 'logout']);
     }
     
+    public function initialize()
+    {
+        parent::initialize();
+
+    }
+
     public function index()
     {
         $this->set('users', $this->Users->find('all'));
@@ -31,52 +37,70 @@ class UsersController extends AppController
 
     public function registrar()
     {
-        $user = $this->Users->newEntity();
-        
-        if ($this->request->is('post'))
+        if(!$this->Auth->user())
         {
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $user = $this->Users->newEntity();
             
-            try
+            if ($this->request->is('post'))
             {
-                if ($this->Users->save($user))
+                $user = $this->Users->patchEntity($user, $this->request->data);
+                
+                try
                 {
-                    $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
-                    return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                    if ($this->Users->save($user))
+                    {
+                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
+                        return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                    }
+                }
+                catch(Exception $ex)
+                {
+                    $this->Flash->error(__('No se ha podido procesar su solicitud'), ['key' => 'addUserError']);
                 }
             }
-            catch(Exception $ex)
-            {
-                $this->Flash->error(__('No se ha podido procesar su solicitud'), ['key' => 'addUserError']);
-            }
+            $this->set('user', $user);            
         }
-        $this->set('user', $user);
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+
     }    
     
     public function login()
     {
-        if ($this->request->is('post'))
+        if(!$this->Auth->user())
         {
-            $user = $this->Auth->identify();
-
-            if($user)
+            if ($this->request->is('post'))
             {
-                if($this->isAuthorized($user))
+               
+                $user = $this->Auth->identify();
+
+                
+
+                if($user)
                 {
+
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
-                    //return $this->redirect(['controller' => 'Pages','action' => 'home']);
+
                 }
                 else
-                {               
-                    $this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
+                {
+                    //TODO: Mostar $this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
+
+                    //Se puede hacer con un if que verifique los datos de $this->request->data['username'] contra la base
+
+                    $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, inténtelo otra vez'), ['key' => 'loginError']);
+                    
                 }
-            }
-            else
-            {
-                $this->Flash->error(__('Nombre de usuario o contraseña incorrectos, inténtelo otra vez'), ['key' => 'loginError']);
-            }
+            }            
         }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+
     }
 
     public function logout()
@@ -92,19 +116,29 @@ class UsersController extends AppController
     
     public function isAuthorized($user)
     {
-        // Todos los usuarios se pueden registrar
-        if ($this->request->action === 'registrar') {
-            return true;
+
+        if ($this->request->action === 'view') {
+            return false;            
         }
 
+        if ($this->request->action === 'index') {
+            return true;            
+        }
+        
+
         // Solo los usuarios confirmados pueden loguearse exitosamente
+        
+
+        /** Creo que ya no es necesario
         if (in_array($this->request->action, ['login'])) 
         {
             if ($this->Users->registrationConfirmed($user['id'])) 
                 return true;
         }
-
+**/
         return parent::isAuthorized($user);
+
+        
     }
 }
 

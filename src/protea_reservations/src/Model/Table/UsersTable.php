@@ -5,9 +5,11 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Query;
 
 class UsersTable extends Table
 {
+
 
     public function validationDefault(Validator $validator)
     {
@@ -20,17 +22,21 @@ class UsersTable extends Table
                                             'message' => 'Este correo ya está registrado.'
                                           ],
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[a-zA-Z0-9._ \-]*@ucr.ac.cr$/'),
+                                            'rule' => array('custom', '/^[a-zA-Z0-9._\-]+@ucr.ac.cr$/'),
                                             'message' => 'Debe usar el correo institucional.'
                                             ]
             ])
             
             ->notEmpty('password', 'Ingrese su contraseña')
             ->add('password', [
-                            'length' => [
-                                        'rule' => ['minLength', 8],
-                                        'message' => 'Debe contener mínimo 8 caracteres.',
-                                        ]
+                           
+                            'lengthBetween' => ['rule' => ['lengthBetween', 8, 50],
+                                        'message' => 'Debe contener mínimo 8 y máximo 50 caracteres.',
+                                        ],
+                            'validFormat' => [
+                                            'rule' => array('custom', '/^[a-zA-Z0-9._]+$/'),
+                                            'message' => 'Solo puede usar: números, letras, puntos y guiones bajos'
+                                            ]
             ])
             
             ->notEmpty('repass', 'Ingrese su contraseña de nuevo.')
@@ -46,7 +52,7 @@ class UsersTable extends Table
             ->add('first_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
                                                 'message' => 'Solo se permiten 20 caracteres.'],
-                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
+                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
             
@@ -54,7 +60,7 @@ class UsersTable extends Table
             ->add('last_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
                                                 'message' => 'Solo se permiten 30 caracteres.'],
-                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
+                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
             
@@ -62,14 +68,21 @@ class UsersTable extends Table
             ->add('telephone_number', [
                                     'lengthBetween' => ['rule' => ['lengthBetween', 8, 16],
                                                         'message' => ('Digite un número de teléfono válido.')],
-                                    'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]*$/'),
+                                    'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]+$/'),
                                                         'message' => ('Debe contener solamente números.')]   
             ])
             
             ->notEmpty('department', 'Ingrese a la facultad o institución a la que pertenece')
-            ->add('department', 'validFormat', [
-                                    'rule' => array('custom', '/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\' \-]*$/'),
-                                    'message' => 'Debe contener solamente letras.'
+            ->add('department', [
+                                'validFormat'=> [
+                                'rule' => array('custom', '/^[a-zA-ZÁÉÍÓÚÑáéíóúñ\' \-]+$/'),
+                                'message' => ('Debe contener solamente letras.')
+                                ],
+
+                                'lengthBetween' => ['rule' => ['lengthBetween', 1, 100],
+                                        'message' => 'Debe contener mínimo 1 y máximo 100 caracteres.',
+                                        ]
+
             ])
             
             ->notEmpty('position', 'Seleccione una opción.');
@@ -95,7 +108,18 @@ class UsersTable extends Table
             break;
         }
         return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
-    } 
+    }
+
+
+    public function findAuth(Query $query, array $options)
+    {
+        $query
+            ->select(['id', 'username', 'password','role_id'])
+            ->where(['Users.state' => 1]);
+
+        return $query;
+    }
+
 }
 
 ?>

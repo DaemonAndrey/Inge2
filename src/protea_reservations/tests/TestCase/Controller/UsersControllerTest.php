@@ -1,44 +1,40 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
-use Cake\TestSuite\IntegrationTestCase;
 use App\Controller\UsersController;
+use Cake\TestSuite\IntegrationTestCase;
 
+/**
+ * App\Controller\UsersController Test Case
+ */
 class UsersControllerTest extends IntegrationTestCase
 {
-    public $fixtures = ['app.users'];
+    public $fixtures = [
+        'app.users'
+    ];
+    public $dropTables = false;
+	public function truncate($db) { return null; }
+    public function drop($db) { return null; }
 
-    public function testAddUnauthenticatedFails()
+
+    public function testRegistrar()
     {
-        // No session data set.
-        $this->get('/users/add');
+        $data = array('User' => array(  'id' => 1,
+                                        'username' => 'Usuario1',
+                                        'password' => 'usuario1',
+                                        'first_name' => 'Usuario1',
+                                        'last_name' => 'Apellido1',
+                                        'telephone_number' => '88990099',
+                                        'department' => 'Educacion',
+                                        'position' => 'Docente',
+                                        'state' => '1'
+									 )
+					);
 
-        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
-    }
-
-    public function testAddAuthenticated()
-    {
-        // Set session data
-        $this->session([
-            'Auth' => [
-                'User' => [
-                    'id' => 1,
-                    'username' => 'Usuario1',
-                    'password' => 'usuario1',
-                    'first_name' => 'Usuario1',
-                    'last_name' => 'Apellido1',
-                    'telephone_number' => '88990099',
-                    'department' => 'Educacion',
-                    'position' => 'Docente',
-                    'state' => '1'
-                ]
-            ]
-        ]);
-        $this->get('/users/add');
-
+        $result = $this->post('/users/registrar', $data);
         $this->assertResponseOk();
-        // Other assertions.
     }
+    
+
 
 }

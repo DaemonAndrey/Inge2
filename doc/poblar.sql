@@ -2,31 +2,33 @@ INSERT INTO roles ( role_name ) VALUES
 ( 'Administrador' ),  	-- Role_id: 1
 ( 'Regular' ); 			-- Role_id: 2
 
-INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
-( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'				, 'Administrativo'	, 1 ), -- adminadmin
-( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'				, 'Otro'				, 2 ), -- usuariousuario
+INSERT INTO Users ( username, password, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
+( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'				, 'Administrativo'	, 1, 1 ), -- adminadmin
+( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'				, 'Otro'				, 2, 1 ); -- usuariousuario
+
+INSERT INTO Users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
 ( 'docente@ucr.ac.cr'		, '$2y$10$sx1rvA2rNrGkCwGy1.ut.O06fQHYxwH.IAsxfyjYudD7xSIGT4zeK'			, 'Docente'			, 'Docente'			, '77777777'	, 'Enseñanza del inglés'	, 'Docente'			, 2 ), -- 987654321
 ( 'investigador@ucr.ac.cr'	, '$2y$10$14TTkEDdAQy/sF.619uYkeArhx7vunbB2r0addAvyFtXQfclGLAl.'			, 'Investigador'	, 'Investigador'	, '66666666'	, 'INIE'						, 'Investigador'	, 2 ), -- 12345678
 ( 'otro@ucr.ac.cr'			, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'				, 'Otro'				, '99999999'	, 'ECCI'						, 'Otro'				, 2 ); -- 122345678
 
 INSERT INTO resources ( resource_type, resource_name, description ) VALUES
-( 'Sala'			, 'Sala SITEA'				, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
-( 'Sala'			, 'Laboratorio de Computo'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc'		, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'				, 'DVD Philips'				, '' 																													),
-( 'Proyector'		, 'Proyector Epson'			, 'Proyector de 1000 lumens' 																					),
-( 'Sala'			, 'Sala SITEA2'				, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales2'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
+( 'Sala'			, 'Sala SITEA'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
+( 'Sala'			, 'Sala de audiovisuales'			, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
+( 'Sala'			, 'Laboratorio de Computo'		, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
+( 'Televisor'		, 'Televisor LG abc'				, 'Televisor de 20 pulgadas' 																					),
+( 'DVD'			, 'DVD Philips'						, '' 																													),
+( 'Proyector'	, 'Proyector Epson'				, 'Proyector de 1000 lumens' 																					),
+( 'Sala'			, 'Sala SITEA2'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
+( 'Sala'			, 'Sala de audiovisuales2'		, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
 ( 'Sala'			, 'Laboratorio de Computo2'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc2'		, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'				, 'DVD Philips2'				, '' 																													),
-( 'Sala'			, 'Sala SITEA3'				, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales3'	, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
+( 'Televisor'		, 'Televisor LG abc2'				, 'Televisor de 20 pulgadas' 																					),
+( 'DVD'			, 'DVD Philips2'						, '' 																													),
+( 'Sala'			, 'Sala SITEA3'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
+( 'Sala'			, 'Sala de audiovisuales3'		, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
 ( 'Sala'			, 'Laboratorio de Computo3'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc3'		, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'				, 'DVD Philips3'				, '' 																													),
-( 'Proyector'		, 'Proyector Epson3'			, 'Proyector de 1000 lumens' 																					);
+( 'Televisor'		, 'Televisor LG abc3'				, 'Televisor de 20 pulgadas' 																					),
+( 'DVD'			, 'DVD Philips3'						, '' 																													),
+( 'Proyector'	, 'Proyector Epson3'				, 'Proyector de 1000 lumens' 																					);
 
 INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '1'	, '1' ),
@@ -36,7 +38,6 @@ INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '5'	, '1' ),
 ( '6'	, '1' );
 
-<<<<<<< HEAD
 INSERT INTO `reservations` (`start_date`, `end_date`, `reservation_title`, `resource_id`, `user_comment`, `administrator_comment`, `state`, `user_seen`, `administrator_seen`, `user_id`, `course_name`, `course_id`) VALUES
 ( '2016-01-20 07:00:00', '2016-01-20 09:00:00', 'Sala de audiovisuales - WR-016', 2, 'Integer vel accumsan tellus nisi eu orci.', 'Suspendisse accumsan turpis.', 4, b'1', b'1', 5, 'suscipit', 'WR-0166'),
 ( '2016-03-02 12:00:00', '2016-03-02 15:00:00', 'Laboratorio de Computo - WD-47', 3, 'sfsdf', '', 1, b'1', b'1', 4, 'aliquet', 'WD-4720'),
