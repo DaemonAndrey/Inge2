@@ -14,12 +14,10 @@ class UsersFixture extends TestFixture
           'password' => ['type' => 'string', 'length' => 255, 'null' => false],
           'first_name' => ['type' => 'string', 'length' => 50, 'null' => false],
           'last_name' => ['type' => 'string', 'length' => 50, 'null' => false],
-          'telephone_number' => ['type' => 'string', 'length' => 50, 'null' => false],
-          'department' => ['type' => 'string', 'length' => 70, 'null' => false],
-          'position' => ['type' => 'string', 'length' => 20, 'null' => false],
-          'state' => ['type' => 'binary', 'null' => false],
-          'role_id' => ['type' => 'integer', 'default' => 1, 'null' => false],
-          
+          'telephone_number' => ['type' => 'string', 'length' => 50, 'null' => true],
+          'department' => ['type' => 'string', 'length' => 70, 'null' => true],
+          'position' => ['type' => 'string', 'length' => 20, 'null' => true],
+          'state' => ['type' => 'binary', 'null' => true],
           '_constraints' => [
               'primary' => ['type' => 'primary', 'columns' => ['id']],
           ]
@@ -35,26 +33,7 @@ class UsersFixture extends TestFixture
               'position' => 'Docente',
               'state' => '1'
           ],
-          [
-              'username' => 'Usuario2',
-              'password' => 'usuario2',
-              'first_name' => 'Usuario2',
-              'last_name' => 'Apellido2',
-              'telephone_number' => '88990099',
-              'department' => 'Informatica',
-              'position' => 'Investigador',
-              'state' => '1'
-          ],
-          [
-              'username' => 'Usuario3',
-              'password' => 'usuario3',
-              'first_name' => 'Usuario3',
-              'last_name' => 'Apellido3',
-              'telephone_number' => '88990099',
-              'department' => 'Letras',
-              'position' => 'Administrativo',
-              'state' => '1'
-          ]
+
       ];
  }
  ?>

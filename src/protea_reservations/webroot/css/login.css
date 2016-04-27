@@ -28,3 +28,12 @@ input
     padding: 10px 12px;
     pointer-events: none;
 }
+
+/*.form-control {
+    width: 80%;
+}*/
+
+#btnIngresar .btn.btn-info{
+    width: 100%;
+    font-size: 18px;
+}

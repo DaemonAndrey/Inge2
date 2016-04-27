@@ -1,44 +1,36 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
-use Cake\TestSuite\IntegrationTestCase;
 use App\Controller\UsersController;
+use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
+/**
+ * App\Controller\UsersController Test Case
+ */
 class UsersControllerTest extends IntegrationTestCase
 {
+
+
     public $fixtures = ['app.users'];
+    public $dropTables = false;
+	public function truncate($db) { return null; }
+    public function drop($db) { return null; }
 
-    public function testAddUnauthenticatedFails()
+
+    public function testRegistrar()
     {
-        // No session data set.
-        $this->get('/users/add');
+        $data = [
+            'username' => 'prueba1@ucr.ac.cr',
+            'password' => 'prueba1',
+            'first_name' => 'Prueba1',
+            'last_name' => 'Prueba1'
+        ];
+        $this->post('/users/registrar', $data);
 
-        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
+        $this->assertResponseSuccess();
+        $users = TableRegistry::get('Users');
+        $query = $users->find();
+        $this->assertEquals(1, $query->count());
     }
-
-    public function testAddAuthenticated()
-    {
-        // Set session data
-        $this->session([
-            'Auth' => [
-                'User' => [
-                    'id' => 1,
-                    'username' => 'Usuario1',
-                    'password' => 'usuario1',
-                    'first_name' => 'Usuario1',
-                    'last_name' => 'Apellido1',
-                    'telephone_number' => '88990099',
-                    'department' => 'Educacion',
-                    'position' => 'Docente',
-                    'state' => '1'
-                ]
-            ]
-        ]);
-        $this->get('/users/add');
-
-        $this->assertResponseOk();
-        // Other assertions.
-    }
-
 }

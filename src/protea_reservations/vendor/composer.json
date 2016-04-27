@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "cakephp/bake": "~1.0"
+    }
+}

@@ -5,9 +5,10 @@ use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 class ReservationsController extends AppController
-{
+{    
 	public function index()
 	{
+        
 		if($this->request->is('post'))
 		{
 			$resources = $this->Reservations->find()
@@ -35,4 +36,20 @@ class ReservationsController extends AppController
 		}
 	
 	}
+
+    public function isAuthorized($user)
+    {
+
+        // Todos los usuarios se pueden registrar
+        
+        if ($this->request->action === 'index') {
+            return true;            
+        }
+
+        return parent::isAuthorized($user);
+
+        
+    }
+
+
 }
