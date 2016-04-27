@@ -38,7 +38,6 @@ INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '5'	, '1' ),
 ( '6'	, '1' );
 
-<<<<<<< HEAD
 INSERT INTO `reservations` (`start_date`, `end_date`, `reservation_title`, `resource_id`, `user_comment`, `administrator_comment`, `state`, `user_seen`, `administrator_seen`, `user_id`, `course_name`, `course_id`) VALUES
 ( '2016-01-20 07:00:00', '2016-01-20 09:00:00', 'Sala de audiovisuales - WR-016', 2, 'Integer vel accumsan tellus nisi eu orci.', 'Suspendisse accumsan turpis.', 4, b'1', b'1', 5, 'suscipit', 'WR-0166'),
 ( '2016-03-02 12:00:00', '2016-03-02 15:00:00', 'Laboratorio de Computo - WD-47', 3, 'sfsdf', '', 1, b'1', b'1', 4, 'aliquet', 'WD-4720'),
