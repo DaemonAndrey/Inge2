@@ -47,7 +47,7 @@ class AppController extends Controller
         $this->loadComponent('Auth',[
             'authorize' => ['Controller'],
             'authenticate'=>[
-                'form'=>[
+                'Form'=>[
                     'finder'=> 'auth'
                 ]
             ],
