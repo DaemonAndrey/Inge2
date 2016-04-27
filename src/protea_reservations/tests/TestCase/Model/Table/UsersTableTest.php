@@ -8,30 +8,12 @@ use Cake\TestSuite\TestCase;
 
 class UsersTableTest extends TestCase
 {
-    public function testAddUnauthenticatedFails()
+    public $fixtures = ['app.users'];
+    
+    public function setUp()
     {
-        // No session data set.
-        $this->get('/users/add');
-
-        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
-    }
-
-    public function testAddAuthenticated()
-    {
-        // Set session data
-        $this->session([
-            'Auth' => [
-                'User' => [
-                    'id' => 1,
-                    'username' => 'testing',
-                    // other keys.
-                ]
-            ]
-        ]);
-        $this->get('/users/add');
-
-        $this->assertResponseOk();
-        // Other assertions.
+        parent::setUp();
+        $this->Users = TableRegistry::get('Users');
     }
 }
 

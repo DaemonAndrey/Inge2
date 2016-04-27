@@ -3,15 +3,16 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UsersController;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * App\Controller\UsersController Test Case
  */
 class UsersControllerTest extends IntegrationTestCase
 {
-    public $fixtures = [
-        'app.users'
-    ];
+
+
+    public $fixtures = ['app.users'];
     public $dropTables = false;
 	public function truncate($db) { return null; }
     public function drop($db) { return null; }
@@ -19,22 +20,17 @@ class UsersControllerTest extends IntegrationTestCase
 
     public function testRegistrar()
     {
-        $data = array('User' => array(  'id' => 1,
-                                        'username' => 'Usuario1',
-                                        'password' => 'usuario1',
-                                        'first_name' => 'Usuario1',
-                                        'last_name' => 'Apellido1',
-                                        'telephone_number' => '88990099',
-                                        'department' => 'Educacion',
-                                        'position' => 'Docente',
-                                        'state' => '1'
-									 )
-					);
+        $data = [
+            'username' => 'prueba1@ucr.ac.cr',
+            'password' => 'prueba1',
+            'first_name' => 'Prueba1',
+            'last_name' => 'Prueba1'
+        ];
+        $this->post('/users/registrar', $data);
 
-        $result = $this->post('/users/registrar', $data);
-        $this->assertResponseOk();
+        $this->assertResponseSuccess();
+        $users = TableRegistry::get('Users');
+        $query = $users->find();
+        $this->assertEquals(1, $query->count());
     }
-    
-
-
 }
