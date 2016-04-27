@@ -52,7 +52,7 @@ class UsersTable extends Table
             ->add('first_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
                                                 'message' => 'Solo se permiten 20 caracteres.'],
-                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
+                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
             
@@ -60,7 +60,7 @@ class UsersTable extends Table
             ->add('last_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
                                                 'message' => 'Solo se permiten 30 caracteres.'],
-                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]*$/'),
+                                'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
             
@@ -68,7 +68,7 @@ class UsersTable extends Table
             ->add('telephone_number', [
                                     'lengthBetween' => ['rule' => ['lengthBetween', 8, 16],
                                                         'message' => ('Digite un número de teléfono válido.')],
-                                    'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]*$/'),
+                                    'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]+$/'),
                                                         'message' => ('Debe contener solamente números.')]   
             ])
             
