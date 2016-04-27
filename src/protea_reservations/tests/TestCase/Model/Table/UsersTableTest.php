@@ -2,25 +2,38 @@
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use src\Model\Table\UsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 class UsersTableTest extends TestCase
 {
-    public $fixtures = ['app.users'];
+    public function testAddUnauthenticatedFails()
+    {
+        // No session data set.
+        $this->get('/users/add');
 
-    public function testUserModel() 
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);
+    }
+
+    public function testAddAuthenticated()
     {
-		$result = $this->loadFixtures('Users');
-		debug($result);
-	}
-    
-    public function setUp()
-    {
-        parent::setUp();
-        $this->Users = TableRegistry::get('Users');
+        // Set session data
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->get('/users/add');
+
+        $this->assertResponseOk();
+        // Other assertions.
     }
 }
 
 ?>
+
