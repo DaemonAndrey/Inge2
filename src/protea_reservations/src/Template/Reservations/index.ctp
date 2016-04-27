@@ -76,7 +76,6 @@
      type: 'POST',
      async: false,
      success: function(response){
-       alert(response);
        json_events = response;
 
 
