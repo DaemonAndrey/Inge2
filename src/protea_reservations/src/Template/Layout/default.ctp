@@ -149,6 +149,10 @@
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
                                                                  array('controller'=>'pages','action' => 'home'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
+                                <!-- VER RESERVAS -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
+                                                                 array('controller'=>'reservations','action' => 'index'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } ?>
                         
