@@ -32,5 +32,42 @@ class UsersControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $query = $users->find();
         $this->assertEquals(1, $query->count());
+    }      
+    
+    public function testLoginRedirect()
+    {
+        // Set session data
+        $this->session([
+            'Auth' => [
+                'User' => [                    
+                    'username' => 'admin@ucr.ac.cr',
+                    'password' => 'adminadmin'                    
+                ]
+            ]
+        ]);
+                
+        $this->get('/reservations/');
+        $this->assertResponseOk();
+        
+        // Other assertions.       
+        $this->get('/users/registrar');
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']); 
+        
+        $this->get('/users/login');
+        $this->assertRedirect(['controller' => 'pages', 'action' => 'home']);            
     }
+     
+    public function testLoginRedirectFails()
+    {
+        // No session data set.                       
+        $this->get('/users/login');        
+        $this->assertResponseOk();
+        
+        $this->get('/users/registrar');        
+        $this->assertResponseOk();
+        
+        $this->get('/reservations/');                
+        $this->assertRedirect(['controller' => 'Users', 'action' => 'login']);        
+    }       
+    
 }
