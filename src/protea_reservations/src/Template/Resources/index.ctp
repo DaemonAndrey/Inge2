@@ -1,5 +1,5 @@
 <!-- src/Template/Users/registrar.ctp -->
-<?php echo $this->Html->css('registro.css'); ?>
+<?php echo $this->Html->css('resources.css'); ?>
 <br>
 <!-- MENSAJES -->
     <div class="lead text-info" style="text-align:center">
@@ -98,12 +98,16 @@ if(!is_null($this->request->session()->read('Auth.User.username')))
                 <?php endforeach; ?>
                 <?php unset($resource); ?>
             </table>
-        </div>
-        <div class="center_pagination">
-            <ul class="pagination">
-                <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
-            </ul>
-        </div>
+            </div>
+            <div class="row">
+              <div class='col-lg-12 col-lg-offset-10 col-md-12 col-md-offset-9 col-sm-12 col-sm-offset-9 col-xs-12 col-xs-offset-9'>
+                  <div class="center_pagination" >
+                      <ul class="pagination">
+                            <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+                      </ul>
+                  </div>
+               </div>
+            </div>
     <?php
     }
 }
