@@ -44,22 +44,15 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth',[
-            'authorize' => ['Controller'],
-            'authenticate'=>[
-                'Form'=>[
-                    'finder'=> 'auth'
-                ]
-            ],
-            'loginRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'home'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'home'
-            ]
-        ]);
+        $this->loadComponent('Auth',['authorize' => ['Controller'],
+                                     'authenticate'=>['Form'=>['finder'=> 'auth']],
+                                     'loginRedirect' => ['controller' => 'Pages',
+                                                         'action' => 'home'
+                                                        ],
+                                     'logoutRedirect' => ['controller' => 'Pages',
+                                                          'action' => 'home'
+                                                         ]
+                                    ]);
     }
     
     public function beforeFilter(Event $event)
@@ -87,10 +80,10 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
-        if(isset($user['role_id']) && $user['role_id'] === 1 && $user['state'] == 1 )
+        if(isset($user['role_id']) && $user['role_id'] == 1 && isset($user['state']) && $user['state'] == 1)
             return true;
 
-        return false;
+        return true;
     }
 }
 
