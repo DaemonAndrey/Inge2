@@ -80,10 +80,11 @@ class AppController extends Controller
     public function isAuthorized($user)
     {
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
-        if(isset($user['role_id']) && $user['role_id'] == 1 && isset($user['state']) && $user['state'] == 1)
+
+        if(isset($user['role_id']) && $user['role_id'] == 1)
             return true;
 
-        return true;
+        return false;
     }
 }
 
