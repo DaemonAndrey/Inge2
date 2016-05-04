@@ -18,7 +18,7 @@ class UsersControllerTest extends IntegrationTestCase
     public function drop($db) { return null; }
 
 
-    public function testRegistrar()
+    public function testAdd()
     {
         $data = [
             'username' => 'prueba1@ucr.ac.cr',
@@ -26,7 +26,7 @@ class UsersControllerTest extends IntegrationTestCase
             'first_name' => 'Prueba1',
             'last_name' => 'Prueba1'
         ];
-        $this->post('/users/registrar', $data);
+        $this->post('/users/add', $data);
 
         $this->assertResponseSuccess();
         $users = TableRegistry::get('Users');
@@ -50,7 +50,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         
         // Other assertions.       
-        $this->get('/users/registrar');
+        $this->get('/users/add');
         $this->assertRedirect(['controller' => 'pages', 'action' => 'home']); 
         
         $this->get('/users/login');
@@ -63,7 +63,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->get('/users/login');        
         $this->assertResponseOk();
         
-        $this->get('/users/registrar');        
+        $this->get('/users/add');        
         $this->assertResponseOk();
         
         $this->get('/reservations/');                
