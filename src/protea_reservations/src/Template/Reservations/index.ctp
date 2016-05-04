@@ -19,7 +19,7 @@
 
     $(document).ready(function() { // page is now ready, initialize the calendar...
 
-/**
+
     var xhttp = new XMLHttpRequest();
     var json_events = "";
     xhttp.onreadystatechange = function()
@@ -53,9 +53,8 @@
 
     xhttp.open("POST", path+append,false);
     xhttp.setRequestHeader("type", "fetch");
-    xhttp.send();    
-**/
-
+    xhttp.send(); 
+/**
     var path = window.location.pathname;
     var append = "";
 
@@ -82,7 +81,7 @@
      }
   });
 
-
+**/
     $('#calendar').fullCalendar({ // put your options and callbacks here
 
         header: {
