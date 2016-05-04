@@ -44,7 +44,7 @@ if(!is_null($this->request->session()->read('Auth.User.username')))
 
         <hr>
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-sm">
                 <tr>
                     <th>
                         <?php
