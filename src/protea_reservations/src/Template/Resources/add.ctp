@@ -1,10 +1,6 @@
 <!-- src/Template/Resources/agregar.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 <div class="users form">
-    <div style="text-align:center">
-        <?= $this->Flash->render('addResourceError') ?>   
-        <br>
-    </div>
 <?= $this->Form->create($resource) ?>
     
     <div class="row">
@@ -21,12 +17,7 @@
     <fieldset>
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-                <?= $this->Form->input('resource_type', ['label' => 'Tipo: ', 'options' => array(
-                                                                                                  'Sala'  => 'Sala',
-                                                                                                  'Televisor'         => 'Televisor',
-                                                                                                  'Computadora'    => 'Computadora',
-                                                                                                  'Otro'            => 'Otro'
-                ), 'class' => 'form-control']); ?>
+                <?= $this->Form->input('resource_type', ['label' => 'Tipo: ', 'options' => $resources_type, 'class' => 'form-control']); ?>
                 <br>
             </div>
         </div>

@@ -20,7 +20,13 @@ class ResourcesController extends AppController
         // You should not add the "login" action to allow list. Doing so would
         $this->set('user_id', $this->Auth->User('id'));
         $this->set('user_username', $this->Auth->User('username'));
-        $this->Auth->allow(['ver']);
+        
+        $this->set('resources_type', $this->Resources->find('list',['keyField' => 'resource_type',
+                                                               'valueField' => 'resource_type'
+                                                              ]
+                                                      )->toArray()
+                  );
+        $this->Auth->allow(['view']);
     }
     
     public function initialize()
@@ -30,14 +36,14 @@ class ResourcesController extends AppController
 
     public function index()
     {
-        $this->set('resources', $this->Resources->find('all'));
+        
     }
 
     /**
      * Se encarga de consultar un recurso
      * @param  integer $id
      */
-    public function ver($id)
+    public function view($id)
     {
         $resource = $this->Resources->get($id);
         $this->set(compact('resource'));
@@ -46,7 +52,7 @@ class ResourcesController extends AppController
     /**
      * Se encarga de agregar un nuevo recurso.
      */
-    public function agregar()
+    public function add()
     {
         if($this->Auth->user())
         {
@@ -66,7 +72,7 @@ class ResourcesController extends AppController
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error(__('No se ha podido agregar el recurso'), ['key' => 'addResourceError']);
+                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'addResourceError']);
                 }
             }
             $this->set('resource', $resource);            
@@ -78,16 +84,23 @@ class ResourcesController extends AppController
     }  
     
     /**
+     * Se encarga de asociar un adminsitrador con un recurso.
+     */
+    public function matchAdminToResource()
+    {
+    }
+    
+    /**
      * Se encarga de actualizar un recurso.
      */
-    public function actualizar()
+    public function edit()
     {
     }
     
     /**
      * Se encarga de borrar un recurso.
      */
-    public function borrar()
+    public function delete()
     {
     }
     
@@ -97,11 +110,6 @@ class ResourcesController extends AppController
      */
     public function isAuthorized($user)
     {
-        if ($this->request->action === 'agregar' )
-        {
-            return true;
-        }
-
         return parent::isAuthorized($user);
     }
 }
