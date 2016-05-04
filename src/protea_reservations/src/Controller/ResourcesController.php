@@ -29,15 +29,21 @@ class ResourcesController extends AppController
         $this->Auth->allow(['view']);
     }
     
+    public $paginate = array(
+		'limit' => 15,
+		'order' => array('Resource.resource_name' => 'asc')
+	);
+    
     public function initialize()
     {
         parent::initialize();
+        $this->loadComponent('Paginator');
     }
 
     public function index()
-    {
-        
-    }
+	{
+		$this->set('resources', $this->paginate());
+	}
 
     /**
      * Se encarga de consultar un recurso
