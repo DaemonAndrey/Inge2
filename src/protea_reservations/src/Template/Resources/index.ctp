@@ -48,21 +48,21 @@ if(!is_null($this->request->session()->read('Auth.User.username')))
                 <tr>
                     <th>
                         <?php
-                            echo $this->Paginator->sort('code', 'Code ', array('id' => 'sortCode-button'));
+                            echo $this->Paginator->sort('code', 'Código ', array('id' => 'sortCode-button'));
                             echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                         ?>
                     </th>
                     <th>
                         <?php
-                            echo $this->Paginator->sort('resource_name', 'Resource_Name ');
+                            echo $this->Paginator->sort('resource_name', 'Nombre del Recurso ');
                             echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                         ?>
                     </th> 
                     <th>
-                        Update
+                        Actualizar
                     </th>
                     <th>
-                        Delete
+                        Eliminar
                     </th>
                 </tr>
 
