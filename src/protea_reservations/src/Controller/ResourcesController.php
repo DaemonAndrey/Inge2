@@ -30,7 +30,7 @@ class ResourcesController extends AppController
     }
     
     public $paginate = array(
-		'limit' => 15,
+		'limit' => 10,
 		'order' => array('Resource.resource_name' => 'asc')
 	);
     
