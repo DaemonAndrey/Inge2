@@ -59,6 +59,7 @@
     <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
         <br>
         <?= $this->Form->button('Agregar', ['class' => 'btn btn-success']); ?>
+        <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'index'), array( 'class' => 'btn btn-warning')) ?>
     </div>
 </div>
       

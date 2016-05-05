@@ -92,7 +92,7 @@ class ResourcesController extends AppController
     /**
      * Se encarga de asociar un adminsitrador con un recurso.
      */
-    public function matchAdminToResource()
+    public function matchAdmin()
     {
     }
     

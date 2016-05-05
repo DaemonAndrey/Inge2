@@ -18,15 +18,17 @@
     </div>
 </div>
 
-<div class="row">
-    <div class='col-lg-12 col-lg-offset-5 col-md-12 col-md-offset-5 col-sm-12 col-sm-offset-4 col-xs-12 col-xs-offset-4'>
+<div class="row text-center">
+    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <?php 
         echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
                                array('controller'=>'resources','action' => 'add'),
                                array('target' => '_self', 'escape' => false)
                               );
         ?>
-        <br><br>
+    </div>
+    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <br>
     </div>
 </div>
 
@@ -46,6 +48,9 @@
                 ?>
             </th> 
             <th>
+                Administradores
+            </th>
+            <th>
                 Actualizar
             </th>
             <th>
@@ -64,6 +69,12 @@
                 echo "<td>";
                     echo $this->Html->link($resource['resource_name'],
                                            array('action' => 'view',$resource['Resource']['id'])
+                                          );
+                echo "</td>";
+                echo "<td>";
+                    echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
+                                           array('action' => 'matchAdmin',$resource['Resource']['id']),
+                                           array('escape' => false)
                                           );
                 echo "</td>";
                 echo "<td>";
