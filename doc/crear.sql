@@ -49,14 +49,27 @@ CREATE TABLE users
 		ON UPDATE CASCADE
 );
 
+CREATE TABLE resource_types
+(
+	id 						INT UNSIGNED AUTO_INCREMENT,
+	description		VARCHAR( 20 ) UNIQUE NOT NULL,
+	
+	PRIMARY KEY ( id )
+);
+
 CREATE TABLE resources
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
-	resource_type		VARCHAR( 20 ) NOT NULL,
-	resource_name 	VARCHAR( 70 ) UNIQUE NOT NULL,
+	resource_type		INT UNSIGNED NOT NULL,
+	resource_name 	VARCHAR( 70 ) NOT NULL,
+	resource_code		VARCHAR(30) UNIQUE NOT NULL,
 	description 			TEXT,
+	active					BIT NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
 	
-	PRIMARY KEY ( id )
+	PRIMARY KEY ( id ),
+	FOREIGN KEY ( resource_type ) REFERENCES resource_types ( id )
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 CREATE TABLE resources_users
