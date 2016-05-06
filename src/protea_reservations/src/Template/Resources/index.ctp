@@ -37,7 +37,7 @@
         <tr>
             <th>
                 <?php
-                echo $this->Paginator->sort('code', 'Código ', array('id' => 'sortCode-button'));
+                echo $this->Paginator->sort('resource_type', 'Tipo '/*, array('id' => 'sortCode-button')*/);
                 echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                 ?>
             </th>
@@ -48,8 +48,17 @@
                 ?>
             </th> 
             <th>
-                Administradores
-            </th>
+                <?php
+                echo $this->Paginator->sort('resource_code', 'Placa/Serie ');
+                echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
+                ?>
+            </th> 
+            <th>
+                <?php
+                echo $this->Paginator->sort('active', 'Activo ');
+                echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
+                ?>
+            </th> 
             <th>
                 Actualizar
             </th>
@@ -62,30 +71,34 @@
         <?php
             echo "<tr>";
                 echo "<td>";
-                    echo $this->Html->link($resource['id'],
-                                           array('action' => 'view',$resource['Resource']['id'])
+                    echo $this->Html->link($resource['resource_type'],
+                                           array('controller' => 'resources','action' => 'view',$resource->id)
                                           );
                 echo "</td>";
                 echo "<td>";
                     echo $this->Html->link($resource['resource_name'],
-                                           array('action' => 'view',$resource['Resource']['id'])
+                                           array('controller' => 'resources','action' => 'view',$resource->id)
                                           );
                 echo "</td>";
                 echo "<td>";
-                    echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                           array('action' => 'matchAdmin',$resource['Resource']['id']),
-                                           array('escape' => false)
+                    echo $this->Html->link($resource['resource_code'],
+                                           array('controller' => 'resources','action' => 'view',$resource->id)
+                                          );
+                echo "</td>";
+                echo "<td>";
+                    echo $this->Html->link($resource['active'],
+                                           array('controller' => 'resources','action' => 'view',$resource->id)
                                           );
                 echo "</td>";
                 echo "<td>";
                     echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
-                                           array('action' => 'edit',$resource['Resource']['id']),
+                                           array('controller' => 'resources','action' => 'edit', $resource->id),
                                            array('escape' => false)
                                           );
                 echo "</td>";
                 echo "<td>";
                     echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
-                       array('action' => 'delete', $resource['Resource']['id']),
+                       array('controller' => 'resources','action' => 'delete', $resource->id),
                        array('escape' => false, 'confirm' => 'Está seguro que desea eliminar el producto?')
                     );
                 echo "</td>";

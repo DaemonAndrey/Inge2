@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+//use Cake\Datasource\ConnectionManager;
 
 class ResourcesController extends AppController
 {   
@@ -21,11 +22,10 @@ class ResourcesController extends AppController
         $this->set('user_id', $this->Auth->User('id'));
         $this->set('user_username', $this->Auth->User('username'));
         
-        $this->set('resources_type', $this->Resources->find('list',['keyField' => 'resource_type',
-                                                               'valueField' => 'resource_type'
-                                                              ]
-                                                      )->toArray()
-                  );
+        $this->loadModel('ResourceTypes');
+        $optns = $this->ResourceTypes->find('list',['keyField' => 'id','valueField' => 'description'])->toArray();                              
+        $this->set('resource_types', $optns);
+                                                    
         $this->Auth->allow(['view']);
     }
     
@@ -49,7 +49,7 @@ class ResourcesController extends AppController
      * Se encarga de consultar un recurso
      * @param  integer $id
      */
-    public function view($id)
+    public function view($id = null)
     {
         $resource = $this->Resources->get($id);
         $this->set(compact('resource'));
@@ -67,13 +67,24 @@ class ResourcesController extends AppController
             if ($this->request->is('post'))
             {
                 $resource = $this->Resources->patchEntity($resource, $this->request->data);
+                $tipoderecurso = $this->request->data['Resources']['resource_type'];
+                $resource->resource_type = $tipoderecurso;
                 
                 try
                 {
                     if ($this->Resources->save($resource))
                     {
-                        $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'addResourceSuccess']);
-                        return $this->redirect(['controller' => 'Resources','action' => 'index']);
+                        $this->loadModel('ResourcesUsers');
+                        $resourcesUser = $this->ResourcesUsers->newEntity();
+                        
+                        $resourcesUser->resource_id = $resource->id;
+                        $resourcesUser->user_id = $this->Auth->User('id');
+                        
+                        if ($this->ResourcesUsers->save($resourcesUser))
+                        {
+                            $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'addResourceSuccess']);
+                            return $this->redirect(['controller' => 'Resources','action' => 'index']);
+                        }
                     }
                 }
                 catch(Exception $ex)

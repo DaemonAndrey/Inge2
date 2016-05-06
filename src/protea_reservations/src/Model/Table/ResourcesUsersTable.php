@@ -31,7 +31,7 @@ class ResourcesUsersTable extends Table
             ->notEmpty('resource_id','Este campo es requerido')
             
             /* Reglas para el campo user_id */
-            ->notEmpty('user_id','Este campo es requerido')
+            ->notEmpty('user_id','Este campo es requerido');
     }
     
     public function findAuth(Query $query, array $options)
@@ -42,5 +42,4 @@ class ResourcesUsersTable extends Table
         return $query;
     }
 }
-
 ?>

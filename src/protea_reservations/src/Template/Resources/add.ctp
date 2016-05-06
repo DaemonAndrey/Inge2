@@ -18,8 +18,8 @@
     <div class="row">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <?=
-            $this->Form->input('resource_type', ['label' => 'Tipo: ',
-                                                 'options' => $resources_type,
+            $this->Form->input('Resources.resource_type', ['label' => 'Tipo: ',
+                                                 'options' => $resource_types,
                                                  'class' => 'form-control'
                                                 ]
                               );
@@ -31,8 +31,21 @@
     <div class='row'>
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <?=
-            $this->Form->input('resource_name', ['label' => 'Nombre: ',
+            $this->Form->input('Resources.resource_name', ['label' => 'Nombre: ',
                                                  'placeholder' => 'Sala SITEA',
+                                                 'class' => 'form-control'
+                                                ]
+                              )
+            ?>
+            <br>
+        </div>
+    </div>
+    
+    <div class='row'>
+        <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <?=
+            $this->Form->input('Resources.resource_code', ['label' => 'Placa/Serie: ',
+                                                 'placeholder' => 'ABC123XYZ',
                                                  'class' => 'form-control'
                                                 ]
                               )
@@ -44,7 +57,7 @@
     <div class='row'>
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <?=
-            $this->Form->input('description', ['label' => 'Descripción: ',
+            $this->Form->input('Resources.description', ['label' => 'Descripción: ',
                                                'placeholder' => 'Breve descripción del recurso',
                                                'class' => 'form-control'
                                               ]

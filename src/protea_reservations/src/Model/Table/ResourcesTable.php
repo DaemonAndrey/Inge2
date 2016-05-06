@@ -11,6 +11,7 @@ class ResourcesTable extends Table
     public function initialize(array $config)
     {
         $this->belongsToMany('Users');
+        $this->belongsTo('ResourceTypes');
     }
     
     /*
@@ -30,21 +31,9 @@ class ResourcesTable extends Table
             
             /* Reglas para el campo resource_type */
             ->notEmpty('resource_type','Este campo es requerido')
-            ->add('resource_type', ['maxLength' =>  ['rule' => ['maxLength', 20],
-                                                     'message' => 'Sólo se permiten 20 caracteres'
-                                                    ],
-                                    'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ._\' \-]+$/'),
-                                                       'message' => 'Sólo se permiten caracteres alfanuméricos'
-                                                      ]
-                                   ])
             
             /* Reglas para el campo resource_name */
             ->notEmpty('resource_name','Este campo es requerido')
-            ->add('resource_name', ['isUnique' => ['rule' => 'validateUnique',
-                                                   'provider' => 'table',
-                                                   'message' => 'Este recurso ya existe'
-                                                  ]
-                                   ])
             ->add('resource_name', ['maxLength' =>  ['rule' => ['maxLength', 70],
                                                      'message' => 'Sólo se permiten 70 caracteres'
                                                     ],
@@ -53,8 +42,16 @@ class ResourcesTable extends Table
                                                       ]
                                    ])
             
+            /* Reglas para el campo resource_code */
+            ->notEmpty('resource_code','Este campo es requerido')
+            ->add('resource_code', ['isUnique' => ['rule' => 'validateUnique',
+                                                   'provider' => 'table',
+                                                   'message' => 'Esta placa/serie ya existe'
+                                                  ]
+                                   ])
+            
             /* Reglas para el campo description */
-            ->add('resource_name', ['maxLength' =>  ['rule' => ['maxLength', 500],
+            ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 500],
                                                      'message' => 'La descripción es muy larga'
                                                     ],
                                     'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ"#$%&:.,_\' \-]+$/'),
@@ -66,11 +63,9 @@ class ResourcesTable extends Table
     public function findAuth(Query $query, array $options)
     {
         $query
-            ->select(['id', 'resource_type', 'resource_name','description']);
+            ->select(['id', 'resource_type', 'resource_name', 'resource_code', 'description', 'active']);
 
         return $query;
     }
 }
-
-
 ?>
