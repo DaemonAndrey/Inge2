@@ -16,119 +16,153 @@
         </div>
     </div> <!-- FIN TÍTULO -->
 
-    <!-- CAMPOS A LLENAR -->
+    <!-- CAMPOS A CONSULTAR -->
     <fieldset>
         <!-- TIPO -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Resources.resource_type', 'Tipo: ');
+                        $this->Form->label('Resources.resource_type', 'Tipo: '); 
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <!--
                     <?=
                         $this->Form->label('Resources.resource_type', $r_type[0]);
                     ?>
-                    <br><br>
+                    -->
+                    <?=
+                        $this->Form->label('Resources.resource_type',
+                                           $r_type[0],
+                                           ['class' => 'form-control',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                    ?>
+                    <br>
                 </div>
             </div>
-            <br>
         </div>
         
         <!-- NOMBRE -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
                         $this->Form->label('Resources.resource_name', 'Nombre: ');
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <!--
                     <?=
                         $this->Form->label('Resources.resource_name', $resource->resource_name);
                     ?>
-                    <br><br>
+                    -->
+                    <?=
+                        $this->Form->label('Resources.resource_name',
+                                           $resource->resource_name,
+                                           ['class' => 'form-control',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                    ?>
+                    <br>
                 </div>
             </div>
-            <br>
         </div>
         
         <!-- PLACA/SERIE -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
                         $this->Form->label('Resources.resource_code', 'Placa/serie: ');
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <!--
                     <?=
                         $this->Form->label('Resources.resource_code', $resource->resource_code);
                     ?>
-                    <br><br>
+                    -->
+                    <?=
+                        $this->Form->label('Resources.resource_code',
+                                           $resource->resource_code,
+                                           ['class' => 'form-control',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                    ?>
+                    <br>
                 </div>
             </div>
-            <br>
         </div>
         
         <!-- DESCRIPCIÓN -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
                         $this->Form->label('Resources.description', 'Descripción: ');
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <!--
                     <?=
                         $this->Form->label('Resources.description', $resource->description);
+                    ?>
+                    -->
+                    <?=
+                        $this->Form->label('Resources.description',
+                                           $resource->description,
+                                           ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
                     <br><br>
                 </div>
             </div>
-            <br>
         </div>
         
         <!-- ACTIVO -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
                         $this->Form->label('Resources.active', 'Activo: ');
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
                     <?php
                         if( $resource->active == 0 )
                         {
-                            echo $this->Form->label('Resources.active', "No");
+                            echo $this->Form->label('Resources.active',
+                                           "No",
+                                           ['class' => 'form-control',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                         }
                         else
                         {
-                            echo $this->Form->label('Resources.active', "Sí");
+                            echo $this->Form->label('Resources.active',
+                                           "Sí",
+                                           ['class' => 'form-control',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                         }
                     ?>
+                    <br>
                 </div>
             </div>
-            <br><br>
         </div>
         
         <!-- ADMINISTRADORES -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
                     $this->Form->label('ResourcesUsers.user_id', 'Administradores: ');
                     ?>
                 </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <br>
                 </div>
             </div>
-            <br><br>
         </div>
-    </fieldset> <!-- FIN CAMPOS A LLENAR -->
+    </fieldset> <!-- FIN CAMPOS A CONSULTAR -->
 
     <!-- BOTONES -->
     <div class='row  text-center' id="btnRegistrar">
