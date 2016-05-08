@@ -1,4 +1,4 @@
-INSERT INTO roles ( role_name ) VALUES 
+﻿INSERT INTO roles ( role_name ) VALUES 
 ( 'Administrador' ),  	-- Role_id: 1
 ( 'Regular' ); 			-- Role_id: 2
 

@@ -162,6 +162,17 @@ class ResourcesController extends AppController
      */
     public function delete($id)
     {
+        $this->request->allowMethod(['post', 'delete']);
+        $resource = $this->Resources->get($id);
+        if ($this->Resources->delete($resource))
+        {
+            $this->Flash->success(__('El recurso ha sido eliminado éxitosamente.'));
+        } 
+        else 
+        {
+            $this->Flash->error(__('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo.'));
+        }
+        return $this->redirect(['action' => 'index']);
     }
     
     /*
