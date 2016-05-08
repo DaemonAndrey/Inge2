@@ -77,6 +77,9 @@
                 ?>
             </th> 
             <th>
+                Administradores
+            </th>
+            <th>
                 Actualizar
             </th>
             <th>
@@ -130,6 +133,15 @@
                             {
                                 echo "No";
                             }
+                        ?>
+                    </td>
+                    
+                    <!-- ADMINS ASOCIADOS -->
+                    <td>
+                        <?php
+                            echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
+                                                   array('controller' => 'resources','action' => 'matchAdmin', $resource->id),
+                                                   array('escape' => false));
                         ?>
                     </td>
 

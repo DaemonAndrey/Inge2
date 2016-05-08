@@ -60,7 +60,7 @@
                     echo $this->Paginator->sort('description', 'Tipo ');
                     echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                 ?>
-            </th> 
+            </th>
             <th>
                 Actualizar
             </th>
