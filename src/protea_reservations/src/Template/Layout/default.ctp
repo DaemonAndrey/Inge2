@@ -91,6 +91,7 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="container" style="width: auto;">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right ">
                         
@@ -146,9 +147,24 @@
                             {
                                 ?>
                                 <!-- ADMINISTRAR -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
-                                                                 array('controller'=>'pages','action' => 'home'),
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-tasks"></span> Administrar
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu ">
+                                        <!-- ADMINISTRAR RECURSOS -->
+                                        <li><?php echo $this->Html->link('Recursos',
+                                                                 array('controller'=>'resources','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
+
+                                        <!-- ADMINISTRAR TIPOS DE RECURSOS -->
+                                        <li><?php echo $this->Html->link('Tipos de Recurso',
+                                                                 array('controller'=>'resourceTypes','action' => 'index'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                    </ul>
+                                </li>
+                        
                                 <!-- VER RESERVAS -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
                                                                  array('controller'=>'reservations','action' => 'index'),
@@ -178,6 +194,7 @@
             </div>
 
     </div><!-- /.navbar-collapse -->
+    </div>
   </div><!-- /.container-fluid -->
 </nav>
 
