@@ -21,20 +21,31 @@
     </div>
 </div> <!-- FIN TÍTULO -->
 
-<!-- BOTÓN DE AGREGAR RECURSO -->
+<!-- BOTONES -->
 <div class="row text-center">
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <?php 
-        echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
-                               array('controller'=>'resources','action' => 'add'),
-                               array('target' => '_self', 'escape' => false)
-                              );
-        ?>
+        <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
+            <?php 
+            echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
+                                   array('controller'=>'resources','action' => 'add'),
+                                   array('target' => '_self', 'escape' => false)
+                                  );
+            ?>
+        </div>
+        <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+            <?php 
+            echo $this->Html->link('<span class="glyphicon glyphicon-cog"></span> Administrar tipos de recursos',
+                                   array('controller'=>'resourceTypes','action' => 'index'),
+                                   array('target' => '_self', 'escape' => false)
+                                  );
+            ?>
+        </div>
     </div>
+    
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <br>
     </div>
-</div> <!-- FIN BOTÓN DE AGREGAR RECURSO -->
+</div> <!-- FIN BOTONES -->
 
 <!-- TABLA -->
 <div class="table-responsive">
@@ -136,7 +147,7 @@
                         <?php
                             echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
                                                        array('controller' => 'resources','action' => 'delete', $resource->id),
-                                                       array('escape' => false, 'confirm' => 'Está seguro que desea eliminar el producto?'));
+                                                       array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el recurso?'));
                         ?>
                     </td>
                 </tr>

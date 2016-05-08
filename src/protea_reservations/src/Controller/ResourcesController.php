@@ -26,7 +26,7 @@ class ResourcesController extends AppController
         
         // Establece el id y el username del usuario actualmente en sesión
         $this->set('user_id', $this->Auth->User('id'));
-        $this->set('user_username', $this->Auth->User('username'));
+        $this->set('user_role', $this->Auth->User('role_id'));
         
         // Cualquier tipo de usuario puede acceder al método 'view' de recursos
         $this->Auth->allow(['view']);

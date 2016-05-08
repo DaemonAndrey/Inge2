@@ -9,30 +9,34 @@ use Cake\Event\Event;
 
 class ResourceTypesController extends AppController
 {   
-    /** 
-     * Permite comprobar si hay una sesión activa y verificar los permisos de usuario.
-     * @param Event $event
-     */
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        // Allow users to register and logout.
-        // You should not add the "login" action to allow list. Doing so would
-        $this->set('user_id', $this->Auth->User('id'));
-        $this->set('user_username', $this->Auth->User('username'));
-        //$this->Auth->allow(['view']);
-    }
-    
-    public $paginate = array(
-		'limit' => 10,
-		'order' => array('ResourceTypes.description' => 'asc')
-	);
-    
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('Paginator');
     }
+    
+    /** 
+     * Verifica algunos permisos de usuario y establece variables importantes de usuario.
+     * @param Event $event
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        
+        // Establece el id y el username del usuario actualmente en sesión
+        $this->set('user_id', $this->Auth->User('id'));
+        $this->set('user_role', $this->Auth->User('role_id'));
+        
+        // Cualquier tipo de usuario puede acceder al método 'view' de recursos
+        //$this->Auth->allow(['view']);
+    }
+    
+    /** 
+     * Paginador de recursos.
+     */
+    public $paginate = array('limit' => 10,
+                             'order' => array('ResourceType.description' => 'asc')
+                            );
 
     public function index()
 	{
@@ -46,15 +50,15 @@ class ResourceTypesController extends AppController
     {
         if($this->Auth->user())
         {
-            $resource = $this->ResourceTypes->newEntity();
+            $resourceType = $this->ResourceTypes->newEntity();
             
             if ($this->request->is('post'))
             {
-                $resourceType = $this->Resources->patchEntity($resourceType, $this->request->data);
+                $resourceType = $this->ResourceTypes->patchEntity($resourceType, $this->request->data);
                 
                 try
                 {
-                    if ($this->Resources->save($resourceType))
+                    if ($this->ResourceTypes->save($resourceType))
                     {
                         $this->Flash->success('Se ha agregado el nuevo tipo de recurso', ['key' => 'addResourceTypeSuccess']);
                         return $this->redirect(['controller' => 'ResourceTypes','action' => 'index']);
@@ -65,7 +69,7 @@ class ResourceTypesController extends AppController
                     $this->Flash->error('No se ha podido agregar el tipo de recurso', ['key' => 'addResourceTypeError']);
                 }
             }
-            $this->set('resourceType', $resourceType);            
+            $this->set('resourceType', $resourceType);
         }
         else
         {
@@ -75,16 +79,69 @@ class ResourceTypesController extends AppController
     
     /**
      * Se encarga de actualizar un recurso.
+     * @param  integer $id
      */
-    public function edit()
+    public function edit($id = null)
     {
+        if($this->Auth->user())
+        { 
+            $resource_type = $this->ResourceTypes->get($id);
+
+            if ($this->request->is(['post', 'put']))
+            {
+                $this->ResourceTypes->patchEntity($resource_type, $this->request->data);
+                
+                try
+                {
+                    if ($this->ResourceTypes->save($resource_type))
+                    {
+                        $this->Flash->success('Se ha actualizado el tipo de recurso', ['key' => 'updateResourceTypeSuccess']);
+                        return $this->redirect(['action' => 'index']);
+                    }
+                }
+                catch(Exception $ex)
+                {
+                    $this->Flash->error('No se ha podido actualizar el tipo de recurso', ['key' => 'updateResourceTypeError']);
+                }
+            }
+
+            $this->set('resource_type', $resource_type);
+        }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }
     
     /**
      * Se encarga de borrar un recurso.
+     * @param  integer $id
      */
-    public function delete()
+    public function delete($id)
     {
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'delete']);
+
+            $resource_type = $this->ResourceTypes->get($id);
+            
+            try
+            {
+                if ($this->ResourceTypes->delete($resource_type))
+                {
+                    $this->Flash->success('Se ha eliminado el tipo de recurso', ['key' => 'deleteResourceTypeSuccess']);
+                    return $this->redirect(['action' => 'index']);
+                }
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('No se ha podido eliminar el tipo de recurso', ['key' => 'deleteResourceTypeError']);
+            }
+        }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }
     
     /*
