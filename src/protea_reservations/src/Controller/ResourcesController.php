@@ -49,8 +49,8 @@ class ResourcesController extends AppController
         $this->set('resource_types', $this->ResourceTypes->find('all'));
         
         // Carga el modelo de 'ResourcesUsers' para mostrar sólo les recursos que puedo administrar
-        // $this->loadModel('ResourcesUsers');                             
-        // $this->set('relations', $this->ResourcesUsers->find('all'));
+        $this->loadModel('ResourcesUsers');                             
+        $this->set('relations', $this->ResourcesUsers->find('all'));
         
         // Pagina la tabla de recursos
         $this->set('resources', $this->paginate());
