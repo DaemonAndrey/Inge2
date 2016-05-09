@@ -148,7 +148,7 @@
                     <td>
                         <?php
                             echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                                   array('controller' => 'resources','action' => 'matchAdmin', $resource->id),
+                                                   array('controller' => 'resources','action' => 'resourceAdmins', $resource->id),
                                                    array('escape' => false));
                         ?>
                     </td>

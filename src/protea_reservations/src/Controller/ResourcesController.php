@@ -139,20 +139,6 @@ class ResourcesController extends AppController
     }  
     
     /**
-     * Asocia a un administrador como encargado de un recurso.
-     * @param  integer $id
-     */
-    public function matchAdmin($id)
-    {
-        // Saca la descripción del tipo de ese recurso específico
-        $connection = ConnectionManager::get('default');
-        $result = $connection
-                    ->execute('SELECT id, username FROM users WHERE role_id = :role', ['role' => 1])
-                    ->fetchAll('assoc');
-        $this->set('admins', $result);
-    }
-    
-    /**
      * Actualiza la información de un recurso.
      * @param  integer $id
      */
@@ -188,6 +174,27 @@ class ResourcesController extends AppController
         {  
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
+    }
+    
+    /**
+     * Asocia a un administrador como encargado de un recurso.
+     * @param  integer $id
+     */
+    public function resourceAdmins($id)
+    {
+        // Saca la descripción del tipo de ese recurso específico
+        $connection = ConnectionManager::get('default');
+        $result = $connection
+                    ->execute('SELECT id, username FROM users WHERE role_id = :role', ['role' => 1])
+                    ->fetchAll('assoc');
+        $this->set('admins', $result);
+        
+        // Carga todos los tipos de recursos para el DropDown
+        $this->loadModel('Users');
+        $options = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
+                                            ->where(['Users.role_id' => '1'])
+                                            ->toArray();                              
+        $this->set('admins', $options);
     }
     
     /*
