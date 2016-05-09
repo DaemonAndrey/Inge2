@@ -1,4 +1,4 @@
-<?php    echo $this->Html->css('reservations.css'); ?>
+<?php    echo $this->Html->css('reservations.css');?>
 <div class="row text-center">
   <div class="col-xs-12">
       <h1>Calendario de Reservas</h1>
@@ -115,13 +115,11 @@
                             <select name="tipoRecurso" class="form-control">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                                 <?php
-                                $inicioBD = 7;
-                                $finBD = 21;
+
                                 
-                                for($i = $inicioBD; $i < $finBD; $i++)
-                                {
-                                    echo "<option value='".$i."'>".$i.":00"."</option>";
-                                }
+                                    foreach ($types as $value) {
+                                        echo "<option>".$value['description']."</option>";
+                                    }
                                 ?>
                             </select>
                         </div>
