@@ -9,6 +9,11 @@ use Cake\ORM\Query;
 
 class UsersTable extends Table
 {
+    public function initialize(array $config)
+    {
+        $this->belongsToMany('Resources');
+    }
+    
     /*
      * Se encarga de validar los campos del formulario de registro
      * @param Validator $validator

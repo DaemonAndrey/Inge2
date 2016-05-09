@@ -92,12 +92,6 @@
         <?php 
             // Recorre todos los recursos y los muestra en la tabla.
             foreach ( $resources as $resource ):
-            /*// Recorre las relaciones entre usarios recursos.
-                 foreach ( $relations as $relation ): 
-                     // Saca solo los recursos que puede administrar ese usuario.
-                     if( $relation['resource_id'] == $resource['id'] && $relation['user_id'] == $user_id )
-                     {
-                     */
              ?>
                 <tr>
                     <!-- TIPO -->
@@ -148,7 +142,7 @@
                     <td>
                         <?php
                             echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                                   array('controller' => 'resources','action' => 'resourceAdmins', $resource->id),
+                                                   array('controller' => 'resources','action' => 'associate', $resource->id),
                                                    array('escape' => false));
                         ?>
                     </td>
@@ -171,9 +165,6 @@
                         ?>
                     </td>
                 </tr>
-            <!--<?php
-            }
-                endforeach; ?> -->
             <?php endforeach; ?>
         <?php unset($relation); ?>
         <?php unset($resource); ?>
