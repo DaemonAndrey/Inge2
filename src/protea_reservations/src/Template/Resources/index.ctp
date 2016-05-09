@@ -7,6 +7,8 @@
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceSuccess') ?>
     <?= $this->Flash->render('addResourceError') ?>
+    <?= $this->Flash->render('deleteResourceSuccess') ?>
+    <?= $this->Flash->render('deleteResourceError') ?>
 </div>
 
 <!-- TÍTULO -->
@@ -90,86 +92,88 @@
         <?php 
             // Recorre todos los recursos y los muestra en la tabla.
             foreach ( $resources as $resource ):
-                // Recorre las relaciones entre usarios recursos.
+            /*// Recorre las relaciones entre usarios recursos.
                  foreach ( $relations as $relation ): 
                      // Saca solo los recursos que puede administrar ese usuario.
                      if( $relation['resource_id'] == $resource['id'] && $relation['user_id'] == $user_id )
                      {
-                     ?>
-                        <tr>
-                            <!-- TIPO -->
-                            <td>
-                                <?php
-                                    // Recorre todos los tipos de recurso hasta encontrar el que se relaciona con ese recurso
-                                    foreach ( $resource_types as $type ):
-                                        if( $type['id'] == $resource['resource_type'] )
-                                        {
-                                            echo $type['description'];
-                                        }                            
-                                    endforeach;
-                                    unset($type);
-                                ?>
-                            </td>
+                     */
+             ?>
+                <tr>
+                    <!-- TIPO -->
+                    <td>
+                        <?php
+                            // Recorre todos los tipos de recurso hasta encontrar el que se relaciona con ese recurso
+                            foreach ( $resource_types as $type ):
+                                if( $type['id'] == $resource['resource_type'] )
+                                {
+                                    echo $type['description'];
+                                }                            
+                            endforeach;
+                            unset($type);
+                        ?>
+                    </td>
 
-                            <!-- NOMBRE -->
-                            <td>
-                                <?php
-                                    echo $this->Html->link($resource['resource_name'],
-                                                           array('controller' => 'resources','action' => 'view', $resource->id));
-                                ?>
-                            </td>
+                    <!-- NOMBRE -->
+                    <td>
+                        <?php
+                            echo $this->Html->link($resource['resource_name'],
+                                                   array('controller' => 'resources','action' => 'view', $resource->id));
+                        ?>
+                    </td>
 
-                            <!-- SERIE/PLACA -->
-                            <td>
-                                <?php
-                                    echo $this->Html->link($resource['resource_code'],
-                                                           array('controller' => 'resources','action' => 'view', $resource->id));
-                                ?>
-                            </td>
+                    <!-- SERIE/PLACA -->
+                    <td>
+                        <?php
+                            echo $this->Html->link($resource['resource_code'],
+                                                   array('controller' => 'resources','action' => 'view', $resource->id));
+                        ?>
+                    </td>
 
-                            <!-- ACTIVO -->
-                            <td>
-                                <?php
-                                    if( $resource['active'] == 1 )
-                                    {
-                                        echo "Sí";
-                                    }
-                                    else
-                                    {
-                                        echo "No";
-                                    }
-                                ?>
-                            </td>
+                    <!-- ACTIVO -->
+                    <td>
+                        <?php
+                            if( $resource['active'] == 1 )
+                            {
+                                echo "Sí";
+                            }
+                            else
+                            {
+                                echo "No";
+                            }
+                        ?>
+                    </td>
 
-                            <!-- ADMINS ASOCIADOS -->
-                            <td>
-                                <?php
-                                    echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                                           array('controller' => 'resources','action' => 'matchAdmin', $resource->id),
-                                                           array('escape' => false));
-                                ?>
-                            </td>
+                    <!-- ADMINS ASOCIADOS -->
+                    <td>
+                        <?php
+                            echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
+                                                   array('controller' => 'resources','action' => 'matchAdmin', $resource->id),
+                                                   array('escape' => false));
+                        ?>
+                    </td>
 
-                            <!-- EDITAR -->
-                            <td>
-                                <?php
-                                    echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
-                                                           array('controller' => 'resources','action' => 'edit', $resource->id),
-                                                           array('escape' => false));
-                                ?>
-                            </td>
+                    <!-- EDITAR -->
+                    <td>
+                        <?php
+                            echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                                                   array('controller' => 'resources','action' => 'edit', $resource->id),
+                                                   array('escape' => false));
+                        ?>
+                    </td>
 
-                            <!-- ELIMINAR -->
-                            <td>
-                                <?php
-                                    echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
-                                                               array('controller' => 'resources','action' => 'delete', $resource->id),
-                                                               array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el recurso?'));
-                                ?>
-                            </td>
-                        </tr>
-                <?php }
-                    endforeach; ?>
+                    <!-- ELIMINAR -->
+                    <td>
+                        <?php
+                            echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
+                                                       array('controller' => 'resources','action' => 'delete', $resource->id),
+                                                       array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el recurso?'));
+                        ?>
+                    </td>
+                </tr>
+            <!--<?php
+            }
+                endforeach; ?> -->
             <?php endforeach; ?>
         <?php unset($relation); ?>
         <?php unset($resource); ?>

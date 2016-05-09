@@ -44,16 +44,20 @@ class ResourcesController extends AppController
      */
     public function index()
 	{        
-        // Carga el modelo de 'ResourceTypes' para sacar la descripción del tipo de recurso
+        // Carga el modelo de 'ResourceTypes' para sacar el nombre del tipo de recurso
         $this->loadModel('ResourceTypes');                             
         $this->set('resource_types', $this->ResourceTypes->find('all'));
         
-        // Carga el modelo de 'ResourcesUsers' para mostrar sólo les recursos que puedo administrar
+        /*// Carga el modelo de 'ResourcesUsers' para mostrar sólo les recursos que puedo administrar
         $this->loadModel('ResourcesUsers');                             
-        $this->set('relations', $this->ResourcesUsers->find('all'));
+        $this->set('relations', $this->ResourcesUsers->find('all'));*/
+        
+        // Consulta Join de recursos con usuarios, saca los recursos asociados al admin
+        $query = $this->Resources->find('all');
+        $query->innerJoinWith('Users', function ($q){return $q->where(['Users.id' => $this->Auth->User('id')]);});
         
         // Pagina la tabla de recursos
-        $this->set('resources', $this->paginate());
+        $this->set('resources', $this->paginate($query));
 	}
 
     /**
@@ -162,17 +166,28 @@ class ResourcesController extends AppController
      */
     public function delete($id)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $resource = $this->Resources->get($id);
-        if ($this->Resources->delete($resource))
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
         {
-            $this->Flash->success(__('El recurso ha sido eliminado éxitosamente.'));
-        } 
-        else 
-        {
-            $this->Flash->error(__('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo.'));
+            $this->request->allowMethod(['post', 'delete']);
+            $resource = $this->Resources->get($id);
+            try
+            {
+                if ($this->Resources->delete($resource))
+                {
+                    $this->Flash->success('El recurso ha sido eliminado éxitosamente', ['key' => 'deleteResourceSuccess']);
+                    return $this->redirect(['controller' => 'Resources','action' => 'index']);
+                } 
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteResourceError']);
+            }
         }
-        return $this->redirect(['action' => 'index']);
+        else
+        {  
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }
     
     /*
