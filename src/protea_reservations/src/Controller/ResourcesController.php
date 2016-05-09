@@ -182,19 +182,48 @@ class ResourcesController extends AppController
      */
     public function associate($id)
     {
+        // Admins asociados
         $this->loadModel('Users');
         $query = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
                                         ->where(['Users.role_id' => '1']);
-        $query->innerJoinWith('Resources', function ($q){return $q->where(['Resources.id' => $id]);});
+        
+        $query->innerJoinWith('Resources', function ($q) use ($id){
+                                            return $q->where(['Resources.id' => $id]);
+        });
         
         $this->set('admins_options', $query);
+        
+        //-------------------------------------------------------------------------------
+        
+        // Admins no asociados    
+        
+        
+        $query2 = $this->Users->find()
+                        ->select(['Users.id'])
+                                        ->where(['Users.role_id' => '1']);
+        
+        $query2->innerJoinWith('Resources', function ($q) use ($id){
+                                            return $q->where(['Resources.id' => $id]);
+        });
+        
+        
+        $query3 = $this->Users->find('list')
+                      ->innerJoinWith('Resources', 
+                         function($q) use ($query2) {
+                            return $q->where(['Users.id NOT IN' => $query2]);
+                         }
+                      );
+        
+        $this->set('no_admins_options', $query3->toArray());
+        
+        
+        //-------------------------------------------------------------------------------
         
         // Nueva entidad 'ResourceUser'
         $this->loadModel('ResourcesUsers');
         $resourceUser = $this->ResourcesUsers->newEntity();
         
         $this->set('relation', $resourceUser); 
-        
     }
     
     /*

@@ -18,12 +18,24 @@
 
     <!-- CAMPOS A LLENAR -->
     <fieldset>
-        <!-- TIPO -->
+        <!-- ASOCIADOS -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
                 <?=
-                    $this->Form->input('ResourcesUsers.user_id', ['label' => 'Administrador: ',
+                    $this->Form->input('ResourcesUsers.user_id', ['label' => 'Administradores: ',
                                                                    'options' => $admins_options,
+                                                                   'class' => 'form-control']);
+                ?>
+                <br>
+            </div>
+        </div>
+        
+        <!-- NO ASOCIADOS -->
+        <div class="row">
+            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+                <?=
+                    $this->Form->input('ResourcesUsers.user_id', ['label' => 'No Administradores: ',
+                                                                   'options' => $no_admins_options,
                                                                    'class' => 'form-control']);
                 ?>
                 <br>
