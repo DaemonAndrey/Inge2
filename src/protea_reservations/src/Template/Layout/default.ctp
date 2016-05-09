@@ -66,120 +66,120 @@
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
 
+<div id="navbar-background">
 
-<nav class="navbar">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <?php
+    $imgUcrLogo = $this->Html->image('logo-ucr.png', [ 'alt' => 'Protea','id'=>'logo_ucr']);
 
-      <?php
-        $imgUcrLogo = $this->Html->image('logo-ucr.png', array( 'alt' => 'Protea'));
-        $imgProteaLogo = $this->Html->image('logo-protea.png', array( 'alt' => 'Protea', 'height' => '50'));
+                    // Hace el link con la imagen
+    echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
+                                           ['target'=>'_blank', 'escape' => false]);
+ ?>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
-                        // Hace el link con la imagen
-        echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
-                                               array('target'=>'_blank', 'escape' => false));
-        echo $this->Html->link($imgProteaLogo,'http://www.facultadeducacion.ucr.ac.cr/protea',
-                                               array('target'=>'_blank', 'escape' => false));
-     ?>
-    </div>
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right ">
-                        
-                        <!-- INICIO -->
-                        <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
-                                                                        array('controller'=>'pages','action' => 'home'),
-                                                                        array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
-
-                        
-
-                        <?php
-                        // SI NO ESTA LOGGEADO
-                        if(is_null($this->request->session()->read('Auth.User.username')))
-                        {   ?>
-                            <!-- ACERCA DE -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
-
-                                                             array('controller'=>'pages','action' => 'about'),
-                                                             array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
-                            <!-- CONTACTO -->
-                            <li><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
-                        
-                            <!-- REGISTRAR -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
-                                                             array('controller'=>'users','action' => 'registrar'),
-                                                             array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
-
-                            <!-- LOGIN -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
-                                                             array('controller'=>'users','action' => 'login'),
-                                                             array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
-                            <?php
-                        } ?>
-
-                        <?php
-
-                        // SI ESTA LOGGEADO
-                        if(!is_null($this->request->session()->read('Auth.User.username')))
-                        {                                  
-                            // SI ES USUARIO
-                            if($this->request->session()->read('Auth.User.role_id') == '2')
-                            {
-                                ?>                        
-                                <!-- RESERVAR -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
-                                                                 array('controller'=>'reservations','action' => 'index'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
-                                <?php
-                            } 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right ">
                             
-                            // SI ES ADMINISTRADOR
-                            if($this->request->session()->read('Auth.User.role_id') == '1')
-                            {
-                                ?>
-                                <!-- ADMINISTRAR -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
-                                                                 array('controller'=>'pages','action' => 'home'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
-                                <!-- VER RESERVAS -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
-                                                                 array('controller'=>'reservations','action' => 'index'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                            <!-- INICIO -->
+                            <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
+                                                                            array('controller'=>'pages','action' => 'home'),
+                                                                            array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
+
+                            
+
+                            <?php
+                            // SI NO ESTA LOGGEADO
+                            if(is_null($this->request->session()->read('Auth.User.username')))
+                            {   ?>
+                                <!-- ACERCA DE -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
+
+                                                                 array('controller'=>'pages','action' => 'about'),
+                                                                 array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
+                                <!-- CONTACTO -->
+                                <li><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
+                            
+                                <!-- REGISTRAR -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
+                                                                 array('controller'=>'users','action' => 'registrar'),
+                                                                 array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
+
+                                <!-- LOGIN -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
+                                                                 array('controller'=>'users','action' => 'login'),
+                                                                 array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
                                 <?php
                             } ?>
-                        
-                            <!-- MI CUENTA -->
-                            <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
-                                                             array('controller'=>'pages','action' => 'home'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
-                        
-                            <!-- LOGOUT -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
-                                                             array('controller'=>'users','action' => 'logout'),
-                                                             array('target' => '_self', 'escape' => false)) ?> </li>
+
                             <?php
-                        } ?>    
-                    </ul> <!-- FIN OPCIONES =========== -->
+
+                            // SI ESTA LOGGEADO
+                            if(!is_null($this->request->session()->read('Auth.User.username')))
+                            {                                  
+                                // SI ES USUARIO
+                                if($this->request->session()->read('Auth.User.role_id') == '2')
+                                {
+                                    ?>                        
+                                    <!-- RESERVAR -->
+                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
+                                                                     array('controller'=>'reservations','action' => 'index'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                } 
+                                
+                                // SI ES ADMINISTRADOR
+                                if($this->request->session()->read('Auth.User.role_id') == '1')
+                                {
+                                    ?>
+                                    <!-- ADMINISTRAR -->
+                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
+                                                                     array('controller'=>'pages','action' => 'home'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <!-- VER RESERVAS -->
+                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
+                                                                     array('controller'=>'reservations','action' => 'index'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                } ?>
+                            
+                                <!-- MI CUENTA -->
+                                <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                            
+                                <!-- LOGOUT -->
+                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
+                                                                 array('controller'=>'users','action' => 'logout'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                <?php
+                            } ?>    
+                        </ul> <!-- FIN OPCIONES =========== -->
 
 
 
-            <div class="lead text-info" style="text-align:center; color: #FFFFFF">
-                    <br>
-                    <?= $this->Flash->render('addUserSuccess') ?>
-                    <?= $this->Flash->render('logoutSuccess') ?>
-            </div>
+                <div class="lead text-info" style="text-align:center; color: #FFFFFF">
+                        <br>
+                        <?= $this->Flash->render('addUserSuccess') ?>
+                        <?= $this->Flash->render('logoutSuccess') ?>
+                </div>
 
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
 
 
     
