@@ -166,7 +166,6 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
-        <?php unset($relation); ?>
         <?php unset($resource); ?>
     </table>
 </div> <!-- FIN TABLA -->

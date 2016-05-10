@@ -184,46 +184,82 @@ class ResourcesController extends AppController
     {
         // Admins asociados
         $this->loadModel('Users');
+        /*
         $query = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
+                                        ->where(['Users.role_id' => '1']);
+        */
+        $query = $this->Users->find()
+                                        ->select(['id', 'username', 'first_name', 'last_name'])
                                         ->where(['Users.role_id' => '1']);
         
         $query->innerJoinWith('Resources', function ($q) use ($id){
-                                            return $q->where(['Resources.id' => $id]);
-        });
+                                                return $q->where(['Resources.id' => $id]);
+                                            });
         
         $this->set('admins_options', $query);
         
         //-------------------------------------------------------------------------------
         
-        // Admins no asociados    
+        // Admins no asociados
+        $innerQuery = $this->Users->find()
+                                ->select(['id'])
+                                ->where(['Users.role_id' => '1']);
         
+        $innerQuery->innerJoinWith('Resources', function ($q) use ($id){
+                                                    return $q->where(['Resources.id' => $id]);
+                                                });
         
-        $query2 = $this->Users->find()
-                        ->select(['Users.id'])
-                                        ->where(['Users.role_id' => '1']);
+        $query2 = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
+                                ->where(['Users.role_id' => '1'])
+                                ->where(function ($q) use ($innerQuery){
+                                        return $q->notIn('id', $innerQuery);
+                                        });
         
-        $query2->innerJoinWith('Resources', function ($q) use ($id){
-                                            return $q->where(['Resources.id' => $id]);
-        });
-        
-        
-        $query3 = $this->Users->find('list')
-                      ->innerJoinWith('Resources', 
-                         function($q) use ($query2) {
-                            return $q->where(['Users.id NOT IN' => $query2]);
-                         }
-                      );
-        
-        $this->set('no_admins_options', $query3->toArray());
-        
+        $this->set('no_admins_options', $query2);
         
         //-------------------------------------------------------------------------------
         
-        // Nueva entidad 'ResourceUser'
-        $this->loadModel('ResourcesUsers');
-        $resourceUser = $this->ResourcesUsers->newEntity();
+        //$this->set('r_id', $id);
         
-        $this->set('relation', $resourceUser); 
+        //-------------------------------------------------------------------------------
+        
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            // Nueva entidad 'ResourceUser'
+            $this->loadModel('ResourcesUsers');
+            $resourcesUser = $this->ResourcesUsers->newEntity();
+            
+            if ($this->request->is('post'))
+            {
+                // Guarda en la entidad toda la información ingresada en el formulario
+                $resourcesUser = $this->ResourcesUsers->patchEntity($resourcesUser, $this->request->data);
+                
+                // Guarda en la entidad el id del admin y del recurso
+                $id_Admin = $this->request->data['ResourcesUsers']['user_id'];
+                $resourcesUser->user_id = $id_Admin;
+                $resourcesUser->resource_id = $id;
+                
+                try
+                {
+                    // Si pudo guardar en la tabla 'Resources'
+                    if ($this->ResourcesUsers->save($resourcesUser))
+                    {
+                        $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'associateResourceAdminSuccess']);
+                        return $this->redirect(['controller' => 'Resources','action' => 'associate', $id]);
+                    }
+                }
+                catch(Exception $ex)
+                {
+                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'associateResourceAdminError']);
+                }
+            }
+            $this->set('resourcesUser', $resourcesUser);            
+        }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }
     
     /*
