@@ -262,6 +262,16 @@ class ResourcesController extends AppController
         }
     }
     
+    
+    /**
+     * Desasocia a un administrador como encargado de un recurso.
+     * @param  integer $id
+     */
+    public function disassociate($id)
+    {
+
+    }
+    
     /*
      * Revisa cuáles funciones puede hacer un usuario con cierto rol
      * @param $user
