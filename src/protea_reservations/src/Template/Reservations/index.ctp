@@ -42,28 +42,22 @@
                             <strong>Hora de inicio</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaInicio" class="form-control">
-                                <option value="Seleccionar" selected disabled>Seleccionar</option>
+                            <select name="horaInicio" class="form-control" id="start">
+                                
                                 <?php
                                 $inicioBD = 7;
                                 $finBD = 21;
                                 
-                                for($i = $inicioBD; $i < 12; $i++)
+                                for($i = $inicioBD; $i < 10; $i++)
                                 {
-                                    if($i < 10)
-                                    {
-                                        echo "<option value='".$i."'>0".$i.":00 a.m."."</option>";
-                                    }
-                                    else
-                                    {
-                                        echo "<option value='".$i."'>".$i.":00 a.m."."</option>";
-                                    }
+                                    echo "<option> 0".$i.":00:00</option>";
                                 }
-                                echo "<option value='12'>12:00 m.d.</option>";
-                                for($i = 1; $i < $finBD%12; $i++)
+
+                                for($i = 10; $i < $finBD; $i++)
                                 {
-                                    echo "<option value='".($i+12)."'>0".$i.":00 p.m."."</option>";
+                                    echo "<option> ".$i.":00:00</option>";
                                 }
+
                                 ?>
                             </select>
                         </div>
@@ -74,29 +68,26 @@
                             <strong>Hora de fin</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaFin" class="form-control">
-                                <option value="Seleccionar" selected disabled>Seleccionar</option>
-                                <?php
-                                $inicioBD = 7;
-                                $finBD = 21;
+                            <select name="horaFin" class="form-control" id="end">
+
+                            <?php
+                                $inicioBD = 8;
+                                $finBD = 22;
                                 
-                                for($i = $inicioBD+1; $i < 12; $i++)
+                                for($i = $inicioBD; $i < 10; $i++)
                                 {
-                                    if($i < 10)
-                                    {
-                                        echo "<option value='".$i."'>0".$i.":00 a.m."."</option>";
-                                    }
-                                    else
-                                    {
-                                        echo "<option value='".$i."'>".$i.":00 a.m."."</option>";
-                                    }
+
+                                    echo "<option> 0".$i.":00:00"."</option>";
+
                                 }
-                                echo "<option value='12'>12:00 m.d.</option>";
-                                for($i = 1; $i <= $finBD%12; $i++)
+
+                                for($i = 10; $i < $finBD; $i++)
                                 {
-                                    echo "<option value='".($i+12)."'>0".$i.":00 p.m."."</option>";
+
+                                    echo "<option> ".$i.":00:00"."</option>";
+
                                 }
-                                ?>
+                            ?>
                             </select>
                         </div>
                     </div>
@@ -130,7 +121,7 @@
                             <strong>Recursos disponibles</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="recursosDisponibles" class="form-control">
+                            <select name="recursosDisponibles" class="form-control" id="resource">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                             </select>
                         </div>
@@ -274,9 +265,47 @@
     });
 
 
-    function getResources(element)
-    {
-
-    }
 
 </script>
+
+<script>
+    
+    function getResources(element)
+    {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function()
+        {
+            if(xhttp.readyState == 4 && xhttp.status == 200)
+            {
+                fillResources(xhttp.responseText);
+            }
+        };
+        
+        var path = window.location.pathname;
+        path = path.replace("/reservations","/resources");
+
+        var  start = document.getElementById("start");
+        var end = document.getElementById("end");
+        xhttp.open("POST", path+"getResources/"+element.value+"/"+start.value+"/"+end.value,true);
+
+        xhttp.send();
+    }
+
+    function fillResources(json)
+    {
+
+        obj = JSON.parse(json);
+
+        html = "";
+
+        var len = obj.length;
+
+        for (var i = 0; i < len; ++i) {
+            html += "<option>"+obj[i].resource.resource_name+"</option>";
+        }
+
+        document.getElementById("resource").innerHTML = html;
+    }
+
+</script>>
