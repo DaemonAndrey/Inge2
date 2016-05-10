@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <!-- ADMINISTRADORES -->
+            <!-- ADMINISTRADORES LABEL -->
             <div class="row">
                 <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                     <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
@@ -150,10 +150,30 @@
                         ?>
                     </div>
                     <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                        <br>
                     </div>
                 </div>
             </div>
+        
+            <!-- ADMINISTRADORES LABEL -->
+            <?php
+                // Recorre todos los recursos y los muestra en la tabla.
+                foreach ( $admins_assoc as $admin ):
+                    ?>
+                        <div class="row">
+                            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
+                                </div>
+                                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                                    <?= $admin['username']; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                endforeach;
+                unset($admin);
+            ?>
+            <br>
+
             <?php
         } ?>
     </fieldset> <!-- FIN CAMPOS A CONSULTAR -->

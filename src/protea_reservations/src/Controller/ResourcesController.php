@@ -76,6 +76,18 @@ class ResourcesController extends AppController
                     ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type])
                     ->fetchAll('assoc');
         $this->set('r_type', $result);
+        
+        // Saca admins asociados
+        $this->loadModel('Users');
+        $query = $this->Users->find()
+                                        ->select(['id', 'username', 'first_name', 'last_name'])
+                                        ->where(['Users.role_id' => '1']);
+        
+        $query->innerJoinWith('Resources', function ($q) use ($id){
+                                                return $q->where(['Resources.id' => $id]);
+                                            });
+        
+        $this->set('admins_assoc', $query->toArray());
     }
 
     /**
@@ -184,10 +196,6 @@ class ResourcesController extends AppController
     {
         // Admins asociados
         $this->loadModel('Users');
-        /*
-        $query = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
-                                        ->where(['Users.role_id' => '1']);
-        */
         $query = $this->Users->find()
                                         ->select(['id', 'username', 'first_name', 'last_name'])
                                         ->where(['Users.role_id' => '1']);
@@ -196,7 +204,7 @@ class ResourcesController extends AppController
                                                 return $q->where(['Resources.id' => $id]);
                                             });
         
-        $this->set('admins_options', $query);
+        $this->set('admins_assoc', $query);
         
         //-------------------------------------------------------------------------------
         
@@ -219,7 +227,7 @@ class ResourcesController extends AppController
         
         //-------------------------------------------------------------------------------
         
-        //$this->set('r_id', $id);
+        $this->set('r_id', $id);
         
         //-------------------------------------------------------------------------------
         
@@ -245,13 +253,13 @@ class ResourcesController extends AppController
                     // Si pudo guardar en la tabla 'Resources'
                     if ($this->ResourcesUsers->save($resourcesUser))
                     {
-                        $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'associateResourceAdminSuccess']);
+                        $this->Flash->success('Se ha asociado el administrador con el recurso', ['key' => 'associateResourceAdminSuccess']);
                         return $this->redirect(['controller' => 'Resources','action' => 'associate', $id]);
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'associateResourceAdminError']);
+                    $this->Flash->error('No se ha podido asociar el administrador con el recurso', ['key' => 'associateResourceAdminError']);
                 }
             }
             $this->set('resourcesUser', $resourcesUser);            
@@ -267,8 +275,36 @@ class ResourcesController extends AppController
      * Desasocia a un administrador como encargado de un recurso.
      * @param  integer $id
      */
-    public function disassociate($id)
+    public function disassociate($admin_id, $resource_id)
     {
+        // Encontrar el id de la asociación
+        $this->loadModel('ResourcesUsers');
+        $id = $this->ResourcesUsers->find('list')->select(['id'])
+                                          ->where(['ResourcesUsers.user_id' => $admin_id,
+                                                   'ResourcesUsers.resource_id' => $resource_id]);
+        
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            $resourceUser = $this->ResourcesUsers->get($id->toArray());
+            try
+            {
+                if ($this->ResourcesUsers->delete($resourceUser))
+                {
+                    $this->Flash->success('Se ha desasociado el administrador del recurso', ['key' => 'disassociateResourceAdminSuccess']);
+                    return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
+                } 
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('No se ha podido desasociar el administrador del recurso', ['key' => 'disassociateResourceAdminError']);
+            }
+        }
+        else
+        {  
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
 
     }
     

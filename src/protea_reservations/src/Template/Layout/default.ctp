@@ -96,7 +96,7 @@
                     <ul class="nav navbar-nav navbar-right ">
                         
                         <!-- INICIO -->
-                        <li class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
+                        <li role="inicio" class="active"><?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Inicio',
                                                                         array('controller'=>'pages','action' => 'home'),
                                                                         array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
 
@@ -107,20 +107,20 @@
                         if(is_null($this->request->session()->read('Auth.User.username')))
                         {   ?>
                             <!-- ACERCA DE -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
+                            <li role="acerca de"><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
 
                                                              array('controller'=>'pages','action' => 'about'),
                                                              array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
                             <!-- CONTACTO -->
-                            <li><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
+                            <li role="contacto"><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
                         
                             <!-- REGISTRAR -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
+                            <li role="registrar"><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
                                                              array('controller'=>'users','action' => 'add'),
                                                              array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                             <!-- LOGIN -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
+                            <li role="ingresar"><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-in"></span> Ingresar',
                                                              array('controller'=>'users','action' => 'login'),
                                                              array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
                             <?php
@@ -136,7 +136,7 @@
                             {
                                 ?>                        
                                 <!-- RESERVAR -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
+                                <li role="reservar"><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Reservar',
                                                                  array('controller'=>'reservations','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
@@ -149,36 +149,35 @@
                                 <!-- ADMINISTRAR -->
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-tasks"></span> Administrar
-                                        <span class="caret"></span>
+                                        <span class="glyphicon glyphicon-tasks"></span> Administrar <span class="caret"></span>
                                     </a>
-                                    <ul class="dropdown-menu ">
+                                    <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
                                         <!-- ADMINISTRAR RECURSOS -->
-                                        <li><?php echo $this->Html->link('Recursos',
+                                        <li role="recursos"><?php echo $this->Html->link('Recursos',
                                                                  array('controller'=>'resources','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
 
                                         <!-- ADMINISTRAR TIPOS DE RECURSOS -->
-                                        <li><?php echo $this->Html->link('Tipos de Recurso',
+                                        <li role="tipos de recurso"><?php echo $this->Html->link('Tipos de Recurso',
                                                                  array('controller'=>'resourceTypes','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                     </ul>
                                 </li>
                         
                                 <!-- VER RESERVAS -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
+                                <li role="ver reservas"><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
                                                                  array('controller'=>'reservations','action' => 'index'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php
                             } ?>
                         
                             <!-- MI CUENTA -->
-                            <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
+                            <li role="mi cuenta"><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
                                                              array('controller'=>'pages','action' => 'home'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                         
                             <!-- LOGOUT -->
-                            <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
+                            <li role="salir"><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
                                                              array('controller'=>'users','action' => 'logout'),
                                                              array('target' => '_self', 'escape' => false)) ?> </li>
                             <?php

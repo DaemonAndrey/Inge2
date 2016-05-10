@@ -5,6 +5,8 @@
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('associateResourceAdminSuccess') ?>
     <?= $this->Flash->render('associateResourceAdminError') ?>
+    <?= $this->Flash->render('disassociateResourceAdminSuccess') ?>
+    <?= $this->Flash->render('disassociateResourceAdminError') ?>
 </div>
 
 <div class="users form">
@@ -79,7 +81,7 @@
 
             <?php 
                 // Recorre todos los recursos y los muestra en la tabla.
-                foreach ( $admins_options as $admin ):
+                foreach ( $admins_assoc as $admin ):
                  ?>
                         <!-- CORREO -->
                         <td>
@@ -106,8 +108,8 @@
                         <td>
                             <?php
                                 echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-remove')),
-                                                           array('controller' => 'resources','action' => 'disassociate', $admin->id),
-                                                           array('escape' => false, 'confirm' => '¿Está seguro que desea desasociar al administrador?'));
+                                                           array('controller' => 'resources','action' => 'disassociate', $admin->id, $r_id),
+                                                           array('escape' => false));
                             ?>
                         </td>
                     </tr>
