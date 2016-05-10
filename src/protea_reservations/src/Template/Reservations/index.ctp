@@ -112,7 +112,7 @@
                             <strong>Tipo de recurso</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="tipoRecurso" class="form-control">
+                            <select name="tipoRecurso" class="form-control" onchange="getResources(this)">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                                 <?php
 
@@ -272,4 +272,11 @@
             }
         });
     });
+
+
+    function getResources(element)
+    {
+
+    }
+
 </script>
