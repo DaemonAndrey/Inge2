@@ -17,7 +17,7 @@
 
 <!-- Modal -->
 <div id="mdlReservaciones" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-mg">
+    <div class="modal-dialog">
         <!-- Modal content -->
         <div class="modal-content">
             <!-- Modal header -->
@@ -31,7 +31,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                        <h4>Fecha</h4>
+                        <h4 id="fecha">Fecha</h4>
                     </div>
                 </div>
                 
@@ -252,8 +252,11 @@
 
 **/
         $('#calendar').fullCalendar({ // put your options and callbacks here
-            dayClick: function($){
+            dayClick: function(date, jsEvent, view){
                 jQuery('#mdlReservaciones').modal('show');
+                
+                var fecha = document.getElementById("fecha");
+                fecha.innerHTML = date.format("DD MMMM YYYY");
             },
 
             header: {
