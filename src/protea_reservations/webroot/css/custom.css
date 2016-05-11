@@ -211,24 +211,17 @@ section{
 ================================================== */
 /* Header area
 =========================================================== */
-.navbar
+
+#logo_ucr
 {
-    background: #91BB1B;
-    padding-bottom: 20px;
-    margin-bottom: 10px; 
-}
-
-
-
-.navbar-header a img {
     height: 60px;
-    width: 80px;
-    margin: 20px 10px 0 10px;
+    width: 90px;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px)
 {
-    .navbar-header a img {
+    #logo_ucr{
         height: 40px;
         width: 60px;
         margin: 20px 10px 0 10px;
@@ -242,13 +235,36 @@ section{
 
 @media screen and (min-width: 768px) and (max-width: 991px)
 {
-    .navbar-header a img {
+    #logo_ucr{
         height: 45px;
         width: 53px;
         margin: 20px 5px 0 15px;
     }
 
 }
+
+#navbar-background
+{
+    background-color: #848484;
+    padding: 40px 0 20px 0;
+}
+
+.navbar
+{
+    background: #91BB1B;
+    padding-bottom: 20px;
+    margin: 100px 0px 10px 0px; 
+}
+
+
+
+.navbar-header a img {
+    height: 60px;
+    width: 80px;
+    margin: 20px 10px 0 10px;
+}
+
+
 
 .main-nav{
     width: auto;
