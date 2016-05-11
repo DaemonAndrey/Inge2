@@ -8,6 +8,15 @@ class ReservationsController extends AppController
 {    
 	public function index()
 	{
+
+		/**El siguiente query obtiene todos los tipos de recursos que existen en la base **/	
+			$this->loadModel('ResourceTypes');
+			$resource_type = $this->ResourceTypes->find()
+							->hydrate(false)
+							->select(['description']);
+							
+			$resource_type = $resource_type->toArray();
+			
         
 		if($this->request->is('post'))
 		{
@@ -21,7 +30,7 @@ class ReservationsController extends AppController
 					*/
 			
 			$resources = $resources->toArray();
-
+		
 
 
 			$events = array();
@@ -32,8 +41,11 @@ class ReservationsController extends AppController
 			$events = str_replace(".",",",$events);
 	
 			$events = substr($events, 1,strlen($events)-2);
-			die($events);			
+			die($events);
+			
 		}
+		
+		$this->set('types',$resource_type);
 	
 	}
 

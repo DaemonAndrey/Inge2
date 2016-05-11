@@ -10,8 +10,9 @@ class ResourcesTable extends Table
 {
     public function initialize(array $config)
     {
-        $this->belongsToMany('Users');
         $this->belongsTo('ResourceTypes');
+        $this->hasMany('Reservations');
+        $this->belongsToMany('Users');
     }
     
     /*
