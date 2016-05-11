@@ -139,8 +139,10 @@ CREATE TABLE configurations
 	reservation_rejected_message 	TEXT,
 	reservation_accepted_message 	TEXT,
 	days_before_reservation 			INT UNSIGNED,
-	reservation_schedule_weekdays	VARCHAR( 10 ),
-	reservation_schedule_weekends	VARCHAR( 10 ),
+	reservation_start_hour_weekdays	INT(2),
+	reservation_end_hour_weekdays	INT(2),
+	reservation_start_hour_weekends	INT(2),
+	reservation_end_hour_weekends	INT(2)
 	
 	PRIMARY KEY ( id )
 );
