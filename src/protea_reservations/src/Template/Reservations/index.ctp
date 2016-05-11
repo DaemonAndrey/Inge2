@@ -287,14 +287,14 @@
 
         var  start = document.getElementById("start");
         var end = document.getElementById("end");
-        xhttp.open("POST", path+"getResources/"+element.value+"/"+start.value+"/"+end.value,true);
+        xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value,true);
 
         xhttp.send();
     }
 
     function fillResources(json)
     {
-
+        
         obj = JSON.parse(json);
 
         html = "";
