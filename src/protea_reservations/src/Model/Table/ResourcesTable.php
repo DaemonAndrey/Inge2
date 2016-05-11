@@ -54,7 +54,7 @@ class ResourcesTable extends Table
             ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 500],
                                                      'message' => 'La descripción es muy larga'
                                                     ],
-                                    'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ"#$%&:.,_\' \-]+$/'),
+                                    'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ"#$%&:.,_\' \- \n \r]+$/'),
                                                        'message' => 'Hay caracteres no válidos'
                                                       ]
                                    ]);
