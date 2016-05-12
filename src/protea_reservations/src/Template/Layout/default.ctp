@@ -113,7 +113,7 @@
                             
                                 <!-- REGISTRAR -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
-                                                                 array('controller'=>'users','action' => 'registrar'),
+                                                                 array('controller'=>'users','action' => 'add'),
                                                                  array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                                 <!-- LOGIN -->
@@ -226,7 +226,7 @@
                                 
                                     <!-- REGISTRAR -->
                                     <li><?php echo $this->Html->link('Registrar',
-                                                                     array('controller'=>'users','action' => 'registrar'),
+                                                                     array('controller'=>'users','action' => 'add'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                                     <!-- LOGIN -->
