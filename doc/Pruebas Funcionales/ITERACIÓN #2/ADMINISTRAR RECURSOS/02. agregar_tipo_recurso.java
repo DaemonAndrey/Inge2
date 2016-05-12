@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegistroContrasenaInvalida {
+public class AgregarTipoRecurso {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -18,29 +18,27 @@ public class RegistroContrasenaInvalida {
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "http://localhost/protea/src/protea_reservations/pages/home";
+    baseUrl = "http://localhost/protea/src/protea_reservations";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
-  public void testRegistroContrasenaInvalida() throws Exception {
-    driver.get(baseUrl + "/protea/src/protea_reservations/pages/home");
-    driver.findElement(By.linkText("Registrar")).click();
+  public void testAgregarTipoRecurso() throws Exception {
+    driver.get(baseUrl + "/protea/src/protea_reservations/");
+    driver.findElement(By.linkText("Ingresar")).click();
     driver.findElement(By.id("username")).clear();
-    driver.findElement(By.id("username")).sendKeys("rosa.rosales@ucr.ac.cr");
+    driver.findElement(By.id("username")).sendKeys("monica@ucr.ac.cr");
     driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("1234");
-    driver.findElement(By.id("first-name")).clear();
-    driver.findElement(By.id("first-name")).sendKeys("Rosa");
-    driver.findElement(By.id("last-name")).clear();
-    driver.findElement(By.id("last-name")).sendKeys("Rosales");
-    driver.findElement(By.id("telephone-number")).clear();
-    driver.findElement(By.id("telephone-number")).sendKeys("89898989");
-    driver.findElement(By.id("department")).clear();
-    driver.findElement(By.id("department")).sendKeys("Enseñanza del inglés");
+    driver.findElement(By.id("password")).sendKeys("monicamonica");
+    driver.findElement(By.cssSelector("button.btn.btn-info")).click();
+    driver.get(baseUrl + "/protea/src/protea_reservations/resources");
+    driver.findElement(By.linkText("Administrar tipos de recursos")).click();
+    driver.findElement(By.linkText("Agregar tipo de recurso")).click();
+    driver.findElement(By.id("resourcetypes-description")).clear();
+    driver.findElement(By.id("resourcetypes-description")).sendKeys("Cargador");
     driver.findElement(By.cssSelector("button.btn.btn-success")).click();
     try {
-      assertEquals("Debe contener mínimo 8 caracteres.", driver.findElement(By.cssSelector("div.error-message")).getText());
+      assertEquals("Se ha agregado el nuevo tipo de recurso", driver.findElement(By.cssSelector("div.message.success")).getText());
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }

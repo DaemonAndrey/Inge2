@@ -10,7 +10,6 @@
     <fieldset>
         <legend>
             <div class='text-center'>
-                <br>
                 <h1>Formulario de Registro</h1>
                 <br>
             </div>
@@ -80,7 +79,7 @@
     <div class='row  text-center' id="btnRegistrar">
         <div class='col-md-12 col-sm-10 col-xs-10'>
             <br>
-            <?= $this->Form->button(__('Enviar Solicitud'), ['class' => 'btn btn-success']); ?>
+            <?= $this->Form->button(__('Enviar Solicitud'), ['class' => 'btn btn-info']); ?>
         </div>
     </div>
     
