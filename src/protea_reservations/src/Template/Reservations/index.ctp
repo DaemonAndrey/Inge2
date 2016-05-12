@@ -15,6 +15,8 @@
 <br>
 <br>
 
+<div class="reservations form">
+    <?= $this->Form->create($reservation) ?>
 <!-- Modal -->
 <div id="mdlReservaciones" class="modal fade" role="dialog">
     <div class="modal-dialog modal-mg">
@@ -42,7 +44,7 @@
                             <strong>Hora de inicio</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaInicio" class="form-control" id="start">
+                            <select name="Reservations.start_date" class="form-control" id="start">
                                 
                                 <?php
                                 $inicioBD = 7;
@@ -68,7 +70,7 @@
                             <strong>Hora de fin</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaFin" class="form-control" id="end">
+                            <select name="Reservations.end_date" class="form-control" id="end">
 
                             <?php
                                 $inicioBD = 8;
@@ -121,7 +123,7 @@
                             <strong>Recursos disponibles</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="recursosDisponibles" class="form-control" id="resource">
+                            <select name="Resources.resource_name" class="form-control" id="resource">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                             </select>
                         </div>
@@ -171,8 +173,9 @@
             <!-- Fin Modal body -->
             
             <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Reservar</button>
+             <div class="modal-footer">
+                <!--<button type="button" class="btn btn-success">Reservar</button>-->
+                 <!--<?= $this->Form->button('Reservar', ['class' => 'btn btn-success']); ?>-->
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
             <!-- Fin Modal footer -->
@@ -181,6 +184,8 @@
     </div>
 </div>
 <!-- Fin Modal -->
+    <?= $this->Form->end() ?>
+</div>
 
 
 <script>
