@@ -84,23 +84,27 @@ class ResourceTypesController extends AppController
     public function edit($id = null)
     {
         if($this->Auth->user())
-        { 
+        {
+            //Carga el tipo especifico de recurso que se desea modificar
             $resource_type = $this->ResourceTypes->get($id);
 
             if ($this->request->is(['post', 'put']))
             {
+                //Carga la informacion que se obtiene en el formulario
                 $this->ResourceTypes->patchEntity($resource_type, $this->request->data);
                 
                 try
                 {
                     if ($this->ResourceTypes->save($resource_type))
                     {
+                        //Si la información fue guardada correctamente entonces despliega un mensaje de confirmación
                         $this->Flash->success('Se ha actualizado el tipo de recurso', ['key' => 'updateResourceTypeSuccess']);
                         return $this->redirect(['action' => 'index']);
                     }
                 }
                 catch(Exception $ex)
                 {
+                    //Si no se ha podido actualizar correctamente el tipo del recurso despliega un mensaje indicando que hubo error
                     $this->Flash->error('No se ha podido actualizar el tipo de recurso', ['key' => 'updateResourceTypeError']);
                 }
             }
