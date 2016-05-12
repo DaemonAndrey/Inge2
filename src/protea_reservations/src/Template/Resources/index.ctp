@@ -79,9 +79,6 @@
                 ?>
             </th> 
             <th>
-                Administradores
-            </th>
-            <th>
                 Actualizar
             </th>
             <th>
@@ -138,14 +135,6 @@
                         ?>
                     </td>
 
-                    <!-- ADMINS ASOCIADOS -->
-                    <td>
-                        <?php
-                            echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                                   array('controller' => 'resources','action' => 'associate', $resource->id),
-                                                   array('escape' => false));
-                        ?>
-                    </td>
 
                     <!-- EDITAR -->
                     <td>

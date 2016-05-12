@@ -16,8 +16,21 @@
         </div>
     </div> <!-- FIN TÍTULO -->
 
+   
     <!-- CAMPOS A LLENAR -->
     <fieldset>
+        
+         <div class="row">
+            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+                <?=
+                    $this->Html->link('<span class="glyphicon glyphicon-pencil"></span> Editar Administradores',
+                                   array('controller' => 'resources','action' => 'associate', $resource->id),
+                                   array('target' => '_self', 'escape' => false)
+                                  );
+                ?>
+            <br><br>
+            </div>
+        </div>
         <!-- TIPO -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
@@ -75,6 +88,9 @@
                 <br>
             </div>
         </div>
+        
+                
+        
     </fieldset> <!-- FIN CAMPOS A LLENAR -->
 
     <!-- BOTONES -->
