@@ -19,7 +19,7 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         $this->set('user_username', $this->Auth->User('username'));
-        $this->Auth->allow(['registrar', 'logout']);
+        $this->Auth->allow(['add', 'logout']);
     }
     
     public function initialize()
@@ -47,7 +47,7 @@ class UsersController extends AppController
      * Se encarga del registro de usuarios, se pasa a la vista de REGISTRO.
      * Indica si se proceso la solicitud de registro o no.
      */
-    public function registrar()
+    public function add()
     {
         if(!$this->Auth->user())
         {

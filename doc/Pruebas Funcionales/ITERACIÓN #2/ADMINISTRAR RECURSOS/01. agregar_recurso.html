@@ -3,58 +3,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost/protea/src/protea_reservations/pages/home" />
-<title>Registro de usuario exitoso</title>
+<link rel="selenium.base" href="http://localhost/protea/src/protea_reservations" />
+<title>agregar_recurso</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Registro de usuario exitoso</td></tr>
+<tr><td rowspan="1" colspan="3">agregar_recurso</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/protea/src/protea_reservations/pages/home</td>
+	<td>/protea/src/protea_reservations/</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Registrar</td>
+	<td>link=Ingresar</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=username</td>
-	<td>rodrigo.rodriguez@ucr.ac.cr</td>
+	<td>admin@ucr.ac.cr</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=password</td>
-	<td>rodrigo134</td>
+	<td>adminadmin</td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=first-name</td>
-	<td>Rodrigo</td>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-info</td>
+	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=last-name</td>
-	<td>Rodríguez</td>
+	<td>open</td>
+	<td>/protea/src/protea_reservations/resources</td>
+	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>id=telephone-number</td>
-	<td>85858585</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=department</td>
-	<td>Enseñanza del francés</td>
+	<td>clickAndWait</td>
+	<td>link=Agregar recurso</td>
+	<td></td>
 </tr>
 <tr>
 	<td>select</td>
-	<td>id=position</td>
-	<td>label=Docente</td>
+	<td>id=resources-resource-type</td>
+	<td>label=Computadora</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resources-resource-name</td>
+	<td>Computadora Nueva de prueba</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resources-resource-code</td>
+	<td>serieplaca1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resources-description</td>
+	<td>descripcion de la computadora</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -64,7 +74,7 @@
 <tr>
 	<td>verifyText</td>
 	<td>css=div.message.success</td>
-	<td>Su solicitud de registro ha sido procesada, por favor espere la confirmación.</td>
+	<td>Se ha agregado el nuevo recurso</td>
 </tr>
 
 </tbody></table>
