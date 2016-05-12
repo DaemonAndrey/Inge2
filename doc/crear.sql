@@ -63,7 +63,7 @@ CREATE TABLE resources
 	resource_type		INT UNSIGNED NOT NULL,
 	resource_name 	VARCHAR( 70 ) NOT NULL,
 	resource_code		VARCHAR(30) UNIQUE NOT NULL,
-	description 			TEXT,
+	description 			TEXT NOT NULL,
 	active					TINYINT(1) NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
 	
 	PRIMARY KEY ( id ),
