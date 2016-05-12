@@ -52,6 +52,7 @@ class ResourcesTable extends Table
                                    ])
             
             /* Reglas para el campo description */
+            ->notEmpty('description','Este campo es requerido')
             ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 500],
                                                      'message' => 'La descripción es muy larga'
                                                     ],
