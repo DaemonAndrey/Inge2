@@ -64,6 +64,7 @@ CREATE TABLE resources
 	resource_name 	VARCHAR( 70 ) NOT NULL,
 	resource_code		VARCHAR(30) UNIQUE NOT NULL,
 	description 			TEXT NOT NULL,
+	days_before_reservation		INT UNSIGNED,
 	active					TINYINT(1) NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
 	
 	PRIMARY KEY ( id ),
@@ -138,7 +139,6 @@ CREATE TABLE configurations
 	registration_accepted_message 	TEXT,
 	reservation_rejected_message 	TEXT,
 	reservation_accepted_message 	TEXT,
-	days_before_reservation 			INT UNSIGNED,
 	reservation_start_hour_weekdays	INT(2),
 	reservation_end_hour_weekdays	INT(2),
 	reservation_start_hour_weekends	INT(2),
