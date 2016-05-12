@@ -1558,7 +1558,7 @@ th {
 }
 .table-hover>tbody>tr:hover>td,
 .table-hover>tbody>tr:hover>th {
-    background-color: #f5f5f5
+    background-color: #C6E6F6 /*#A3D8F5 #f5f5f5*/
 }
 table col[class*=col-] {
     position: static;
@@ -2219,8 +2219,10 @@ fieldset[disabled] .btn-primary.active {
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
     color: #fff;
-    background-color: #91BB1B;
-    border-color: #74B44D
+    background-color: #ffE000;
+    border-color: #eea236
+    /*background-color: #91BB1B;
+    border-color: #74B44D*/
 }
 .btn-success:active,
 .btn-success.active,
@@ -2290,10 +2292,11 @@ fieldset[disabled] .btn-info.active {
     color: #5bc0de;
     background-color: #fff
 }
+
 .btn-warning {
     color: #fff;
-    background-color: #f0ad4e;
-    border-color: #eea236
+    background-color: #91BB1B;
+    border-color: #74B44D
 }
 .btn-warning:hover,
 .btn-warning:focus,
@@ -2301,8 +2304,8 @@ fieldset[disabled] .btn-info.active {
 .btn-warning.active,
 .open .dropdown-toggle.btn-warning {
     color: #fff;
-    background-color: #ed9c28;
-    border-color: #d58512
+    background-color: #ffE000;
+    border-color: #eea236
 }
 .btn-warning:active,
 .btn-warning.active,
@@ -4250,7 +4253,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 .pagination>li>a:focus,
 .pagination>li>span:focus {
     color: #2a6496;
-    background-color: #eee;
+    background-color: #B3DD94;
     border-color: #ddd
 }
 .pagination>.active>a,

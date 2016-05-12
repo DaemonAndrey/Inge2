@@ -1,34 +1,42 @@
-INSERT INTO roles ( role_name ) VALUES 
+﻿INSERT INTO roles ( role_name ) VALUES 
 ( 'Administrador' ),  	-- Role_id: 1
 ( 'Regular' ); 			-- Role_id: 2
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
-( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'				, 'Administrativo'	, 1, 1 ), -- adminadmin
-( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'				, 'Otro'				, 2, 1 ); -- usuariousuario
+( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'	, 'Administrativo'	, 1		, 1 ), -- adminadmin
+( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Educación'	, 'Administrativo'	, b'1'	, 1 ), -- monicamonica
+( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Educación'	, 'Administrativo'	, b'1'	, 1 ), -- adrianadrian
+( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'	, 'Otro'			, 2		, 1 ); -- usuariousuario
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
-( 'docente@ucr.ac.cr'		, '$2y$10$sx1rvA2rNrGkCwGy1.ut.O06fQHYxwH.IAsxfyjYudD7xSIGT4zeK'			, 'Docente'			, 'Docente'			, '77777777'	, 'Enseñanza del inglés'	, 'Docente'			, 2 ), -- 987654321
-( 'investigador@ucr.ac.cr'	, '$2y$10$14TTkEDdAQy/sF.619uYkeArhx7vunbB2r0addAvyFtXQfclGLAl.'			, 'Investigador'	, 'Investigador'	, '66666666'	, 'INIE'						, 'Investigador'	, 2 ), -- 12345678
-( 'otro@ucr.ac.cr'			, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'				, 'Otro'				, '99999999'	, 'ECCI'						, 'Otro'				, 2 ); -- 122345678
+( 'docente@ucr.ac.cr'		, '$2y$10$sx1rvA2rNrGkCwGy1.ut.O06fQHYxwH.IAsxfyjYudD7xSIGT4zeK'	, 'Docente'			, 'Docente'			, '77777777'	, 'Enseñanza del inglés'	, 'Docente'			, 2 ), -- 987654321
+( 'investigador@ucr.ac.cr'	, '$2y$10$14TTkEDdAQy/sF.619uYkeArhx7vunbB2r0addAvyFtXQfclGLAl.'	, 'Investigador'	, 'Investigador'	, '66666666'	, 'INIE'					, 'Investigador'	, 2 ), -- 12345678
+( 'otro@ucr.ac.cr'			, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'			, 'Otro'			, '99999999'	, 'ECCI'					, 'Otro'			, 2 ); -- 122345678
 
-INSERT INTO resources ( resource_type, resource_name, description ) VALUES
-( 'Sala'			, 'Sala SITEA'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales'			, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
-( 'Sala'			, 'Laboratorio de Computo'		, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc'				, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'			, 'DVD Philips'						, '' 																													),
-( 'Proyector'	, 'Proyector Epson'				, 'Proyector de 1000 lumens' 																					),
-( 'Sala'			, 'Sala SITEA2'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales2'		, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
-( 'Sala'			, 'Laboratorio de Computo2'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc2'				, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'			, 'DVD Philips2'						, '' 																													),
-( 'Sala'			, 'Sala SITEA3'						, '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva' 	),
-( 'Sala'			, 'Sala de audiovisuales3'		, '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 								),
-( 'Sala'			, 'Laboratorio de Computo3'	, '15 computadoras con sistema operativo Windows 10, 1 proyector' 								),
-( 'Televisor'		, 'Televisor LG abc3'				, 'Televisor de 20 pulgadas' 																					),
-( 'DVD'			, 'DVD Philips3'						, '' 																													),
-( 'Proyector'	, 'Proyector Epson3'				, 'Proyector de 1000 lumens' 																					);
+INSERT INTO resource_types ( description ) VALUES
+( 'Sala' ),
+( 'Televisor' ),
+( 'DVD' ),
+( 'Proyector' );
+
+INSERT INTO resources ( resource_type, resource_name, resource_code, description ) VALUES
+( '1', 'Sala SITEA'				, 'ABC', '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva'),
+( '1', 'Sala de audiovisuales'	, 'DEF', '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 					 ),
+( '1', 'Laboratorio de Cómputo'	, 'GHI', '15 computadoras con sistema operativo Windows 10, 1 proyector' 					 ),
+( '2', 'Televisor LG'			, 'JKL', 'Televisor de 20 pulgadas' 														 ),
+( '3', 'DVD Philips'			, 'MNO', 'DVD Philips surround' 															 ),
+( '4', 'Proyector Epson'		, 'PQR', 'Proyector de 1000 lumens' 														 ),
+( '1', 'Sala 2'					, 'STU', '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva'),
+( '1', 'Sala 3'					, 'VWX', '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 					 ),
+( '1', 'Laboratorio 2'			, 'YZA', '15 computadoras con sistema operativo Windows 10, 1 proyector' 					 ),
+( '2', 'Televisor SAMSUNG'		, 'BCD', 'Televisor de 20 pulgadas' 														 ),
+( '3', 'DVD Sony'				, 'EFG', 'DVD Philips surround 5.1' 														 ),
+( '1', 'Sala 4'					, 'HIJ', '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva'),
+( '1', 'Sala 5'					, 'KLM', '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 					 ),
+( '1', 'Laboratorio 3'			, 'NOP', '15 computadoras con sistema operativo Windows 10, 1 proyector' 					 ),
+( '2', 'Televisor RCA'			, 'QRS', 'Televisor de 20 pulgadas' 														 ),
+( '3', 'DVD LG'					, 'TUV', 'DVD Philips surround 7.1' 														 ),
+( '4', 'Proyector Deeplee'		, 'WXY', 'Proyector de 1000 lumens' 														 );
 
 INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '1'	, '1' ),
