@@ -245,8 +245,8 @@
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
                 jQuery('#mdlReservaciones').modal('show');
-                
-                var fecha = document.getElementById("fecha");
+                globalDate = date;
+                fecha = document.getElementById("fecha");
                 fecha.innerHTML = date.format("DD MMMM YYYY");
             },
 
@@ -271,9 +271,7 @@
 
 
 
-</script>
 
-<script>
     
     function getResources(element)
     {
@@ -292,9 +290,14 @@
 
         var  start = document.getElementById("start");
         var end = document.getElementById("end");
-        xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value,true);
+        
+        var dateFormat = globalDate.format("DD MMMM YYYY");
+        
+        var dateElements = dateFormat.split(" ");
+        alert(dateElements[1]);
+        //xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value,true);
 
-        xhttp.send();
+        //xhttp.send();
     }
 
     function fillResources(json)
