@@ -262,7 +262,7 @@
             };
             
             var path = window.location.pathname;
-            path = path.replace("/reservations/","/resources");
+            path = path.replace("/reservations","/resources");
 
             var  start = document.getElementById("start");
             var end = document.getElementById("end");
