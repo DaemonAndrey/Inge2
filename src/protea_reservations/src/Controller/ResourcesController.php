@@ -306,7 +306,7 @@ class ResourcesController extends AppController
 
     }
     
-    public function getResources($resource_type, $start, $end)
+    public function getResources($resource_type, $start, $end, $date)
 	{
         if($this->request->is("POST"))
         {
@@ -322,7 +322,7 @@ class ResourcesController extends AppController
 
             $id = $id[0]['id'];
 
-
+/**
             $subquery = $this->Resources->Reservations->find()
                     ->hydrate(false)
                     ->select(['r.resource_name'])
@@ -332,9 +332,25 @@ class ResourcesController extends AppController
                          'type' => 'RIGHT',
                          'conditions'=>'r.id = Reservations.resource_id',
                         ])
-                    ->andwhere(['r.resource_type'=>$id, 'TIME(Reservations.start_date) >='=>$start, 'TIME(Reservations.end_date) <='=>$end]);
+                    ->andwhere(['r.resource_type'=>$id, 'Reservations.start_date >='=>$start, 'Reservations.end_date <='=>$end]);
+**/
+               
+            $subquery = $this->Resources->Reservations->find()
+                ->hydrate(false)
+                ->select(['r.resource_name'])
+                ->join([
+                     'table'=>'resources',
+                     'alias'=>'r',
+                     'type' => 'RIGHT',
+                     'conditions'=>'r.id = Reservations.resource_id',
+                    ])
+                    ->where(['DATE(Reservations.start_date)'=>$date])
+                    ->andwhere(function ($exp) use ($start,$end){
 
+                        return $exp->between('TIME(Reservations.start_date)', $start, $end);
+                    }); 
 
+       
 
             $query = $this->Resources->Reservations->find()
                     ->hydrate(false)
