@@ -76,7 +76,7 @@ class ReservationsController extends AppController
             $this->set('reservation', $reservation);
         }
     }
-
+//Este es un comentario de prueba
     public function isAuthorized($user)
     {
 
