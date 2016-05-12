@@ -152,8 +152,61 @@ class ResourcesController extends AppController
      * Actualiza la información de un recurso.
      * @param  integer $id
      */
-    public function edit($id)
+    public function edit($id=null)
     {
+        // Carga todos los tipos de recursos para el DropDown
+        $this->loadModel('ResourceTypes');
+        $options = $this->ResourceTypes->find('list',['keyField' => 'id','valueField' => 'description'])->toArray();                              
+        $this->set('resource_types_options', $options);
+        
+        //Toma el recurso especifico que se quiere modificar
+        $resource = $this->Resources->get($id);
+        $this->set(compact('resource'));
+        
+        //Carga la tabla de Recursos, para luego salvar sobre ella
+        $resourcesTable = TableRegistry::get('Resources');
+        
+         if($this->Auth->user())
+        {
+            
+            if($this->request->is(array('post', 'put')))
+		    {
+			 if(isset($this->request->data['cancel']))
+			 {
+				$this->Flash->success(__('Action canceled.', true));
+				return $this->redirect(array('action' => 'index'));
+			 }
+			 
+             //Se crea una entidad recurso que tendra el mismo id del recurso que se desea editar y la informacion ya editada
+			 $resource2 = $this->Resources->get($id);
+             $tipoderecurso = $this->request->data['Resources']['resource_type'];
+             $resource2->resource_type = $tipoderecurso;
+             $resource2->resource_name = $this->request->data['Resources']['resource_name'];
+             $resource2->resource_code = $this->request->data['Resources']['resource_code'];
+             $resource2->description = $this->request->data['Resources']['description'];
+             $activo=$this->request->data['Resources']['active'];
+             $resource2->active = $activo;
+             
+			//Guarda el recurso con la nueva informacion modificada
+			if( $resourcesTable->save($resource2 ) )
+			{
+                //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+				$this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
+                return $this->redirect(['controller' => 'Resources','action' => 'index']);
+			}
+			else
+			{
+                //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+				$this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
+			}
+		  }
+        }
+        else
+        {
+            //Si no se encuentra logueado la persona entonces redirecciona a home
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+        
     }
     
     /**
