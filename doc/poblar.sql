@@ -4,8 +4,8 @@
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
 ( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'	, 'Administrativo'	, 1		, 1 ), -- adminadmin
-( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Educación'	, 'Administrativo'	, b'1'	, 1 ), -- monicamonica
-( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Educación'	, 'Administrativo'	, b'1'	, 1 ), -- adrianadrian
+( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Educación'	, 'Administrativo'	, 1		, 1 ), -- monicamonica
+( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Educación'	, 'Administrativo'	, 1		, 1 ), -- adrianadrian
 ( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'	, 'Otro'			, 2		, 1 ); -- usuariousuario
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
@@ -47,18 +47,18 @@ INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '6'	, '1' );
 
 INSERT INTO `reservations` (`start_date`, `end_date`, `reservation_title`, `resource_id`, `user_comment`, `administrator_comment`, `state`, `user_seen`, `administrator_seen`, `user_id`, `course_name`, `course_id`) VALUES
-( '2016-01-20 07:00:00', '2016-01-20 09:00:00', 'Sala de audiovisuales - WR-016', 2, 'Integer vel accumsan tellus nisi eu orci.', 'Suspendisse accumsan turpis.', 4, b'1', b'1', 5, 'suscipit', 'WR-0166'),
-( '2016-03-02 12:00:00', '2016-03-02 15:00:00', 'Laboratorio de Computo - WD-47', 3, 'sfsdf', '', 1, b'1', b'1', 4, 'aliquet', 'WD-4720'),
-( '2016-03-06 07:00:00', '2016-03-06 09:00:00', 'Sala de audiovisuales - ZR-547', 2, '', '', 1, b'0', b'1', 4, 'tincidunt', 'ZR-5479'),
-( '2016-03-16 08:00:00', '2016-03-16 09:00:00', 'Televisor LG abc - JU-7531', 4, 'Curabitur ut massa volutpat convallis.', 'Maecenas pulvinar lobortis est.', 4, b'0', b'0', 2, 'lacinia sapien', 'JU-7531'),
-( '2016-04-12 08:00:00', '2016-04-12 10:00:00', 'Televisor LG abc - YD-5950', 4, '', '', 4, b'1', b'0', 4, 'pede venenatis', 'YD-5950'),
-( '2016-06-07 12:00:00', '2016-06-07 14:00:00', 'Sala SITEA - GS-3971', 1, '', '', 2, b'0', b'1', 2, 'quam', 'GS-3971'),
-( '2016-06-13 08:00:00', '2016-06-13 12:00:00', 'Laboratorio de Computo - JF-70', 3, 'Cum sociis natoque penatibus et magnis.', 'Mauris lacinia sapien quis libero.', 1, b'0', b'1', 5, 'quam pede', 'JF-7085'),
-( '2016-06-16 08:00:00', '2016-06-16 11:00:00', 'Laboratorio de Computo - MI-62', 3, '', '', 4, b'1', b'1', 4, 'proin leo odio', 'MI-6267'),
-( '2016-06-23 14:00:00', '2016-06-23 17:00:00', 'Sala SITEA - MV-6742', 1, 'Nulla tellus. In sagittis dui vel nisl.', 'Vivamus in felis sapien cursus.', 4, b'1', b'0', 3, 'scelerisque mauris', 'MV-6742'),
-( '2016-06-30 19:00:00', '2016-06-30 21:00:00', 'Sala de audiovisuales - NB-102', 2, 'Vestibulum rutrum rutrum neque.', 'Maecenas tincidunt lacus velit.', 1, b'1', b'0', 4, 'tellus nisi', 'NB-1025'),
-( '2016-07-10 11:00:00', '2016-07-10 13:00:00', 'DVD Philips - SI-8984', 5, '', '', 1, b'0', b'1', 2, 'nullam orci', 'SI-8984'),
-( '2016-07-20 14:00:00', '2016-07-20 19:00:00', 'DVD Philips - SB-6365', 5, '', '', 1, b'0', b'0', 3, 'tellus', 'SB-6365'),
+( '2016-01-20 07:00:00', '2016-01-20 09:00:00', 'Sala de audiovisuales - WR-016', 	2, 'Integer vel accumsan tellus nisi eu orci.', 'Suspendisse accumsan turpis.', 4, b'1', b'1', 5, 'suscipit', 'WR-0166'),
+( '2016-03-02 12:00:00', '2016-03-02 15:00:00', 'Laboratorio de Computo - WD-47', 	3, 'sfsdf', '', 1, b'1', b'1', 4, 'aliquet', 'WD-4720'),
+( '2016-03-06 07:00:00', '2016-03-06 09:00:00', 'Sala de audiovisuales - ZR-547', 	2, '', '', 1, b'0', b'1', 4, 'tincidunt', 'ZR-5479'),
+( '2016-03-16 08:00:00', '2016-03-16 09:00:00', 'Televisor LG abc - JU-7531', 		4, 'Curabitur ut massa volutpat convallis.', 'Maecenas pulvinar lobortis est.', 4, b'0', b'0', 2, 'lacinia sapien', 'JU-7531'),
+( '2016-04-12 08:00:00', '2016-04-12 10:00:00', 'Televisor LG abc - YD-5950', 		4, '', '', 4, b'1', b'0', 4, 'pede venenatis', 'YD-5950'),
+( '2016-06-07 12:00:00', '2016-06-07 14:00:00', 'Sala SITEA - GS-3971', 			1, '', '', 2, b'0', b'1', 2, 'quam', 'GS-3971'),
+( '2016-06-13 08:00:00', '2016-06-13 12:00:00', 'Laboratorio de Computo - JF-70', 	3, 'Cum sociis natoque penatibus et magnis.', 'Mauris lacinia sapien quis libero.', 1, b'0', b'1', 5, 'quam pede', 'JF-7085'),
+( '2016-06-16 08:00:00', '2016-06-16 11:00:00', 'Laboratorio de Computo - MI-62', 	3, '', '', 4, b'1', b'1', 4, 'proin leo odio', 'MI-6267'),
+( '2016-06-23 14:00:00', '2016-06-23 17:00:00', 'Sala SITEA - MV-6742', 			1, 'Nulla tellus. In sagittis dui vel nisl.', 'Vivamus in felis sapien cursus.', 4, b'1', b'0', 3, 'scelerisque mauris', 'MV-6742'),
+( '2016-06-30 19:00:00', '2016-06-30 21:00:00', 'Sala de audiovisuales - NB-102', 	2, 'Vestibulum rutrum rutrum neque.', 'Maecenas tincidunt lacus velit.', 1, b'1', b'0', 4, 'tellus nisi', 'NB-1025'),
+( '2016-07-10 11:00:00', '2016-07-10 13:00:00', 'DVD Philips - SI-8984', 			5, '', '', 1, b'0', b'1', 2, 'nullam orci', 'SI-8984'),
+( '2016-07-20 14:00:00', '2016-07-20 19:00:00', 'DVD Philips - SB-6365', 			5, '', '', 1, b'0', b'0', 3, 'tellus', 'SB-6365'),
 ( '2016-08-03 18:00:00', '2016-08-03 21:00:00', 'Laboratorio de Computo - AF-31', 3, 'Suspendisse accumsan tortor quis turpis.', 'Duis aliquam convallis nunc.', 1, b'0', b'0', 3, 'vestibulum sit amet', 'AF-3106'),
 ( '2016-08-09 17:00:00', '2016-08-09 19:00:00', 'Sala de audiovisuales - SL-313', 2, 'Nulla suscipit ligula in lacus.', 'Donec vehicula condimentum.', 4, b'0', b'0', 5, 'ut suscipit a feugiat', 'SL-3135'),
 ( '2016-08-16 07:00:00', '2016-08-16 08:00:00', 'Sala SITEA - UZ-2140', 1, '', '', 1, b'1', b'1', 4, 'nibh quisque id justo', 'UZ-2140'),
