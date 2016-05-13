@@ -7,11 +7,9 @@
 
 <br>
 
-<div class="row">
-    <div class="col-xs-12">
-        <div id='calendar'></div>	
-    </div>
-</div>
+
+        <div id='calendar'></div>   
+
 <br>
 <br>
 
@@ -42,7 +40,7 @@
                             <strong>Hora de inicio</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaInicio" class="form-control" id="start">
+                            <select name="horaInicio" class="form-control" id="start" onchange="getResources(document.getElementById('resource_type'))">
                                 
                                 <?php
                                 $inicioBD = 7;
@@ -68,7 +66,7 @@
                             <strong>Hora de fin</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="horaFin" class="form-control" id="end">
+                            <select name="horaFin" class="form-control" id="end" onchange="getResources(document.getElementById('resource_type'))">
 
                             <?php
                                 $inicioBD = 8;
@@ -103,7 +101,7 @@
                             <strong>Tipo de recurso</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="tipoRecurso" class="form-control" onchange="getResources(this)">
+                            <select name="tipoRecurso" class="form-control" onchange="getResources(this)" id="resource_type">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                                 <?php
 
@@ -214,39 +212,13 @@
         xhttp.open("POST", path+append,false);
         xhttp.setRequestHeader("type", "fetch");
         xhttp.send(); 
-/**
-    var path = window.location.pathname;
-    var append = "";
-
-    if(path.charAt(path.length -1).localeCompare("/") == 0)
-    {
-        append = "index";
-    }
-    else
-    {
-      if(path.charAt(path.length -1).localeCompare("x") != 0)
-      {
-        append = "/index";
-      }
-    }
-    
-  $.ajax({
-     url: path+append,
-     type: 'POST',
-     async: false,
-     success: function(response){
-       json_events = response;
 
 
-     }
-  });
-
-**/
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
                 jQuery('#mdlReservaciones').modal('show');
-                
-                var fecha = document.getElementById("fecha");
+                globalDate = date;
+                fecha = document.getElementById("fecha");
                 fecha.innerHTML = date.format("DD MMMM YYYY");
             },
 
@@ -271,35 +243,60 @@
 
 
 
-</script>
 
-<script>
     
     function getResources(element)
     {
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function()
+        if(element.value != "Seleccionar")
         {
-            if(xhttp.readyState == 4 && xhttp.status == 200)
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function()
             {
-                fillResources(xhttp.responseText);
-            }
-        };
-        
-        var path = window.location.pathname;
-        path = path.replace("/reservations","/resources");
+                if(xhttp.readyState == 4 && xhttp.status == 200)
+                {
+                    fillResources(xhttp.responseText);
+                }
+            };
+            
+            var path = window.location.pathname;
+            path = path.replace("/reservations","/resources");
 
-        var  start = document.getElementById("start");
-        var end = document.getElementById("end");
-        xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value,true);
+            var  start = document.getElementById("start");
+            var end = document.getElementById("end");
+            
+            var dateFormat = globalDate.format("DD MMMM YYYY");        
+            var dateElements = dateFormat.split(" ");
 
-        xhttp.send();
+            var months = new Array();
+
+            months['enero'] = 01;
+            months['febrero'] = 02;
+            months['marzo'] = 03;
+            months['abril'] = 04;
+            months['mayo'] = 05;
+            months['junio'] = 06;
+            months['julio'] = 07;
+            months['agosto'] = 08;
+            months['septiembre'] = 09;
+            months['octubre'] = 10;
+            months['noviembre'] = 11;
+            months['diciembre'] = 12;
+
+            var startDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
+            var endDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0]+" "+end.value;
+
+
+            xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value+"/"+startDate,true);
+
+            xhttp.send();
+        }
+
     }
 
     function fillResources(json)
     {
-        
+
         obj = JSON.parse(json);
 
         html = "";
