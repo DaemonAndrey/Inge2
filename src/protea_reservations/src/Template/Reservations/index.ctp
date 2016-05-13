@@ -7,11 +7,9 @@
 
 <br>
 
-<div class="row">
-    <div class="col-xs-12">
-        <div id='calendar'></div>	
-    </div>
-</div>
+
+        <div id='calendar'></div>   
+
 <br>
 <br>
 
