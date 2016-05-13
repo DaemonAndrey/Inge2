@@ -235,9 +235,7 @@
                 basic: {
                     eventLimit: 20// options apply to basicWeek and basicDay views
                 }
-            },
-            
-            aspectRatio: 2.5
+            }
         });
     });
 
