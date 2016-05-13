@@ -40,7 +40,7 @@ CREATE TABLE users
 	telephone_number 	VARCHAR( 50 ) NOT NULL,
 	department 			VARCHAR( 70 ) NOT NULL,
 	position 					VARCHAR( 20 ) NOT NULL, 
-	state 					BIT NOT NULL DEFAULT 0, -- 0: Pendiente, 1: Aceptado
+	state 					TINYINT(1) NOT NULL DEFAULT 0, -- 0: Pendiente, 1: Aceptado
 	role_id 					INT UNSIGNED NOT NULL DEFAULT 2, -- 1: Administrador, 2: Usuario normal, 3: Otro 
 	
 	PRIMARY KEY ( id ),
@@ -63,8 +63,9 @@ CREATE TABLE resources
 	resource_type		INT UNSIGNED NOT NULL,
 	resource_name 	VARCHAR( 70 ) NOT NULL,
 	resource_code		VARCHAR(30) UNIQUE NOT NULL,
-	description 			TEXT,
-	active					BIT NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
+	description 			TEXT NOT NULL,
+	days_before_reservation		INT UNSIGNED,
+	active					TINYINT(1) NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
 	
 	PRIMARY KEY ( id ),
 	FOREIGN KEY ( resource_type ) REFERENCES resource_types ( id )
@@ -98,8 +99,8 @@ CREATE TABLE reservations
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
 	state 						INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
-	user_seen 					BIT DEFAULT 0, -- 0: No visto, 1: Visto
-	administrator_seen 		BIT DEFAULT 0, -- 0: No visto, 1: Visto
+	user_seen 					TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
+	administrator_seen 		TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	user_id 						INT UNSIGNED NOT NULL,
 	course_name 				VARCHAR( 70 ),
 	course_id 					VARCHAR( 10 ),
@@ -133,16 +134,15 @@ CREATE TABLE historic_reservations
 
 CREATE TABLE configurations
 (
-	id 											INT UNSIGNED AUTO_INCREMENT,
+	id 								INT UNSIGNED AUTO_INCREMENT,
 	registration_rejected_message 	TEXT,
 	registration_accepted_message 	TEXT,
 	reservation_rejected_message 	TEXT,
 	reservation_accepted_message 	TEXT,
-	days_before_reservation 			INT UNSIGNED,
 	reservation_start_hour_weekdays	INT(2),
 	reservation_end_hour_weekdays	INT(2),
 	reservation_start_hour_weekends	INT(2),
-	reservation_end_hour_weekends	INT(2)
+	reservation_end_hour_weekends	INT(2),
 	
 	PRIMARY KEY ( id )
 );
