@@ -355,23 +355,18 @@ class ResourcesController extends AppController
 
     }
     
-    public function getResources($resource_type, $start, $end)
+    public function getResources($resource_type, $start, $end, $date)
 	{
         if($this->request->is("POST"))
         {
-
         /** Obtengo el id del tipo que el usuario escogió **/
-
             $id = $this->Resources->ResourceTypes->find()
                     ->hydrate(false)
                     ->select(['id'])
                     ->where(['description'=>$resource_type]);
-
             $id = $id->toArray();
-
             $id = $id[0]['id'];
-
-
+/**
             $subquery = $this->Resources->Reservations->find()
                     ->hydrate(false)
                     ->select(['r.resource_name'])
@@ -381,10 +376,23 @@ class ResourcesController extends AppController
                          'type' => 'RIGHT',
                          'conditions'=>'r.id = Reservations.resource_id',
                         ])
-                    ->andwhere(['r.resource_type_id'=>$id, 'TIME(Reservations.start_date) >='=>$start, 'TIME(Reservations.end_date) <='=>$end]);
-
-
-
+                    ->andwhere(['r.resource_type'=>$id, 'Reservations.start_date >='=>$start, 'Reservations.end_date <='=>$end]);
+**/
+               
+            $subquery = $this->Resources->Reservations->find()
+                ->hydrate(false)
+                ->select(['r.resource_name'])
+                ->join([
+                     'table'=>'resources',
+                     'alias'=>'r',
+                     'type' => 'RIGHT',
+                     'conditions'=>'r.id = Reservations.resource_id',
+                    ])
+                    ->where(['DATE(Reservations.start_date)'=>$date])
+                    ->andwhere(function ($exp) use ($start,$end){
+                        return $exp->between('TIME(Reservations.start_date)', $start, $end);
+                    }); 
+       
             $query = $this->Resources->Reservations->find()
                     ->hydrate(false)
                     ->select(['resource.resource_name'])
@@ -396,14 +404,8 @@ class ResourcesController extends AppController
                         ])
                     ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
                     ->group(['resource.resource_name']);
-
-
             $query = $query->toArray();
-
-
-
             $query = json_encode($query);
-
            die($query);
         }
 	}
@@ -419,9 +421,7 @@ class ResourcesController extends AppController
         if ($this->request->action === 'getResources') {
             return true;            
         }
-
         return parent::isAuthorized($user); 
     }
 }
-
 ?>
