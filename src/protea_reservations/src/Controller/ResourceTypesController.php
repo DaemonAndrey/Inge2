@@ -39,8 +39,32 @@ class ResourceTypesController extends AppController
                             );
 
     public function index()
-	{
-		$this->set('resourceTypes', $this->paginate());
+	{    
+        // $this->set('resourceTypes', $this->paginate());
+        
+        // Carga los tipos de recurso que están relacionados con el administrador actual
+        $this->loadModel('Resources');
+        $this->loadModel('Users');
+        $u_id = $this->Auth->User('id');
+        
+        $innerQuery = $this->Resources->find()
+                                      ->select(['Resources.id']);
+        
+        $innerQuery->innerJoinWith('Users', function ($q) use ($u_id){
+                                                    return $q->where(['Users.id' => $u_id]);
+                                                });
+        
+        $query2 = $this->ResourceTypes->find()
+                                      ->select(['id', 'description']);
+        
+        $query2->innerJoinWith('Resources')
+                                ->where(function ($q) use ($innerQuery){
+                                        return $q->In('Resources.id', $innerQuery);
+                                        });
+        $query2->group('ResourceTypes.id','ResourceTypes.description');
+        $query2->order(['ResourceTypes.description' => 'ASC']);
+        
+        $this->set('resourceTypes', $this->paginate($query2));
 	}
 
     /**
@@ -123,17 +147,40 @@ class ResourceTypesController extends AppController
      */
     public function delete($id)
     {
+        /*
+        // Carga los tipos de recurso que están relacionados con el administrador actual
+        $this->loadModel('ResourcesUsers');
+        $this->loadModel('Resources');
+        $this->loadModel('Users');
+        $u_id = $this->Auth->User('id');
+        
+        $query = $this->Resources->find()
+                                      ->select(['Resources.id'])
+                                      ->where(['Resources.resource_type_id' => $id]);
+        
+        $this->set('query', $query);
+        
         if($this->Auth->user())
         {
             $this->request->allowMethod(['post', 'delete']);
-
-            $resource_type = $this->ResourceTypes->get($id);
             
             try
             {
-                if ($this->ResourceTypes->delete($resource_type))
+                if($this->ResourcesUsers->deleteAll(['user_id' => $u_id,'resource_id IN' => $query]))
                 {
-                    $this->Flash->success('Se ha eliminado el tipo de recurso', ['key' => 'deleteResourceTypeSuccess']);
+                    // Si nadie tiene relación con este tipo de recurso, se elimina
+                    $query2 = $this->Resources->find()
+                                              ->select(['Resources.id'])
+                                              ->where(['Resources.resource_type_id' => $id]);
+
+                    $r_type = $this->ResourceTypes->get($id);
+
+                    if( 0 == $query2->count())
+                    {
+                        $this->ResourceTypes->delete($r_type);
+                    }
+                    
+                    $this->Flash->success('Se han eliminado todos los recursos que administra de este tipo', ['key' => 'deleteResourceTypeSuccess']);
                     return $this->redirect(['action' => 'index']);
                 }
             }
@@ -145,7 +192,8 @@ class ResourceTypesController extends AppController
         else
         {
             return $this->redirect(['controller'=>'pages','action'=>'home']);
-        }
+        }     
+        */
     }
     
     /*

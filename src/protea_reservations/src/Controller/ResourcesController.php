@@ -46,10 +46,6 @@ class ResourcesController extends AppController
         $this->loadModel('ResourceTypes');                             
         $this->set('resource_types', $this->ResourceTypes->find('all'));
         
-        /*// Carga el modelo de 'ResourcesUsers' para mostrar sólo les recursos que puedo administrar
-        $this->loadModel('ResourcesUsers');                             
-        $this->set('relations', $this->ResourcesUsers->find('all'));*/
-        
         // Consulta Join de recursos con usuarios, saca los recursos asociados al admin
         $query = $this->Resources->find('all');
         $query->innerJoinWith('Users', function ($q){return $q->where(['Users.id' => $this->Auth->User('id')]);});
@@ -71,7 +67,7 @@ class ResourcesController extends AppController
         // Saca la descripción del tipo de ese recurso específico
         $connection = ConnectionManager::get('default');
         $result = $connection
-                    ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type])
+                    ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type_id])
                     ->fetchAll('assoc');
         $this->set('r_type', $result);
         
@@ -111,8 +107,8 @@ class ResourcesController extends AppController
                 $resource = $this->Resources->patchEntity($resource, $this->request->data);
                 
                 // Guarda en la entidad el id del tipo de recurso
-                $tipoderecurso = $this->request->data['Resources']['resource_type'];
-                $resource->resource_type = $tipoderecurso;
+                $tipoderecurso = $this->request->data['Resources']['resource_type_id'];
+                $resource->resource_type_id = $tipoderecurso;
                 
                 try
                 {
@@ -179,8 +175,8 @@ class ResourcesController extends AppController
 			 
              //Se crea una entidad recurso que tendra el mismo id del recurso que se desea editar y la informacion ya editada
 			 $resource2 = $this->Resources->get($id);
-             $tipoderecurso = $this->request->data['Resources']['resource_type'];
-             $resource2->resource_type = $tipoderecurso;
+             $tipoderecurso = $this->request->data['Resources']['resource_type_id'];
+             $resource2->resource_type_id = $tipoderecurso;
              $resource2->resource_name = $this->request->data['Resources']['resource_name'];
              $resource2->resource_code = $this->request->data['Resources']['resource_code'];
              $resource2->description = $this->request->data['Resources']['description'];
@@ -385,7 +381,7 @@ class ResourcesController extends AppController
                          'type' => 'RIGHT',
                          'conditions'=>'r.id = Reservations.resource_id',
                         ])
-                    ->andwhere(['r.resource_type'=>$id, 'TIME(Reservations.start_date) >='=>$start, 'TIME(Reservations.end_date) <='=>$end]);
+                    ->andwhere(['r.resource_type_id'=>$id, 'TIME(Reservations.start_date) >='=>$start, 'TIME(Reservations.end_date) <='=>$end]);
 
 
 
@@ -398,7 +394,7 @@ class ResourcesController extends AppController
                          'type' => 'RIGHT',
                          'conditions'=>'resource.id = Reservations.resource_id',
                         ])
-                    ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type'=>$id])
+                    ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
                     ->group(['resource.resource_name']);
 
 

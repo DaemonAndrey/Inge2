@@ -19,7 +19,7 @@ INSERT INTO resource_types ( description ) VALUES
 ( 'DVD' ),
 ( 'Proyector' );
 
-INSERT INTO resources ( resource_type, resource_name, resource_code, description ) VALUES
+INSERT INTO resources ( resource_type_id, resource_name, resource_code, description ) VALUES
 ( '1', 'Sala SITEA'				, 'ABC', '20 computadoras con sistema operativo Mac OS X, 1 proyector, 1 pizarra interactiva'),
 ( '1', 'Sala de audiovisuales'	, 'DEF', '3 televisores, 2 proyectores, 5 laptops, 4 reproductores de DVD' 					 ),
 ( '1', 'Laboratorio de Cómputo'	, 'GHI', '15 computadoras con sistema operativo Windows 10, 1 proyector' 					 ),

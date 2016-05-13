@@ -31,7 +31,7 @@ class ResourcesTable extends Table
                         ])
             
             /* Reglas para el campo resource_type */
-            ->notEmpty('resource_type','Este campo es requerido')
+            ->notEmpty('resource_type_id','Este campo es requerido')
             
             /* Reglas para el campo resource_name */
             ->notEmpty('resource_name','Este campo es requerido')
@@ -65,7 +65,7 @@ class ResourcesTable extends Table
     public function findAuth(Query $query, array $options)
     {
         $query
-            ->select(['id', 'resource_type', 'resource_name', 'resource_code', 'description', 'active']);
+            ->select(['id', 'resource_type_id', 'resource_name', 'resource_code', 'description', 'active']);
 
         return $query;
     }
