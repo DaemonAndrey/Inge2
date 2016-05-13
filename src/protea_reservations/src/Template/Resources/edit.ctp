@@ -23,20 +23,19 @@
          <div class="row">
             <div class='col-lg-4 col-lg-offset-5 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3 col-xs-10 col-xs-offset-2'>
                 <?=
-                    $this->Html->link('<span class="glyphicon glyphicon-pencil"></span> Editar Administradores',
+                    $this->Html->link('<span class="glyphicon glyphicon-user"></span> Asociar Administradores',
                                    array('controller' => 'resources','action' => 'associate', $resource->id),
                                    array('target' => '_self', 'escape' => false)
                                   );
                 ?>
-            <br><br>
+            <br><br><br>
             </div>
         </div>
         <!-- TIPO -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
                 <?=
-                    $this->Form->input('Resources.resource_type',
-                                            ['label' => 'Tipo: ',
+                    $this->Form->input('Resources.resource_type', ['label' => 'Tipo: ',
                                                                    'options' => $resource_types_options,
                                                                    'class' => 'form-control']);
                 ?>
@@ -76,14 +75,14 @@
                 <br>
             </div>
         </div>
-        <!-- Activo-->
+        
+        <!-- ACTIVO-->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
                 <?=
-                    $this->Form->input('Resources.active',
-                                            ['label' => 'Tipo: ',
-                                                                   'options' => array('No','Si'),
-                                                                   'class' => 'form-control']);
+                    $this->Form->input('Resources.active', ['label' => 'Activo: ',
+                                                            'options' => array('No','Sí'),
+                                                            'class' => 'form-control']);
                 ?>
                 <br>
             </div>
