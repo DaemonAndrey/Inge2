@@ -11,6 +11,7 @@
     <?= $this->Flash->render('updateResourceTypeError') ?>
     <?= $this->Flash->render('deleteResourceTypeSuccess') ?>
     <?= $this->Flash->render('deleteResourceTypeError') ?>
+    <?= $this->Flash->render('deleteResourceRelationSuccess') ?>
 </div>
 
 <!-- TÍTULO -->

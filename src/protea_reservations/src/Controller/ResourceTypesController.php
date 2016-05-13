@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
 
 class ResourceTypesController extends AppController
 {   
@@ -72,6 +73,7 @@ class ResourceTypesController extends AppController
      */
     public function add()
     {
+        // Si el usuario tiene permisos
         if($this->Auth->user())
         {
             $resourceType = $this->ResourceTypes->newEntity();
@@ -107,6 +109,7 @@ class ResourceTypesController extends AppController
      */
     public function edit($id = null)
     {
+        // Si el usuario tiene permisos
         if($this->Auth->user())
         {
             //Carga el tipo especifico de recurso que se desea modificar
@@ -147,6 +150,95 @@ class ResourceTypesController extends AppController
      */
     public function delete($id)
     {
+        // Saca los tipos de recurso que están relacionados con el administrador actual
+        $this->loadModel('Resources');
+        $this->loadModel('Users');
+        $u_id = $this->Auth->User('id');
+        
+        $query = $this->Resources->find()
+                                      ->select(['Resources.id'])
+                                      ->where(['Resources.resource_type_id' => $id]);
+        $query->innerJoinWith('Users')
+                        ->where(['Users.id' => $u_id]);
+        
+        // Para saber si se eliminó el tipo de recurso
+        $tipoEliminado = false;
+        
+        // Cantidad total de recursos a eliminar
+        $cantTotal = $query->count();
+        $cantActual = 0;
+        
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            
+            try
+            {
+                // Elimina cada recurso que me pertenece, y por cascade se elimina la relación de resources_users
+                foreach ($query as $element):
+                {
+                    $recurso = $this->Resources->get($element['id']);
+                    if($this->Resources->delete($recurso))
+                    {
+                        $cantActual++;
+                    }
+                }
+                endforeach;
+                unset($element);
+                
+                /* 
+                 * Si al eliminar mis recursos no quedan recursos de este tipo,
+                 * el tipo de recurso también se elimina
+                 */
+                
+                // Saca los recursos de este tipo
+                $query2 = $this->Resources->find()->select(['Resources.id'])
+                                                  ->where(['Resources.resource_type_id' => $id]);
+                
+                // Carga este tipo de recurso específico
+                $r_type = $this->ResourceTypes->get($id);
+
+                // Si no quedan recursos de este tipo
+                if( 0 == $query2->count())
+                {
+                    // Elimina el tipo de recurso
+                    if($this->ResourceTypes->delete($r_type))
+                    {
+                        $tipoEliminado = true;
+                    }
+                }
+                
+                // Si se eliminaron solo los recursos
+                if($tipoEliminado == false)
+                {
+                    if( $cantActual == $cantTotal)
+                    {
+                        $this->Flash->success('Se han eliminado todos sus recursos de tipo '.$r_type->description,
+                                              ['key' => 'deleteResourceRelationSuccess']);
+                    }
+                }
+                // Si se eliminó el tipo de recurso
+                else
+                {
+                    $this->Flash->success('Se ha eliminado el tipo de recurso '.$r_type->description.' junto con todos sus recursos de este tipo',
+                                          ['key' => 'deleteResourceTypeSuccess']);
+                }
+                
+                return $this->redirect(['action' => 'index']);
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('No se ha podido eliminar el tipo de recurso',
+                                    ['key' => 'deleteResourceTypeError']);
+            }
+        }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+        
+        
         /*
         // Carga los tipos de recurso que están relacionados con el administrador actual
         $this->loadModel('ResourcesUsers');

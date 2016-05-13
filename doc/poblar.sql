@@ -36,7 +36,9 @@ INSERT INTO resources ( resource_type_id, resource_name, resource_code, descript
 ( '1', 'Laboratorio 3'			, 'NOP', '15 computadoras con sistema operativo Windows 10, 1 proyector' 					 ),
 ( '2', 'Televisor RCA'			, 'QRS', 'Televisor de 20 pulgadas' 														 ),
 ( '3', 'DVD LG'					, 'TUV', 'DVD Philips surround 7.1' 														 ),
-( '4', 'Proyector Deeplee'		, 'WXY', 'Proyector de 1000 lumens' 														 );
+( '4', 'Proyector Deeplee'		, 'WXY', 'Proyector de 1000 lumens' 														 ),
+( '1', 'Sala Prueba 1'			, 'AAA', 'sdflkjsdflkjsdflkjsdflsdflk' 														 ),
+( '1', 'Sala Prueba 2'			, 'BBB', 'lksdflkjsdflkjsdfljsdlfkjs' 														 );
 
 INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '1'	, '1' ),
@@ -44,7 +46,20 @@ INSERT INTO resources_users ( resource_id, user_id ) VALUES
 ( '3'	, '1' ),
 ( '4'	, '1' ),
 ( '5'	, '1' ),
-( '6'	, '1' );
+( '6'	, '1' ),
+( '7'	, '1' ),
+( '8'	, '1' ),
+( '9'	, '1' ),
+( '10'	, '1' ),
+( '11'	, '1' ),
+( '12'	, '1' ),
+( '13'	, '1' ),
+( '14'	, '1' ),
+( '15'	, '1' ),
+( '16'	, '2' ),
+( '17'	, '2' ),
+( '18'	, '2' ),
+( '19'	, '2' );
 
 INSERT INTO `reservations` (`start_date`, `end_date`, `reservation_title`, `resource_id`, `user_comment`, `administrator_comment`, `state`, `user_seen`, `administrator_seen`, `user_id`, `course_name`, `course_id`) VALUES
 ( '2016-01-20 07:00:00', '2016-01-20 09:00:00', 'Sala de audiovisuales - WR-016', 	2, 'Integer vel accumsan tellus nisi eu orci.', 	'Suspendisse accumsan turpis.', 		4, 		1, 		1, 		5, 		'suscipit', 				'WR-0166'),
