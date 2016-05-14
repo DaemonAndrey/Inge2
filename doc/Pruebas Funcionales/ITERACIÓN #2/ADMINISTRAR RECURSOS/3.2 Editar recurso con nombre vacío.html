@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost/protea/src/protea_reservations" />
-<title>agregar_recurso</title>
+<title>3.2 Editar recurso con nombre vacío</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">agregar_recurso</td></tr>
+<tr><td rowspan="1" colspan="3">3.2 Editar recurso con nombre vacío</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -24,12 +24,12 @@
 <tr>
 	<td>type</td>
 	<td>id=username</td>
-	<td>admin@ucr.ac.cr</td>
+	<td>monica@ucr.ac.cr</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=password</td>
-	<td>adminadmin</td>
+	<td>monicamonica</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -37,44 +37,49 @@
 	<td></td>
 </tr>
 <tr>
-	<td>open</td>
-	<td>/protea/src/protea_reservations/resources</td>
+	<td>clickAndWait</td>
+	<td>link=Recursos</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Agregar recurso</td>
+	<td>//tr[4]/td[5]/a/i</td>
 	<td></td>
 </tr>
 <tr>
 	<td>select</td>
-	<td>id=resources-resource-type</td>
-	<td>label=Computadora</td>
+	<td>id=resources-resource-type-id</td>
+	<td>label=Sala</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=resources-resource-name</td>
-	<td>Computadora Nueva de prueba</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=resources-resource-code</td>
-	<td>serieplaca1234</td>
+	<td>AAA</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=resources-description</td>
-	<td>descripcion de la computadora</td>
+	<td>sdflkjsdflkjsdflkjsdflsdflk</td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
+	<td>select</td>
+	<td>id=resources-active</td>
+	<td>label=Sí</td>
+</tr>
+<tr>
+	<td>click</td>
 	<td>css=button.btn.btn-success</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=div.message.success</td>
-	<td>Se ha agregado el nuevo recurso</td>
+	<td>id=resources-resource-name</td>
+	<td></td>
 </tr>
 
 </tbody></table>

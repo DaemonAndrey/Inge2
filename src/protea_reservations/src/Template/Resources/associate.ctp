@@ -1,6 +1,8 @@
 <!-- src/Template/Resources/associate.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 
+<br>
+
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('associateResourceAdminSuccess') ?>

@@ -60,7 +60,7 @@ CREATE TABLE resource_types
 CREATE TABLE resources
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
-	resource_type		INT UNSIGNED NOT NULL,
+	resource_type_id		INT UNSIGNED NOT NULL,
 	resource_name 	VARCHAR( 70 ) NOT NULL,
 	resource_code		VARCHAR(30) UNIQUE NOT NULL,
 	description 			TEXT NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE resources
 	active					TINYINT(1) NOT NULL DEFAULT 1, -- 0: Inactivo, 1: Activo
 	
 	PRIMARY KEY ( id ),
-	FOREIGN KEY ( resource_type ) REFERENCES resource_types ( id )
+	FOREIGN KEY ( resource_type_id ) REFERENCES resource_types ( id )
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );

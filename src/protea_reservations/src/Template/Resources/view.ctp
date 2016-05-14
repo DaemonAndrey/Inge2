@@ -23,17 +23,18 @@
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                 <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Resources.resource_type', 'Tipo: '); 
+                        $this->Form->label('Resources.resource_type_id', 'Tipo: '); 
                     ?>
                 </div>
                 <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Resources.resource_type',
+                        $this->Form->label('Resources.resource_type_id',
                                            $r_type[0],
                                            ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
-                    <br>
+                    <br><br>
                 </div>
             </div>
         </div>
@@ -51,9 +52,10 @@
                         $this->Form->label('Resources.resource_name',
                                            $resource->resource_name,
                                            ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
-                    <br>
+                    <br><br>
                 </div>
             </div>
         </div>
@@ -76,9 +78,10 @@
                             $this->Form->label('Resources.resource_code',
                                                $resource->resource_code,
                                                ['class' => 'form-control',
+                                                'style' => 'display:inline-table;',
                                                 'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                         ?>
-                        <br>
+                        <br><br>
                     </div>
                 </div>
             </div>
@@ -126,6 +129,7 @@
                                 echo $this->Form->label('Resources.active',
                                                "No",
                                                ['class' => 'form-control',
+                                                'style' => 'display:inline-table;',
                                                 'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                             }
                             else
@@ -133,10 +137,11 @@
                                 echo $this->Form->label('Resources.active',
                                                "Sí",
                                                ['class' => 'form-control',
+                                                'style' => 'display:inline-table;',
                                                 'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                             }
                         ?>
-                        <br>
+                        <br><br>
                     </div>
                 </div>
             </div>
