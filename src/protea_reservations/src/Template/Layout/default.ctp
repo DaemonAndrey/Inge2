@@ -28,17 +28,17 @@
     <!-- CSS ============================================== -->
     <?php
     echo $this->Html->css('bootstrap.min.css');         // Bootstrap
-    echo $this->Html->css('font-awesome.css');          // FontAwesome
-    echo $this->Html->css('font-awesome.min.css');      // FontAwesome
-    echo $this->Html->css('animate.css');               // Animation
-    echo $this->Html->css('owl.carousel.css');          // Owl Carousel
-    echo $this->Html->css('owl.theme.css');             // Owl Carousel
-    echo $this->Html->css('prettyPhoto.css');           // Pretty Photo
+    //echo $this->Html->css('font-awesome.css');          // FontAwesome
+    //echo $this->Html->css('font-awesome.min.css');      // FontAwesome
+    //echo $this->Html->css('animate.css');               // Animation
+    //echo $this->Html->css('owl.carousel.css');          // Owl Carousel
+    //echo $this->Html->css('owl.theme.css');             // Owl Carousel
+    //echo $this->Html->css('prettyPhoto.css');           // Pretty Photo
     echo $this->Html->css('red.css');                   // Main color style
     echo $this->Html->css('custom.css');                // Template styles
-    echo $this->Html->css('responsive.css');            // Responsive
-    echo $this->Html->css('jquery.fancybox.css');       // Responsive
-    echo $this->Html->css('mensajes.css');
+    //echo $this->Html->css('responsive.css');            // Responsive
+    //echo $this->Html->css('jquery.fancybox.css');       // Responsive
+    //echo $this->Html->css('mensajes.css');
 
 
         //Calendario
@@ -386,18 +386,18 @@
     //echo $this->Html->script('jquery.js'); 
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
 
-    echo $this->Html->script('jquery.isotope.js');          // Isotope
-    echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
-    echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
-    echo $this->Html->script('jquery.fancybox.pack.js');    // Image Fancybox
-    echo $this->Html->script('jquery.counterup.min.js');    // Counter
-    echo $this->Html->script('waypoints.min.js');           // waypoints
-    echo $this->Html->script('jquery.bxslider.min.js');     // Bx slider
-    echo $this->Html->script('jquery.scrollTo.js');         // Scroll to top
-    echo $this->Html->script('jquery.easing.1.3.js');       // Easing
-    echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
-    echo $this->Html->script('wow.min.js');                 // Wow Animation
-    echo $this->Html->script('gmaps.js');                   // Google Map  Source
+    //echo $this->Html->script('jquery.isotope.js');          // Isotope
+    //echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
+    //echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
+    //echo $this->Html->script('jquery.fancybox.pack.js');    // Image Fancybox
+   // echo $this->Html->script('jquery.counterup.min.js');    // Counter
+   // echo $this->Html->script('waypoints.min.js');           // waypoints
+   // echo $this->Html->script('jquery.bxslider.min.js');     // Bx slider
+   // echo $this->Html->script('jquery.scrollTo.js');         // Scroll to top
+    //echo $this->Html->script('jquery.easing.1.3.js');       // Easing
+    //echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
+   // echo $this->Html->script('wow.min.js');                 // Wow Animation
+   echo $this->Html->script('gmaps.js');                   // Google Map  Source
     //echo $this->Html->script('custom.js');                 // Custom
 
         //Calendario

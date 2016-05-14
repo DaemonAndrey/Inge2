@@ -182,8 +182,6 @@
 
 
 <script>
-
-
     $(document).ready(function() { // page is now ready, initialize the calendar...
         var xhttp = new XMLHttpRequest();
         var json_events = "";
@@ -234,17 +232,12 @@
             aspectRatio: 2.5
         });
     });
-
-
-
-
     
     function getResources(element)
     {
         if(element.value != "Seleccionar")
         {
             var xhttp = new XMLHttpRequest();
-
             xhttp.onreadystatechange = function()
             {
                 if(xhttp.readyState == 4 && xhttp.status == 200)
@@ -255,15 +248,12 @@
             
             var path = window.location.pathname;
             path = path.replace("/reservations","/resources");
-
             var  start = document.getElementById("start");
             var end = document.getElementById("end");
             
             var dateFormat = globalDate.format("DD MMMM YYYY");        
             var dateElements = dateFormat.split(" ");
-
             var months = new Array();
-
             months['enero'] = 01;
             months['febrero'] = 02;
             months['marzo'] = 03;
@@ -276,33 +266,20 @@
             months['octubre'] = 10;
             months['noviembre'] = 11;
             months['diciembre'] = 12;
-
             var startDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
             var endDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0]+" "+end.value;
-
-
             xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value+"/"+startDate,true);
-
             xhttp.send();
         }
-
     }
-
     function fillResources(json)
     {
-
         obj = JSON.parse(json);
-
         html = "";
->>>>>>> filtrado_reservaciones_andrey
-
         var len = obj.length;
-
         for (var i = 0; i < len; ++i) {
             html += "<option>"+obj[i].resource.resource_name+"</option>";
         }
-
         document.getElementById("resource").innerHTML = html;
     }
-
-</script>>
+</script>
