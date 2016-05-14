@@ -85,6 +85,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="navbar-brand" href="http://www.facultadeducacion.ucr.ac.cr/" target="_blank">
+                <?php echo $this->Html->image("logo-facedu.png", [
+                "alt" => "Facultad de Educación", 'id'=> 'logo-educa']); ?>
+          </a>
+
+
 
         </div>
 
@@ -192,6 +198,10 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+</div>
+
+<div id="post-nav">
+    
 </div>
 
 
