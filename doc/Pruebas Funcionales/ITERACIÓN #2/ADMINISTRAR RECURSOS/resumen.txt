@@ -36,4 +36,5 @@
 	7-3 Descripción con caracteres no válido
 
 8- Eliminar Tipos de Recurso
-	8-1 Eliminar tipo de recurso exitosamente 
+	8-1 Eliminar mis recursos de este tipo exitosamente
+	8-2 Eliminar por completo tipo de recurso exitosamente
