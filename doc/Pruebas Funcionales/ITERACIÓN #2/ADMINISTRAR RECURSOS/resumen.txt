@@ -25,16 +25,16 @@
 	5-1 Desasociar administradores exitosamente	*
 
 6- Agregar Tipos de Recurso
-	6-1 Agregar tipo de recurso exitosamente
-	6-2 Descripción vacía
-	6-3 Descripción con caracteres no válido
-	6-4 Descripción repetida
+	6-1 Agregar tipo de recurso exitosamente	*
+	6-2 Descripción vacía				*
+	6-3 Descripción con caracteres no válido	*
+	6-4 Descripción repetida			*
 
 7- Editar Tipos de Recurso
-	7-1 Editar tipo de recurso exitosamente
-	7-2 Descripción vacía
-	7-3 Descripción con caracteres no válido
+	7-1 Editar tipo de recurso exitosamente		*
+	7-2 Descripción vacía				*
+	7-3 Descripción con caracteres no válido	*
 
 8- Eliminar Tipos de Recurso
-	8-1 Eliminar mis recursos de este tipo exitosamente
-	8-2 Eliminar por completo tipo de recurso exitosamente
+	8-1 Eliminar mis recursos de este tipo exitosamente	*
+	8-2 Eliminar por completo tipo de recurso exitosamente	*
