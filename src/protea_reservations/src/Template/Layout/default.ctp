@@ -39,7 +39,7 @@
     echo $this->Html->css('responsive.css');            // Responsive
     echo $this->Html->css('jquery.fancybox.css');       // Responsive
     echo $this->Html->css('mensajes.css');
-    //echo $this->Html->css('style.css');
+
 
         //Calendario
 
@@ -113,7 +113,7 @@
                             
                                 <!-- REGISTRAR -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
-                                                                 array('controller'=>'users','action' => 'registrar'),
+                                                                 array('controller'=>'users','action' => 'add'),
                                                                  array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                                 <!-- LOGIN -->
@@ -144,9 +144,23 @@
                                 {
                                     ?>
                                     <!-- ADMINISTRAR -->
-                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-tasks"></span> Administrar',
-                                                                     array('controller'=>'pages','action' => 'home'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-tasks"></span> Administrar <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
+                                        <!-- ADMINISTRAR RECURSOS -->
+                                        <li role="recursos"><?php echo $this->Html->link('Recursos',
+                                                                 array('controller'=>'resources','action' => 'index'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+
+                                        <!-- ADMINISTRAR TIPOS DE RECURSOS -->
+                                        <li role="tipos de recurso"><?php echo $this->Html->link('Tipos de Recurso',
+                                                                 array('controller'=>'resourceTypes','action' => 'index'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                    </ul>
+                                </li>
+                            
                                     <!-- VER RESERVAS -->
                                     <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
                                                                      array('controller'=>'reservations','action' => 'index'),
@@ -212,7 +226,7 @@
                                 
                                     <!-- REGISTRAR -->
                                     <li><?php echo $this->Html->link('Registrar',
-                                                                     array('controller'=>'users','action' => 'registrar'),
+                                                                     array('controller'=>'users','action' => 'add'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
                                     <!-- LOGIN -->
@@ -361,7 +375,7 @@
     <?php
     //echo $this->Html->script('jquery.js'); 
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
-    echo $this->Html->script('owl.carousel.min.js');        // Owl Carousel
+
     echo $this->Html->script('jquery.isotope.js');          // Isotope
     echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
     echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
@@ -374,11 +388,12 @@
     echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
     echo $this->Html->script('wow.min.js');                 // Wow Animation
     echo $this->Html->script('gmaps.js');                   // Google Map  Source
-    echo $this->Html->script('custom.js');                 // Custom
+    //echo $this->Html->script('custom.js');                 // Custom
 
         //Calendario
     echo $this->Html->script('moment.min.js');
     echo $this->Html->script('fullcalendar.js');  
+    //echo $this->Html->script('fullcalendar.min.js'); 
     echo $this->Html->script('lang/es.js'); 
     
 

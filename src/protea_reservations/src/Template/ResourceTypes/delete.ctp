@@ -1,0 +1,1 @@
+<!-- src/Template/ResourceTypes/delete.ctp -->
