@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-use Cake\Datasource\ConnectionManager;
 
 class ReservationsController extends AppController
 {    
@@ -12,77 +11,101 @@ class ReservationsController extends AppController
 
 		/**El siguiente query obtiene todos los tipos de recursos que existen en la base **/	
 			$this->loadModel('ResourceTypes');
-        
 			$resource_type = $this->ResourceTypes->find()
 							->hydrate(false)
 							->select(['description']);
 							
 			$resource_type = $resource_type->toArray();
+			
         
-            
+		if($this->request->is('post'))
+		{
+			$resources = $this->Reservations->find()
+							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'reservation_title'])
+
+							->hydrate(false);
+							  /*->where(function ($exp, $q) {
+        			return $exp->notEq('reservation_title', "");
+    				});
+					*/
+			
+			$resources = $resources->toArray();
+		
+
+
+			$events = array();
+			array_push($events, $resources);
+
+			$events =  json_encode($events);
+
+			$events = str_replace(".",",",$events);
+	
+			$events = substr($events, 1,strlen($events)-2);
+			die($events);
+			
+		}
+		
+		$this->set('types',$resource_type);
+	
+	}
+
+	public function add()
+	{
+		//Los datos vienen en un array asociativo llamado. Se accede por medio de  $this->request->data
+		//Por ejemplo para acceder a la fecha de inicio se hace lo siguiente: $this->request->data['start_date']
+		//Si se necesita agregar un campo más a dicho array, se hace así: $this->request->data['resource_id'] = x valor;
+		// Finalmente para guardarlo se debe crear una nueva entidad y enviarle el array $this->request->data;
+		// Ver ejemplo add de UsersController
+        //print_r($this->request->data['end_date']);
+        
         if($this->Auth->user())
         {
-            // Nueva entidad 'Reservación'
-            $reservation = $this->Reservations->newEntity();  
-
-
+            $reservation = $this->Reservations->newEntity();
+            
             if($this->request->is('post'))
             {
-                $resources = $this->Reservations->find()
-                                ->select(['id','start'=>'start_date','end'=>'end_date','title'=>'reservation_title'])
+            
+                $start_date = $this->request->data['start_date'];
+                $reservation->start_date = $start_date;
+                $end_date = $this->request->data['end_date'];
+                $reservation->end_date = $end_date;
+                $reservation_title = $this->request->data['reservation_title'];
+                $reservation->reservation_title = $reservation_title;
+                $user_comment = $this->request->data['user_comment'];
+                $reservation->user_comment = $user_comment;
+                $course_name = $this->request->data['course_name'];
+                $reservation->course_name = $course_name;
+                $course_id = $this->request->data['course_id'];
+                $reservation->course_id = $course_id;
 
-                                ->hydrate(false);
-                                  /*->where(function ($exp, $q) {
-                        return $exp->notEq('reservation_title', "");
-                        });
-                        */
+                $resource = $this->request->data['resource'];
+                $this->loadModel('Resources');
+                $resource_id = $this->Resources->find()
+                                            ->select(['id'])
+                                            ->where(['resource_name =' => $resource]);
 
-                $resources = $resources->toArray();
+                $reservation->resource_id = $resource_id;
+                $reservation->user_id = $this->Auth->User('id');
+                print($reservation);
 
-
-
-                $events = array();
-                array_push($events, $resources);
-
-                $events =  json_encode($events);
-
-                $events = str_replace(".",",",$events);
-
-                $events = substr($events, 1,strlen($events)-2);
-                die($events);
-                
-                // Para guardar la reservación en la base de datos
-
-                $reservation = $this->Reservations->pathEntity($reservation, $this->request->data);
-                
-
-                try
+                if ($this->Reservations->save($reservation))
                 {
-                    // Si pudo guardar en la tabla 'Reservations'
-                    if ($this->Reservations->save($reservation))
-                    {
-                        $this->Flash->success('Se ha agregado la nueva Reservación', ['key' => 'addReservationSuccess']);
-                        return $this->redirect(['controller' => 'Reservations','action' => 'index']);
-
-                    }
+                        $this->Response->statusCode(200);
                 }
-                catch(Exception $ex)
-                {
-                    $this->Flash->error('No se ha podido agregar la reservación', ['key' => 'addReservationError']);
+                else{
+                    $this->Response->statusCode(404);   
                 }
-
             }
-            $this->set('types',$resource_type);
-            $this->set('reservation', $reservation);
         }
-    }
-//Este es un comentario de prueba
+                
+	}
+
     public function isAuthorized($user)
     {
 
         // Todos los usuarios se pueden registrar
         
-        if ($this->request->action === 'index') {
+        if (($this->request->action === 'index') || ($this->request->action === 'add')) {
             return true;            
         }
 
