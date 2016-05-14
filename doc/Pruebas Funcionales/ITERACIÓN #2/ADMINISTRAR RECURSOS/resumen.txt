@@ -7,22 +7,22 @@
 	1-6 Descripción con caracteres no válidos	*
 
 2- Eliminar Recurso
-	2-1 Eliminar recurso exitosamente
+	2-1 Eliminar recurso exitosamente		*
 
 3- Editar Recurso
-	3-1 Editar recurso exitosamente
-	3-2 Nombre vacío
-	3-3 Nombre con caracteres no válidos
-	3-4 Código vacío
-	3-5 Código repetido
-	3-6 Descripción con caracteres no válidos
+	3-1 Editar recurso exitosamente			*
+	3-2 Nombre vacío				*
+	3-3 Nombre con caracteres no válidos		*
+	3-4 Código vacío				*
+	3-5 Código repetido				*
+	3-6 Descripción con caracteres no válidos	*
 
 4- Asociar Administradores
-	4-1 Asociar administradores exitosamente
-	4-2 No hay más administradores
+	4-1 Asociar administradores exitosamente	*
+	4-2 No hay más administradores			*
 
 5- Desasociar Administradores
-	5-1 Desasociar administradores exitosamente
+	5-1 Desasociar administradores exitosamente	*
 
 6- Agregar Tipos de Recurso
 	6-1 Agregar tipo de recurso exitosamente
