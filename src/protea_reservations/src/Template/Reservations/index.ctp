@@ -13,6 +13,27 @@
 <br>
 <br>
 
+<div id="callback" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmación</h4>
+      </div>
+      <div class="modal-body">
+        <h3>¡Su reservación fue exitosa!</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <!-- Modal -->
 <div id="mdlReservaciones" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -289,7 +310,9 @@
         {
             if(xhttp.readyState == 4 && xhttp.status == 200)
             {   
-                location.reload();
+                jQuery('#callback').modal('show');
+                setTimeout(function(){location.reload();},2000);
+                
             }else{
                 if(xhttp.status == 404){
                     

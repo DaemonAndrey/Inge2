@@ -90,10 +90,10 @@ class ReservationsController extends AppController
 
                 if ($this->Reservations->save($reservation))
                 {
-                        $this->Response->statusCode(200);
+                        $this->response->statusCode(200);
                 }
                 else{
-                    $this->Response->statusCode(404);   
+                    $this->response->statusCode(404);   
                 }
             }
         }
