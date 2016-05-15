@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class AgregarRecurso {
+public class 64AgregarTipoDeRecursoConDescripciNRepetida {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,26 +23,22 @@ public class AgregarRecurso {
   }
 
   @Test
-  public void testAgregarRecurso() throws Exception {
+  public void test64AgregarTipoDeRecursoConDescripciNRepetida() throws Exception {
     driver.get(baseUrl + "/protea/src/protea_reservations/");
     driver.findElement(By.linkText("Ingresar")).click();
     driver.findElement(By.id("username")).clear();
-    driver.findElement(By.id("username")).sendKeys("admin@ucr.ac.cr");
+    driver.findElement(By.id("username")).sendKeys("monica@ucr.ac.cr");
     driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("adminadmin");
+    driver.findElement(By.id("password")).sendKeys("monicamonica");
     driver.findElement(By.cssSelector("button.btn.btn-info")).click();
-    driver.get(baseUrl + "/protea/src/protea_reservations/resources");
-    driver.findElement(By.linkText("Agregar recurso")).click();
-    new Select(driver.findElement(By.id("resources-resource-type"))).selectByVisibleText("Computadora");
-    driver.findElement(By.id("resources-resource-name")).clear();
-    driver.findElement(By.id("resources-resource-name")).sendKeys("Computadora Nueva de prueba");
-    driver.findElement(By.id("resources-resource-code")).clear();
-    driver.findElement(By.id("resources-resource-code")).sendKeys("serieplaca1234");
-    driver.findElement(By.id("resources-description")).clear();
-    driver.findElement(By.id("resources-description")).sendKeys("descripcion de la computadora");
+    driver.findElement(By.linkText("Recursos")).click();
+    driver.findElement(By.linkText("Administrar tipos de recursos")).click();
+    driver.findElement(By.linkText("Agregar tipo de recurso")).click();
+    driver.findElement(By.id("resourcetypes-description")).clear();
+    driver.findElement(By.id("resourcetypes-description")).sendKeys("Sala");
     driver.findElement(By.cssSelector("button.btn.btn-success")).click();
     try {
-      assertEquals("Se ha agregado el nuevo recurso", driver.findElement(By.cssSelector("div.message.success")).getText());
+      assertEquals("Ya existe este recurso", driver.findElement(By.cssSelector("div.error-message")).getText());
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }

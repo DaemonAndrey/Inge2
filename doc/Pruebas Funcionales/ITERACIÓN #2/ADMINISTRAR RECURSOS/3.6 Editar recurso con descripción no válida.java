@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class AgregarTipoRecurso {
+public class 36EditarRecursoConDescripciNNoVLida {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,7 +23,7 @@ public class AgregarTipoRecurso {
   }
 
   @Test
-  public void testAgregarTipoRecurso() throws Exception {
+  public void test36EditarRecursoConDescripciNNoVLida() throws Exception {
     driver.get(baseUrl + "/protea/src/protea_reservations/");
     driver.findElement(By.linkText("Ingresar")).click();
     driver.findElement(By.id("username")).clear();
@@ -31,14 +31,19 @@ public class AgregarTipoRecurso {
     driver.findElement(By.id("password")).clear();
     driver.findElement(By.id("password")).sendKeys("monicamonica");
     driver.findElement(By.cssSelector("button.btn.btn-info")).click();
-    driver.get(baseUrl + "/protea/src/protea_reservations/resources");
-    driver.findElement(By.linkText("Administrar tipos de recursos")).click();
-    driver.findElement(By.linkText("Agregar tipo de recurso")).click();
-    driver.findElement(By.id("resourcetypes-description")).clear();
-    driver.findElement(By.id("resourcetypes-description")).sendKeys("Cargador");
+    driver.findElement(By.linkText("Recursos")).click();
+    driver.findElement(By.xpath("//tr[4]/td[5]/a/i")).click();
+    new Select(driver.findElement(By.id("resources-resource-type-id"))).selectByVisibleText("Sala");
+    driver.findElement(By.id("resources-resource-name")).clear();
+    driver.findElement(By.id("resources-resource-name")).sendKeys("Sala Prueba 1");
+    driver.findElement(By.id("resources-resource-code")).clear();
+    driver.findElement(By.id("resources-resource-code")).sendKeys("AAA");
+    driver.findElement(By.id("resources-description")).clear();
+    driver.findElement(By.id("resources-description")).sendKeys("sdflkjsdflkjsdflkjsdflsdflk ;");
+    new Select(driver.findElement(By.id("resources-active"))).selectByVisibleText("Sí");
     driver.findElement(By.cssSelector("button.btn.btn-success")).click();
     try {
-      assertEquals("Se ha agregado el nuevo tipo de recurso", driver.findElement(By.cssSelector("div.message.success")).getText());
+      assertEquals("Hay caracteres no válidos", driver.findElement(By.cssSelector("div.error-message")).getText());
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }

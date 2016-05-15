@@ -56,7 +56,7 @@
         <tr>
             <th>
                 <?php
-                    echo $this->Paginator->sort('resource_type', 'Tipo ');
+                    echo $this->Paginator->sort('resource_type_id', 'Tipo ');
                     echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                 ?>
             </th>
@@ -79,9 +79,6 @@
                 ?>
             </th> 
             <th>
-                Administradores
-            </th>
-            <th>
                 Actualizar
             </th>
             <th>
@@ -99,7 +96,7 @@
                         <?php
                             // Recorre todos los tipos de recurso hasta encontrar el que se relaciona con ese recurso
                             foreach ( $resource_types as $type ):
-                                if( $type['id'] == $resource['resource_type'] )
+                                if( $type['id'] == $resource['resource_type_id'] )
                                 {
                                     echo $type['description'];
                                 }                            
@@ -138,14 +135,6 @@
                         ?>
                     </td>
 
-                    <!-- ADMINS ASOCIADOS -->
-                    <td>
-                        <?php
-                            echo $this->Html->link('<i class="glyphicon glyphicon-user"></i>',
-                                                   array('controller' => 'resources','action' => 'associate', $resource->id),
-                                                   array('escape' => false));
-                        ?>
-                    </td>
 
                     <!-- EDITAR -->
                     <td>

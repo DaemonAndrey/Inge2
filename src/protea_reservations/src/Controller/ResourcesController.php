@@ -1,7 +1,4 @@
 <?php
-
-// src/Controller/UsersController.php
-
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -49,10 +46,6 @@ class ResourcesController extends AppController
         $this->loadModel('ResourceTypes');                             
         $this->set('resource_types', $this->ResourceTypes->find('all'));
         
-        /*// Carga el modelo de 'ResourcesUsers' para mostrar sólo les recursos que puedo administrar
-        $this->loadModel('ResourcesUsers');                             
-        $this->set('relations', $this->ResourcesUsers->find('all'));*/
-        
         // Consulta Join de recursos con usuarios, saca los recursos asociados al admin
         $query = $this->Resources->find('all');
         $query->innerJoinWith('Users', function ($q){return $q->where(['Users.id' => $this->Auth->User('id')]);});
@@ -74,7 +67,7 @@ class ResourcesController extends AppController
         // Saca la descripción del tipo de ese recurso específico
         $connection = ConnectionManager::get('default');
         $result = $connection
-                    ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type])
+                    ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type_id])
                     ->fetchAll('assoc');
         $this->set('r_type', $result);
         
@@ -114,8 +107,8 @@ class ResourcesController extends AppController
                 $resource = $this->Resources->patchEntity($resource, $this->request->data);
                 
                 // Guarda en la entidad el id del tipo de recurso
-                $tipoderecurso = $this->request->data['Resources']['resource_type'];
-                $resource->resource_type = $tipoderecurso;
+                $tipoderecurso = $this->request->data['Resources']['resource_type_id'];
+                $resource->resource_type_id = $tipoderecurso;
                 
                 try
                 {
@@ -155,61 +148,55 @@ class ResourcesController extends AppController
      * Actualiza la información de un recurso.
      * @param  integer $id
      */
-   public function edit($id=null)
+    public function edit($id=null)
     {
         // Carga todos los tipos de recursos para el DropDown
         $this->loadModel('ResourceTypes');
         $options = $this->ResourceTypes->find('list',['keyField' => 'id','valueField' => 'description'])->toArray();                              
         $this->set('resource_types_options', $options);
         
-        //Toma el recurso especifico que se quiere modificar
-        $resource = $this->Resources->get($id);
-        $this->set(compact('resource'));
-        
-        //Carga la tabla de Recursos, para luego salvar sobre ella
-        $resourcesTable = TableRegistry::get('Resources');
-        
-         if($this->Auth->user())
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
         {
-            
+            //Carga el recurso se desea editar
+            $resource = $this->Resources->get($id);
+             
             if($this->request->is(array('post', 'put')))
 		    {
-			 if(isset($this->request->data['cancel']))
-			 {
-				$this->Flash->success(__('Action canceled.', true));
-				return $this->redirect(array('action' => 'index'));
-			 }
-			 
-             //Se crea una entidad recurso que tendra el mismo id del recurso que se desea editar y la informacion ya editada
-			 $resource2 = $this->Resources->get($id);
-             $tipoderecurso = $this->request->data['Resources']['resource_type'];
-             $resource2->resource_type = $tipoderecurso;
-             $resource2->resource_name = $this->request->data['Resources']['resource_name'];
-             $resource2->resource_code = $this->request->data['Resources']['resource_code'];
-             $resource2->description = $this->request->data['Resources']['description'];
-             $activo=$this->request->data['Resources']['active'];
-             $resource2->active = $activo;
-             
-			//Guarda el recurso con la nueva informacion modificada
-			if( $resourcesTable->save($resource2 ) )
-			{
-                //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-				$this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
-                return $this->redirect(['controller' => 'Resources','action' => 'index']);
-			}
-			else
-			{
-                //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-				$this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
-			}
-		  }
+                //Carga la informacion que se obtiene en el formulario
+                $this->Resources->patchEntity($resource, $this->request->data);
+                
+                //Se crea una entidad recurso que tendra el mismo id del recurso que se desea editar y la informacion ya editada
+                /*$resource = $this->Resources->get($id);
+                $tipoderecurso = $this->request->data['Resources']['resource_type_id'];
+                $resource->resource_type_id = $tipoderecurso;
+                $resource->resource_name = $this->request->data['Resources']['resource_name'];
+                $resource->resource_code = $this->request->data['Resources']['resource_code'];
+                $resource->description = $this->request->data['Resources']['description'];
+                $activo=$this->request->data['Resources']['active'];
+                $resource->active = $activo;*/
+
+                //Guarda el recurso con la nueva informacion modificada
+                if ($this->Resources->save($resource))
+                {
+                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
+                    return $this->redirect(['controller' => 'Resources','action' => 'index']);
+                }
+                else
+                {
+                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+                    $this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
+                }
+            }
+            
+            $this->set('resource', $resource);
         }
         else
         {
             //Si no se encuentra logueado la persona entonces redirecciona a home
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
-        
     }
     
     /**
@@ -362,14 +349,73 @@ class ResourcesController extends AppController
 
     }
     
+    public function getResources($resource_type, $start, $end, $date)
+	{
+        if($this->request->is("POST"))
+        {
+        /** Obtengo el id del tipo que el usuario escogió **/
+            $id = $this->Resources->ResourceTypes->find()
+                    ->hydrate(false)
+                    ->select(['id'])
+                    ->where(['description'=>$resource_type]);
+            $id = $id->toArray();
+            $id = $id[0]['id'];
+/**
+            $subquery = $this->Resources->Reservations->find()
+                    ->hydrate(false)
+                    ->select(['r.resource_name'])
+                    ->join([
+                         'table'=>'resources',
+                         'alias'=>'r',
+                         'type' => 'RIGHT',
+                         'conditions'=>'r.id = Reservations.resource_id',
+                        ])
+                    ->andwhere(['r.resource_type'=>$id, 'Reservations.start_date >='=>$start, 'Reservations.end_date <='=>$end]);
+**/
+               
+            $subquery = $this->Resources->Reservations->find()
+                ->hydrate(false)
+                ->select(['r.resource_name'])
+                ->join([
+                     'table'=>'resources',
+                     'alias'=>'r',
+                     'type' => 'RIGHT',
+                     'conditions'=>'r.id = Reservations.resource_id',
+                    ])
+                    ->where(['DATE(Reservations.start_date)'=>$date])
+                    ->andwhere(function ($exp) use ($start,$end){
+                        return $exp->between('TIME(Reservations.start_date)', $start, $end);
+                    }); 
+       
+            $query = $this->Resources->Reservations->find()
+                    ->hydrate(false)
+                    ->select(['resource.resource_name'])
+                    ->join([
+                         'table'=>'resources',
+                         'alias'=>'resource',
+                         'type' => 'RIGHT',
+                         'conditions'=>'resource.id = Reservations.resource_id',
+                        ])
+                    ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
+                    ->group(['resource.resource_name']);
+            $query = $query->toArray();
+            $query = json_encode($query);
+           die($query);
+        }
+	}
+    
     /*
      * Revisa cuáles funciones puede hacer un usuario con cierto rol
      * @param $user
      */
     public function isAuthorized($user)
     {
-        return parent::isAuthorized($user);
+        // Todos los usuarios se pueden registrar
+        
+        if ($this->request->action === 'getResources') {
+            return true;            
+        }
+        return parent::isAuthorized($user); 
     }
 }
-
 ?>

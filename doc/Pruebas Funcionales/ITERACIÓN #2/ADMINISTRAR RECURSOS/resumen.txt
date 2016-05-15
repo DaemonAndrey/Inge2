@@ -1,0 +1,40 @@
+1- Agregar Recurso
+	1-1 Agregar recurso exitosamente		*
+	1-2 Nombre vacío				*
+	1-3 Nombre con caracteres no válidos		*
+	1-4 Código vacío				*
+	1-5 Código repetido				*
+	1-6 Descripción con caracteres no válidos	*
+
+2- Eliminar Recurso
+	2-1 Eliminar recurso exitosamente		*
+
+3- Editar Recurso
+	3-1 Editar recurso exitosamente			*
+	3-2 Nombre vacío				*
+	3-3 Nombre con caracteres no válidos		*
+	3-4 Código vacío				*
+	3-5 Código repetido				*
+	3-6 Descripción con caracteres no válidos	*
+
+4- Asociar Administradores
+	4-1 Asociar administradores exitosamente	*
+	4-2 No hay más administradores			*
+
+5- Desasociar Administradores
+	5-1 Desasociar administradores exitosamente	*
+
+6- Agregar Tipos de Recurso
+	6-1 Agregar tipo de recurso exitosamente	*
+	6-2 Descripción vacía				*
+	6-3 Descripción con caracteres no válido	*
+	6-4 Descripción repetida			*
+
+7- Editar Tipos de Recurso
+	7-1 Editar tipo de recurso exitosamente		*
+	7-2 Descripción vacía				*
+	7-3 Descripción con caracteres no válido	*
+
+8- Eliminar Tipos de Recurso
+	8-1 Eliminar mis recursos de este tipo exitosamente	*
+	8-2 Eliminar por completo tipo de recurso exitosamente	*

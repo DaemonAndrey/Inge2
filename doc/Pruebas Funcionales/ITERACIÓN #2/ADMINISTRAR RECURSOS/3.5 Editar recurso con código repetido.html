@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost/protea/src/protea_reservations" />
-<title>agregar_tipo_recurso</title>
+<title>3.5 Editar recurso con código repetido</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">agregar_tipo_recurso</td></tr>
+<tr><td rowspan="1" colspan="3">3.5 Editar recurso con código repetido</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -37,24 +37,39 @@
 	<td></td>
 </tr>
 <tr>
-	<td>open</td>
-	<td>/protea/src/protea_reservations/resources</td>
+	<td>clickAndWait</td>
+	<td>link=Recursos</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Administrar tipos de recursos</td>
+	<td>//tr[4]/td[5]/a/i</td>
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>link=Agregar tipo de recurso</td>
-	<td></td>
+	<td>select</td>
+	<td>id=resources-resource-type-id</td>
+	<td>label=Sala</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=resourcetypes-description</td>
-	<td>Cargador</td>
+	<td>id=resources-resource-name</td>
+	<td>Sala Prueba 1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resources-resource-code</td>
+	<td>ABC</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resources-description</td>
+	<td>sdflkjsdflkjsdflkjsdflsdflk</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=resources-active</td>
+	<td>label=Sí</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -63,8 +78,8 @@
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=div.message.success</td>
-	<td>Se ha agregado el nuevo tipo de recurso</td>
+	<td>css=div.error-message</td>
+	<td>Esta placa/serie ya existe</td>
 </tr>
 
 </tbody></table>

@@ -10,8 +10,9 @@ class ResourcesTable extends Table
 {
     public function initialize(array $config)
     {
-        $this->belongsToMany('Users');
         $this->belongsTo('ResourceTypes');
+        $this->hasMany('Reservations');
+        $this->belongsToMany('Users');
     }
     
     /*
@@ -30,7 +31,7 @@ class ResourcesTable extends Table
                         ])
             
             /* Reglas para el campo resource_type */
-            ->notEmpty('resource_type','Este campo es requerido')
+            ->notEmpty('resource_type_id','Este campo es requerido')
             
             /* Reglas para el campo resource_name */
             ->notEmpty('resource_name','Este campo es requerido')
@@ -51,6 +52,7 @@ class ResourcesTable extends Table
                                    ])
             
             /* Reglas para el campo description */
+            ->notEmpty('description','Este campo es requerido')
             ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 500],
                                                      'message' => 'La descripción es muy larga'
                                                     ],
@@ -63,7 +65,7 @@ class ResourcesTable extends Table
     public function findAuth(Query $query, array $options)
     {
         $query
-            ->select(['id', 'resource_type', 'resource_name', 'resource_code', 'description', 'active']);
+            ->select(['id', 'resource_type_id', 'resource_name', 'resource_code', 'description', 'active']);
 
         return $query;
     }

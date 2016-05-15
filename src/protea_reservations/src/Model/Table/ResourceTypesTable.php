@@ -30,6 +30,11 @@ class ResourceTypesTable extends Table
             
             /* Reglas para el campo resource_name */
             ->notEmpty('description','Este campo es requerido')
+            ->add('description', ['isUnique' => ['rule' => 'validateUnique',
+                                                 'provider' => 'table',
+                                                 'message' => 'Ya existe este recurso'
+                                                ]
+                        ])
             ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 20],
                                                      'message' => 'Sólo se permiten 20 caracteres'
                                                     ],
