@@ -34,9 +34,11 @@ Version:1.1 */
  
 
 
+
 html,body,div,nav,a, ul, li, p, h1,h2,h3,h4,h5, ol 
 {
     font-family: Arial, Helvetica, sans-serif;
+
 }
 
 body{

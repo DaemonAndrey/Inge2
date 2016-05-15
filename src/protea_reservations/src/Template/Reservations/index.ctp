@@ -136,7 +136,7 @@
                             <strong>Sigla del curso</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input class="form-control" type="text">
+                            <input class="form-control" type="text" id="course_id">
                         </div>
                     </div>
                     
@@ -145,7 +145,7 @@
                             <strong>Nombre del curso</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input class="form-control" type="text">
+                            <input class="form-control" type="text" id="course_name">
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
                     </div>
                 </div>
                 <!-- Fin Fila 4 (Comentario) -->
@@ -170,7 +170,7 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Reservar</button>
+                <button type="button" class="btn btn-success" onclick="getReservationData()" data-dismiss="modal">Reservar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
             <!-- Fin Modal footer -->
@@ -179,7 +179,6 @@
     </div>
 </div>
 <!-- Fin Modal -->
-
 
 <script>
     $(document).ready(function() { // page is now ready, initialize the calendar...
@@ -247,28 +246,25 @@
             };
             
             var path = window.location.pathname;
-            path = path.replace("/reservations","/resources");
+
+            var new_path = path.replace("/reservations/","/resources/"); 
+
+            if(path === new_path) //algunos navegadores no ponen el último /
+            {
+                new_path = path.replace("/reservations","/resources/");                
+            }
+
+
             var  start = document.getElementById("start");
             var end = document.getElementById("end");
             
-            var dateFormat = globalDate.format("DD MMMM YYYY");        
-            var dateElements = dateFormat.split(" ");
-            var months = new Array();
-            months['enero'] = 01;
-            months['febrero'] = 02;
-            months['marzo'] = 03;
-            months['abril'] = 04;
-            months['mayo'] = 05;
-            months['junio'] = 06;
-            months['julio'] = 07;
-            months['agosto'] = 08;
-            months['septiembre'] = 09;
-            months['octubre'] = 10;
-            months['noviembre'] = 11;
-            months['diciembre'] = 12;
-            var startDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
-            var endDate = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0]+" "+end.value;
-            xhttp.open("POST", path+"/getResources/"+element.value+"/"+start.value+"/"+end.value+"/"+startDate,true);
+            var dateFormat = globalDate.format("DD MMMM YYYY");
+
+            var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
+
+            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start.value+"/"+end.value+"/"+startDate,true);
+
+
             xhttp.send();
         }
     }
@@ -282,4 +278,91 @@
         }
         document.getElementById("resource").innerHTML = html;
     }
+
+
+
+    function getReservationData()
+    {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function()
+        {
+            if(xhttp.readyState == 4 && xhttp.status == 200)
+            {   
+                location.reload();
+            }else{
+                if(xhttp.status == 404){
+                    
+                }
+            }
+        };
+
+        var date = document.getElementById("fecha").innerHTML; 
+
+        date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
+
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+        
+        var start_Date = date + " " + start;
+        var end_Date = date + " " + end;       
+        
+        var resource = document.getElementById("resource").value;
+        var course_id = document.getElementById("course_id").value;
+        var course_name = document.getElementById("course_name").value;
+        var user_comment = document.getElementById("comment").value;
+        
+        var reservation_Title = resource + " " + course_id;
+                
+        var path = window.location.pathname;
+
+        if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
+        {
+            path = path+"/";
+        }            
+                     
+        xhttp.open("POST", path+"add");
+
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhttp.send(JSON.stringify({
+            start_date : start_Date,
+            end_date : end_Date,
+            reservation_title : reservation_Title,
+            user_comment : user_comment,
+            course_name : course_name,
+            course_id : course_id, 
+            resource: resource
+        }));   
+    }
+
+
+    function getDate(date)
+    {
+        var months = new Array();
+
+        months['enero'] = 01;
+        months['febrero'] = 02;
+        months['marzo'] = 03;
+        months['abril'] = 04;
+        months['mayo'] = 05;
+        months['junio'] = 06;
+        months['julio'] = 07;
+        months['agosto'] = 08;
+        months['septiembre'] = 09;
+        months['octubre'] = 10;
+        months['noviembre'] = 11;
+        months['diciembre'] = 12;
+
+        var dateElements = date.split(" ");
+        var dateFormated = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
+
+        return dateFormated; 
+    }
+    
+
+
+
+
 </script>
+

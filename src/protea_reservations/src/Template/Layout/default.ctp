@@ -41,6 +41,7 @@
     //echo $this->Html->css('mensajes.css');
 
 
+
         //Calendario
 
     echo $this->Html->css('fullcalendar/fullcalendar.css');  
@@ -386,6 +387,7 @@
     //echo $this->Html->script('jquery.js'); 
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
 
+
     //echo $this->Html->script('jquery.isotope.js');          // Isotope
     //echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
     //echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
@@ -398,6 +400,7 @@
     //echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
    // echo $this->Html->script('wow.min.js');                 // Wow Animation
    echo $this->Html->script('gmaps.js');                   // Google Map  Source
+
     //echo $this->Html->script('custom.js');                 // Custom
 
         //Calendario
