@@ -24,7 +24,7 @@ class ReservationsController extends AppController
 							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'reservation_title'])
 
 							->hydrate(false)
-				            ->where(['state' => 2]);
+				            /*->where(['state' => 2])*/;
                                     /*{
         			return $exp->notEq('reservation_title', "");
     				});

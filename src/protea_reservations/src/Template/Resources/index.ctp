@@ -13,19 +13,19 @@
 
 <!-- TÍTULO -->
 <div class="row">
-    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <legend>
+    <div class='col-xs-12'>
+        
             <div class='text-center'>
                 <h1>Administrar Recursos</h1>
                 <br>
             </div>
-        </legend>
+     
     </div>
 </div> <!-- FIN TÍTULO -->
 
 <!-- BOTONES -->
 <div class="row text-center">
-    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+    <div class='col-xs-12'>
         <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
             <?php 
             echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
@@ -44,7 +44,7 @@
         </div>
     </div>
     
-    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+    <div class='col-xs-12'>
         <br>
     </div>
 </div> <!-- FIN BOTONES -->
