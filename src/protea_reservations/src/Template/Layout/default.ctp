@@ -38,7 +38,7 @@
     echo $this->Html->css('custom.css');                // Template styles
     //echo $this->Html->css('responsive.css');            // Responsive
     //echo $this->Html->css('jquery.fancybox.css');       // Responsive
-    //echo $this->Html->css('mensajes.css');
+    echo $this->Html->css('mensajes.css');
 
 
 
