@@ -220,10 +220,22 @@
         
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
-                jQuery('#mdlReservaciones').modal('show');
-                globalDate = date;
-                fecha = document.getElementById("fecha");
-                fecha.innerHTML = date.format("DD MMMM YYYY");
+                var today = new Date();
+                var selectedDay = date.format("DD");
+                var selectedMonth = date.format("MM");
+                
+                // El modal se abre si sucede alguna de las siguientes situaciones:
+                //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
+                //  * Si el mes seleccionado es mayor al actual.
+                var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
+                
+                if( openModal )
+                {
+                    jQuery('#mdlReservaciones').modal('show');
+                    globalDate = date;
+                    fecha = document.getElementById("fecha");
+                    fecha.innerHTML = date.format("DD MMMM YYYY");
+                }
             },
             header: {
                 left: 'title',
