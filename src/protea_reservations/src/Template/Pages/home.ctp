@@ -1,10 +1,10 @@
 <!--FontAwesome -->
-<?php echo $this->Html->css('font-awesome.min.css'); ?>
+<?php //echo $this->Html->css('font-awesome.min.css'); ?>
 
 <!-- INFORMACION -->
 <div class="acercaDe">
     <div class='row'>
-        <div class='col-md-12 col-xs-12 '>
+        <div class='col-xs-12'>
             <legend>
                 <div class='text-center'>
                     <br>
