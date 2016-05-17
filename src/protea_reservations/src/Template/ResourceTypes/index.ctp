@@ -107,8 +107,8 @@
 </div> <!-- FIN TABLA -->
 
 <!-- PAGINADOR -->
-<div class="row">
-  <div class='col-lg-12 col-lg-offset-10 col-md-12 col-md-offset-9 col-sm-12 col-sm-offset-9 col-xs-12 col-xs-offset-9'>
+<div class="row text-center">
+  <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
       <div class="center_pagination" >
           <ul class="pagination">
                 <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>

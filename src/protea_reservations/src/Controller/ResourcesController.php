@@ -373,7 +373,7 @@ class ResourcesController extends AppController
                     ->andwhere(['r.resource_type'=>$id, 'Reservations.start_date >='=>$start, 'Reservations.end_date <='=>$end]);
 **/
                
-            $subquery = $this->Resources->Reservations->find()
+            $subquery = $this->Resources->Reservations->find() /** Me devuelve todos los recursos reservados**/
                 ->hydrate(false)
                 ->select(['r.resource_name'])
                 ->join([
@@ -387,9 +387,9 @@ class ResourcesController extends AppController
                         return $exp->between('TIME(Reservations.start_date)', $start, $end);
                     }); 
        
-            $query = $this->Resources->Reservations->find()
+            $query = $this->Resources->Reservations->find() /** Me devuelve todos los recursos que no están reservados y están asociados a un tipo **/
                     ->hydrate(false)
-                    ->select(['resource.resource_name'])
+                    ->select(['resource.resource_name', 'resource.description'])
                     ->join([
                          'table'=>'resources',
                          'alias'=>'resource',
@@ -403,6 +403,22 @@ class ResourcesController extends AppController
            die($query);
         }
 	}
+    
+    public function getDescription($resource)
+    {
+        if($this->request->is("post"))
+        {            
+            $resource_description = $this->Resources->find()
+                    ->hydrate(false)
+                    ->select(['description'])
+                    ->where(['resource_name =' => $resource]);
+                    
+            $resource_description->toArray();       
+            $resource_description = json_encode($resource_description);
+            die($resource_description);
+        }
+    }
+    
     
     /*
      * Revisa cuáles funciones puede hacer un usuario con cierto rol
