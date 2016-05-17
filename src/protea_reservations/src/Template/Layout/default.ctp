@@ -408,7 +408,7 @@
     echo $this->Html->script('fullcalendar.js');  
     //echo $this->Html->script('fullcalendar.min.js'); 
     echo $this->Html->script('lang/es.js'); 
-    
+    echo $this->Html->script('vistas_admin.js');
 
 
     ?>
