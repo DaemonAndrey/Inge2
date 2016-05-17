@@ -53,6 +53,7 @@ CREATE TABLE resource_types
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
 	description		VARCHAR( 20 ) UNIQUE NOT NULL,
+	days_before_reservation		INT UNSIGNED,
 	
 	PRIMARY KEY ( id )
 );
