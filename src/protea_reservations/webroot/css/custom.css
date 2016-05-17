@@ -337,16 +337,6 @@ ul.navbar-nav > .active > a{
     background: transparent;
 }
 
-ul.navbar-nav > .active > a,ul.navbar-nav > li > a:hover,.carousel-caption h4{
-    color:#FFFFFF;!important;
-}
-
-ul.navbar-nav a {
-    color: #000000;
-}
-
-/******************** DROPDOWN *******/
-
 .navbar-nav .dropdown-menu{
     left: 0;
     right: auto;

@@ -34,7 +34,7 @@
     //echo $this->Html->css('owl.carousel.css');          // Owl Carousel
     //echo $this->Html->css('owl.theme.css');             // Owl Carousel
     //echo $this->Html->css('prettyPhoto.css');           // Pretty Photo
-    //echo $this->Html->css('red.css');                   // Main color style
+    echo $this->Html->css('red.css');                   // Main color style
     echo $this->Html->css('custom.css');                // Template styles
     //echo $this->Html->css('responsive.css');            // Responsive
     //echo $this->Html->css('jquery.fancybox.css');       // Responsive
