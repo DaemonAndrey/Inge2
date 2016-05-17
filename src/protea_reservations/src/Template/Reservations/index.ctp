@@ -128,13 +128,18 @@
                             <strong>Recursos disponibles</strong>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select name="recursosDisponibles" class="form-control" role="listbox" aria-label="Recursos disponibles" aria-required="true" id="resource">
+                            <select name="recursosDisponibles" class="form-control" role="listbox" aria-label="Recursos disponibles" aria-required="true" id="resource" onchange="getResourceDescription()">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <!-- Fin Fila 2 (Recursos) -->
+                                     
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <button data-toggle="collapse" class="btn btn-link" data-target="#resource_description">Información Detallada</button>
+                    <div id="resource_description" class="collapse"></div>
+                </div>  
                 
                 <br>
                 
@@ -419,6 +424,43 @@
         }
         
         end_Ddl.selectedIndex = end_Ddl.options[0];
+    }    
+    
+    function getResourceDescription()
+    {        
+        var resource_name = document.getElementById("resource").value;     
+        
+        if(resource_name != "Seleccionar")
+        {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function()
+            {
+                if(xhttp.readyState == 4 && xhttp.status == 200)
+                {                                      
+                    showDescription(xhttp.responseText);
+                }
+            };                                
+             
+            var path = window.location.pathname;
+            var new_path = path.replace("/reservations/","/resources/"); 
+
+            if(path === new_path) //algunos navegadores no ponen el último /
+            {
+                new_path = path.replace("/reservations","/resources/");                
+            } 
+                
+            xhttp.open("POST", new_path+"getDescription/"+resource_name,true);
+            xhttp.send();
+        }
     }
+    
+    function showDescription(json)
+    {
+        obj = JSON.parse(json);       
+        html = obj[0].description;          
+        document.getElementById("resource_description").innerHTML = html;
+    }
+    
+    
 </script>
 

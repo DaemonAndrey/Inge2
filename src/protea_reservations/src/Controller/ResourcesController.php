@@ -404,6 +404,22 @@ class ResourcesController extends AppController
         }
 	}
     
+    public function getDescription($resource)
+    {
+        if($this->request->is("post"))
+        {            
+            $resource_description = $this->Resources->find()
+                    ->hydrate(false)
+                    ->select(['description'])
+                    ->where(['resource_name =' => $resource]);
+                    
+            $resource_description->toArray();       
+            $resource_description = json_encode($resource_description);
+            die($resource_description);
+        }
+    }
+    
+    
     /*
      * Revisa cuáles funciones puede hacer un usuario con cierto rol
      * @param $user
