@@ -237,55 +237,6 @@ class ResourceTypesController extends AppController
         {
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
-        
-        
-        /*
-        // Carga los tipos de recurso que están relacionados con el administrador actual
-        $this->loadModel('ResourcesUsers');
-        $this->loadModel('Resources');
-        $this->loadModel('Users');
-        $u_id = $this->Auth->User('id');
-        
-        $query = $this->Resources->find()
-                                      ->select(['Resources.id'])
-                                      ->where(['Resources.resource_type_id' => $id]);
-        
-        $this->set('query', $query);
-        
-        if($this->Auth->user())
-        {
-            $this->request->allowMethod(['post', 'delete']);
-            
-            try
-            {
-                if($this->ResourcesUsers->deleteAll(['user_id' => $u_id,'resource_id IN' => $query]))
-                {
-                    // Si nadie tiene relación con este tipo de recurso, se elimina
-                    $query2 = $this->Resources->find()
-                                              ->select(['Resources.id'])
-                                              ->where(['Resources.resource_type_id' => $id]);
-
-                    $r_type = $this->ResourceTypes->get($id);
-
-                    if( 0 == $query2->count())
-                    {
-                        $this->ResourceTypes->delete($r_type);
-                    }
-                    
-                    $this->Flash->success('Se han eliminado todos los recursos que administra de este tipo', ['key' => 'deleteResourceTypeSuccess']);
-                    return $this->redirect(['action' => 'index']);
-                }
-            }
-            catch(Exception $ex)
-            {
-                $this->Flash->error('No se ha podido eliminar el tipo de recurso', ['key' => 'deleteResourceTypeError']);
-            }
-        }
-        else
-        {
-            return $this->redirect(['controller'=>'pages','action'=>'home']);
-        }     
-        */
     }
     
     /*
