@@ -289,16 +289,34 @@
             {
                 new_path = path.replace("/reservations","/resources/");                
             }
-
-            var start = document.getElementById("start");
-            var end = document.getElementById("end");
+            
+           
+            var start = getFormatedHour(document.getElementById("start").value);
+            var end = getFormatedHour(document.getElementById("end").value);
+            
             var dateFormat = globalDate.format("DD MMMM YYYY");
             var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
 
-            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start.value+"/"+end.value+"/"+startDate,true);
+            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,true);
 
             xhttp.send();
         }
+    }
+    
+    
+    function getFormatedHour(number)
+    {
+        var hour = "";
+        if(number < 10)
+        {   
+            hour = "0"+number+":00:00";
+        }
+        else
+        {
+            hour = number+":00:00";
+        }
+        
+        return hour;
     }
     
     function fillResources()

@@ -360,18 +360,7 @@ class ResourcesController extends AppController
                     ->where(['description'=>$resource_type]);
             $id = $id->toArray();
             $id = $id[0]['id'];
-/**
-            $subquery = $this->Resources->Reservations->find()
-                    ->hydrate(false)
-                    ->select(['r.resource_name'])
-                    ->join([
-                         'table'=>'resources',
-                         'alias'=>'r',
-                         'type' => 'RIGHT',
-                         'conditions'=>'r.id = Reservations.resource_id',
-                        ])
-                    ->andwhere(['r.resource_type'=>$id, 'Reservations.start_date >='=>$start, 'Reservations.end_date <='=>$end]);
-**/
+
                
             $subquery = $this->Resources->Reservations->find() /** Me devuelve todos los recursos reservados**/
                 ->hydrate(false)
@@ -403,6 +392,8 @@ class ResourcesController extends AppController
            die($query);
         }
 	}
+    
+
     
     public function getDescription($resource)
     {
