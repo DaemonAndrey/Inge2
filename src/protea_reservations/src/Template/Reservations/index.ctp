@@ -6,28 +6,26 @@
 </div>
 
 <br>
-        <div id='calendar'></div>   
+<div id='calendar'></div>   
 <br>
 <br>
 
 <div id="callback" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar">&times;</button>
-        <h4 class="modal-title">Confirmación</h4>
-      </div>
-      <div class="modal-body">
-        <h4 id="callbackText">¡Su reservación fue exitosa!</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Close</button>
-      </div>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar">&times;</button>
+                <h4 class="modal-title">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Close</button>
+            </div>
+        </div>
     </div>
-
-  </div>
 </div>
 
 <!-- Modal -->
@@ -162,17 +160,14 @@
                 <!-- Fin Fila 3 (Sigla y nombre del curso) -->
                 
                 <br>
-                <br>
-                
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-md-offset-4 col-xs-12">
                         <button data-toggle="collapse" class="btn btn-info" data-target="#resource_description">Información Detallada</button>
-                        <div id="resource_description" class="collapse"></div>
                     </div>
+                    <div id="resource_description" class="collapse text-center"></div>
                 </div>
                 
-                <br>
                 <br>
 
                 <!-- Fila 4 (Comentario) -->
@@ -265,8 +260,6 @@
             }
         });
     });
-    
-
 
     function getResources(element)
     {
@@ -303,7 +296,6 @@
     
     function fillResources()
     {
-
         html = "";
         var len = obj.length;
         document.getElementById("resource_description").innerHTML = obj[0].resource.description;
@@ -324,9 +316,9 @@
             if(xhttp.readyState == 4 && xhttp.status == 200)
             {   
                 jQuery('#callback').modal('show');
-                setTimeout(function(){location.reload();},2000);
-                
-            }else
+                setTimeout(function(){location.reload();},2000);    
+            }
+            else
             {
                 if(xhttp.status == 404)
                 {
@@ -449,14 +441,9 @@
         end_Ddl.selectedIndex = end_Ddl.options[0];
     }    
     
-    
-
-    
     function showDescription(element)
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
     }
-    
-    
 </script>
 
