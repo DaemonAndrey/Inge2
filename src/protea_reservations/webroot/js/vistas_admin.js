@@ -139,22 +139,21 @@
             {   
                 jQuery('#callback').modal('show');
                 setTimeout(function(){location.reload();},2000);
-                
-            }else
+            }
+            
+            if(xhttp.status == 404 && xhttp.readyState == 4)
             {
-                if(xhttp.status == 404)
-                {
-                    document.getElementById("callbackText").innerHTML = "Lo sentimos, alguien acaba de reservar este recurso.";
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);
-                }
-                else
-                {
-                    document.getElementById("callbackText").innerHTML = "Ocurrió un error inesperado. Intente más tarde"; 
+                document.getElementById("callbackText").innerHTML = "Lo sentimos, alguien acaba de reservar este recurso.";
+                jQuery('#callback').modal('show');
+                setTimeout(function(){location.reload();},2000);
+            }
+                
+            if(xhttp.readyState == 4 && xhttp.status == 500)
+            {
+                document.getElementById("callbackText").innerHTML = "Ocurrió un error inesperado. Intente más tarde"; 
 
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);  
-                }
+                jQuery('#callback').modal('show');
+                setTimeout(function(){location.reload();},2000);  
             }
         };
 

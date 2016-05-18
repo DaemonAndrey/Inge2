@@ -10,12 +10,12 @@ class ReservationsController extends AppController
 	{
 
 		/**El siguiente query obtiene todos los tipos de recursos que existen en la base **/	
-			$this->loadModel('ResourceTypes');
-			$resource_type = $this->ResourceTypes->find()
-							->hydrate(false)
-							->select(['description']);
-							
-			$resource_type = $resource_type->toArray();
+        $this->loadModel('ResourceTypes');
+        $resource_type = $this->ResourceTypes->find()
+                        ->hydrate(false)
+                        ->select(['description']);
+
+        $resource_type = $resource_type->toArray();
 			
         
 		if($this->request->is('post'))
@@ -33,8 +33,6 @@ class ReservationsController extends AppController
 			
 			$resources = $resources->toArray();
 		
-
-
 			$events = array();
 			array_push($events, $resources);
 
@@ -48,25 +46,20 @@ class ReservationsController extends AppController
 		}
 		
 		$this->set('types',$resource_type);
-	
 	}
 
+    /**
+    * Guarda los datos asociados a una reservación en la BD.
+    * Indica si se realizó la reservación con éxito.
+    */
 	public function add()
 	{
-		//Los datos vienen en un array asociativo llamado. Se accede por medio de  $this->request->data
-		//Por ejemplo para acceder a la fecha de inicio se hace lo siguiente: $this->request->data['start_date']
-		//Si se necesita agregar un campo más a dicho array, se hace así: $this->request->data['resource_id'] = x valor;
-		// Finalmente para guardarlo se debe crear una nueva entidad y enviarle el array $this->request->data;
-		// Ver ejemplo add de UsersController
-        //print_r($this->request->data['end_date']);
-        
         if($this->Auth->user())
         {
             $reservation = $this->Reservations->newEntity();
             
             if($this->request->is('post'))
             {
-            
                 $start_date = $this->request->data['start_date'];
                 $reservation->start_date = $start_date;
                 $end_date = $this->request->data['end_date'];
@@ -94,7 +87,8 @@ class ReservationsController extends AppController
                 {
                         $this->response->statusCode(200);
                 }
-                else{
+                else
+                {
                     $this->response->statusCode(404);   
                 }
             }
@@ -104,17 +98,13 @@ class ReservationsController extends AppController
 
     public function isAuthorized($user)
     {
-
         // Todos los usuarios se pueden registrar
         
-        if (($this->request->action === 'index') || ($this->request->action === 'add')) {
+        if (($this->request->action === 'index') || ($this->request->action === 'add')) 
+        {
             return true;            
         }
 
-        return parent::isAuthorized($user);
-
-        
+        return parent::isAuthorized($user);   
     }
-
-
 }

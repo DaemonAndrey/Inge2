@@ -22,7 +22,7 @@
                 <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
         </div>
     </div>
@@ -132,8 +132,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 2 (Recursos) -->
-                                      
+                <!-- Fin Fila 2 (Recursos) -->                 
                 
                 <br>
                 
@@ -165,7 +164,7 @@
                     <div class="text-center">
                         <button data-toggle="collapse" class="btn btn-info" data-target="#resource_description">Información Detallada</button>
                     </div>
-                    <div id="resource_description" class="col-xs-10 collapse text-center"></div>
+                    <div id="resource_description" class="col-xs-10 col-xs-offset-1 collapse text-center"></div>
                 </div>
                 
                 <br>
