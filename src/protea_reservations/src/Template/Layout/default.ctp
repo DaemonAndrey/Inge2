@@ -110,14 +110,6 @@
                             // SI NO ESTA LOGGEADO
                             if(is_null($this->request->session()->read('Auth.User.username')))
                             {   ?>
-                                <!-- ACERCA DE -->
-                                <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span> Acerca de',
-
-                                                                 array('controller'=>'pages','action' => 'about'),
-                                                                 array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
-                                <!-- CONTACTO -->
-                                <li><a href="#cont" class="page-scroll" ><span class="glyphicon glyphicon-phone"></span> Contacto</a> </li>
-                            
                                 <!-- REGISTRAR -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span> Registrar',
                                                                  array('controller'=>'users','action' => 'add'),
@@ -214,6 +206,7 @@
     
     <!-- PIE DE PAGINA ======================================== -->
     <section id="footer">
+        <!--
         <div class="footer_top">
             <div class="container">
                 <div class="row">
@@ -221,7 +214,6 @@
                         <h3 class="menu_head">Menú Principal</h3>
                         <div class="footer_menu">
                             <ul>
-                                <!-- INICIO -->
                                 <li class="active"><?php echo $this->Html->link('Inicio',
                                                                                 array('controller'=>'pages','action' => 'home'),
                                                                                 array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
@@ -230,17 +222,14 @@
                                 // SI NO ESTA LOGGEADO
                                 if(is_null($this->request->session()->read('Auth.User.username')))
                                 {   ?>
-                                    <!-- ACERCA DE -->
                                     <li><?php echo $this->Html->link('Acerca de',
                                                                      array('controller'=>'pages','action' => 'about'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
                                 
-                                    <!-- REGISTRAR -->
                                     <li><?php echo $this->Html->link('Registrar',
                                                                      array('controller'=>'users','action' => 'add'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
 
-                                    <!-- LOGIN -->
                                     <li><?php echo $this->Html->link('Ingresar',
                                                                      array('controller'=>'users','action' => 'login'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
@@ -256,12 +245,10 @@
                                     if($this->request->session()->read('Auth.User.role_id') == '2')
                                     {
                                         ?> 
-                                        <!-- ACERCA DE -->
                                         <li><?php echo $this->Html->link('Acerca de',
                                                                      array('controller'=>'pages','action' => 'about'),
                                                                      array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
                                 
-                                        <!-- RESERVAR -->
                                         <li><?php echo $this->Html->link('Reservar',
                                                                          array('controller'=>'reservations','action' => 'index'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
@@ -272,19 +259,16 @@
                                     if($this->request->session()->read('Auth.User.role_id') == '1')
                                     {
                                         ?>                            
-                                        <!-- ADMINISTRAR -->
                                         <li><?php echo $this->Html->link('Administrar',
                                                                          array('controller'=>'pages','action' => 'home'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         <?php
                                     } ?>
 
-                                    <!-- MI CUENTA -->
                                     <li><?php echo $this->Html->link( $this->request->session()->read('Auth.User.username'),
                                                                      array('controller'=>'pages','action' => 'home'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
 
-                                    <!-- LOGOUT -->
                                     <li><?php echo $this->Html->link('Salir',
                                                                      array('controller'=>'users','action' => 'logout'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
@@ -297,15 +281,12 @@
                         <h3 class="menu_head">Enlaces</h3>
                         <div class="footer_menu">
                             <ul>
-                                <!-- FAQ PREGUNTAS FRECUENTES -->
                                 <li><?php echo $this->Html->link( 'Preguntas frecuentes',
                                                                  array('controller'=>'pages','action' => 'faq'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
-                                <!-- TÉRMINOS DE USO -->
                                 <li><?php echo $this->Html->link( 'Términos de uso',
                                                                  array('controller'=>'pages','action' => 'terms'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
-                                <!-- POLÍTICA DE PRIVACIDAD -->
                                 <li><?php echo $this->Html->link( 'Política de privacidad',
                                                                  array('controller'=>'pages','action' => 'privacy'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
@@ -351,30 +332,23 @@
                 </div>
             </div>
         </div>
-
+        -->
         <div class="footer_b">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="footer_bottom">
-                            <p class="text-block"> En colaboración con <span>ECCI UCR </span></p>
-                        </div>
+                <div class="row text-center">
+                    <div class="col-xs-12">
+                        <p style="color:#fff;"> Derechos reservados - Facultad de Educación <?php echo date("Y"); ?></p>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <!--<div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="footer_mid pull-right">
                             <ul class="social-contact list-inline">
                                 <li><a target="_blank" href="http://www.facebook.com/proteaucr"><i class="fa fa-facebook"></i></a></li>
                                 <li><a target="_blank" href="http://www.twitter.com/proteaed"><i class="fa fa-twitter"></i></a></li>
                                 <li><a target="_blank" href="http://www.youtube.com/proteaeducacion"><i class="fa fa-youtube-play"></i></a></li>
-                                <!--
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"> <i class="fa fa-pinterest"></i></a></li>
-                                -->
                             </ul>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
