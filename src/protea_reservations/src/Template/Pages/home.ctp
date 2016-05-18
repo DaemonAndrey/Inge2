@@ -8,7 +8,7 @@
             <legend>
                 <div class='text-center'>
                     <br>
-                    <h1>Reservación de Recursos del PROTEA</h1>
+                    <h1>Reservación de Recursos</h1>
                     <br>
                 </div>
             </legend>
