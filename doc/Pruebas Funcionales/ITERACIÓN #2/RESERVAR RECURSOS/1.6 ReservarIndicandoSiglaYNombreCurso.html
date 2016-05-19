@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/protea/src/protea_reservations/pages/home" />
+<title>1.6 ReservarIndicandoSiglaYNombreCurso</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">1.6 ReservarIndicandoSiglaYNombreCurso</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/protea/src/protea_reservations/reservations</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=start</td>
+	<td>label=10:00:00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=resource_type</td>
+	<td>label=Proyector</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=course_id</td>
+	<td>CI-1315</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=course_name</td>
+	<td>Redes</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.modal-body</td>
+	<td>¡Su reservación está siendo procesada!</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
