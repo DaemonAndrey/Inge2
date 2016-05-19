@@ -349,6 +349,10 @@ class ResourcesController extends AppController
 
     }
     
+    /**
+     * Se obtienen los recursos que estan reservados.
+     * @param   $resource_type,  $start,  $end,  $date
+     */
      public function getResources($resource_type, $start, $end, $date)
     {
         if($this->request->is("POST"))
@@ -430,7 +434,10 @@ class ResourcesController extends AppController
     }
     
 
-    
+    /**
+     * Se obtiene la descripcion de un recurso dado.
+     * @param   $resource
+     */
     public function getDescription($resource)
     {
         if($this->request->is("post"))

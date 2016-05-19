@@ -6,6 +6,11 @@ use Cake\ORM\TableRegistry;
 
 class ReservationsController extends AppController
 {    
+    
+    /**
+    * Carga el calendario principal con las reservas.
+    * 
+    */
 	public function index()
 	{
 
@@ -95,7 +100,10 @@ class ReservationsController extends AppController
         }
                 
 	}
-
+    /**
+    * Verifica si el usuario esta autorizado.
+    * @param user
+    */
     public function isAuthorized($user)
     {
         // Todos los usuarios se pueden registrar
