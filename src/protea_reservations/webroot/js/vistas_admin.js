@@ -86,15 +86,12 @@
                 new_path = path.replace("/reservations","/resources/");                
             }
             
-           
             var start = getFormatedHour(document.getElementById("start").value);
             var end = getFormatedHour(document.getElementById("end").value);
             
             var dateFormat = globalDate.format("DD MMMM YYYY");
             var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
-            
-            alert(new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,true);
-            
+
             xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,true);
 
             xhttp.send();

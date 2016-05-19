@@ -349,8 +349,12 @@ class ResourcesController extends AppController
 
     }
     
-    public function getResources($resource_type, $start, $end, $date)
-	{
+    /**
+     * Se obtienen los recursos que estan reservados.
+     * @param   $resource_type,  $start,  $end,  $date
+     */
+     public function getResources($resource_type, $start, $end, $date)
+    {
         if($this->request->is("POST"))
         {
         /** Obtengo el id del tipo que el usuario escogió **/
@@ -369,14 +373,49 @@ class ResourcesController extends AppController
                      'table'=>'resources',
                      'alias'=>'r',
                      'type' => 'RIGHT',
-                     'conditions'=>'r.id = Reservations.resource_id',
+                     'conditions'=>'r.id = Reservations.resource_id'
                     ])
+
+
                     ->where(['DATE(Reservations.start_date)'=>$date])
-                    ->andwhere(function ($exp) use ($start,$end){
-                        return $exp->between('TIME(Reservations.start_date)', $start, $end);
-                    }); 
-       
-                debug($subquery);
+                    ->where(function ($exp) use ($start,$end,$date) {
+
+            /************** Pregunta si el intervalo de reserva está dentro del intervalo reservado  **/
+                        $firstAnd = $exp->and_(function ($and) use ($start,$end) {
+                            return $and->lte('TIME(Reservations.start_date)',$start)
+                                ->gt('TIME(Reservations.end_date)',$start);
+                        });
+
+                        $secondAnd = $exp->and_(function ($and) use ($start,$end) {
+                            return $and->lt('TIME(Reservations.start_date)',$end)
+                                ->gt('TIME(Reservations.end_date)',$end);
+                        });
+
+                        $firstOr = $exp->or_(function ($and) use ($firstAnd,$secondAnd) {
+                            return $and->add($firstAnd)
+                                ->add($secondAnd);
+                        });
+
+            /************** Pregunta si el intervalo reservado está dentro del intervalo de reserva **/
+
+                        $thirdAnd = $exp->and_(function ($and) use ($start,$end) {
+                            return $and->gt('TIME(Reservations.start_date)',$start)
+                                ->lte('TIME(Reservations.end_date)',$end);
+                        });
+
+                        $secondOr = $exp->or_(function ($and) use ($firstOr,$thirdAnd) {
+                            return $and->add($firstOr)
+                                ->add($thirdAnd);
+                        });
+
+
+                        return $exp
+                            ->add($secondOr);
+                    });
+                   
+
+
+
             $query = $this->Resources->Reservations->find() /** Me devuelve todos los recursos que no están reservados y están asociados a un tipo **/
                     ->hydrate(false)
                     ->select(['resource.resource_name', 'resource.description'])
@@ -392,10 +431,13 @@ class ResourcesController extends AppController
             $query = json_encode($query);
            die($query);
         }
-	}
+    }
     
 
-    
+    /**
+     * Se obtiene la descripcion de un recurso dado.
+     * @param   $resource
+     */
     public function getDescription($resource)
     {
         if($this->request->is("post"))
