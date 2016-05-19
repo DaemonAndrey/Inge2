@@ -349,8 +349,8 @@ class ResourcesController extends AppController
 
     }
     
-    public function getResources($resource_type, $start, $end, $date)
-	{
+     public function getResources($resource_type, $start, $end, $date)
+    {
         if($this->request->is("POST"))
         {
         /** Obtengo el id del tipo que el usuario escogió **/
@@ -405,15 +405,6 @@ class ResourcesController extends AppController
                         });
 
 
-
-
-
-
-
-
-
-
-
                         return $exp
                             ->add($secondOr);
                     });
@@ -436,7 +427,7 @@ class ResourcesController extends AppController
             $query = json_encode($query);
            die($query);
         }
-	}
+    }
     
 
     

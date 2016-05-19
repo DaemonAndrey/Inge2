@@ -92,7 +92,6 @@
             var dateFormat = globalDate.format("DD MMMM YYYY");
             var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
 
-
             xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,true);
 
             xhttp.send();
