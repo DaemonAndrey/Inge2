@@ -376,6 +376,7 @@ class ResourcesController extends AppController
                         return $exp->between('TIME(Reservations.start_date)', $start, $end);
                     }); 
        
+                debug($subquery);
             $query = $this->Resources->Reservations->find() /** Me devuelve todos los recursos que no están reservados y están asociados a un tipo **/
                     ->hydrate(false)
                     ->select(['resource.resource_name', 'resource.description'])
