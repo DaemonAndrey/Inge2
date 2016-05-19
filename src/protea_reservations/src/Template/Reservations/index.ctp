@@ -55,7 +55,7 @@
                             <h4>Hora de inicio</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <select name="horaInicio" class="form-control" role="listbox" aria-label="Hora de inicio" aria-required="true" id="start" onchange="getResources(document.getElementById('resource_type')); changeEndHour();">                            
+                            <select name="horaInicio" class="form-control" role="listbox" aria-label="Hora de inicio" aria-required="true" id="start" onchange="changeEndHour(); getResources(document.getElementById('resource_type'));">                            
                                 <?php
                                     $inicioBD = 7;
                                     $finBD = 21;
