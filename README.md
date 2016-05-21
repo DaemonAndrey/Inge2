@@ -34,5 +34,9 @@ En este momento está en desarrollo. <br>
   <br>
   <h5> Si está usando un equipo Windows y está usando xampp o wampp:</h5> 
   <i> Diríjase a la carpeta PHP (de xampp o wampp)y <strong>abra el archivio php.ini y descomente (quite el punto y coma) donde dice intl</strong></i>
+  
+  <br>
+  
+  <p> Para mayor información diríjase a la guía de instalación de CakePhp http://book.cakephp.org/3.0/en/installation.html, para inglés o http://book.cakephp.org/3.0/es/installation.html para español. </p>
 
 
