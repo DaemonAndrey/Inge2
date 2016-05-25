@@ -46,6 +46,11 @@ class AuthComponent extends Component
      */
     const ALL = 'all';
 
+    $this->Auth->config('authorize', [
+        'Ldap', // app authorize object.
+        'AuthBag.Combo', // plugin authorize object.
+    ]);
+
     /**
      * Default config
      *
