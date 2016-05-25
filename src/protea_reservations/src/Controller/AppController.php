@@ -81,7 +81,7 @@ class AppController extends Controller
     {
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
 
-        if(isset($user['role_id']) && $user['role_id'] == 1)
+        if(isset($user['role_id']) && ($user['role_id'] == 2 || $user['role_id'] == 3))
             return true;
 
         return false;

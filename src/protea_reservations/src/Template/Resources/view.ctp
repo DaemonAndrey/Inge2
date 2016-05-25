@@ -62,8 +62,8 @@
         
         <!-- PLACA/SERIE -->
         <?php
-        // Si soy administrador
-        if( $user_role == 1 )
+        // Si soy administrador o superadmin
+        if( $user_role == 2 || $user_role == 3 )
         {
             ?>
             <div class="row">
@@ -110,8 +110,8 @@
         </div>
         
         <?php
-        // Si soy administrador
-        if( $user_role == 1 )
+        // Si soy administrador o superadmin
+        if( $user_role == 2 || $user_role == 3 )
         {
             ?>
             <!-- ACTIVO -->

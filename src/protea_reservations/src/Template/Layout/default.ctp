@@ -128,7 +128,7 @@
                             if(!is_null($this->request->session()->read('Auth.User.username')))
                             {                                  
                                 // SI ES USUARIO
-                                if($this->request->session()->read('Auth.User.role_id') == '2')
+                                if($this->request->session()->read('Auth.User.role_id') == '1')
                                 {
                                     ?>                        
                                     <!-- RESERVAR -->
@@ -138,8 +138,9 @@
                                     <?php
                                 } 
                                 
-                                // SI ES ADMINISTRADOR
-                                if($this->request->session()->read('Auth.User.role_id') == '1')
+                                // SI ES ADMINISTRADOR O SUPERADMIN
+                                if($this->request->session()->read('Auth.User.role_id') == '2' ||
+                                   $this->request->session()->read('Auth.User.role_id') == '3')
                                 {
                                     ?>
                                     <!-- ADMINISTRAR -->
@@ -148,6 +149,17 @@
                                         <span class="glyphicon glyphicon-tasks"></span> Administrar <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
+                                        <?php
+                                        if($this->request->session()->read('Auth.User.role_id') == '3')
+                                        {
+                                            ?>
+                                            <!-- ADMINISTRAR CUENTAS DE USUARIO -->
+                                            <li role="recursos"><?php echo $this->Html->link('Cuentas de Usuarios',
+                                                                     array('controller'=>'users','action' => 'index'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
+                                            <?php
+                                        }?>
+                                        
                                         <!-- ADMINISTRAR RECURSOS -->
                                         <li role="recursos"><?php echo $this->Html->link('Recursos',
                                                                  array('controller'=>'resources','action' => 'index'),
@@ -164,7 +176,7 @@
                                     <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
                                                                      array('controller'=>'reservations','action' => 'index'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
-                                    <?php
+                                <?php
                                 } ?>
                             
                                 <!-- MI CUENTA -->
@@ -206,133 +218,6 @@
     
     <!-- PIE DE PAGINA ======================================== -->
     <section id="footer">
-        <!--
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <h3 class="menu_head">Menú Principal</h3>
-                        <div class="footer_menu">
-                            <ul>
-                                <li class="active"><?php echo $this->Html->link('Inicio',
-                                                                                array('controller'=>'pages','action' => 'home'),
-                                                                                array('target' => '_self', 'escape' => false, 'title'=>'Ve al inicio de la página')) ?> </li>
-
-                                <?php
-                                // SI NO ESTA LOGGEADO
-                                if(is_null($this->request->session()->read('Auth.User.username')))
-                                {   ?>
-                                    <li><?php echo $this->Html->link('Acerca de',
-                                                                     array('controller'=>'pages','action' => 'about'),
-                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
-                                
-                                    <li><?php echo $this->Html->link('Registrar',
-                                                                     array('controller'=>'users','action' => 'add'),
-                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Presiona para registrarte')) ?> </li>
-
-                                    <li><?php echo $this->Html->link('Ingresar',
-                                                                     array('controller'=>'users','action' => 'login'),
-                                                                     array('target' => '_self', 'escape' => false, 'title'=>'¿Ya eres usuario? ¡Ingresá!')) ?> </li>
-                                    <?php
-                                } ?>
-
-                                <?php
-
-                                // SI ESTA LOGGEADO
-                                if(!is_null($this->request->session()->read('Auth.User.username')))
-                                {                                  
-                                    // SI ES USUARIO
-                                    if($this->request->session()->read('Auth.User.role_id') == '2')
-                                    {
-                                        ?> 
-                                        <li><?php echo $this->Html->link('Acerca de',
-                                                                     array('controller'=>'pages','action' => 'about'),
-                                                                     array('target' => '_self', 'escape' => false, 'title'=>'Conoce más de nosotros')) ?> </li>
-                                
-                                        <li><?php echo $this->Html->link('Reservar',
-                                                                         array('controller'=>'reservations','action' => 'index'),
-                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
-                                        <?php
-                                    } 
-
-                                    // SI ES ADMINISTRADOR
-                                    if($this->request->session()->read('Auth.User.role_id') == '1')
-                                    {
-                                        ?>                            
-                                        <li><?php echo $this->Html->link('Administrar',
-                                                                         array('controller'=>'pages','action' => 'home'),
-                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
-                                        <?php
-                                    } ?>
-
-                                    <li><?php echo $this->Html->link( $this->request->session()->read('Auth.User.username'),
-                                                                     array('controller'=>'pages','action' => 'home'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
-
-                                    <li><?php echo $this->Html->link('Salir',
-                                                                     array('controller'=>'users','action' => 'logout'),
-                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
-                                    <?php
-                                } ?>   
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <h3 class="menu_head">Enlaces</h3>
-                        <div class="footer_menu">
-                            <ul>
-                                <li><?php echo $this->Html->link( 'Preguntas frecuentes',
-                                                                 array('controller'=>'pages','action' => 'faq'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
-                                <li><?php echo $this->Html->link( 'Términos de uso',
-                                                                 array('controller'=>'pages','action' => 'terms'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
-                                <li><?php echo $this->Html->link( 'Política de privacidad',
-                                                                 array('controller'=>'pages','action' => 'privacy'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12" id="cont">
-                        <h3 class="menu_head">Contacto</h3>
-                        <div class="footer_menu_contact">
-                            <ul>
-                                <li> <i class="fa fa-calendar"></i>
-                                    <span> Lun a Vie 8am-12md y 1pm-5pm</span></li>
-                                <li> <i class="fa fa-map-marker"></i>
-                                    <span> 2do piso, Facultad de Educación</span></li>
-                                <li><i class="fa fa-phone"></i>
-                                    <span> (506) 2511-5387 / 2511-8868</span></li>
-                                <li><i class="fa fa-fax"></i>
-                                    <span> (506) 2511-6123</span></li>
-                                <li><i class="fa fa-send"></i>
-                                    <span> protea.educacion@ucr.ac.cr</span></li>
-                                <li><i class="fa fa-globe"></i>
-                                    <span> facultadeducacion.ucr.ac.cr/protea</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <h3 class="menu_head">Etiquetas</h3>
-                        <div class="footer_menu tags">
-                            <a href="#"> Diseño</a>
-                            <a href="#"> Interfaz de usuario</a>
-                            <a href="#"> Gráficos</a>
-                            <a href="#"> Diseño Web</a>
-                            <a href="#"> Desarrollo</a>
-                            <a href="#"> Asp.net</a>
-                            <a href="#"> Bootstrap</a>
-                            <a href="#"> Joomla</a>
-                            <a href="#"> SEO</a>
-                            <a href="#"> Wordepress</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        -->
         <div class="footer_b">
             <div class="container">
                 <div class="row text-center">

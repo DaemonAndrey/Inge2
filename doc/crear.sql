@@ -41,7 +41,7 @@ CREATE TABLE users
 	department 			VARCHAR( 70 ) NOT NULL,
 	position 					VARCHAR( 20 ) NOT NULL, 
 	state 					TINYINT(1) NOT NULL DEFAULT 0, -- 0: Pendiente, 1: Aceptado
-	role_id 					INT UNSIGNED NOT NULL DEFAULT 2, -- 1: Administrador, 2: Usuario normal, 3: Otro 
+	role_id 					INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Usuario Normal, 2: Adminsitrador, 3: SuperAdministrador
 	
 	PRIMARY KEY ( id ),
 	FOREIGN KEY ( role_id ) REFERENCES roles( id )
@@ -99,7 +99,7 @@ CREATE TABLE reservations
 	resource_id 				INT UNSIGNED NOT NULL,
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	state 						INT UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
+	state 						TINYINT(1) UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
 	user_seen 					TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	administrator_seen 		TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	user_id 						INT UNSIGNED NOT NULL,

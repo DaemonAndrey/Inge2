@@ -131,7 +131,6 @@ class UsersTable extends Table
 
         return $query;
     }
-
 }
 
 ?>
