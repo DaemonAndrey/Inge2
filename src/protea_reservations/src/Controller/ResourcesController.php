@@ -179,13 +179,13 @@ class ResourcesController extends AppController
                 //Guarda el recurso con la nueva informacion modificada
                 if ($this->Resources->save($resource))
                 {
-                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 }
                 else
                 {
-                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+                    //En caso de que no se haya podido actualizar la información, despliega un mensaje indicando que hubo error.
                     $this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
                 }
             }

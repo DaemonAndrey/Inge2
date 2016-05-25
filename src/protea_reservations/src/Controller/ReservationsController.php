@@ -97,9 +97,44 @@ class ReservationsController extends AppController
                     $this->response->statusCode(404);   
                 }
             }
-        }
-                
+        }            
 	}
+    
+    /**
+    * Actualiza el estado de la reservación dependiendo de si el administrador
+    * la acepta o la rechaza.
+    * @param integer $idReservacion
+    */
+    public function edit($id = null)
+    {
+        if($this->Auth->user())
+        {
+            // Carga la reservación que se desea editar
+            $reservation = $this->Reservations->get($id);
+            
+            if($this->request->is(array('post', 'put')))
+            {
+                // Carga la información que se obtiene en el formulario
+                $this->Reservations->patchEntity($reservation, $this->request->data);
+                
+                // Guarda la reservación con la nueva información modificada
+                if($this->Reservations->save($reservation))
+                {
+                    // Muestra el mensaje indicando que la reservación se modificó correctamente y se redirecciona a la vista principal de Administrar Reservaciones
+                    $this->Flash->success('Se ha modificado correctamente la reservación', ['key', 'editReservationSuccess']);
+                    return $this->redirect(['controller' => 'Reservations', 'action' => 'index']);
+                }
+                else
+                {
+                    // En caso de que no se haya podido modificar la información, despligue un mensaje indicando que hubo error
+                    $this->Flash->error('No se ha podido modificar la reservación', ['key' => 'editReservationError']);
+                }
+            }
+            
+            $this->set('reservation', $reservation);
+        }
+    }
+    
     /**
     * Verifica si el usuario esta autorizado.
     * @param user
