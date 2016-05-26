@@ -138,29 +138,15 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-
         if ($this->request->action === 'view') {
             return false;            
         }
 
-        if ($this->request->action === 'index') {
-            return true;            
+        if ($this->request->action === 'index' && $user['role_id'] == 2) {
+            return false;            
         }
         
-
-        // Solo los usuarios confirmados pueden loguearse exitosamente
-        
-
-        /** Creo que ya no es necesario
-        if (in_array($this->request->action, ['login'])) 
-        {
-            if ($this->Users->registrationConfirmed($user['id'])) 
-                return true;
-        }
-**/
         return parent::isAuthorized($user);
-
-        
     }
 }
 

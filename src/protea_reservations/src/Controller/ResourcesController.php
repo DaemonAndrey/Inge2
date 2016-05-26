@@ -75,7 +75,8 @@ class ResourcesController extends AppController
         $this->loadModel('Users');
         $query = $this->Users->find()
                                         ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '1']);
+                                        ->where(['Users.role_id' => '2'])
+                                        ->orWhere(['Users.role_id' => '3']);
         
         $query->innerJoinWith('Resources', function ($q) use ($id){
                                                 return $q->where(['Resources.id' => $id]);
@@ -239,7 +240,8 @@ class ResourcesController extends AppController
         $this->loadModel('Users');
         $query = $this->Users->find()
                                         ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '1']);
+                                        ->where(['Users.role_id' => '2'])
+                                        ->orWhere(['Users.role_id' => '3']);
         
         $query->innerJoinWith('Resources', function ($q) use ($id){
                                                 return $q->where(['Resources.id' => $id]);
@@ -252,14 +254,16 @@ class ResourcesController extends AppController
         // Admins no asociados
         $innerQuery = $this->Users->find()
                                 ->select(['id'])
-                                ->where(['Users.role_id' => '1']);
+                                ->where(['Users.role_id' => '2'])
+                                ->orWhere(['Users.role_id' => '3']);
         
         $innerQuery->innerJoinWith('Resources', function ($q) use ($id){
                                                     return $q->where(['Resources.id' => $id]);
                                                 });
         
         $query2 = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
-                                ->where(['Users.role_id' => '1'])
+                                ->where(['Users.role_id' => '2'])
+                                ->orWhere(['Users.role_id' => '3'])
                                 ->where(function ($q) use ($innerQuery){
                                         return $q->notIn('id', $innerQuery);
                                         });
