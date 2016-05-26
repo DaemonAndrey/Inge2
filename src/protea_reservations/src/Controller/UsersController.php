@@ -215,6 +215,8 @@ class UsersController extends AppController
                     //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
                     $this->Flash->error('No se ha podido aceptar la solicitud. Por favor inténtelo de nuevo', ['key' => 'addUserError']);
                 }
+            }
+        }
     }
 }
 

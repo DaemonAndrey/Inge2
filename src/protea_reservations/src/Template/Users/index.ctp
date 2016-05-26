@@ -36,3 +36,58 @@
         <br>
     </div>
 </div> <!-- FIN BOTONES -->
+
+<!-- TABLA -->
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-sm">
+        <!-- ENCABEZADO TABLA -->
+        <tr> 
+            <th>
+                <?php
+                    echo $this->Paginator->sort('description', 'Tipo ');
+                    echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
+                ?>
+            </th>
+            <th>
+                Actualizar
+            </th>
+            <th>
+                Eliminar
+            </th>
+        </tr> <!-- FIN ENCABEZADO TABLA -->
+
+        <?php 
+            // Recorre todos los recursos y los muestra en la tabla
+            foreach ( $resourceTypes as $resourceType ):
+        ?>
+                <tr>
+                    <!-- NOMBRE -->
+                    <td>
+                        <?php
+                            echo /*$this->Html->link(*/$resourceType['description']/*,
+                                                   array('controller' => 'resourceTypes','action' => 'view', $resourceType->id))*/;
+                        ?>
+                    </td>
+
+                    <!-- EDITAR -->
+                    <td>
+                        <?php
+                            echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                                                   array('controller' => 'resourceTypes','action' => 'edit', $resourceType->id),
+                                                   array('escape' => false));
+                        ?>
+                    </td>
+
+                    <!-- ELIMINAR -->
+                    <td>
+                        <?php
+                            echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
+                                                       array('controller' => 'resourceTypes','action' => 'delete', $resourceType->id),
+                                                       array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el tipo de recurso? Todos los recursos asociados a este tipo también se eliminarán.'));
+                        ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php unset($resource); ?>
+    </table>
+</div> <!-- FIN TABLA -->
