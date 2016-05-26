@@ -37,6 +37,8 @@ class RolesTable extends Table
     
     public function findAuth(Query $query, array $options)
     {
+        
+        
         $query->select(['id', 'role_name']);
 
         return $query;
