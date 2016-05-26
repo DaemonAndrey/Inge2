@@ -158,7 +158,7 @@ class UsersController extends AppController
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
-            $this->request->allowMethod(['post', 'delete']);
+            $this->request->allowMethod(['post', 'reject']);
             $resource = $this->Users->get($id);
             try
             {
@@ -192,14 +192,15 @@ class UsersController extends AppController
              
             if($this->request->is(array('post', 'put')))
 		    {
+                // Se cambia el estado a 1 que e aceptado por el  administrador.
                 $user->state = 1;
                 
                 //Guarda el usuario con la nueva informacion modificada
                 if ($this->Users->save($resource))
                 {
-                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addResourceSuccess']);
-                    return $this->redirect(['controller' => 'Resources','action' => 'index']);
+                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
                 }
                 else
                 {
