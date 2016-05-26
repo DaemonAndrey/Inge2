@@ -39,11 +39,28 @@ class AppController extends Controller
      */
     public function initialize()
     {
-        
+
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        
+        $this->loadComponent('Auth', [
+            'loginRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'home'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'home'
+            ]
+        ]);
+
+        $this->Auth->config('authenticate', [
+            'Ldap'
+        ]);
+
+        /**
         $this->loadComponent('Auth',['authorize' => ['Controller'],
                                      'authenticate'=>['Form'=>['finder'=> 'auth']],
                                      'loginRedirect' => ['controller' => 'Pages',
@@ -53,8 +70,10 @@ class AppController extends Controller
                                                           'action' => 'home'
                                                          ]
                                     ]);
+
+                                    **/
     }
-    
+
     public function beforeFilter(Event $event)
     {
         //$this->set('user_username', $this->Auth->User('username'));
@@ -76,7 +95,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-    
+
     public function isAuthorized($user)
     {
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
