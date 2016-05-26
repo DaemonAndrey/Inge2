@@ -27,11 +27,22 @@ class UsersController extends AppController
         parent::initialize();
 
     }
-
+    
+    /** 
+     * Carga todos los usuarios de la base de datos y los pagina en una tabla.
+     */
     public function index()
-    {
-        $this->set('users', $this->Users->find('all'));
-    }
+	{        
+        // Carga el modelo de 'Roles' para sacar el rol del usuario
+        $this->loadModel('Roles');                             
+        
+        // Consulta Join de usuarios con roles
+        $query = $this->Users->find('all');
+        $query->innerJoinWith('Roles', function ($q){return $q->where(['Users.id' => 'Roles.id']);});
+        
+        // Pagina la consulta
+        $this->set('users', $this->paginate($query));
+	}
 
     /**
      * Para futuras vistas
@@ -49,7 +60,7 @@ class UsersController extends AppController
      */
     public function add()
     {
-        if(!$this->Auth->user())
+        if(!$this->Auth->user() || ($this->Auth->user() && $this->Auth->User('role_id') == 3))
         {
             $user = $this->Users->newEntity();
             
@@ -88,10 +99,7 @@ class UsersController extends AppController
         {
             if ($this->request->is('post'))
             {
-               
                 $user = $this->Auth->identify();
-
-                
 
                 if($user)
                 {
