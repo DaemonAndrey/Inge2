@@ -14,6 +14,8 @@ class RolesTable extends Table
         $this->hasMany('Users');
     }
     
+    
+    
     /*
      * Se encarga de validar los campos para la tabla Roles
      * @param Validator $validator

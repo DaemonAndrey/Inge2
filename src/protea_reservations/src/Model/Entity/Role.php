@@ -10,7 +10,6 @@ class Role extends Entity
     protected $_accessible = [
         '*' => true
     ];
-    
 }
 
 ?>

@@ -53,6 +53,7 @@ class ResourcesController extends AppController
         // Pagina la tabla de recursos
         $this->set('resources', $this->paginate($query));
 	}
+    
 
     /**
      * Muestra información más detallada sobre un recurso específico.

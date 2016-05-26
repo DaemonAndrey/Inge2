@@ -84,6 +84,7 @@ class AppController extends Controller
         if(isset($user['role_id']) && ($user['role_id'] == 2 || $user['role_id'] == 3))
             return true;
 
+        
         return false;
     }
 }
