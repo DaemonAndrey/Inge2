@@ -156,6 +156,66 @@ class UsersController extends AppController
         
         return parent::isAuthorized($user);
     }
+    
+    /**
+    * Se rechaza la solicitud de registro de un usuario y se envía un correo, aparte se elimina el usuario de la BD.
+    * Se pasa a la pagina principal. 
+    */
+    public function reject($id)
+    {
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'reject']);
+            $resource = $this->Users->get($id);
+            try
+            {
+                if ($this->Users->delete($user))
+                {
+                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'deleteResourceSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                } 
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+            }
+        }
+        else
+        {  
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+    }
+    
+    /**
+    * Se acepta la solicitud de registro de un usuario y se envía un correo.
+    * Se pasa a la pagina principal. 
+    */
+    public function confirm($id)
+    {
+         if($this->Auth->user())
+        {
+            //Carga el usuario se desea editar
+            $user = $this->Users->get($id);
+             
+            if($this->request->is(array('post', 'put')))
+		    {
+                // Se cambia el estado a 1 que e aceptado por el  administrador.
+                $user->state = 1;
+                
+                //Guarda el usuario con la nueva informacion modificada
+                if ($this->Users->save($resource))
+                {
+                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                }
+                else
+                {
+                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+                    $this->Flash->error('No se ha podido aceptar la solicitud. Por favor inténtelo de nuevo', ['key' => 'addUserError']);
+                }
+    }
 }
 
 ?>
