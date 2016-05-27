@@ -15,7 +15,7 @@
     <fieldset>  
         <legend>
             <div class='text-center'>
-                <h1>Ingresar</h1>
+                <h2>Ingresar</h2>
                 <br>
             </div>
         </legend>
