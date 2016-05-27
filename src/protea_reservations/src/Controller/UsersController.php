@@ -232,7 +232,53 @@ class UsersController extends AppController
                 }
             }
         }
+    }    
+    
+    /**
+    * Actualiza la información de un usuario.
+    * @param  integer $id
+    */
+    public function edit($id=null)
+    {
+        // Carga todos roles para el DropDown
+        $this->loadModel('Roles');
+        $options = $this->Roles->find('list',['keyField' => 'id','valueField' => 'role_name'])->toArray();                              
+        $this->set('roles_options', $options);
+        
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            
+            //Carga el usuario que se desea editar
+            $user = $this->Users->get($id);
+            
+            if($this->request->is(array('post', 'put')))
+		    {
+                //Carga la informacion que se obtiene en el formulario
+                $this->Users->patchEntity($user, $this->request->data);
+                   
+	                //Guarda el recurso con la nueva informacion modificada
+                if ($this->Users->save($user))
+                {
+                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    $this->Flash->success('Se han editado correctamente los datos del usuario', ['key' => 'addUserSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                }
+                else
+                {
+                    //En caso de que no se ha podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+                    $this->Flash->error('No se han podido editar los datos el usuario', ['key' => 'addUserError']);
+                }
+            }
+            $this->set('user', $user);
+        }
+        else
+        {
+            //Si no se encuentra logueado la persona entonces redirecciona a home
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }
+    
 }
 
 ?>
