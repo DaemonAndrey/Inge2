@@ -3,8 +3,8 @@
 
 <div class="users form">
     <div style="text-align:center">
-        <?= $this->Flash->render('editUserSuccess') ?>   
-        <?= $this->Flash->render('editUserError') ?>   
+        <?= $this->Flash->render('addUserSuccess') ?>   
+        <?= $this->Flash->render('addUserError') ?>   
         <br>
     </div>
     

@@ -169,6 +169,10 @@ class UsersController extends AppController
             return false;            
         }
         
+        if ($this->request->action === 'edit' && $user['role_id'] != 3) {
+            return false;
+        } 
+        
         return parent::isAuthorized($user);
     }
     
