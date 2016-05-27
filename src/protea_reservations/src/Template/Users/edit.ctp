@@ -2,6 +2,12 @@
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
+    <div style="text-align:center">
+        <?= $this->Flash->render('editUserSuccess') ?>   
+        <?= $this->Flash->render('editUserError') ?>   
+        <br>
+    </div>
+    
     <?= $this->Form->create($user) ?>
 
     <!-- TÍTULO -->
@@ -199,37 +205,7 @@
         </div>
         
         
-        
-        <!-- ROLES -->
-        <div class="row">
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-                <?php
-                // SI EL USUARIO NO ESTA ACEPTADO
-                if($user['state'] == false)
-                {
-                ?>
-                    <?=
-                        $this->Form->input('Users.username', ['label' => 'Rol: ',
-                                                              'class' => 'form-control',
-                                                              'readonly' => 'readonly']);
-                    ?>
-                <?php    
-                } 
-                // SI EL USUARIO ESTA ACEPTADO
-                else
-                {
-                ?> 
-                    <?=
-                        $this->Form->input('Users.role_id', ['label' => 'Rol: ',
-                                                              'options' => $roles_options,
-                                                              'class' => 'form-control']);
-                    ?>
-                <?php     
-                }
-                ?>     
-                <br>
-            </div>
-        </div>
+      
         
     </fieldset> <!-- FIN CAMPOS A LLENAR -->
 
@@ -242,8 +218,15 @@
                 if($user['state'] == false)
                 {
                 ?>
-                    <?= $this->Html->link('Aceptar', array('controller' => 'users', 'action' => 'confirm'), $user['id'], array( 'class' => 'btn btn-primary')); ?>
-                    <?= $this->Html->link('Rechazar', array('controller' => 'users', 'action' => 'reject'), $user['id'], array( 'class' => 'btn btn-danger')); ?>
+                    <?= $this->Form->postlink('<a class="btn btn-primary">Aceptar</a>',
+                                           array('controller' => 'Users','action' => 'confirm', $user->id),
+                                           array('escape' => false));
+                    ?>
+                    <?= $this->Form->postlink('<a class="btn btn-danger">Rechazar</a>',
+                                           array('controller' => 'Users','action' => 'reject', $user->id),
+                                           array('escape' => false));
+                    ?>
+                   
                 <?php    
                 } 
                 // SI EL USUARIO ESTA ACEPTADO
@@ -256,13 +239,6 @@
                 <?php     
                 }
                 ?>     
-            
-            
-            
-            
-            
-
-            <!-- <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'index'), array( 'class' => 'btn btn-danger')) ?> -->
         </div>
     </div> <!-- FIN BOTONES -->
 
