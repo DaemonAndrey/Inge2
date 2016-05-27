@@ -91,13 +91,20 @@ class UsersController extends AppController
                
                 $user = $this->Auth->identify();
 
-                
+                $secondAuth = $this->Users->validateUserState($user['cn'][0]);
+                unset($secondAuth['state']);
 
-                if($user)
+                if($user && $secondAuth)
                 {
 
-                    $this->Auth->setUser($user);
-                    return $this->redirect($this->Auth->redirectUrl());
+                    $secondAuth = $secondAuth[0];
+                   debug($secondAuth);
+                    $this->Auth->setUser($secondAuth);
+
+
+                    debug($this->request->session()->read('Auth.User.username'));
+
+                    //return $this->redirect($this->Auth->redirectUrl());
 
                 }
                 else

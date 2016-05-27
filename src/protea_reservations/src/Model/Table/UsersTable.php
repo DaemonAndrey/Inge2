@@ -123,6 +123,24 @@ class UsersTable extends Table
     }
 
 
+    public function validateUserState($username)
+    {
+        $user = $this->find()
+                    ->hydrate(false)
+                    ->select(['id','username', 'role_id', 'state'])
+                    ->where(['username'=>$username]);
+        $user = $user->toArray();
+
+        if($user[0]['state'] != 0)
+        {
+            return $user;
+        }
+
+        return false;
+
+    }
+
+
     public function findAuth(Query $query, array $options)
     {
         $query

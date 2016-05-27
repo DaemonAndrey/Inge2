@@ -56,6 +56,33 @@ return [
         ],
     ],
 
+
+    'Ldap' => [
+        'domain' => 'test.com',
+        /**
+        'host' => function() {
+            $hosts = ['192.168.1.13', '127.0.0.1'];
+            shuffle($hosts);
+            return $hosts[1];
+        },
+        **/
+        'host' => '127.0.0.1',
+        'port' => 389,
+        'search' => 'UserPrincipalName',
+        'baseDN' => 'OU=users,DC=test,DC=com'/**function($username, $domain) {
+            if (strpos($username, $domain) !== false) {
+                $baseDN = 'OU=users,DC=test,DC=com';
+            } else {
+                $baseDN = 'CN=Users,DC=test,DC=com';
+            }
+            return $baseDN;
+        }**/,
+        'errors' => [
+            'data 773' => 'Some error for Flash',
+            'data 532' => 'Some error for Flash',
+        ]
+    ],
+
     /**
      * Security and encryption configuration
      *

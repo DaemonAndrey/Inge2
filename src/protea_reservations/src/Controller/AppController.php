@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -46,18 +47,29 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         
         $this->loadComponent('Auth', [
-            'loginRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'home'
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
             ],
-            'logoutRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'home'
+            'authError' => 'Insufficient privileges to view requested resources. Please login to continue!',
+            'authenticate' => [
+                'Ldap' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ],
+                    'port' => Configure::read('Ldap.port'),
+                    'host' => Configure::read('Ldap.host'),
+                    'domain' => Configure::read('Ldap.domain'),
+                    'baseDN' => Configure::read('Ldap.baseDN'),
+                    'search' => Configure::read('Ldap.search'),
+                    'errors' => Configure::read('Ldap.errors'),
+                    'flash' => [
+                        'key' => 'ldap',
+                        'element' => 'Flash/error',
+                    ]
+                ]
             ]
-        ]);
-
-        $this->Auth->config('authenticate', [
-            'Ldap'
         ]);
 
         /**
