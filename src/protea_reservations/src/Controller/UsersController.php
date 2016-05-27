@@ -9,6 +9,13 @@ use Cake\Event\Event;
 
 class UsersController extends AppController
 {   
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+
+    }
+    
     /** 
      * Permite comprobar si hay una sesión activa y verificar los permisos de usuario.
      * @param Event $event
@@ -19,14 +26,15 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         $this->set('user_username', $this->Auth->User('username'));
+        $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
     }
     
-    public function initialize()
-    {
-        parent::initialize();
-
-    }
+    /** 
+     * Paginador de usuarios.
+     */
+    public $paginate = array('limit' => 10);
+    
     
     /** 
      * Carga todos los usuarios de la base de datos y los pagina en una tabla.
@@ -38,7 +46,8 @@ class UsersController extends AppController
         
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
-        $query->innerJoinWith('Roles', function ($q){return $q->where(['Users.id' => 'Roles.id']);});
+        $query->innerJoinWith('Roles')
+            ->select(['Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
@@ -72,8 +81,14 @@ class UsersController extends AppController
                 {
                     if ($this->Users->save($user))
                     {
+                        if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
+                        {
+                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado', ['key' => 'addUserSuccess']);
+                            return $this->redirect(['controller' => 'Users','action' => 'index']);
+                        }
+                        
                         $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
-                        return $this->redirect(['controller' => 'Pages','action' => 'home']);
+                        return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
                     }
                 }
                 catch(Exception $ex)

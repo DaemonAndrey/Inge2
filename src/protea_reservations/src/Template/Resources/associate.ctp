@@ -18,7 +18,7 @@
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             <legend>
                 <div class='text-center'>
-                    <h1>Asociar Administradores</h1>
+                    <h2>Asociar Administradores</h2>
                     <br>
                 </div>
             </legend>

@@ -4,15 +4,18 @@ INSERT INTO roles ( role_name ) VALUES
 ( 'SuperAdministrador' ); 	-- Role_id: 3
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
-( 'admin@ucr.ac.cr'			, '$2y$10$B0NqETK1IRWDmCZ15780UuFuVdBgetYNDgtj5NotHuDc4p1WM/ZqS'	, 'Administrador'	, 'Administrador'	, '88888888'	, 'Educación'	, 'Administrativo'	, 2		, 1 ), -- adminadmin
-( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Educación'	, 'Administrativo'	, 3		, 1 ), -- monicamonica
-( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Educación'	, 'Administrativo'	, 2		, 1 ), -- adrianadrian
-( 'usuario@ucr.ac.cr'		, '$2y$10$iwo.d6bADv2Q33.v1uKfs.FSeKWkUURodIyEvVcAbLWXBFxOSbeCy'	, 'Usuario'			, 'Usuario'			, '22222222'	, 'Educación'	, 'Otro'			, 1		, 1 ); -- usuariousuario
+( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 3		, 1 ), -- monicamonica
+( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 2		, 1 ), -- adrianadrian
+( 'alan@ucr.ac.cr'			, '$2y$10$cqvmVmhPl0fXxqAZtQSOc.Bv7xEM.Q86XDZ/3ob8Ge5SBeuZi3i2a'	, 'Alan'			, 'Calderón'		, '23232323'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 1 	, 1 ); -- alanalan
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
-( 'docente@ucr.ac.cr'		, '$2y$10$sx1rvA2rNrGkCwGy1.ut.O06fQHYxwH.IAsxfyjYudD7xSIGT4zeK'	, 'Docente'			, 'Docente'			, '77777777'	, 'Enseñanza del inglés'	, 'Docente'			, 1 ), -- 987654321
-( 'investigador@ucr.ac.cr'	, '$2y$10$14TTkEDdAQy/sF.619uYkeArhx7vunbB2r0addAvyFtXQfclGLAl.'	, 'Investigador'	, 'Investigador'	, '66666666'	, 'INIE'					, 'Investigador'	, 1 ), -- 12345678
-( 'otro@ucr.ac.cr'			, '$2y$10$RKh7c1e6jM1DYO11VYdAS.dFKY.OhBs6yMU7MpIt/owYRnFeHSalW'	, 'Otro'			, 'Otro'			, '99999999'	, 'ECCI'					, 'Otro'			, 1 ); -- 122345678
+( 'jose@ucr.ac.cr'			, '$2y$10$orXwF8quRhrft76ZH9JaFuK44vuFmSWPMv1E3DaN2OG9eDBHbO59S'	, 'Jose'			, 'Jimenez Blanco'	, '23232323'	, 'Escuela Educación Física y Deportes'						, 'Docente'			, 1 ), -- josejose
+( 'katherine@ucr.ac.cr'		, '$2y$10$tD45Fkx8mYANge/j/AEHA.3GbygqLX3aoKjkXEPGzXO4KrbMqH0H.'	, 'Katherine'		, 'Angulo'			, '23232323'	, 'Escuela de Orientación y Educación Especial'				, 'Administrativo'	, 1 ), -- katherinekatherine
+( 'jonathan@ucr.ac.cr'		, '$2y$10$H6d/1Y4oXFH6sCp6F6vog.y2wO40nZSW4dcQwcK20StJxvIyGJNge'	, 'Jonathan'		, 'Fonseca'			, '34343434'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ), -- jonathanjonathan
+( 'eduardo@ucr.ac.cr'		, '$2y$10$or3dcpx8gLghbObmMnzPu.Hf5vJC08/.SnzrsGdVcQCSVgFEX2j7C'	, 'Eduardo'			, 'Picado'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Administrativo'	, 1 ), -- eduardo
+( 'francisco@ucr.ac.cr'		, '$2y$10$IXbB8ICmTRKm7JCozNITeuC1sNdn7mT5J0r7gDOjUlzI1E.yS9I1a'	, 'Francisco'		, 'Zúñiga'			, '34343434'	, 'Instituto de Investigación en Educación INIE'			, 'Administrativo'	, 1 ), -- franciscofrancisco
+( 'andres@ucr.ac.cr'		, '$2y$10$mzaSydN/tGaOyilNOHw5zu5HkmrebOnLwaPiIvRm/N/Ub1J7qf8M.'	, 'Andrés'			, 'Vargas'			, '54545454'	, 'Escuela de Formación Docente'							, 'Docente'			, 1 ), -- andresandres
+( 'andrey@ucr.ac.cr'		, '$2y$10$ThasD/qbLS0Wzj5qnDndj.gbH2ff9RwfzcxmU832nWAGWF8sNmDEO'	, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ); -- andreyandrey
 
 INSERT INTO resource_types ( description ) VALUES
 ( 'Sala' ),

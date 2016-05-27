@@ -12,7 +12,9 @@ class UsersTable extends Table
     public function initialize(array $config)
     {
         $this->belongsToMany('Resources');
-        $this->hasOne('Roles');
+        $this->belongsTo('Roles', ['foreignKey' => 'role_id',
+                                   'joinType' => 'INNER'
+        ]);
     }
     
     /*
