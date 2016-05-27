@@ -15,7 +15,7 @@
 </div>
 
 <!-- TÍTULO -->
-<div class="row">
+<div class="row" style="color:#000;">
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <legend>
             <div class='text-center'>
@@ -52,7 +52,7 @@
 </div> <!-- FIN BOTONES -->
 
 <!-- TABLA -->
-<div class="table-responsive">
+<div class="table-responsive" style="color:#000;">
     <table class="table table-striped table-hover table-sm">
         <!-- ENCABEZADO TABLA -->
         <tr> 

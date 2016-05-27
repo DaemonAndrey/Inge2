@@ -1,6 +1,6 @@
 <?php    echo $this->Html->css('reservations.css');?>
 <div class="row text-center">
-  <div class="col-xs-12">
+  <div class="col-xs-12" style="color:#000;">
       <h2>Calendario de Reservas</h2>
   </div>
 </div>
@@ -34,14 +34,14 @@
         <!-- Modal content -->
         <div class="modal-content">
             <!-- Modal header -->
-            <div class="modal-header label-success">
+            <div class="modal-header label-success" style="color:#fff;">
                 <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Reservación</h4>
             </div>
             <!-- Fin Modal header -->
             
             <!-- Modal body -->
-            <div class="modal-body">
+            <div class="modal-body" style="color:#000;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                         <h3 id="fecha">Fecha</h3>
@@ -162,7 +162,7 @@
 
                 <div class="row">
                     <div class="text-center">
-                        <button data-toggle="collapse" class="btn btn-info" data-target="#resource_description">Información Detallada</button>
+                        <button data-toggle="collapse" class="btn btn-primary" data-target="#resource_description">Información Detallada</button>
                     </div>
                     <div id="resource_description" class="col-xs-10 col-xs-offset-1 collapse text-center"></div>
                 </div>
@@ -190,8 +190,8 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar">Reservar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
+                <button type="button" class="btn btn-info" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar">Reservar</button>
+                <button type="button" class="btn btn-danger" style="width:84px;" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
             <!-- Fin Modal footer -->
         </div>

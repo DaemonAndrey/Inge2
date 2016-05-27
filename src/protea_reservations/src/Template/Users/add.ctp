@@ -102,11 +102,11 @@
             <?php
             if($user_role == 3)
             {
-                echo $this->Html->link('Regresar', array('controller' => 'Users','action'=> 'index'), array( 'class' => 'btn btn-warning'));
+                echo $this->Html->link('Regresar', array('controller' => 'Users', 'action'=> 'index'), array( 'class' => 'btn btn-danger', 'style' => 'width:123px'));
             }
             else
             {
-                echo $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-warning'));
+                echo $this->Html->link('Regresar', array('controller' => 'pages', 'action'=> 'home'), array( 'class' => 'btn btn-danger', 'style' => 'width:123px'));
             }
             ?>
         </div>

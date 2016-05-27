@@ -1,8 +1,6 @@
 <!-- src/Template/Resources/index.ctp -->
 <?php echo $this->Html->css('resources.css'); ?>
 
-<br>
-
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceSuccess') ?>
@@ -12,14 +10,14 @@
 </div>
 
 <!-- TÍTULO -->
-<div class="row">
+<div class="row" style="color:#000;">
     <div class='col-xs-12'>
-        
+        <legend>
             <div class='text-center'>
                 <h2>Administrar Recursos</h2>
                 <br>
             </div>
-     
+        </legend>
     </div>
 </div> <!-- FIN TÍTULO -->
 
@@ -51,7 +49,7 @@
 
 <!-- TABLA -->
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-sm">
+    <table class="table table-striped table-hover table-sm" style="color:#000;">
         <!-- ENCABEZADO TABLA -->
         <tr>
             <th>

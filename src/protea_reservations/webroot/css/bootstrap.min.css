@@ -291,7 +291,7 @@ a {
 }
 a:hover,
 a:focus {
-    color: #91BB1B;
+    /*color: #91BB1B;*/
     text-decoration: underline
 }
 a:focus {
@@ -2171,8 +2171,10 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
     color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd
+    /*background-color: #428bca;
+    border-color: #357ebd;*/
+    background-color: #3276b1;
+    border-color: #285e8e
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -2180,8 +2182,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #3276b1;
-    border-color: #285e8e
+    background-color: #91BB1B;
+    border-color: #74B44D
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -2212,8 +2214,8 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-success {
     color: #fff;
-    background-color: #00A3C5;
-    border-color: #396399
+    background-color: #91BB1B;
+    border-color: #74B44D
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -2223,8 +2225,6 @@ fieldset[disabled] .btn-primary.active {
     color: #fff;
     background-color: #ffE000;
     border-color: #eea236
-    /*background-color: #91BB1B;
-    border-color: #74B44D*/
 }
 .btn-success:active,
 .btn-success.active,
@@ -2297,8 +2297,8 @@ fieldset[disabled] .btn-info.active {
 
 .btn-warning {
     color: #fff;
-    background-color: #91BB1B;
-    border-color: #74B44D
+    background-color: #ffE000;
+    border-color: #eea236
 }
 .btn-warning:hover,
 .btn-warning:focus,
@@ -2306,8 +2306,8 @@ fieldset[disabled] .btn-info.active {
 .btn-warning.active,
 .open .dropdown-toggle.btn-warning {
     color: #fff;
-    background-color: #ffE000;
-    border-color: #eea236
+    background-color: #91BB1B;
+    border-color: #74B44D
 }
 .btn-warning:active,
 .btn-warning.active,
@@ -2347,8 +2347,8 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger.active,
 .open .dropdown-toggle.btn-danger {
     color: #fff;
-    background-color: #d2322d;
-    border-color: #ac2925
+    background-color: #91BB1B;
+    border-color: #74B44D
 }
 .btn-danger:active,
 .btn-danger.active,
