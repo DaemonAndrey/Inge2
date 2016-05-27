@@ -16,7 +16,7 @@
     <div class='col-xs-12'>
         
             <div class='text-center'>
-                <h1>Administrar Recursos</h1>
+                <h2>Administrar Recursos</h2>
                 <br>
             </div>
      

@@ -10,7 +10,7 @@
     <fieldset>
         <legend>
             <div class='text-center'>
-                <h1>Formulario de Registro</h1>
+                <h2>Formulario de Registro</h2>
                 <br>
             </div>
         </legend>
