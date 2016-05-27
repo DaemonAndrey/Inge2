@@ -24,7 +24,7 @@ class LdapAuthenticate extends BaseAuthenticate {
         $dn = "uid=$username, ".$basedn;
         debug($dn);
         ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
-        $ldapbind = ldap_bind($ds, 'cn=admin, dc=test, dc=com', 'contrasena_admin');
+        $ldapbind = ldap_bind($ds, 'uid=usuario@ucr.ac.cr, cn=admin, dc=test, dc=com', 'usuariousuario');
         $r = ldap_search($ds,"ou=groups,dc=test,dc=com","(memberUid=rperez)");
         print_r($r);
         debug($ldapbind);
