@@ -13,7 +13,6 @@ class ReservationsController extends AppController
     */
 	public function index()
 	{
-
 		/**El siguiente query obtiene todos los tipos de recursos que existen en la base **/	
         $this->loadModel('ResourceTypes');
         $resource_type = $this->ResourceTypes->find()
@@ -52,6 +51,26 @@ class ReservationsController extends AppController
 		
 		$this->set('types',$resource_type);
 	}
+    
+    public function indexAdmin()
+    {
+        // Carga el modelo 'Users' para sacar la información del usuario que reservó
+        //$this->loadModel('Users');
+        //$this->set('users_info', $this->Users->find('all'));
+        
+        // Consulta join de 'Users' y 'Reservations', saca las reservaciones asociadas al admin
+        /*$query = $this->Reservations->find('all');
+        $query->innerJoinWith('Resources_Users', function($q){
+            return $q->where(['Resources_Users.user_id' => $this->Auth->User('id')])->andWhere(['Resources_Users.resource_id' => 'Reservations.resource_id']);
+        });*/
+        $query = $this->Reservations->find('all');
+        $query->select('r.id')->from(['ru' => 'Resources_Users', 'r' => 'Reservations'])->where(['ru.user_id' => $this->Auth->User('id')])->andWhere(['ru.resource_id' => 'r.resource_id']);
+        
+        //debug($query);
+        
+        // Pagina la tabla de recursos
+        $this->set('reservations', $this->paginate($query));
+    }
 
     /**
     * Guarda los datos asociados a una reservación en la BD.

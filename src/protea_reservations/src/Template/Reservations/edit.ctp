@@ -74,6 +74,10 @@
             </div>
         </div>
         <!-- FIN COMENTARIO DE USUARIO -->
+        
+        <br>
+        
+        
     </fieldset>
     <!-- FIN CAMPOS A MOSTRAR -->
     
