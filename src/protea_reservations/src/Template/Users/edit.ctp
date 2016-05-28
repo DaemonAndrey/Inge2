@@ -218,13 +218,16 @@
                 if($user['state'] == false)
                 {
                 ?>
-                    <?= $this->Form->postlink('<a class="btn btn-primary">Aceptar</a>',
-                                           array('controller' => 'Users','action' => 'confirm', $user->id),
-                                           array('escape' => false));
-                    ?>
-                    <?= $this->Form->postlink('<a class="btn btn-danger">Rechazar</a>',
-                                           array('controller' => 'Users','action' => 'reject', $user->id),
-                                           array('escape' => false));
+                    <?php
+
+                    echo $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-primary')),
+                                                array('controller' => 'users','action' => 'confirm', $user->id),
+                                                array('escape' => false));
+
+                    
+                    echo $this->Form->postLink($this->Html->tag('span','Rechazar',array('class' => 'btn btn-danger')),
+                                                array('controller' => 'users','action' => 'reject', $user->id),
+                                                array('escape' => false));
                     ?>
                    
                 <?php    

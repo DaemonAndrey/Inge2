@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
 
 class UsersController extends AppController
 {   
@@ -178,24 +179,24 @@ class UsersController extends AppController
     * Se rechaza la solicitud de registro de un usuario y se envía un correo, aparte se elimina el usuario de la BD.
     * Se pasa a la pagina principal. 
     */
-    public function reject($id)
+    public function reject($id=null)
     {
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
-            $this->request->allowMethod(['post', 'reject']);
-            $resource = $this->Users->get($id);
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->get($id);
             try
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'deleteResourceSuccess']);
+                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'addUserError']);
             }
         }
         else
@@ -208,7 +209,7 @@ class UsersController extends AppController
     * Se acepta la solicitud de registro de un usuario y se envía un correo.
     * Se pasa a la pagina principal. 
     */
-    public function confirm($id)
+    public function confirm($id=null)
     {
          if($this->Auth->user())
         {
@@ -221,7 +222,7 @@ class UsersController extends AppController
                 $user->state = 1;
                 
                 //Guarda el usuario con la nueva informacion modificada
-                if ($this->Users->save($resource))
+                if ($this->Users->save($user))
                 {
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
