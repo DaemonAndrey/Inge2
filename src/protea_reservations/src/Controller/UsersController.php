@@ -47,7 +47,7 @@ class UsersController extends AppController
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
         $query->innerJoinWith('Roles')
-            ->select(['Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
+            ->select(['Users.id','Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));

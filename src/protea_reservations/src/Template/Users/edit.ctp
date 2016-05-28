@@ -234,7 +234,7 @@
                 {
                 ?> 
                      <?= $this->Form->button('Actualizar', ['class' => 'btn btn-success']); ?>
-                     <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-warning')) ?>
+                     <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger')) ?>
                     
                 <?php     
                 }
