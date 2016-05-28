@@ -217,14 +217,15 @@
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
                 {
-                ?>
-                    <?php
+                
+                    echo $this->Form->postLink($this->Html->tag('span',null,array('type'  => 'hidden')),
+                                                array('controller' => 'users','action' => 'reject', $user->id),
+                                                array('escape' => false));
 
                     echo $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-primary')),
                                                 array('controller' => 'users','action' => 'confirm', $user->id),
                                                 array('escape' => false));
 
-                    
                     echo $this->Form->postLink($this->Html->tag('span','Rechazar',array('class' => 'btn btn-danger')),
                                                 array('controller' => 'users','action' => 'reject', $user->id),
                                                 array('escape' => false));

@@ -215,6 +215,9 @@ class UsersController extends AppController
         {
             //Carga el usuario se desea editar
             $user = $this->Users->get($id);
+            $username = $this->request->data['Users']['user'];
+
+            echo $username; 
              
             if($this->request->is(array('post', 'put')))
 		    {
@@ -224,6 +227,8 @@ class UsersController extends AppController
                 //Guarda el usuario con la nueva informacion modificada
                 if ($this->Users->save($user))
                 {
+                    echo $username; 
+             
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
