@@ -39,6 +39,11 @@
                 Curso/Actividad
             </th>
             <th>
+                <?php 
+                echo $this->Paginator->sort('state', 'Estado')
+                ?>
+            </th>
+            <th>
                 Revisar
             </th>
         </tr>
@@ -88,6 +93,38 @@
                     ?>
                 </td>
                 <!-- FIN ACTIVIDAD -->
+                
+                <!-- ESTADO -->
+                <td>
+                    <?php
+                        switch($reservation['state'])
+                        {
+                            case 1:
+                                echo 'Pendiente';
+                                break;
+                            case 2:
+                                echo 'Aceptada';
+                                break;
+                            case 3:
+                                echo 'Rechazada';
+                                break;
+                            case 4:
+                                echo 'Cancelada';
+                                break;
+                        }
+                    ?>
+                </td>
+                <!-- FIN ESTADO -->
+                
+                <!-- REVISAR -->
+                <td>
+                    <?php
+                        echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                                                   array('controller' => 'reservations','action' => 'edit', $reservation->id),
+                                                   array('escape' => false));
+                    ?>
+                </td>
+                <!-- FIN REVISAR -->
             </tr>
         <?php endforeach; ?>
         <?php unset($reservation); ?>

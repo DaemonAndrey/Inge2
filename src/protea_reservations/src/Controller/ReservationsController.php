@@ -55,8 +55,7 @@ class ReservationsController extends AppController
     public function manage()
     {
         $query = $this->Reservations->find('all')
-                    ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title'])
-                    //->distinct(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date'])
+                    ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title', 'Reservations.state'])
                     ->join([
                         'users' => [
                             'table' => 'Users',
@@ -68,7 +67,6 @@ class ReservationsController extends AppController
                             'type' => 'INNER',
                             'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
                         ],
-                        
                         'resources' => [
                             'table' => 'Resources',
                             'type' => 'INNER',
