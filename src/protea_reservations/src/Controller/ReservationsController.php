@@ -52,21 +52,29 @@ class ReservationsController extends AppController
 		$this->set('types',$resource_type);
 	}
     
-    public function indexAdmin()
+    public function manage()
     {
-        // Carga el modelo 'Users' para sacar la información del usuario que reservó
-        //$this->loadModel('Users');
-        //$this->set('users_info', $this->Users->find('all'));
-        
-        // Consulta join de 'Users' y 'Reservations', saca las reservaciones asociadas al admin
-        /*$query = $this->Reservations->find('all');
-        $query->innerJoinWith('Resources_Users', function($q){
-            return $q->where(['Resources_Users.user_id' => $this->Auth->User('id')])->andWhere(['Resources_Users.resource_id' => 'Reservations.resource_id']);
-        });*/
-        $query = $this->Reservations->find('all');
-        $query->select('r.id')->from(['ru' => 'Resources_Users', 'r' => 'Reservations'])->where(['ru.user_id' => $this->Auth->User('id')])->andWhere(['ru.resource_id' => 'r.resource_id']);
-        
-        //debug($query);
+        $query = $this->Reservations->find('all')
+                    ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title'])
+                    //->distinct(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date'])
+                    ->join([
+                        'users' => [
+                            'table' => 'Users',
+                            'type' => 'INNER',
+                            'conditions' => 'users.id = Reservations.user_id'
+                        ],
+                        'resources_users' => [
+                            'table' => 'Resources_Users',
+                            'type' => 'INNER',
+                            'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
+                        ],
+                        
+                        'resources' => [
+                            'table' => 'Resources',
+                            'type' => 'INNER',
+                            'conditions' => 'resources.id = Reservations.resource_id'
+                        ]
+                    ]);
         
         // Pagina la tabla de recursos
         $this->set('reservations', $this->paginate($query));
@@ -124,7 +132,7 @@ class ReservationsController extends AppController
     * la acepta o la rechaza.
     * @param integer $idReservacion
     */
-    public function edit($id = null)
+    public function edit($id = null, $accion = null)
     {
         if($this->Auth->user())
         {
@@ -135,7 +143,7 @@ class ReservationsController extends AppController
             {
                 // Carga la información que se obtiene en el formulario
                 $this->Reservations->patchEntity($reservation, $this->request->data);
-                
+                /*
                 // Guarda la reservación con la nueva información modificada
                 if($this->Reservations->save($reservation))
                 {
@@ -147,11 +155,21 @@ class ReservationsController extends AppController
                 {
                     // En caso de que no se haya podido modificar la información, despligue un mensaje indicando que hubo error
                     $this->Flash->error('No se ha podido modificar la reservación', ['key' => 'editReservationError']);
-                }
+                }*/
             }
             
             $this->set('reservation', $reservation);
         }
+    }
+    
+    public function accept($id = null, $adminComment = null)
+    {
+        debug($id);
+    }
+    
+    public function reject($id = null, $adminComment = null)
+    {        
+        debug($adminComment);
     }
     
     /**
