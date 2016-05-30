@@ -28,6 +28,7 @@ class UsersController extends AppController
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
+     
     }
     
     /** 
@@ -47,7 +48,7 @@ class UsersController extends AppController
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
         $query->innerJoinWith('Roles')
-            ->select(['Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
+            ->select(['Users.id','Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
@@ -57,10 +58,13 @@ class UsersController extends AppController
      * Para futuras vistas
      * @param  integer $id
      */
+    
     public function view($id)
     {
         $user = $this->Users->get($id);
         $this->set(compact('user'));
+       
+        
     }
 
     /**
@@ -159,7 +163,7 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-        if ($this->request->action === 'view') {
+        if ($this->request->action === 'view' && $user['role_id'] != 3) {
             return false;            
         }
 
@@ -170,6 +174,7 @@ class UsersController extends AppController
         if ($this->request->action === 'edit' && $user['role_id'] != 3) {
             return false;
         } 
+        
         
         return parent::isAuthorized($user);
     }
