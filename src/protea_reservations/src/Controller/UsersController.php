@@ -88,12 +88,19 @@ class UsersController extends AppController
                     {
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
-                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado', ['key' => 'addUserSuccess']);
+                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado',
+                                                  ['key' => 'addUserSuccess']);
+                            
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f7d69c50fee9f8bb5d5e056edebb51fa6c85ca7
                         
-                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
+                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo',
+                                              ['key' => 'addUserSuccess']);
+                        
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
                     }
                 }
