@@ -1,5 +1,6 @@
 <!-- src/Template/Resources/edit.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
+<?php echo $this->Html->css('login.css'); ?>
 
 <div class="users form">
     <div style="text-align:center">
@@ -219,7 +220,7 @@
                 {
                 
                     echo $this->Form->postLink($this->Html->tag('span',null,array('type'  => 'hidden')),
-                                                array('controller' => 'users','action' => 'reject', $user->id),
+                                                array('controller' => 'users','action' => 'add', $user->id),
                                                 array('escape' => false));
 
                     echo $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-primary')),

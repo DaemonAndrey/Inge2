@@ -6,10 +6,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-<<<<<<< HEAD
-=======
 use Cake\Mailer\MailerAwareTrait;
->>>>>>> 24c8309104e519c732cbd38e4aff201cc1842a86
 use Cake\Mailer\Email;
 
 class UsersController extends AppController
@@ -89,14 +86,12 @@ class UsersController extends AppController
                     
                     if ($this->Users->save($user))
                     {
-<<<<<<< HEAD
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
                             $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado', ['key' => 'addUserSuccess']);
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
-=======
->>>>>>> 24c8309104e519c732cbd38e4aff201cc1842a86
+
                         
                         $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
@@ -225,9 +220,7 @@ class UsersController extends AppController
         {
             //Carga el usuario se desea editar
             $user = $this->Users->get($id);
-            $username = $this->request->data['Users']['user'];
-
-            echo $username; 
+            $username = $user->username;
              
             if($this->request->is(array('post', 'put')))
 		    {
@@ -237,7 +230,7 @@ class UsersController extends AppController
                 //Guarda el usuario con la nueva informacion modificada
                 if ($this->Users->save($user))
                 {
-                    echo $username; 
+                    $this->getMailer('User')->send('welcome', [$user]);
              
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
@@ -262,6 +255,8 @@ class UsersController extends AppController
         $this->loadModel('Roles');
         $options = $this->Roles->find('list',['keyField' => 'id','valueField' => 'role_name'])->toArray();                              
         $this->set('roles_options', $options);
+        
+
         
         // Si el usuario tiene permisos
         if($this->Auth->user())
