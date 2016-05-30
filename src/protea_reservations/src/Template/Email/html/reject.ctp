@@ -1,0 +1,1 @@
+<h1>¡Lo sentimos! Su reservación ha sido rechazada.</h1>

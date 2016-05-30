@@ -6,6 +6,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+<<<<<<< HEAD
+=======
+use Cake\Mailer\MailerAwareTrait;
+>>>>>>> 24c8309104e519c732cbd38e4aff201cc1842a86
 use Cake\Mailer\Email;
 
 class UsersController extends AppController
@@ -64,6 +68,8 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
+    use MailerAwareTrait;
+
     /**
      * Se encarga del registro de usuarios, se pasa a la vista de REGISTRO.
      * Indica si se proceso la solicitud de registro o no.
@@ -80,13 +86,17 @@ class UsersController extends AppController
                 
                 try
                 {
+                    
                     if ($this->Users->save($user))
                     {
+<<<<<<< HEAD
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
                             $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado', ['key' => 'addUserSuccess']);
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
+=======
+>>>>>>> 24c8309104e519c732cbd38e4aff201cc1842a86
                         
                         $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
