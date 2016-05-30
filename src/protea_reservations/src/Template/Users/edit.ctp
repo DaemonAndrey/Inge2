@@ -218,29 +218,26 @@
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
                 {
-                
-                    echo $this->Form->postLink($this->Html->tag('span',null,array('type'  => 'hidden')),
-                                                array('controller' => 'users','action' => 'add', $user->id),
-                                                array('escape' => false));
-
-                    echo $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-primary')),
-                                                array('controller' => 'users','action' => 'confirm', $user->id),
-                                                array('escape' => false));
-
-                    echo $this->Form->postLink($this->Html->tag('span','Rechazar',array('class' => 'btn btn-danger')),
-                                                array('controller' => 'users','action' => 'reject', $user->id),
-                                                array('escape' => false));
                     ?>
-                   
+                    <?= $this->Html->link($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-info')),
+                                                array('controller' => 'users','action' => 'confirm', $user->id),
+                                                array('escape' => false)); ?>
+
+                    <?= $this->Html->link($this->Html->tag('span','Rechazar',array('class' => 'btn btn-danger')),
+                                                array('controller' => 'users','action' => 'reject', $user->id),
+                                                array('escape' => false)); ?>
                 <?php    
                 } 
                 // SI EL USUARIO ESTA ACEPTADO
                 else
                 {
                 ?> 
-                     <?= $this->Form->button('Actualizar', ['class' => 'btn btn-success']); ?>
-                     <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger')) ?>
-                    
+                     <?= $this->Form->button('Actualizar',
+                                             ['class' => 'btn btn-info']); ?>
+            
+                     <?= $this->Html->link('Regresar',
+                                           array('controller' => 'users','action'=> 'index'),
+                                           array( 'class' => 'btn btn-danger')) ?>
                 <?php     
                 }
                 ?>     
