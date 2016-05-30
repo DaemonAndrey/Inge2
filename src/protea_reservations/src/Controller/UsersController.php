@@ -93,11 +93,6 @@ class UsersController extends AppController
                             
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 1f7d69c50fee9f8bb5d5e056edebb51fa6c85ca7
-                        
                         $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo',
                                               ['key' => 'addUserSuccess']);
                         
