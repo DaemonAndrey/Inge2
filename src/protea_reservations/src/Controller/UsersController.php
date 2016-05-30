@@ -246,6 +246,10 @@ class UsersController extends AppController
                 }
             }
         }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
     }    
     
     /**
