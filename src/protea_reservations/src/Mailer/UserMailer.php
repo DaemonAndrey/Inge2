@@ -10,7 +10,7 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject(sprintf('Bienvenid@ %s', $user->first_name))
+            ->subject(sprintf('Bienvenid@ %s al sistema de Reservas', $user->first_name))
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
@@ -20,7 +20,7 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject('Solicitud de Registro Reservaciones PROTEA')
+            ->subject('Solicitud de Registro de Cuenta (Reservaciones Facultad de Educación-UCR)')
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
@@ -30,7 +30,7 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject('Solicitud de Registro Reservaciones PROTEA')
+            ->subject('Solicitud de Registro de Cuenta (Reservaciones Facultad de Educación-UCR)')
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
