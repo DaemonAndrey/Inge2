@@ -15,6 +15,16 @@ class UserMailer extends Mailer
             ->template() // By default template with same name as method name is used.
             ->layout('default');
     }
+    
+    public function rejected($user)
+    {
+        $this
+            ->to($user->username)
+            ->subject(sprintf('Solicitud rechazada.', $user->first_name))
+            ->emailFormat('html')
+            ->template() // By default template with same name as method name is used.
+            ->layout('default');
+    }
 
     public function confirm($user)
     {
