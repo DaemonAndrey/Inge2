@@ -119,7 +119,7 @@
                 <!-- REVISAR -->
                 <td>
                     <?php
-                        echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                        echo $this->Html->link('<i class="glyphicon glyphicon-check"></i>',
                                                    array('controller' => 'reservations','action' => 'edit', $reservation->id),
                                                    array('escape' => false));
                     ?>

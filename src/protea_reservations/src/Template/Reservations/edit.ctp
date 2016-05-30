@@ -16,7 +16,21 @@
     
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
-        <?php setlocale(LC_ALL,"es_ES"); ?>
+        <!-- RECURSO -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-3 col-xs-offset-3">
+                    <?= $this->Form->label('Reservations.resource_id', 'Recurso'); ?>
+                </div>
+                <div class="col-xs-3">
+                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['style' => 'font-weight: normal']); ?>
+                </div>
+            </div>
+        </div>
+        <!-- FIN RECURSO -->
+        
+        <br>
+        
         <!-- FECHA DE RESERVACIÓN -->
         <div class="row">
             <div class="col-xs-12">
@@ -24,7 +38,55 @@
                     <?= $this->Form->label('Reservations.start_date', 'Fecha de reservación'); ?>
                 </div>
                 <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.start_date', date_format($reservation->start_date, 'd/M/Y'), ['style' => 'font-weight: normal']); ?>
+                    <?php 
+                        setlocale(LC_TIME,"es_ES"); 
+                        $mesIngles = strftime('%b', strtotime($reservation->start_date));
+                        $mesEspanol = '';    
+                    
+                        switch($mesIngles)
+                        {
+                            case 'Jan':
+                                $mesEspanol = 'ene';
+                                break;
+                            case 'Feb':
+                                $mesEspanol = 'feb';
+                                break;
+                            case 'Mar':
+                                $mesEspanol = 'mar';
+                                break;
+                            case 'Apr':
+                                $mesEspanol = 'abr';
+                                break;
+                            case 'May':
+                                $mesEspanol = 'may';
+                                break;
+                            case 'Jun':
+                                $mesEspanol = 'jun';
+                                break;
+                            case 'Jul':
+                                $mesEspanol = 'jul';
+                                break;
+                            case 'Aug':
+                                $mesEspanol = 'ago';
+                                break;
+                            case 'Sep':
+                                $mesEspanol = 'set';
+                                break;
+                            case 'Oct':
+                                $mesEspanol = 'oct';
+                                break;
+                            case 'Nov':
+                                $mesEspanol = 'nov';
+                                break;
+                            case 'Dec':
+                                $mesEspanol = 'dic';
+                                break;
+                        }
+                    
+                        //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
+                        $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
+                    ?>
+                    <?= $this->Form->label('Reservations.start_date', $fechaEspanol, ['style' => 'font-weight: normal']); ?>
                 </div>
             </div>
         </div>
@@ -59,6 +121,21 @@
             </div>
         </div>
         <!-- FIN FECHA DE INICIO -->
+        
+        <br>
+        
+        <!-- USUARIO -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-3 col-xs-offset-3">
+                    <?= $this->Form->label('Reservations.user_id', 'Usuario'); ?>
+                </div>
+                <div class="col-xs-3">
+                    <?= $this->Form->label('Reservations.user_id', $reservation->user->first_name.' '.$reservation->user->last_name, ['style' => 'font-weight: normal']); ?>
+                </div>
+            </div>
+        </div>
+        <!-- FIN USUARIO -->
         
         <br>
         

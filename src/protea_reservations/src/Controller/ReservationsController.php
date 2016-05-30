@@ -135,7 +135,10 @@ class ReservationsController extends AppController
         if($this->Auth->user())
         {
             // Carga la reservación que se desea editar
-            $reservation = $this->Reservations->get($id);
+            $reservation = $this->Reservations->get($id, [
+                'contain' => ['Users', 'Resources'],
+                'fields' => ['start_date', 'end_date', 'user_comment', 'course_id', 'course_name', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+            ]);
             
             if($this->request->is(array('post', 'put')))
             {
