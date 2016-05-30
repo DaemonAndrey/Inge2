@@ -197,7 +197,7 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->getMailer('User')->send('rejected', [$user]);
+                    $this->getMailer('User')->send('reject', [$user]);
                     $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
