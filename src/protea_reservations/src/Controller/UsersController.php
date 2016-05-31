@@ -275,7 +275,7 @@ class UsersController extends AppController
             if($this->request->is(array('post', 'put')))
 		    {
                 //Carga la informacion que se obtiene en el formulario
-                $this->Users->patchEntity($user, $this->request->data);
+                $this->Users->patchEntity($user, $this->request->data,['validate' => 'update']);
                    
 	                //Guarda el recurso con la nueva informacion modificada
                 if ($this->Users->save($user))
