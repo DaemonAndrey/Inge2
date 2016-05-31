@@ -138,23 +138,15 @@
                 
                 <!-- Fila 3 (Sigla y nombre del curso) -->
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Sigla del curso</h4>
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <h4>Nombre del Evento o Curso</h4>
                         </div>
-                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <input class="form-control" type="text" id="course_id" role="textbox" aria-label="Sigla del curso (Opcional)" placeholder="Opcional">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <input class="form-control" type="text" id="event_name" role="textbox" aria-label="Nombre del evento" placeholder="FD-1312">
                         </div>
                     </div>
                     
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Nombre del curso</h4>
-                        </div>
-                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <input class="form-control" type="text" id="course_name" role="textbox" aria-label="Nombre del curso (Opcional)"  placeholder="Opcional">
-                        </div>
-                    </div>
                 </div>
                 <!-- Fin Fila 3 (Sigla y nombre del curso) -->
                 

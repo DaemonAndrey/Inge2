@@ -21,13 +21,21 @@ class ReservationsController extends AppController
                         ->select(['description']);
 
         $resource_type = $resource_type->toArray();
+        
+        /** Esta consulta obtiene todos los recursos que son del tipo sala**/
+        $this->loadModel('Resources');
+        $resource = $this->Resources->find()
+                                    ->select(['id'])
+                                    ->where(['resource_type_id' => 1]);
+        $resource = $resource->toArray();
 			
         
 		if($this->request->is('post'))
 		{
-			$resources = $this->Reservations->find()
-							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'reservation_title'])
 
+            
+			$resources = $this->Reservations->find()
+							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'event_name'])
 							->hydrate(false)
 				            /*->where(['state' => 2])*/;
 
@@ -37,6 +45,9 @@ class ReservationsController extends AppController
 					*/
 			
 			$resources = $resources->toArray();
+            
+            //debug($resources);
+            
 		
 			$events = array();
 			array_push($events, $resources);
@@ -46,11 +57,16 @@ class ReservationsController extends AppController
 			$events = str_replace(".",",",$events);
 	
 			$events = substr($events, 1,strlen($events)-2);
+            
+            $events = 
+            
+            //$events = backrgroundColor('#378006');
 			die($events);
 			
 		}
 		
 		$this->set('types',$resource_type);
+        
 	}
 
     /**
@@ -69,14 +85,10 @@ class ReservationsController extends AppController
                 $reservation->start_date = $start_date;
                 $end_date = $this->request->data['end_date'];
                 $reservation->end_date = $end_date;
-                $reservation_title = $this->request->data['reservation_title'];
-                $reservation->reservation_title = $reservation_title;
+                $event_name = $this->request->data['event_name'];
+                $reservation->event_name = $event_name;
                 $user_comment = $this->request->data['user_comment'];
                 $reservation->user_comment = $user_comment;
-                $course_name = $this->request->data['course_name'];
-                $reservation->course_name = $course_name;
-                $course_id = $this->request->data['course_id'];
-                $reservation->course_id = $course_id;
 
                 $resource = $this->request->data['resource'];
                 $this->loadModel('Resources');

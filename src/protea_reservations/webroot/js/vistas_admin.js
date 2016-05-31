@@ -52,13 +52,19 @@
                 center: 'month,basicWeek,agendaDay',
                 right: 'today prev,next'
             },
-            events: JSON.parse(json_events),
+            eventSources:[{
+                events: JSON.parse(json_events),
+                backgroundColor: '#91BB1B',
+                borderColor: '#91BB1B'
+            }],
+            
             eventLimit: true,
             views: {
                 basic: {
                     eventLimit: 20// options apply to basicWeek and basicDay views
                 }
             }
+            
         });
     });
     
@@ -167,11 +173,8 @@
         var end_Date = date + " " + end;       
         
         var resource = document.getElementById("resource").value;
-        var course_id = document.getElementById("course_id").value;
-        var course_name = document.getElementById("course_name").value;
+        var event_name = document.getElementById("event_name").value;
         var user_comment = document.getElementById("comment").value;
-        
-        var reservation_Title = resource + " " + course_id;
                 
         var path = window.location.pathname;
 
@@ -187,10 +190,8 @@
         xhttp.send(JSON.stringify({
             start_date : start_Date,
             end_date : end_Date,
-            reservation_title : reservation_Title,
             user_comment : user_comment,
-            course_name : course_name,
-            course_id : course_id, 
+            event_name : event_name, 
             resource: resource
         }));   
     }
@@ -267,6 +268,11 @@
     function showDescription(element)
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
+    }
+
+    function showState(element)
+    {
+        document.getElementById("state").innerHTML = obj[element[element.selectedIndex].id].reservation.state;
     }
     
     
