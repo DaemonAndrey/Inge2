@@ -41,17 +41,18 @@
         </div>
         
         <!-- NOMBRE -->
+        <!--
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                 <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Users.first_name', 'Nombre: ');
+                        $this->Form->label('Users.first_name', 'Nombre Completo: ');
                     ?>
                 </div>
                 <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
                     <?=
                         $this->Form->label('Users.first_name',
-                                           $user->first_name,
+                                           $user->first_name . ' ' . $user->last_name,
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
@@ -60,9 +61,10 @@
                 </div>
             </div>
         </div>
+        -->
         
         <!-- APELLIDO -->
-        <div class="row">
+        <!--<div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                 <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
@@ -81,13 +83,14 @@
                 </div>
             </div>
         </div>
+        -->
         
         <!-- NUMERO DE TELEFONO -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                 <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Users.telephone_number', 'Número de Teléfono: ');
+                        $this->Form->label('Users.telephone_number', 'Teléfono: ');
                     ?>
                 </div>
                 <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
@@ -124,18 +127,39 @@
             </div>
         </div>
         
-         <!-- Departamento -->
+        <!-- Departamento -->
         <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                 <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                     <?=
-                        $this->Form->label('Users.department', 'Puesto: ');
+                        $this->Form->label('Users.position', 'Puesto: ');
                     ?>
                 </div>
                 <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
                     <?=
                         $this->Form->label('Users.position',
                                            $user->position,
+                                           ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                    ?>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rol -->
+        <div class="row">
+            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
+                    <?=
+                        $this->Form->label('Roles.role_name', 'Rol: ');
+                    ?>
+                </div>
+                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
+                    <?=
+                        $this->Form->label('Roles.role_name',
+                                           $user->_matchingData['Roles']->role_name,
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);

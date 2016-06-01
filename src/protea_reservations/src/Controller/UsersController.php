@@ -49,8 +49,15 @@ class UsersController extends AppController
         
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
+        
         $query->innerJoinWith('Roles')
-            ->select(['Users.id','Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
+              ->select(['Users.id',
+                        'Users.username',
+                        'Users.first_name',
+                        'Users.last_name',
+                        'Users.role_id',
+                        'Users.state',
+                        'Roles.role_name']);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
@@ -63,10 +70,23 @@ class UsersController extends AppController
     
     public function view($id)
     {
-        $user = $this->Users->get($id);
-        $this->set(compact('user'));
-       
+        // Carga el modelo de 'Roles' para sacar el rol del usuario
+        $this->loadModel('Roles');
         
+        //$user = $this->Users->get($id);
+        $user = $this->Users->find('all')
+                            ->where(['Users.id' => $id]);
+        
+        $user->innerJoinWith('Roles')
+             ->select(['Users.username',
+                       'Users.first_name',
+                       'Users.last_name',
+                       'Users.telephone_number',
+                       'Users.department',
+                       'Users.position',
+                       'Roles.role_name']);
+        
+        $this->set('user', $user->first());
     }
 
     use MailerAwareTrait;
@@ -277,7 +297,6 @@ class UsersController extends AppController
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
-            
             //Carga el usuario que se desea editar
             $user = $this->Users->get($id);
             
