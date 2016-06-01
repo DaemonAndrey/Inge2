@@ -7,7 +7,8 @@
         {
             if(xhttp.readyState == 4 && xhttp.status == 200)
             {
-                json_events = xhttp.responseText;
+                json_events = xhttp.responseText;               
+                
             }
         };
         
@@ -27,6 +28,8 @@
         xhttp.open("POST", path+append,false);
         xhttp.setRequestHeader("type", "fetch");
         xhttp.send(); 
+        
+        
         
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
@@ -52,12 +55,8 @@
                 center: 'month,basicWeek,agendaDay',
                 right: 'today prev,next'
             },
-            eventSources:[{
-                events: JSON.parse(json_events),
-                backgroundColor: '#91BB1B',
-                borderColor: '#91BB1B'
-            }],
-            
+              
+            events:  JSON.parse(json_events),//JSON.parse(json_events),                
             eventLimit: true,
             views: {
                 basic: {

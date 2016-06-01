@@ -172,11 +172,25 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    
-                </div>
                 <!-- Fin Fila 4 (Comentario) -->
+                
+                <br>
+                <!-- Fila 5 (Comentario) -->
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="col-xs-12">
+                            <label><input type="checkbox" value="" unchecked id="check"> He leído y acepto los </label>
+                            <?php echo $this->Html->link('Términos y Condiciones de Uso',
+                                         array('controller'=>'pages','action' => 'policy'),
+                                         array('target' => '_blank', 'escape' => false, 'title'=>'Condiciones de Uso')) ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Fila 5 (Comentario) -->
+                
+                <br>
+
+                
             </div>
             <!-- Fin Modal body -->
             

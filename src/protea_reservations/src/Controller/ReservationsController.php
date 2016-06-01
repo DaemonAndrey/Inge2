@@ -21,44 +21,58 @@ class ReservationsController extends AppController
                         ->select(['description']);
 
         $resource_type = $resource_type->toArray();
-        
-        /** Esta consulta obtiene todos los recursos que son del tipo sala**/
-        $this->loadModel('Resources');
-        $resource = $this->Resources->find()
-                                    ->select(['id'])
-                                    ->where(['resource_type_id' => 1]);
-        $resource = $resource->toArray();
 			
         
 		if($this->request->is('post'))
 		{
-
+            /** Consulta para mostrar en el calendarios solo las reservacionesque corresponden a recursos tipo sala 
+            y que esten aceptadas o pendientes **/
+            $resources = $this->Reservations->find('all')
+            ->select(['id', 'start'=>'Reservations.start_date', 'end'=>'Reservations.end_date', 
+                      'title'=>'Reservations.event_name','state'])
+            ->join([
+                'resources' => [
+                    'table' => 'Resources',
+                    'type' => 'INNER',
+                    'conditions' => ['resources.id = Reservations.resource_id', 'resources.resource_type_id' => 1 ]
+                ]
+            ])
+            ->where([ 
+                'Reservations.state IN' => [1,2] 
+            ]);
             
-			$resources = $this->Reservations->find()
-							->select(['id','start'=>'start_date','end'=>'end_date','title'=>'event_name'])
-							->hydrate(false)
-				            /*->where(['state' => 2])*/;
-
-                                    /*{
-        			return $exp->notEq('reservation_title', "");
-    				});
-					*/
-			
 			$resources = $resources->toArray();
-            
-            //debug($resources);
             
 		
 			$events = array();
 			array_push($events, $resources);
-
+            
+            $events = $events[0];
+            
+            foreach($events as $key)
+            {
+                $bordercolor = '#FAAC58';
+                $backgroundcolor = '#FAAC58';
+                if($key['state'] == 2)
+                {
+                    $backgroundcolor = '#91BB1B';
+                    $bordercolor = '#91BB1B';
+                }
+                $key['backgroundColor'] = $backgroundcolor; //array('backgroundColor'=>'#00000');  
+                $key['borderColor'] = $bordercolor;
+                    
+                
+            }
+            
+           // debug($events);
+            
 			$events =  json_encode($events);
 
 			$events = str_replace(".",",",$events);
 	
-			$events = substr($events, 1,strlen($events)-2);
+			//$events = substr($events, 1,strlen($events)-2);
             
-            $events = 
+            
             
             //$events = backrgroundColor('#378006');
 			die($events);
@@ -66,6 +80,7 @@ class ReservationsController extends AppController
 		}
 		
 		$this->set('types',$resource_type);
+        
         
 	}
 
@@ -98,7 +113,10 @@ class ReservationsController extends AppController
 
                 $reservation->resource_id = $resource_id;
                 $reservation->user_id = $this->Auth->User('id');
-                print($reservation);
+                
+                /*if(isset($_POST['check'])){ 
+                $this->Reservation->save($reservation);
+                } */
 
                 if ($this->Reservations->save($reservation))
                 {
