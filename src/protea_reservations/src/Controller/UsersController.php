@@ -175,10 +175,15 @@ class UsersController extends AppController
             return false;            
         }
         
-        if ($this->request->action === 'edit' && $user['role_id'] != 3) {
-            return false;
+        if ($this->request->action === 'edit'){
+            // Recupera el id enviado por url    
+            $user_id = $this->request->pass[0];            
+            if ($user['role_id'] == 3 || $user['id'] == $user_id ) {
+                return true;
+            }
+            else return false;
         } 
-        
+
         return parent::isAuthorized($user);
     }
     
