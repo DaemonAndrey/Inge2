@@ -79,7 +79,7 @@
                     <td>
                         <?php
                             echo $this->Html->link($user['username'],
-                                                   array('controller' => 'Users','action' => 'view', $user->id));
+                                                   array('controller' => 'users','action' => 'view', $user->id));
                         ?>
                     </td>
                     <!-- NOMBRE -->

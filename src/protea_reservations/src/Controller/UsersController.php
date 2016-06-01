@@ -30,6 +30,7 @@ class UsersController extends AppController
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
+     
     }
     
     /** 
@@ -59,10 +60,13 @@ class UsersController extends AppController
      * Para futuras vistas
      * @param  integer $id
      */
+    
     public function view($id)
     {
         $user = $this->Users->get($id);
         $this->set(compact('user'));
+       
+        
     }
 
     use MailerAwareTrait;
@@ -167,7 +171,7 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-        if ($this->request->action === 'view') {
+        if ($this->request->action === 'view' && $user['role_id'] != 3) {
             return false;            
         }
 
@@ -183,7 +187,7 @@ class UsersController extends AppController
             }
             else return false;
         } 
-
+        
         return parent::isAuthorized($user);
     }
     

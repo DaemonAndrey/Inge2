@@ -61,7 +61,8 @@
                                             
                                                         'Escuela de Orientación y Educación Especial'   => 'Escuela de Orientación y Educación Especial',
                                                         'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
-                                                        'Biblioteca'    => 'Biblioteca'
+                                                        'Biblioteca'    => 'Biblioteca',
+                                                        'Decanato'    => 'Decanato'
 
                 ),  'class' => 'form-control']) ?>
                 <br>
