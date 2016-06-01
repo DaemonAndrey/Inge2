@@ -91,7 +91,6 @@
                 <?php
             }
         ?>
-        
    </fieldset>
     
     <!-- BOTONES -->
