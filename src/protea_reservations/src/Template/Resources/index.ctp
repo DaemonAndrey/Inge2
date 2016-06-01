@@ -72,7 +72,7 @@
             </th> 
             <th>
                 <?php
-                    echo $this->Paginator->sort('active', 'Activo ');
+                    echo $this->Paginator->sort('active', 'Habilitado ');
                     echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                 ?>
             </th> 
