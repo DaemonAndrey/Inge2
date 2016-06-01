@@ -326,7 +326,6 @@ class UsersController extends AppController
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
     }
-    
 }
 
 ?>

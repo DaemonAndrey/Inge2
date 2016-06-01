@@ -181,7 +181,7 @@
                             
                                 <!-- MI CUENTA -->
                                 <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
-                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('controller'=>'users','action' => 'edit', $this->request->session()->read('Auth.User.id')),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                             
                                 <!-- LOGOUT -->
