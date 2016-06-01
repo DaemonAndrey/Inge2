@@ -15,7 +15,7 @@
             <legend>
                 <div class='text-center'>
                     <?php
-                    if($user_role == 1)
+                    if($user->username == $user_username)
                     {
                         ?>
                         <h2>Actualizar Mi Cuenta</h2>
@@ -24,7 +24,7 @@
                     else
                     {
                         ?>
-                        <h2>Editar Usuario</h2>
+                        <h2>Actualizar Usuario</h2>
                         <?php
                     }
                     ?>
