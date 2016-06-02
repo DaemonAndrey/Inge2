@@ -3,7 +3,8 @@
 
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
-
+    <?= $this->Flash->render('deleteUserSuccess') ?>
+    <?= $this->Flash->render('deleteUserError') ?> 
 </div> <!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->

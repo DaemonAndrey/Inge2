@@ -326,6 +326,35 @@ class UsersController extends AppController
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
     }
+     /**
+     * Elimina un usuario de la base de datos.
+     * @param  integer $id
+     */
+    public function delete($id)
+    {
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->get($id);
+            try
+            {
+                if ($this->Users->delete($user))
+                {
+                    $this->Flash->success('El usuario ha sido eliminado éxitosamente', ['key' => 'deleteUserSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                } 
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('El usuario no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+            }
+        }
+        else
+        {  
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+    }
 }
 
 ?>
