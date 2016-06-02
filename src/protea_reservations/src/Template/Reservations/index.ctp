@@ -179,7 +179,7 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="col-xs-12">
-                            <label><input type="checkbox" value="" unchecked id="check"> He leído y acepto los </label>
+                            <label><input type="checkbox" value="" unchecked id="check" name="terms" required> He leído y acepto los </label>
                             <?php echo $this->Html->link('Términos y Condiciones de Uso',
                                          array('controller'=>'pages','action' => 'policy'),
                                          array('target' => '_blank', 'escape' => false, 'title'=>'Condiciones de Uso')) ?>
@@ -196,7 +196,7 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar">Reservar</button>
+                <button type="button" class="btn btn-info" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar" id="Reservar">Reservar</button>
                 <button type="button" class="btn btn-danger" style="width:84px;" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
             <!-- Fin Modal footer -->

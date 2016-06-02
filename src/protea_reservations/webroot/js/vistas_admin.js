@@ -30,7 +30,6 @@
         xhttp.send(); 
         
         
-        
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
                 var today = new Date();
@@ -135,64 +134,84 @@
 
     function getReservationData()
     {
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function()
+        if(document.getElementById("check").checked)
         {
-            if(xhttp.readyState == 4 && xhttp.status == 200)
-            {   
-                jQuery('#callback').modal('show');
-                setTimeout(function(){location.reload();},2000);
-            }
-            
-            if(xhttp.status == 404 && xhttp.readyState == 4)
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function()
             {
-                document.getElementById("callbackText").innerHTML = "Lo sentimos, alguien acaba de reservar este recurso.";
-                jQuery('#callback').modal('show');
-                setTimeout(function(){location.reload();},2000);
-            }
-                
-            if(xhttp.readyState == 4 && xhttp.status == 500)
+                if(xhttp.readyState == 4 && xhttp.status == 200)
+                {   
+                    jQuery('#callback').modal('show');
+                    setTimeout(function(){location.reload();},2000);
+                }
+
+                if(xhttp.status == 404 && xhttp.readyState == 4)
+                {
+                    document.getElementById("callbackText").innerHTML = "Lo sentimos, alguien acaba de reservar este recurso.";
+                    jQuery('#callback').modal('show');
+                    setTimeout(function(){location.reload();},2000);
+                }
+
+                if(xhttp.readyState == 4 && xhttp.status == 500)
+                {
+                    document.getElementById("callbackText").innerHTML = "Ocurrió un error inesperado. Intente más tarde"; 
+
+                    jQuery('#callback').modal('show');
+                    setTimeout(function(){location.reload();},2000);  
+                }
+
+                if(xhttp.readyState == 4 && xhttp.status == 206)
+                {
+                    document.getElementById("callbackText").innerHTML = "No aceptó los términos"; 
+
+                    jQuery('#callback').modal('show');
+                    setTimeout(function(){location.reload();},2000);  
+                }
+
+
+            };
+
+            var date = document.getElementById("fecha").innerHTML; 
+
+            date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
+
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+
+            var start_Date = date + " " + start;
+            var end_Date = date + " " + end;       
+
+            var resource = document.getElementById("resource").value;
+            var event_name = document.getElementById("event_name").value;
+            var user_comment = document.getElementById("comment").value;
+
+            var path = window.location.pathname;
+
+            if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
             {
-                document.getElementById("callbackText").innerHTML = "Ocurrió un error inesperado. Intente más tarde"; 
+                path = path+"/";
+            }            
 
-                jQuery('#callback').modal('show');
-                setTimeout(function(){location.reload();},2000);  
-            }
-        };
 
-        var date = document.getElementById("fecha").innerHTML; 
+            xhttp.open("POST", path+"add");
 
-        date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-        var start = document.getElementById("start").value;
-        var end = document.getElementById("end").value;
+            xhttp.send(JSON.stringify({
+                start_date : start_Date,
+                end_date : end_Date,
+                user_comment : user_comment,
+                event_name : event_name, 
+                resource: resource
+            })); 
         
-        var start_Date = date + " " + start;
-        var end_Date = date + " " + end;       
-        
-        var resource = document.getElementById("resource").value;
-        var event_name = document.getElementById("event_name").value;
-        var user_comment = document.getElementById("comment").value;
-                
-        var path = window.location.pathname;
-
-        if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
+    
+        }
+        else
         {
-            path = path+"/";
-        }            
-                     
-        xhttp.open("POST", path+"add");
-
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-        xhttp.send(JSON.stringify({
-            start_date : start_Date,
-            end_date : end_Date,
-            user_comment : user_comment,
-            event_name : event_name, 
-            resource: resource
-        }));   
+            alert("Debe marcar el checkbox -.-");
+        }
     }
 
     function getDate(date)
@@ -268,12 +287,6 @@
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
     }
-
-    function showState(element)
-    {
-        document.getElementById("state").innerHTML = obj[element[element.selectedIndex].id].reservation.state;
-    }
-    
     
 
 

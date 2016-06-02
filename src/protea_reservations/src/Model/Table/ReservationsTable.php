@@ -12,4 +12,5 @@ class ReservationsTable extends Table
         $this->belongsTo('Users');
         $this->belongsTo('Resources');
     }
+    
 }

@@ -97,7 +97,6 @@ CREATE TABLE reservations
 	resource_id 				INT UNSIGNED NOT NULL,
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	state 						TINYINT(1) UNSIGNED NOT NULL DEFAULT 1, -- 1: Pendiente, 2: Aceptada, 3: Rechazada, 4: Cancelada
 	user_seen 					TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	administrator_seen 		TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	user_id 						INT UNSIGNED NOT NULL,
@@ -124,7 +123,7 @@ CREATE TABLE historic_reservations
 	user_last_name 			VARCHAR( 64 ),
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	state 						INT UNSIGNED,
+	state 						INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada
 	
 	PRIMARY KEY ( id ),
 	UNIQUE KEY ( reservation_start_date, resource_name, user_username )

@@ -71,10 +71,6 @@ class ReservationsController extends AppController
 			$events = str_replace(".",",",$events);
 	
 			//$events = substr($events, 1,strlen($events)-2);
-            
-            
-            
-            //$events = backrgroundColor('#378006');
 			die($events);
 			
 		}
@@ -93,6 +89,7 @@ class ReservationsController extends AppController
         if($this->Auth->user())
         {
             $reservation = $this->Reservations->newEntity();
+
             
             if($this->request->is('post'))
             {
@@ -113,10 +110,7 @@ class ReservationsController extends AppController
 
                 $reservation->resource_id = $resource_id;
                 $reservation->user_id = $this->Auth->User('id');
-                
-                /*if(isset($_POST['check'])){ 
-                $this->Reservation->save($reservation);
-                } */
+            
 
                 if ($this->Reservations->save($reservation))
                 {
@@ -130,6 +124,7 @@ class ReservationsController extends AppController
         }
                 
 	}
+    
     /**
     * Verifica si el usuario esta autorizado.
     * @param user
