@@ -226,7 +226,7 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->getMailer('User')->send('reject', [$user]);
+                    $this->getMailer('User')->send('rejectUser', [$user]);
                     $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
@@ -262,7 +262,7 @@ class UsersController extends AppController
                 //Guarda el usuario con la nueva informacion modificada
                 if ($this->Users->save($user))
                 {
-                    $this->getMailer('User')->send('welcome', [$user]);
+                    $this->getMailer('User')->send('confirmUser', [$user]);
              
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
