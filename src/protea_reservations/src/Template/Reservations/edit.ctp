@@ -28,9 +28,9 @@
             </div>
         </div>
         <!-- FIN RECURSO -->
-        
+
         <br>
-        
+
         <!-- FECHA DE RESERVACIÓN -->
         <div class="row">
             <div class="col-xs-12">
@@ -39,10 +39,9 @@
                 </div>
                 <div class="col-xs-3">
                     <?php 
-                        setlocale(LC_TIME,"es_ES"); 
                         $mesIngles = strftime('%b', strtotime($reservation->start_date));
                         $mesEspanol = '';    
-                    
+
                         switch($mesIngles)
                         {
                             case 'Jan':
@@ -82,7 +81,7 @@
                                 $mesEspanol = 'dic';
                                 break;
                         }
-                    
+
                         //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
                         $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
                     ?>
@@ -91,9 +90,9 @@
             </div>
         </div>
         <!-- FIN FECHA DE RESERVACIÓN -->
-        
+
         <br>
-        
+
         <!-- HORA DE INICIO -->
         <div class="row">
             <div class="col-xs-12">
@@ -106,9 +105,9 @@
             </div>
         </div>
         <!-- FIN HORA DE INICIO -->
-        
+
         <br>
-        
+
         <!-- FECHA DE FIN -->
         <div class="row">
             <div class="col-xs-12">
@@ -121,9 +120,9 @@
             </div>
         </div>
         <!-- FIN FECHA DE INICIO -->
-        
+
         <br>
-        
+
         <!-- USUARIO -->
         <div class="row">
             <div class="col-xs-12">
@@ -136,9 +135,9 @@
             </div>
         </div>
         <!-- FIN USUARIO -->
-        
+
         <br>
-        
+
         <!-- COMENTARIO DE USUARIO -->
         <div class="row">
             <div class="col-xs-12">
@@ -146,14 +145,22 @@
                     <?= $this->Form->label('Reservations.user_comment', 'Comentario de usuario'); ?>
                 </div>
                 <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.user_comment', $reservation->user_comment, ['style' => 'font-weight: normal']); ?>
+                    <?php
+                        $comentarioUsuario = '';
+
+                        if($reservation->user_comment == '')
+                            $comentarioUsuario = '-';
+                        else
+                            $comentarioUsuario = $reservation->user_comment;
+                    ?>
+                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['style' => 'font-weight: normal']); ?>
                 </div>
             </div>
         </div>
         <!-- FIN COMENTARIO DE USUARIO -->
-        
+
         <br>
-        
+
         <!-- SIGLA DEL CURSO -->
         <div class="row">
             <div class="col-xs-12">
@@ -166,9 +173,9 @@
             </div>
         </div>
         <!-- FIN SIGLA DEL CURSO -->
-        
+
         <br>
-        
+
         <!-- NOMBRE DEL CURSO -->
         <div class="row">
             <div class="col-xs-12">
@@ -181,9 +188,9 @@
             </div>
         </div>
         <!-- FIN NOMBRE DEL CURSO -->
-        
+
         <br>
-        
+
         <!-- COMENTARIO DE ADMINISTRADOR -->
         <div class="row">
             <div class="col-xs-12">
@@ -201,23 +208,21 @@
             </div>
         </div>
         <!-- FIN COMENTARIO DE ADMINISTRADOR -->
-        
+
         <br>
-        
+
         <!-- BOTONES -->
         <div class="row text-center">
-            <div class='col-xs-6 col-xs-offset-3'>
-                <?= $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-primary')),
-                                                array('controller' => 'reservations', 'action' => 'accept', $reservation->id, $reservation->admin_comment),
-                                                array('escape' => false)); ?>
-                <?= $this->Form->postLink($this->Html->tag('span','Rechazar',array('class' => 'btn btn-danger')),
-                                                array('controller' => 'reservations', 'action' => 'reject', $reservation->id, $reservation->admin_comment),
-                                                array('escape' => false)); ?>
+            <div class='col-xs-8 col-xs-offset-2'>
+                <?= $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion')); ?>
+                <?= $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); ?>
             </div>
         </div> 
         <!-- FIN BOTONES -->
     </fieldset>
     <!-- FIN CAMPOS A MOSTRAR -->
-    
+
     <?= $this->Form->end() ?>
+    
+    <?php //echo $this->fetch('postLink'); ?>
 </div>

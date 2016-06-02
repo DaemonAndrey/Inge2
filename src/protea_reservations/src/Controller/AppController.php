@@ -39,9 +39,9 @@ class AppController extends Controller
      */
     public function initialize()
     {
-        
         parent::initialize();
-
+        
+        $this->loadComponent('Paginator');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth',['authorize' => ['Controller'],

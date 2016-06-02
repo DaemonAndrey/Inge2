@@ -2,10 +2,54 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 
 class ReservationsController extends AppController
-{    
+{
+    public function initialize()
+    {
+        parent::initialize();
+        //$this->loadComponent('Paginator');
+    }
+    
+    /**
+    * Establece variables importantes de usuario.
+    * @param Event $event
+    */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        
+        $this->query = $this->Reservations->find('all')
+            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title', 'Reservations.state'])
+            ->join([
+                'users' => [
+                    'table' => 'Users',
+                    'type' => 'INNER',
+                    'conditions' => 'users.id = Reservations.user_id'
+                ],
+                'resources_users' => [
+                    'table' => 'Resources_Users',
+                    'type' => 'INNER',
+                    'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
+                ],
+                'resources' => [
+                    'table' => 'Resources',
+                    'type' => 'INNER',
+                    'conditions' => 'resources.id = Reservations.resource_id'
+                ]
+            ])
+            ->andWhere(['Reservations.state = ' => 1]);
+            //->hydrate(false);
+    }
+    
+    /** 
+     * Paginador de recursos.
+     */
+    public $paginate = array('limit' => 10,
+                             'order' => array('Reservation.start_date' => 'asc')
+                            );
     
     /**
     * Carga el calendario principal con las reservas.
@@ -52,30 +96,13 @@ class ReservationsController extends AppController
 		$this->set('types',$resource_type);
 	}
     
+    /*
+    * Carga las reservaciones pendientes que le corresponden al administrador que está en la sesión
+    */
     public function manage()
     {
-        $query = $this->Reservations->find('all')
-                    ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title', 'Reservations.state'])
-                    ->join([
-                        'users' => [
-                            'table' => 'Users',
-                            'type' => 'INNER',
-                            'conditions' => 'users.id = Reservations.user_id'
-                        ],
-                        'resources_users' => [
-                            'table' => 'Resources_Users',
-                            'type' => 'INNER',
-                            'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
-                        ],
-                        'resources' => [
-                            'table' => 'Resources',
-                            'type' => 'INNER',
-                            'conditions' => 'resources.id = Reservations.resource_id'
-                        ]
-                    ]);
-        
         // Pagina la tabla de recursos
-        $this->set('reservations', $this->paginate($query));
+        $this->set('reservations', $this->paginate($this->query));
     }
 
     /**
@@ -115,7 +142,7 @@ class ReservationsController extends AppController
 
                 if ($this->Reservations->save($reservation))
                 {
-                        $this->response->statusCode(200);
+                    $this->response->statusCode(200);
                 }
                 else
                 {
@@ -127,50 +154,106 @@ class ReservationsController extends AppController
     
     /**
     * Actualiza el estado de la reservación dependiendo de si el administrador
-    * la acepta o la rechaza.
+    * la acepta o la rechaza. También agrega los comentarios del administrador
+    * en caso que hayan.
     * @param integer $idReservacion
     */
-    public function edit($id = null, $accion = null)
+    public function edit($id = null)
     {
         if($this->Auth->user())
         {
             // Carga la reservación que se desea editar
             $reservation = $this->Reservations->get($id, [
                 'contain' => ['Users', 'Resources'],
-                'fields' => ['start_date', 'end_date', 'user_comment', 'course_id', 'course_name', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'course_id', 'course_name', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
             ]);
             
-            if($this->request->is(array('post', 'put')))
+            $reservacionPermitida = false;
+            foreach($this->query as $item)
             {
-                // Carga la información que se obtiene en el formulario
-                $this->Reservations->patchEntity($reservation, $this->request->data);
-                /*
-                // Guarda la reservación con la nueva información modificada
-                if($this->Reservations->save($reservation))
+                if($item['id'] == $reservation['id'])
                 {
-                    // Muestra el mensaje indicando que la reservación se modificó correctamente y se redirecciona a la vista principal de Administrar Reservaciones
-                    $this->Flash->success('Se ha modificado correctamente la reservación', ['key', 'editReservationSuccess']);
-                    return $this->redirect(['controller' => 'Reservations', 'action' => 'index']);
+                    $reservacionPermitida = true;
+                    break;
                 }
-                else
-                {
-                    // En caso de que no se haya podido modificar la información, despligue un mensaje indicando que hubo error
-                    $this->Flash->error('No se ha podido modificar la reservación', ['key' => 'editReservationError']);
-                }*/
             }
             
-            $this->set('reservation', $reservation);
+            if($reservacionPermitida)
+            {
+                if($this->request->is(array('post', 'put')))
+                {
+                    $this->Reservations->patchEntity($reservation, $this->request->data);
+                    
+                    if($this->request->data['accion'] == 'Aceptar')
+                        $this->accept($id, $this->request->data['Reservations']['admin_comment']);
+                    elseif($this->request->data['accion'] == 'Rechazar')
+                        $this->reject($id, $this->request->data['Reservations']['admin_comment']);
+                }
+
+                $this->set('reservation', $reservation);
+            }
+            else
+            {
+                $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
+                return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
+            }
         }
     }
     
+    /*
+    * Método auxiliar que cambia el estado de la reservación aceptada.
+    * @param integer $id
+    * @param string $adminComment
+    */
     public function accept($id = null, $adminComment = null)
     {
-        debug($id);
+        if($id != null)
+        {
+            $reservation = $this->Reservations->get($id);
+            $reservation->administrator_comment = $adminComment;
+            $reservation->state = 2;
+
+            if($this->Reservations->save($reservation))
+            {
+                $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
+                //$this->Flash->success('La reservación fue aceptada exitosamente', ['key', 'acceptReservationSuccess']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+            else
+            {
+                $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde'), ['clear' => true, 'key' => 'acceptReservationError']);
+                //$this->Flash->error('La reservación no se pudo aceptar, inténtelo más tarde', ['key', 'acceptReservationError']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+        }
     }
     
+    /*
+    * Método auxiliar que cambia el estado de la reservación rechazada
+    * @param integer $id
+    * @param string $adminComment
+    */
     public function reject($id = null, $adminComment = null)
     {        
-        debug($adminComment);
+        if($id != null)
+        {
+            $reservation = $this->Reservations->get($id);
+            $reservation->administrator_comment = $adminComment;
+            $reservation->state = 3;
+            
+            if($this->Reservations->save($reservation))
+            {
+                $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
+                //$this->Flash->success('La reservación fue rechazada exitosamente', ['key', 'rejectReservationSuccess']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+            else
+            {
+                $this->Flash->set(__('La reservación no se pudo rechazar, inténtelo más tarde'), ['clear' => true, 'key' => 'rejectReservationError']);
+                //$this->Flash->error('La reservación no se pudo rechazar, inténtelo más tarde', ['key', 'rejectReservationError']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+        }
     }
     
     /**

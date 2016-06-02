@@ -3,6 +3,18 @@
 
 <br>
 
+<!-- MENSAJES -->
+<div class="lead text-info" style="text-align:center">
+    <?= $this->Flash->render('acceptReservationSuccess') ?>
+    <?= $this->Flash->render('rejectReservationSuccess') ?>
+</div>
+
+<div class="lead text-danger" style="text-align:center">
+    <?= $this->Flash->render('editReservationError') ?>
+    <?= $this->Flash->render('acceptReservationError') ?>
+    <?= $this->Flash->render('rejectReservationError') ?>
+</div>
+
 <!-- TÍTULO -->
 <div class="row">
     <div class="col-xs-12">

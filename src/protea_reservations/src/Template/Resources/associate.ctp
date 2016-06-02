@@ -6,8 +6,11 @@
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('associateResourceAdminSuccess') ?>
-    <?= $this->Flash->render('associateResourceAdminError') ?>
     <?= $this->Flash->render('disassociateResourceAdminSuccess') ?>
+</div>
+
+<div class="lead text-danger" style="text-align:center">
+    <?= $this->Flash->render('associateResourceAdminError') ?>
     <?= $this->Flash->render('disassociateResourceAdminError') ?>
 </div>
 
