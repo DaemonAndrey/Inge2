@@ -4,8 +4,11 @@
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceSuccess') ?>
-    <?= $this->Flash->render('addResourceError') ?>
     <?= $this->Flash->render('deleteResourceSuccess') ?>
+</div>
+
+<div class="lead text-danger" style="text-align:center">
+    <?= $this->Flash->render('addResourceError') ?>
     <?= $this->Flash->render('deleteResourceError') ?>
 </div>
 
