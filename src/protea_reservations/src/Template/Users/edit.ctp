@@ -305,7 +305,7 @@
                                                 array('controller' => 'users','action' => 'add', $user->id),
                                                 array('escape' => false)); ?>
 
-                    <?= $this->Form->postLink($this->Html->tag('span','Aceptar',array('class'  => 'btn btn-info', 'style' => 'width:91px')),
+                    <?= $this->Form->postLink($this->Html->tag('span','Aprobar',array('class'  => 'btn btn-info', 'style' => 'width:91px')),
                                                 array('controller' => 'users','action' => 'confirm', $user->id),
                                                 array('escape' => false)); ?>
 
