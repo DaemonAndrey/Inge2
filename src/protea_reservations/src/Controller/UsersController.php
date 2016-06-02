@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\MailerAwareTrait;
+use Cake\Mailer\Email;
 
 class UsersController extends AppController
 {   
@@ -28,6 +30,7 @@ class UsersController extends AppController
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
+     
     }
     
     /** 
@@ -46,8 +49,15 @@ class UsersController extends AppController
         
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
+        
         $query->innerJoinWith('Roles')
-            ->select(['Users.username', 'Users.first_name', 'Users.last_name','Users.role_id', 'Users.state', 'Roles.role_name']);
+              ->select(['Users.id',
+                        'Users.username',
+                        'Users.first_name',
+                        'Users.last_name',
+                        'Users.role_id',
+                        'Users.state',
+                        'Roles.role_name']);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
@@ -57,11 +67,29 @@ class UsersController extends AppController
      * Para futuras vistas
      * @param  integer $id
      */
+    
     public function view($id)
     {
-        $user = $this->Users->get($id);
-        $this->set(compact('user'));
+        // Carga el modelo de 'Roles' para sacar el rol del usuario
+        $this->loadModel('Roles');
+        
+        //$user = $this->Users->get($id);
+        $user = $this->Users->find('all')
+                            ->where(['Users.id' => $id]);
+        
+        $user->innerJoinWith('Roles')
+             ->select(['Users.username',
+                       'Users.first_name',
+                       'Users.last_name',
+                       'Users.telephone_number',
+                       'Users.department',
+                       'Users.position',
+                       'Roles.role_name']);
+        
+        $this->set('user', $user->first());
     }
+
+    use MailerAwareTrait;
 
     /**
      * Se encarga del registro de usuarios, se pasa a la vista de REGISTRO.
@@ -79,15 +107,19 @@ class UsersController extends AppController
                 
                 try
                 {
+                    
                     if ($this->Users->save($user))
                     {
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
-                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado', ['key' => 'addUserSuccess']);
+                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado',
+                                                  ['key' => 'addUserSuccess']);
+                            
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
+                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo',
+                                              ['key' => 'addUserSuccess']);
                         
-                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo', ['key' => 'addUserSuccess']);
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
                     }
                 }
@@ -159,7 +191,7 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-        if ($this->request->action === 'view') {
+        if ($this->request->action === 'view' && $user['role_id'] != 3) {
             return false;            
         }
 
@@ -167,8 +199,13 @@ class UsersController extends AppController
             return false;            
         }
         
-        if ($this->request->action === 'edit' && $user['role_id'] != 3) {
-            return false;
+        if ($this->request->action === 'edit'){
+            // Recupera el id enviado por url    
+            $user_id = $this->request->pass[0];            
+            if ($user['role_id'] == 3 || $user['id'] == $user_id ) {
+                return true;
+            }
+            else return false;
         } 
         
         return parent::isAuthorized($user);
@@ -178,24 +215,25 @@ class UsersController extends AppController
     * Se rechaza la solicitud de registro de un usuario y se envía un correo, aparte se elimina el usuario de la BD.
     * Se pasa a la pagina principal. 
     */
-    public function reject($id)
+    public function reject($id=null)
     {
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
-            $this->request->allowMethod(['post', 'reject']);
-            $resource = $this->Users->get($id);
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->get($id);
             try
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'deleteResourceSuccess']);
+                    $this->getMailer('User')->send('rejectUser', [$user]);
+                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'addUserError']);
             }
         }
         else
@@ -208,12 +246,13 @@ class UsersController extends AppController
     * Se acepta la solicitud de registro de un usuario y se envía un correo.
     * Se pasa a la pagina principal. 
     */
-    public function confirm($id)
+    public function confirm($id=null)
     {
          if($this->Auth->user())
         {
             //Carga el usuario se desea editar
             $user = $this->Users->get($id);
+            $username = $user->username;
              
             if($this->request->is(array('post', 'put')))
 		    {
@@ -221,8 +260,10 @@ class UsersController extends AppController
                 $user->state = 1;
                 
                 //Guarda el usuario con la nueva informacion modificada
-                if ($this->Users->save($resource))
+                if ($this->Users->save($user))
                 {
+                    $this->getMailer('User')->send('confirmUser', [$user]);
+             
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'addUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
@@ -233,6 +274,10 @@ class UsersController extends AppController
                     $this->Flash->error('No se ha podido aceptar la solicitud. Por favor inténtelo de nuevo', ['key' => 'addUserError']);
                 }
             }
+        }
+        else
+        {
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
     }    
     
@@ -247,17 +292,18 @@ class UsersController extends AppController
         $options = $this->Roles->find('list',['keyField' => 'id','valueField' => 'role_name'])->toArray();                              
         $this->set('roles_options', $options);
         
+
+        
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
-            
             //Carga el usuario que se desea editar
             $user = $this->Users->get($id);
             
             if($this->request->is(array('post', 'put')))
 		    {
                 //Carga la informacion que se obtiene en el formulario
-                $this->Users->patchEntity($user, $this->request->data);
+                $this->Users->patchEntity($user, $this->request->data,['validate' => 'update']);
                    
 	                //Guarda el recurso con la nueva informacion modificada
                 if ($this->Users->save($user))
@@ -280,7 +326,35 @@ class UsersController extends AppController
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
     }
-    
+     /**
+     * Elimina un usuario de la base de datos.
+     * @param  integer $id
+     */
+    public function delete($id)
+    {
+        // Si el usuario tiene permisos
+        if($this->Auth->user())
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->get($id);
+            try
+            {
+                if ($this->Users->delete($user))
+                {
+                    $this->Flash->success('El usuario ha sido eliminado éxitosamente', ['key' => 'deleteUserSuccess']);
+                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                } 
+            }
+            catch(Exception $ex)
+            {
+                $this->Flash->error('El usuario no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+            }
+        }
+        else
+        {  
+            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        }
+    }
 }
 
 ?>

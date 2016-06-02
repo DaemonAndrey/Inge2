@@ -119,7 +119,7 @@
                 <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                     <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
                         <?=
-                            $this->Form->label('Resources.active', 'Activo: ');
+                            $this->Form->label('Resources.active', 'Habilitado: ');
                         ?>
                     </div>
                     <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>

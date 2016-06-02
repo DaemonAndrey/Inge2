@@ -3,7 +3,8 @@
 
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
-
+    <?= $this->Flash->render('deleteUserSuccess') ?>
+    <?= $this->Flash->render('deleteUserError') ?> 
 </div> <!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
@@ -79,7 +80,7 @@
                     <td>
                         <?php
                             echo $this->Html->link($user['username'],
-                                                   array('controller' => 'Users','action' => 'view', $user->id));
+                                                   array('controller' => 'users','action' => 'view', $user->id));
                         ?>
                     </td>
                     <!-- NOMBRE -->

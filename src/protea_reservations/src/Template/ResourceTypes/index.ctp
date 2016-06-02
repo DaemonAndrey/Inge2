@@ -1,8 +1,6 @@
 <!-- src/Template/ResourceTypes/index.ctp -->
 <?php echo $this->Html->css('resources.css'); ?>
 
-<br>
-
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceTypeSuccess') ?>
