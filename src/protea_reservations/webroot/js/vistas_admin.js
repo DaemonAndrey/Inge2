@@ -273,7 +273,6 @@
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
     }
-<<<<<<< HEAD
 
     function activateButton(select, checkbox)
     {

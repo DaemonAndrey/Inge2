@@ -175,7 +175,7 @@
                 <!-- Fin Fila 4 (Comentario) -->
                 
                 <br>
-                <!-- Fila 5 (Comentario) -->
+                <!-- Fila 5 (Checkbox) -->
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="col-xs-12">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 5 (Comentario) -->
+                <!-- Fin Fila 5 (Checkbox) -->
                 
                 <br>
 
