@@ -1,6 +1,9 @@
 
 
     $(document).ready(function() { // page is now ready, initialize the calendar...
+        
+        
+        
         var xhttp = new XMLHttpRequest();
         var json_events = "";
         xhttp.onreadystatechange = function()
@@ -47,6 +50,7 @@
                     globalDate = date;
                     fecha = document.getElementById("fecha");
                     fecha.innerHTML = date.format("DD MMMM YYYY");
+                    document.getElementById("Reservar").disabled = true;
                 }
             },
             header: {
@@ -148,25 +152,15 @@
 
                 if(xhttp.status == 404 && xhttp.readyState == 4)
                 {
-                    document.getElementById("callbackText").innerHTML = "Lo sentimos, alguien acaba de reservar este recurso.";
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);
+                    showModal( "Lo sentimos, alguien acaba de reservar este recurso.");
+                    setTimeout(function(){location.reload();},2000); 
                 }
 
                 if(xhttp.readyState == 4 && xhttp.status == 500)
                 {
-                    document.getElementById("callbackText").innerHTML = "Ocurrió un error inesperado. Intente más tarde"; 
-
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);  
-                }
-
-                if(xhttp.readyState == 4 && xhttp.status == 206)
-                {
-                    document.getElementById("callbackText").innerHTML = "No aceptó los términos"; 
-
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);  
+                    showModal( "Ocurrió un error inesperado. Intente más tarde"); 
+                    setTimeout(function(){location.reload();},2000); 
+ 
                 }
 
 
@@ -210,7 +204,8 @@
         }
         else
         {
-            alert("Debe marcar el checkbox -.-");
+            showModal( "Debe aceptar los términos y condiciones de uso");
+            
         }
     }
 
@@ -281,11 +276,31 @@
     }    
     
     
-
-    
     function showDescription(element)
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
+    }
+
+    function activateButton(select, checkbox)
+    {
+        
+        if((select.value != "Seleccionar") && checkbox.checked)
+        {
+            document.getElementById("Reservar").disabled = false;
+        }
+        else
+        {
+            document.getElementById("Reservar").disabled = true;
+        }
+    }
+
+    function showModal(text)
+    {
+        document.getElementById("callbackText").innerHTML = text; 
+        
+        jQuery('#callback').modal('show');
+        $('#mdlReservaciones').modal('show');
+        //setTimeout(function(){location.reload();},2000); 
     }
     
 
