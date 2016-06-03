@@ -63,7 +63,7 @@
             </th>
             <th>
                 <?php
-                    echo $this->Paginator->sort('resource_name', 'Nombre ');
+                    echo $this->Paginator->sort('resource_name', 'Marca/Modelo ');
                     echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-alphabet'));
                 ?>
             </th> 
@@ -106,7 +106,7 @@
                         ?>
                     </td>
 
-                    <!-- NOMBRE -->
+                    <!-- MARCA/MODELO -->
                     <td>
                         <?php
                             echo $this->Html->link($resource['resource_name'],
