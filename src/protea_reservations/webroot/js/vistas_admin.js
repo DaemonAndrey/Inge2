@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 
-
-    $(document).ready(function() { // page is now ready, initialize the calendar...
-        
-        
-        
-=======
     $(document).ready(function () { // page is now ready, initialize the calendar...
->>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
         var xhttp = new XMLHttpRequest();
         var json_events = "";
         xhttp.onreadystatechange = function()
@@ -277,10 +269,6 @@
         end_Ddl.selectedIndex = end_Ddl.options[0];
     }    
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
     function showDescription(element)
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
@@ -309,7 +297,3 @@
         //setTimeout(function(){location.reload();},2000); 
     }
     
-
-
-=======
->>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
