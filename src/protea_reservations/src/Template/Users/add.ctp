@@ -45,7 +45,7 @@
             </div>
 
             <div class='col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
-                <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '80808080', 'class' => 'form-control']) ?>
+                <?= $this->Form->input('telephone_number', ['label' => 'Teléfono: ', 'placeholder' => '83833838', 'class' => 'form-control']) ?>
                 <br>
             </div>
         </div>
@@ -61,7 +61,8 @@
                                             
                                                         'Escuela de Orientación y Educación Especial'   => 'Escuela de Orientación y Educación Especial',
                                                         'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
-                                                        'Biblioteca'    => 'Biblioteca'
+                                                        'Biblioteca'    => 'Biblioteca',
+                                                        'Decanato'    => 'Decanato'
 
                 ),  'class' => 'form-control']) ?>
                 <br>
@@ -90,7 +91,6 @@
                 <?php
             }
         ?>
-        
    </fieldset>
     
     <!-- BOTONES -->

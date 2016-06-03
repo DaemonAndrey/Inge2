@@ -2,8 +2,17 @@
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
+<div class="lead text-danger" style="text-align:center">
+    <?= $this->Flash->render('deleteUserError') ?> 
+    <?= $this->Flash->render('editUserError') ?> 
+    <?= $this->Flash->render('rejectUserError') ?> 
+    <?= $this->Flash->render('confirmUserError') ?> 
+</div> 
 <div class="lead text-info" style="text-align:center">
-
+    <?= $this->Flash->render('deleteUserSuccess') ?>
+    <?= $this->Flash->render('editUserSuccess') ?>
+    <?= $this->Flash->render('rejectUserSuccess') ?>
+    <?= $this->Flash->render('confirmUserSuccess') ?>
 </div> <!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
@@ -79,7 +88,7 @@
                     <td>
                         <?php
                             echo $this->Html->link($user['username'],
-                                                   array('controller' => 'Users','action' => 'view', $user->id));
+                                                   array('controller' => 'users','action' => 'view', $user->id));
                         ?>
                     </td>
                     <!-- NOMBRE -->

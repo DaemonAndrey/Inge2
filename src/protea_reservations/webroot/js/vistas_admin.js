@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 
 
     $(document).ready(function() { // page is now ready, initialize the calendar...
         
         
         
+=======
+    $(document).ready(function () { // page is now ready, initialize the calendar...
+>>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
         var xhttp = new XMLHttpRequest();
         var json_events = "";
         xhttp.onreadystatechange = function()
@@ -69,8 +73,6 @@
             
         });
     });
-    
-
 
     function getResources(element)
     {
@@ -104,12 +106,12 @@
 
             xhttp.send();
         }
-    }
-    
+    }  
     
     function getFormatedHour(number)
     {
         var hour = "";
+        
         if(number < 10)
         {   
             hour = "0"+number+":00:00";
@@ -275,11 +277,15 @@
         end_Ddl.selectedIndex = end_Ddl.options[0];
     }    
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
     function showDescription(element)
     {
         document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
     }
+<<<<<<< HEAD
 
     function activateButton(select, checkbox)
     {
@@ -305,3 +311,5 @@
     
 
 
+=======
+>>>>>>> 036838c5f0a8db0b539b0d25bfcb7186bdcb95c2
