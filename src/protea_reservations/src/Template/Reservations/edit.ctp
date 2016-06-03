@@ -1,3 +1,6 @@
+<!-- src/Template/Reservations/edit.ctp -->
+<?php echo $this->Html->css('reservations.css'); ?>
+
 <div class="users form">
     <?= $this->Form->create($reservation) ?>
     
@@ -6,7 +9,7 @@
         <div class="col-xs-12">
             <legend>
                 <div class="text-center">
-                    <h1>Reservación</h1>
+                    <h2>Reservación</h2>
                     <br>
                 </div>
             </legend>
@@ -16,28 +19,28 @@
     
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
-        <!-- RECURSO -->
         <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.resource_id', 'Recurso'); ?>
+            <!-- RECURSO -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.resource_id', 'Recurso:'); ?>
                 </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['style' => 'font-weight: normal']); ?>
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
-        </div>
-        <!-- FIN RECURSO -->
+            <!-- FIN RECURSO -->
 
-        <br>
-
-        <!-- FECHA DE RESERVACIÓN -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.start_date', 'Fecha de reservación'); ?>
+            <!-- FECHA DE RESERVACIÓN -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.start_date', 'Fecha de reservación:'); ?>
                 </div>
-                <div class="col-xs-3">
+                
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?php 
                         $mesIngles = strftime('%b', strtotime($reservation->start_date));
                         $mesEspanol = '';    
@@ -85,66 +88,82 @@
                         //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
                         $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
                     ?>
-                    <?= $this->Form->label('Reservations.start_date', $fechaEspanol, ['style' => 'font-weight: normal']); ?>
+                    <?= $this->Form->label('Reservations.start_date', $fechaEspanol, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
+            <!-- FIN FECHA DE RESERVACIÓN -->
         </div>
-        <!-- FIN FECHA DE RESERVACIÓN -->
-
-        <br>
-
-        <!-- HORA DE INICIO -->
+        
         <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.start_date', 'Hora de inicio'); ?>
+            <!-- HORA DE INICIO -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.start_date', 'Hora de inicio:'); ?>
                 </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.start_date', date_format($reservation->start_date, 'H:i:s'), ['style' => 'font-weight: normal']); ?>
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.start_date', date_format($reservation->start_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
-        </div>
-        <!-- FIN HORA DE INICIO -->
-
-        <br>
-
-        <!-- FECHA DE FIN -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.end_date', 'Hora de fin'); ?>
+            <!-- FIN HORA DE INICIO -->
+            
+            <!-- FECHA DE FIN -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.end_date', 'Hora de fin:'); ?>
                 </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.end_date', date_format($reservation->end_date, 'H:i:s'), ['style' => 'font-weight: normal']); ?>
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.end_date', date_format($reservation->end_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
                 </div>
-            </div>
-        </div>
-        <!-- FIN FECHA DE INICIO -->
-
-        <br>
-
-        <!-- USUARIO -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.user_id', 'Usuario'); ?>
-                </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.user_id', $reservation->user->first_name.' '.$reservation->user->last_name, ['style' => 'font-weight: normal']); ?>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
+            <!-- FIN FECHA DE FIN -->
         </div>
-        <!-- FIN USUARIO -->
-
-        <br>
-
-        <!-- COMENTARIO DE USUARIO -->
+        
         <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.user_comment', 'Comentario de usuario'); ?>
+            <!-- USUARIO -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.user_id', 'Usuario:'); ?>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.user_id', $reservation->user->first_name.' '.$reservation->user->last_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
+                </div>
+            </div>
+            <!-- FIN USUARIO -->
+            
+            <!-- EVENTO O ACTIVIDAD -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.event_name', 'Evento o curso:'); ?>
+                </div>
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.event_name', $reservation->event_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
+                </div>
+            </div>
+            <!-- FIN EVENTO O ACTIVIDAD -->
+        </div>
+        
+        <div class="row">
+            <!-- COMENTARIO DE USUARIO -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.user_comment', 'Comentario de usuario:'); ?>
+                </div>
+                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?php
                         $comentarioUsuario = '';
 
@@ -153,69 +172,42 @@
                         else
                             $comentarioUsuario = $reservation->user_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['style' => 'font-weight: normal']); ?>
+                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly']); ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
-        </div>
-        <!-- FIN COMENTARIO DE USUARIO -->
-
-        <br>
-
-        <!-- SIGLA DEL CURSO -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.course_id', 'Sigla del curso'); ?>
+            <!-- FIN COMENTARIO DE USUARIO -->
+            
+            <!-- COMENTARIO DE ADMINISTRADOR -->
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador:'); ?>
                 </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.course_id', $reservation->course_id, ['style' => 'font-weight: normal']); ?>
-                </div>
-            </div>
-        </div>
-        <!-- FIN SIGLA DEL CURSO -->
-
-        <br>
-
-        <!-- NOMBRE DEL CURSO -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.course_name', 'Nombre del curso'); ?>
-                </div>
-                <div class="col-xs-3">
-                    <?= $this->Form->label('Reservations.course_name', $reservation->course_name, ['style' => 'font-weight: normal']); ?>
-                </div>
-            </div>
-        </div>
-        <!-- FIN NOMBRE DEL CURSO -->
-
-        <br>
-
-        <!-- COMENTARIO DE ADMINISTRADOR -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="col-xs-3 col-xs-offset-3">
-                    <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador'); ?>
-                </div>
-                <div class="col-xs-3">
+                <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?=
                     $this->Form->input('Reservations.admin_comment', [  'label' => false,
                                                                         'type' => 'textarea',
                                                                         'class' => 'form-control',
-                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']);
-                ?>
+                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); 
+                    ?>
+                </div>
+                <div class="col-xs-12">
+                    <br>
                 </div>
             </div>
+            <!-- FIN COMENTARIO DE ADMINISTRADOR -->
         </div>
-        <!-- FIN COMENTARIO DE ADMINISTRADOR -->
-
-        <br>
 
         <!-- BOTONES -->
         <div class="row text-center">
             <div class='col-xs-8 col-xs-offset-2'>
-                <?= $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion')); ?>
-                <?= $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); ?>
+                <?php 
+                    echo $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion'));
+                    echo $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); 
+                    echo $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar'))
+                ?>
             </div>
         </div> 
         <!-- FIN BOTONES -->
@@ -223,6 +215,4 @@
     <!-- FIN CAMPOS A MOSTRAR -->
 
     <?= $this->Form->end() ?>
-    
-    <?php //echo $this->fetch('postLink'); ?>
 </div>

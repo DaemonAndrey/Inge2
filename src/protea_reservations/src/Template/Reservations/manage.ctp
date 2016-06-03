@@ -50,11 +50,11 @@
             <th>
                 Curso/Actividad
             </th>
-            <th>
+            <!--<th>
                 <?php 
                 echo $this->Paginator->sort('state', 'Estado')
                 ?>
-            </th>
+            </th>-->
             <th>
                 Revisar
             </th>
@@ -107,7 +107,7 @@
                 <!-- FIN ACTIVIDAD -->
                 
                 <!-- ESTADO -->
-                <td>
+                <!--<td>
                     <?php
                         switch($reservation['state'])
                         {
@@ -125,7 +125,7 @@
                                 break;
                         }
                     ?>
-                </td>
+                </td>-->
                 <!-- FIN ESTADO -->
                 
                 <!-- REVISAR -->

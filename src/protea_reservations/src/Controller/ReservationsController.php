@@ -22,7 +22,7 @@ class ReservationsController extends AppController
         parent::beforeFilter($event);
         
         $this->query = $this->Reservations->find('all')
-            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title', 'Reservations.state'])
+            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title'])//, 'Reservations.state'])
             ->join([
                 'users' => [
                     'table' => 'Users',
@@ -40,7 +40,7 @@ class ReservationsController extends AppController
                     'conditions' => 'resources.id = Reservations.resource_id'
                 ]
             ])
-            ->andWhere(['Reservations.state = ' => 1]);
+            ;//->andWhere(['Reservations.state = ' => 1]);
             //->hydrate(false);
     }
     
@@ -72,7 +72,7 @@ class ReservationsController extends AppController
             y que esten aceptadas o pendientes **/
             $resources = $this->Reservations->find('all')
             ->select(['id', 'start'=>'Reservations.start_date', 'end'=>'Reservations.end_date', 
-                      'title'=>'Reservations.event_name','state'])
+                      'title'=>'Reservations.event_name'])//,'state'])
             ->join([
                 'resources' => [
                     'table' => 'Resources',
@@ -80,9 +80,9 @@ class ReservationsController extends AppController
                     'conditions' => ['resources.id = Reservations.resource_id', 'resources.resource_type_id' => 1 ]
                 ]
             ])
-            ->where([ 
+            ;/*->where([ 
                 'Reservations.state IN' => [1,2] 
-            ]);
+            ]);*/
             
 			$resources = $resources->toArray();
             
@@ -162,7 +162,6 @@ class ReservationsController extends AppController
 
                 $reservation->resource_id = $resource_id;
                 $reservation->user_id = $this->Auth->User('id');
-            
 
                 if ($this->Reservations->save($reservation))
                 {
@@ -189,7 +188,7 @@ class ReservationsController extends AppController
             // Carga la reservación que se desea editar
             $reservation = $this->Reservations->get($id, [
                 'contain' => ['Users', 'Resources'],
-                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'course_id', 'course_name', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'event_name', 'Users.username', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
             ]);
             
             $reservacionPermitida = false;
@@ -209,9 +208,9 @@ class ReservationsController extends AppController
                     $this->Reservations->patchEntity($reservation, $this->request->data);
                     
                     if($this->request->data['accion'] == 'Aceptar')
-                        $this->accept($id, $this->request->data['Reservations']['admin_comment']);
+                        $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
                     elseif($this->request->data['accion'] == 'Rechazar')
-                        $this->reject($id, $this->request->data['Reservations']['admin_comment']);
+                        $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
                 }
 
                 $this->set('reservation', $reservation);
@@ -229,24 +228,30 @@ class ReservationsController extends AppController
     * @param integer $id
     * @param string $adminComment
     */
-    public function accept($id = null, $adminComment = null)
+    public function accept($reservation = null, $adminComment = null)
     {
-        if($id != null)
+        if($reservation != null)
         {
-            $reservation = $this->Reservations->get($id);
-            $reservation->administrator_comment = $adminComment;
-            $reservation->state = 2;
-
-            if($this->Reservations->save($reservation))
+            $this->loadModel('HistoricReservations');
+            $historicReservation = $this->HistoricReservations->newEntity();
+            $historicReservation->reservation_start_date = $reservation['start_date'];
+            $historicReservation->reservation_end_date = $reservation['end_date'];
+            $historicReservation->resource_name = $reservation['resource']['resource_name'];
+            $historicReservation->user_username = $reservation['user']['username'];
+            $historicReservation->user_first_name = $reservation['user']['first_name'];
+            $historicReservation->user_last_name = $reservation['user']['last_name'];
+            $historicReservation->user_comment = $reservation['user_comment'];
+            $historicReservation->administrator_comment = $adminComment;
+            $historicReservation->state = 2;
+            
+            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
             {
                 $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
-                //$this->Flash->success('La reservación fue aceptada exitosamente', ['key', 'acceptReservationSuccess']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
             }
             else
             {
                 $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde'), ['clear' => true, 'key' => 'acceptReservationError']);
-                //$this->Flash->error('La reservación no se pudo aceptar, inténtelo más tarde', ['key', 'acceptReservationError']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
             }
         }
@@ -257,18 +262,25 @@ class ReservationsController extends AppController
     * @param integer $id
     * @param string $adminComment
     */
-    public function reject($id = null, $adminComment = null)
+    public function reject($reservation = null, $adminComment = null)
     {        
-        if($id != null)
+        if($reservation != null)
         {
-            $reservation = $this->Reservations->get($id);
-            $reservation->administrator_comment = $adminComment;
-            $reservation->state = 3;
+            $this->loadModel('HistoricReservations');
+            $historicReservation = $this->HistoricReservations->newEntity();
+            $historicReservation->reservation_start_date = $reservation['start_date'];
+            $historicReservation->reservation_end_date = $reservation['end_date'];
+            $historicReservation->resource_name = $reservation['resource']['resource_name'];
+            $historicReservation->user_username = $reservation['user']['username'];
+            $historicReservation->user_first_name = $reservation['user']['first_name'];
+            $historicReservation->user_last_name = $reservation['user']['last_name'];
+            $historicReservation->user_comment = $reservation['user_comment'];
+            $historicReservation->administrator_comment = $adminComment;
+            $historicReservation->state = 3;
             
-            if($this->Reservations->save($reservation))
+            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
             {
                 $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
-                //$this->Flash->success('La reservación fue rechazada exitosamente', ['key', 'rejectReservationSuccess']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
             }
             else
