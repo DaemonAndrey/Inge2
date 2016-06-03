@@ -36,12 +36,18 @@ class ResourceTypesTable extends Table
                                                 ]
                         ])
             ->add('description', ['maxLength' =>  ['rule' => ['maxLength', 20],
-                                                     'message' => 'Sólo se permiten 20 caracteres'
-                                                    ],
-                                    'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ._\' \-]+$/'),
-                                                       'message' => 'Sólo se permiten caracteres alfanuméricos'
-                                                      ]
-                                   ]);
+                                                   'message' => 'Sólo se permiten 20 caracteres'
+                                                  ],
+                                  'validFormat' =>  ['rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ._\' \-]+$/'),
+                                                     'message' => 'Sólo se permiten caracteres alfanuméricos'
+                                                    ]
+                                   ])
+            
+            /* Reglas para el campo days_before_reservation */
+            ->add('days_before_reservation', ['validFormat' =>  ['rule' => array('comparison', '>=', 0),
+                                                                 'message' => 'La cantidad debe ser mayor o igual a 0'
+                                                                ]
+                                             ]);
     }
     
     public function findAuth(Query $query, array $options)

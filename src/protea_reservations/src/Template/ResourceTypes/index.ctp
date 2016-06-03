@@ -61,6 +61,12 @@
                 ?>
             </th>
             <th>
+                <?php
+                    echo $this->Paginator->sort('days_before_reservation', 'Días de Anticipación ');
+                    echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-number'));
+                ?>
+            </th>
+            <th>
                 Actualizar
             </th>
             <th>
@@ -76,8 +82,14 @@
                     <!-- NOMBRE -->
                     <td>
                         <?php
-                            echo /*$this->Html->link(*/$resourceType['description']/*,
-                                                   array('controller' => 'resourceTypes','action' => 'view', $resourceType->id))*/;
+                            echo $resourceType['description'];
+                        ?>
+                    </td>
+                    
+                    <!-- DÍAS ANTICIPACIÓN -->
+                    <td>
+                        <?php
+                            echo $resourceType['days_before_reservation'];
                         ?>
                     </td>
 
