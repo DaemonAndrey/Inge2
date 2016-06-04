@@ -101,7 +101,7 @@
                 <!-- ACTIVIDAD -->
                 <td>
                     <?php
-                        echo $reservation['reservation_title'];
+                        echo $reservation['event_name'];
                     ?>
                 </td>
                 <!-- FIN ACTIVIDAD -->
