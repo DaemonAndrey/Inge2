@@ -15,16 +15,26 @@
             <legend>
                 <div class='text-center'>
                     <?php
-                    if($user->username == $user_username)
+                    // SI EL USUARIO ESTÁ ACEPTADO
+                    if($user['state'] == true)
                     {
-                        ?>
-                        <h2>Actualizar Mi Cuenta</h2>
-                        <?php
+                        if($user->username == $user_username)
+                        {
+                            ?>
+                            <h2>Actualizar Mi Cuenta</h2>
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                            <h2>Actualizar Usuario</h2>
+                            <?php
+                        }
                     }
                     else
                     {
                         ?>
-                        <h2>Actualizar Usuario</h2>
+                        <h2>Aprobar/Rechazar Usuario</h2>
                         <?php
                     }
                     ?>
@@ -38,11 +48,10 @@
    
     <!-- CAMPOS A LLENAR -->
     <fieldset>
-
-        <!-- NOMBRE -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-                
+        
+        <div class="row">
+            <!-- NOMBRE -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?php
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
@@ -58,6 +67,7 @@
                                             'readonly' => 'readonly',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
+                    <br>
                 <?php    
                 } 
                 // SI EL USUARIO ESTA ACEPTADO
@@ -71,16 +81,11 @@
                     <?php     
                 }
                 ?> 
-               
                 <br>
             </div>
-        </div>
-
-        <!-- APELLIDO -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <!-- APELLIDO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
-                // SI EL USUARIO ESTA ACEPTADO
                 if($user['state'] == true)
                 {
                     ?> 
@@ -88,16 +93,16 @@
                         $this->Form->input('Users.last_name', ['label' => 'Apellidos: ',
                                                                'class' => 'form-control']);
                     ?>
+                    <br>
                     <?php     
                 }
                 ?> 
-                <br>
             </div>
         </div>
         
-        <!-- NOMBRE DE USUARIO / CORREO -->
         <div class="row">
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <!-- NOMBRE DE USUARIO / CORREO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?=
                     $this->Form->label('Users.username', 'Correo: ');
                 ?>
@@ -110,12 +115,8 @@
                 ?>
                 <br><br>
             </div>
-        </div>
-
-
-        <!-- TELÉFONO -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <!-- TELÉFONO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
@@ -149,10 +150,10 @@
             </div>
         </div>
         
-        <!-- DEPARTAMENTO -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-                 <?php
+        <div class="row">
+            <!-- UNIDAD ACADÉMICA -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                <?php
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
                 {
@@ -193,10 +194,8 @@
                 ?>     
                 <br>
             </div>
-        </div>
-        <!-- PUESTO -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <!-- PUESTO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
@@ -234,9 +233,9 @@
             </div>
         </div>
         
-        <!-- ROL -->
-        <div class='row'>
-            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+        <div class="row">
+            <!-- ROL -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?php
                 // SI EL USUARIO NO ESTA ACEPTADO
                 if($user['state'] == false)
@@ -287,6 +286,9 @@
                 }
                 ?>     
                 <br>
+            </div>
+            <!-- VACÍO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
             </div>
         </div>
         
