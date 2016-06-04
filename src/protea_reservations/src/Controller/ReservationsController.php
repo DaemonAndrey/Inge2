@@ -189,7 +189,7 @@ class ReservationsController extends AppController
             // Carga la reservación que se desea editar
             $reservation = $this->Reservations->get($id, [
                 'contain' => ['Users', 'Resources'],
-                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'course_id', 'course_name', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
             ]);
             
             $reservacionPermitida = false;
