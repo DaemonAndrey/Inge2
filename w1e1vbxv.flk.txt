@@ -1,0 +1,50 @@
+﻿Merge branch 'pendientes_K' of https://github.com/DaemonAndrey/Inge2 into pendientes_K
+
+Conflicts:
+	src/protea_reservations/webroot/js/vistas_admin.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch pendientes_K
+# Your branch and 'origin/pendientes_K' have diverged,
+# and have 1 and 41 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   "doc/Pruebas Funcionales/ITERACI\303\223N #3/ADMINISTRAR CUENTAS DE USUARIO/resumen.txt"
+#	modified:   src/protea_reservations/config/app.php
+#	modified:   src/protea_reservations/src/Controller/AppController.php
+#	modified:   src/protea_reservations/src/Controller/ReservationsController.php
+#	modified:   src/protea_reservations/src/Controller/ResourcesController.php
+#	modified:   src/protea_reservations/src/Controller/UsersController.php
+#	new file:   src/protea_reservations/src/Mailer/UserMailer.php
+#	modified:   src/protea_reservations/src/Model/Table/UsersTable.php
+#	new file:   src/protea_reservations/src/Template/Email/html/confirm_reservation.ctp
+#	new file:   src/protea_reservations/src/Template/Email/html/confirm_user.ctp
+#	new file:   src/protea_reservations/src/Template/Email/html/reject_reservation.ctp
+#	new file:   src/protea_reservations/src/Template/Email/html/reject_user.ctp
+#	modified:   src/protea_reservations/src/Template/Layout/Email/html/default.ctp
+#	modified:   src/protea_reservations/src/Template/Layout/default.ctp
+#	new file:   src/protea_reservations/src/Template/Reservations/edit.ctp
+#	new file:   src/protea_reservations/src/Template/Reservations/manage.ctp
+#	modified:   src/protea_reservations/src/Template/ResourceTypes/index.ctp
+#	modified:   src/protea_reservations/src/Template/Resources/associate.ctp
+#	modified:   src/protea_reservations/src/Template/Resources/edit.ctp
+#	modified:   src/protea_reservations/src/Template/Resources/index.ctp
+#	modified:   src/protea_reservations/src/Template/Resources/view.ctp
+#	modified:   src/protea_reservations/src/Template/Users/add.ctp
+#	modified:   src/protea_reservations/src/Template/Users/edit.ctp
+#	modified:   src/protea_reservations/src/Template/Users/index.ctp
+#	new file:   src/protea_reservations/src/Template/Users/view.ctp
+#	modified:   src/protea_reservations/webroot/css/bootstrap.min.css
+#	modified:   src/protea_reservations/webroot/js/vistas_admin.js
+#
+

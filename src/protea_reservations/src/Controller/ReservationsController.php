@@ -80,9 +80,9 @@ class ReservationsController extends AppController
                     'conditions' => ['resources.id = Reservations.resource_id', 'resources.resource_type_id' => 1 ]
                 ]
             ])
-            ->where([ 
+            /*->where([ 
                 'Reservations.state IN' => [1,2] 
-            ]);
+            ])*/;
             
 			$resources = $resources->toArray();
             
