@@ -30,6 +30,7 @@
                                        $user->username,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -44,6 +45,7 @@
                                        $user->telephone_number,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -61,6 +63,7 @@
                                        $user->department,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -75,6 +78,7 @@
                                        $user->position,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -92,6 +96,7 @@
                                        $user->_matchingData['Roles']->role_name,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>

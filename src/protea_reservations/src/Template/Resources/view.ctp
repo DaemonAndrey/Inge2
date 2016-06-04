@@ -29,6 +29,7 @@
                                        $r_type[0],
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -43,6 +44,7 @@
                                        $resource->resource_name,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -65,6 +67,7 @@
                                            $resource->resource_code,
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
                     <br><br>
@@ -81,6 +84,7 @@
                                            "No",
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                         }
                         else
@@ -89,6 +93,7 @@
                                            "Sí",
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                         }
                     ?>
@@ -109,6 +114,7 @@
                                        $resource->description,
                                        ['class' => 'form-control',
                                         'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
                                         'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                 ?>
                 <br><br>
@@ -138,6 +144,7 @@
                                            $todosLosAdmin,
                                            ['class' => 'form-control',
                                             'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
                     <?php
