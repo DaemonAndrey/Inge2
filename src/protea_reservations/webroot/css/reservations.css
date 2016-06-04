@@ -10,3 +10,23 @@
 #btnRegresar{
     margin: 5px;
 }
+
+.poligp{ 
+width:20px; 
+height:20px; 
+background:#FAAC58; 
+font-family:arial; 
+font-weight:bold; 
+color:#FAAC58; 
+border-radius: 25% 25%; 
+} 
+
+.poliga{ 
+width:20px; 
+height:20px; 
+background:#91BB1B; 
+font-family:arial; 
+font-weight:bold; 
+color:#91BB1B; 
+border-radius: 25% 25%; 
+}
