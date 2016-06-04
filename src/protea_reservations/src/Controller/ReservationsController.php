@@ -22,7 +22,7 @@ class ReservationsController extends AppController
         parent::beforeFilter($event);
         
         $this->query = $this->Reservations->find('all')
-            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.reservation_title'])//, 'Reservations.state'])
+            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name'])//, 'Reservations.state'])
             ->join([
                 'users' => [
                     'table' => 'Users',
