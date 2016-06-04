@@ -22,7 +22,7 @@ class ReservationsController extends AppController
         parent::beforeFilter($event);
         
         $this->query = $this->Reservations->find('all')
-            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name'])//, 'Reservations.state'])
+            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name', 'Reservations.state'])
             ->join([
                 'users' => [
                     'table' => 'Users',
@@ -189,7 +189,11 @@ class ReservationsController extends AppController
             // Carga la reservación que se desea editar
             $reservation = $this->Reservations->get($id, [
                 'contain' => ['Users', 'Resources'],
+<<<<<<< HEAD
                 'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'event_name', 'Users.username', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+=======
+                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
+>>>>>>> master
             ]);
             
             $reservacionPermitida = false;
