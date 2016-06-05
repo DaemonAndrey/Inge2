@@ -185,9 +185,25 @@
                                 } ?>
                             
                                 <!-- MI CUENTA -->
-                                <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
+                                <li class="dropdown">
+                                    
+                                        <?php echo $this->Html->link(''.$this->request->session()->read('Auth.User.username').'<span class="caret"></span>','#',array('class' => 'dropdown-toggle', 'data-delay' => '1000', 'data-hover' => 'dropdown', 'escape' => false)); ?>
+                                        
+                                    </a>
+                                    <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
+                                    
+                                    <!-- MIS DATOS -->
+                                    <li role="mi_cuenta"><?php echo $this->Html->link('Mi Cuenta',
                                                                  array('controller'=>'users','action' => 'edit', $this->request->session()->read('Auth.User.id')),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
+                                    
+                                    <!-- MIS RESERVACIONES -->
+                                    <li role="mis_reservaciones"><?php echo $this->Html->link('Mis Reservaciones',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                    </ul>
+                                </li>
+
                             
                                 <!-- LOGOUT -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
