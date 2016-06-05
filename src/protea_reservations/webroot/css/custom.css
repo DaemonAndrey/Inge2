@@ -1503,10 +1503,10 @@ padding: 8px 15px;
     margin-bottom: 15px;
     letter-spacing: 0.5px;
     color: #000000;/*#7F7F7F;*/
-    padding: 15px 15px 12px;
+    padding: 15px 0px 12px;
     border-radius:0px;
     /* text-transform: capitalize!important; */
-    padding-left: 70px;
+    /* padding-left: 70px; */
 }
  .right textarea{
     width: 100%;

@@ -10,7 +10,6 @@ class ReservationsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        //$this->loadComponent('Paginator');
     }
     
     /**
@@ -21,8 +20,8 @@ class ReservationsController extends AppController
     {
         parent::beforeFilter($event);
         
-        $this->query = $this->Reservations->find('all')
-            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name', 'Reservations.state'])
+        $this->pendingReservations = $this->Reservations->find('all')
+            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name', 'Reservations.state', 'Resources.resource_code'])
             ->join([
                 'users' => [
                     'table' => 'Users',
@@ -40,16 +39,14 @@ class ReservationsController extends AppController
                     'conditions' => 'resources.id = Reservations.resource_id'
                 ]
             ])
-            ;//->andWhere(['Reservations.state = ' => 1]);
+            ->andWhere(['Reservations.state = ' => 0]);
             //->hydrate(false);
     }
     
     /** 
      * Paginador de recursos.
      */
-    public $paginate = array('limit' => 10,
-                             'order' => array('Reservation.start_date' => 'asc')
-                            );
+    public $paginate = array('limit' => 10, 'order' => array('Reservation.start_date' => 'asc'));
     
     /**
     * Carga el calendario principal con las reservas.
@@ -64,8 +61,7 @@ class ReservationsController extends AppController
                         ->select(['description']);
 
         $resource_type = $resource_type->toArray();
-			
-        
+			        
 		if($this->request->is('post'))
 		{
             /** Consulta para mostrar en el calendarios solo las reservacionesque corresponden a recursos tipo sala 
@@ -85,8 +81,7 @@ class ReservationsController extends AppController
                 'Reservations.state IN' => [1,2] 
             ]);*/
             
-			$resources = $resources->toArray();
-            
+			$resources = $resources->toArray();            
 		
 			$events = array();
 			array_push($events, $resources);
@@ -97,21 +92,20 @@ class ReservationsController extends AppController
             {
                 $bordercolor = '#FAAC58';
                 $backgroundcolor = '#FAAC58';
+                
                 if($key['state'] == 2)
                 {
                     $backgroundcolor = '#91BB1B';
                     $bordercolor = '#91BB1B';
                 }
-                $key['backgroundColor'] = $backgroundcolor; //array('backgroundColor'=>'#00000');  
-                $key['borderColor'] = $bordercolor;
-                    
                 
+                $key['backgroundColor'] = $backgroundcolor; //array('backgroundColor'=>'#00000');  
+                $key['borderColor'] = $bordercolor; 
             }
             
            // debug($events);
             
 			$events =  json_encode($events);
-
 			$events = str_replace(".",",",$events);
 	
 			//$events = substr($events, 1,strlen($events)-2);
@@ -120,17 +114,27 @@ class ReservationsController extends AppController
 		}
 		
 		$this->set('types',$resource_type);
-        
-        
 	}
     
     /*
     * Carga las reservaciones pendientes que le corresponden al administrador que está en la sesión
+    * o al usuario que quiere revisar sus reservaciones en general
     */
     public function manage()
     {
-        // Pagina la tabla de recursos
-        $this->set('reservations', $this->paginate($this->query));
+        if($this->Auth->User('role_id') != 1)
+            // Pagina la tabla de recursos
+            $this->set('reservations', $this->paginate($this->pendingReservations));
+        else
+        {    
+            $userReservations = $this->Reservations->find('all', [
+                'contain' => ['Resources'],
+                'conditions' => ['Reservations.user_id = ' => $this->Auth->User('id')]
+            ]);
+               
+            // Pagina la tabla de recursos
+            $this->set('reservations', $this->paginate($userReservations));
+        }
     }
 
     /**
@@ -142,8 +146,7 @@ class ReservationsController extends AppController
         if($this->Auth->user())
         {
             $reservation = $this->Reservations->newEntity();
-
-            
+     
             if($this->request->is('post'))
             {
                 $start_date = $this->request->data['start_date'];
@@ -199,43 +202,49 @@ class ReservationsController extends AppController
     */
     public function edit($id = null)
     {
-        if($this->Auth->user())
+        if($id != null)
         {
-            // Carga la reservación que se desea editar
-            $reservation = $this->Reservations->get($id, [
-                'contain' => ['Users', 'Resources'],
-                'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'Users.first_name', 'Users.last_name', 'Resources.resource_name']
-            ]);
-            
-            $reservacionPermitida = false;
-            foreach($this->query as $item)
+            if($this->Auth->user())
             {
-                if($item['id'] == $reservation['id'])
+                // Carga la reservación que se desea editar
+                $reservation = $this->Reservations->get($id, [
+                    'contain' => ['Users', 'Resources'],
+                    'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'event_name', 'Users.username', 'Users.first_name', 'Users.last_name', 'Resources.resource_name', 'Resources.resource_code']
+                ]);
+                $reservacionPermitida = false;
+                foreach($this->pendingReservations as $item)
                 {
-                    $reservacionPermitida = true;
-                    break;
+                    if($item['id'] == $reservation['id'])
+                    {
+                        $reservacionPermitida = true;
+                        break;
+                    }
+                }
+                if($reservacionPermitida)
+                {
+                    if($this->request->is(array('post', 'put')))
+                    {
+                        $this->Reservations->patchEntity($reservation, $this->request->data);
+                        if($this->request->data['accion'] == 'Aceptar')
+                            $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
+                        elseif($this->request->data['accion'] == 'Rechazar')
+                            $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
+                        elseif($this->request->data['accion'] == 'Cancelar')
+                            $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
+                    }
+                    $this->set('reservation', $reservation);
+                }
+                else
+                {
+                    $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
+                    return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
                 }
             }
-            
-            if($reservacionPermitida)
-            {
-                if($this->request->is(array('post', 'put')))
-                {
-                    $this->Reservations->patchEntity($reservation, $this->request->data);
-                    
-                    if($this->request->data['accion'] == 'Aceptar')
-                        $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
-                    elseif($this->request->data['accion'] == 'Rechazar')
-                        $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
-                }
-
-                $this->set('reservation', $reservation);
-            }
-            else
-            {
-                $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
-                return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
-            }
+        }
+        else
+        {
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar'), ['clear' => true, 'key' => 'nullReservation']);
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
     
@@ -258,9 +267,11 @@ class ReservationsController extends AppController
             $historicReservation->user_last_name = $reservation['user']['last_name'];
             $historicReservation->user_comment = $reservation['user_comment'];
             $historicReservation->administrator_comment = $adminComment;
-            $historicReservation->state = 2;
+            $historicReservation->state = 1;
             
-            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+            $reservation->state = 1;
+            
+            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
             {
                 $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -270,6 +281,11 @@ class ReservationsController extends AppController
                 $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde'), ['clear' => true, 'key' => 'acceptReservationError']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
             }
+        }
+        else
+        {
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede aceptar'), ['clear' => true, 'key' => 'nullReservation']);
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
     
@@ -292,7 +308,7 @@ class ReservationsController extends AppController
             $historicReservation->user_last_name = $reservation['user']['last_name'];
             $historicReservation->user_comment = $reservation['user_comment'];
             $historicReservation->administrator_comment = $adminComment;
-            $historicReservation->state = 3;
+            $historicReservation->state = 2;
             
             if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
             {
@@ -306,6 +322,50 @@ class ReservationsController extends AppController
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
             }
         }
+        else
+        {
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede rechazar'), ['clear' => true, 'key' => 'nullReservation']);
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+        }
+    }
+    
+    public function view($id)
+    {
+        
+    }
+    
+    public function cancel($reservation = null, $adminComment = null)
+    {
+        if($reservation != null)
+        {
+            $this->loadModel('HistoricReservations');
+            $historicReservation = $this->HistoricReservations->newEntity();
+            $historicReservation->reservation_start_date = $reservation['start_date'];
+            $historicReservation->reservation_end_date = $reservation['end_date'];
+            $historicReservation->resource_name = $reservation['resource']['resource_name'];
+            $historicReservation->user_username = $reservation['user']['username'];
+            $historicReservation->user_first_name = $reservation['user']['first_name'];
+            $historicReservation->user_last_name = $reservation['user']['last_name'];
+            $historicReservation->user_comment = $reservation['user_comment'];
+            $historicReservation->administrator_comment = $adminComment;
+            $historicReservation->state = 3;
+            
+            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+            {
+                $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+            else
+            {
+                $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
+                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+            }
+        }
+        else
+        {
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede cancelar'), ['clear' => true, 'key' => 'nullReservation']);
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+        }
     }
     
     /**
@@ -314,13 +374,30 @@ class ReservationsController extends AppController
     */
     public function isAuthorized($user)
     {
-        // Todos los usuarios se pueden registrar
+        // Solo los administradores pueden aceptar las reservaciones pendientes
+        if($this->request->action === 'accept' && $user['role_id'] == 1)
+            return false;
         
-        if (($this->request->action === 'index') || ($this->request->action === 'add')) 
-        {
-            return true;            
-        }
-
+        // Solo los administradores pueden rechazar las reservaciones pendientes
+        if($this->request->action === 'reject' && $user['role_id'] == 1)
+            return false;
+        
+        // Todos los usuarios pueden ingresar a la vista de administración de reservaciones ('manage')
+        if($this->request->action === 'manage')
+            return true;
+        
+        // Solo los administradores pueden ingresar a la vista de 'edit'
+        if($this->request->action === 'edit' && $user['role_id'] != 1)
+            return true;
+        
+        // Los usuarios pueden revisar y cancelar sus reservaciones ingresando a la vista 'view'
+        if($this->request->action === 'view' && $user['role_id'] == 1)
+            return true;
+        
+        // Todos los usuarios pueden cancelar una reservación que les pertenezca o administren
+        if($this->request->action === 'cancel')
+            return true;
+        
         return parent::isAuthorized($user);   
     }
 }

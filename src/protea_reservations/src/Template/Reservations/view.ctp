@@ -220,7 +220,6 @@
                 <?php 
                     echo $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion'));
                     echo $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); 
-                    echo $this->Form->submit('Cancelar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); 
                     echo $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar'))
                 ?>
             </div>
