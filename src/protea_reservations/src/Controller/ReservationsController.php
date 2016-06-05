@@ -147,35 +147,50 @@ class ReservationsController extends AppController
             if($this->request->is('post'))
             {
                 $start_date = $this->request->data['start_date'];
-                $reservation->start_date = $start_date;
                 $end_date = $this->request->data['end_date'];
-                $reservation->end_date = $end_date;
-                $event_name = $this->request->data['event_name'];
-                $reservation->event_name = $event_name;
-                $user_comment = $this->request->data['user_comment'];
-                $reservation->user_comment = $user_comment;
-
                 $resource = $this->request->data['resource'];
+
                 $this->loadModel('Resources');
                 $resource_id = $this->Resources->find()
-                                            ->select(['id'])
-                                            ->where(['resource_name =' => $resource]);
+                    ->select(['id'])
+                    ->where(['resource_name =' => $resource]);
 
-                $reservation->resource_id = $resource_id;
+                $resource_id = $resource_id->toArray();
+
+                $event_name = $this->request->data['event_name'];
+                $user_comment = $this->request->data['user_comment'];
+
+
+                $reservation->start_date = $start_date;
+
+                $reservation->end_date = $end_date;
+
+                $reservation->event_name = $event_name;
+
+                $reservation->user_comment = $user_comment;
+
+
+
+
+                //$reservation->resource_id = $resource_id;
+                $reservation->resource_id = $resource_id[0]['id'];
+
                 $reservation->user_id = $this->Auth->User('id');
 
                 if ($this->Reservations->save($reservation))
                 {
                     $this->response->statusCode(200);
                 }
-                else
-                {
-                    $this->response->statusCode(404);   
-                }
+
+
             }
         }            
 	}
-    
+
+
+
+
+
     /**
     * Actualiza el estado de la reservación dependiendo de si el administrador
     * la acepta o la rechaza. También agrega los comentarios del administrador
