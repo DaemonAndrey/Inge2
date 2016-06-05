@@ -398,7 +398,7 @@ class ReservationsController extends AppController
         if($this->request->action === 'cancel')
             return true;
         
-        // Todos los usuarios pueden ingresar a la vista de administración de reservaciones ('manage')
+        // Todos los usuarios pueden ingresar a la vista del calendario
         if($this->request->action === 'index')
             return true;
         
