@@ -40,7 +40,7 @@ class ReservationsController extends AppController
                 ]
             ])
             ->andWhere(['Reservations.state = ' => 0])
-            ->order(['start_date' => 'ASC']);
+            ->order(['Reservations.start_date' => 'ASC']);
             //->hydrate(false);
     }
     
