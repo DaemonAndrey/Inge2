@@ -4,20 +4,19 @@
       <h2>Calendario de Reservas</h2>
   </div>
 </div>
-
-
-<br>
-<div id='calendar'></div>   
-<br>
-<br>
-
 <!-- Simbología -->
 <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-    <label>Estado de reservación</label>
+    <div class="col-md-3 col-md-offset-9">
+        <div class="col-md-3 col-md-offset-3">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>Estado de reservación</label>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row" >
+    <div class="col-md-3 col-md-offset-9">
+    <div class="col-md-3 col-md-offset-3">
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="col-md-6 ">
@@ -27,9 +26,13 @@
     <div class="poligp"> 
     </div> 
   </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
+        <div class="col-md-3 col-md-offset-9">
+    <div class="col-md-3 col-md-offset-3">
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="col-md-6">
@@ -39,9 +42,17 @@
     <div class="poliga"> 
     </div> 
   </div>
+            </div>
+    </div>
 </div>
-<br>
 <!-- Fin Simbología -->
+
+<br>
+<div id='calendar'></div>   
+<br>
+<br>
+
+
 
 <div id="callback" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -52,7 +63,7 @@
                 <h4 class="modal-title">Confirmación</h4>
             </div>
             <div class="modal-body">
-                <h4 id="callbackText" style="color: green;">¡Su reservación está siendo procesada!</h4>
+                <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
