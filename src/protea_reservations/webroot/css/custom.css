@@ -1565,38 +1565,37 @@ padding: 8px 15px;
 }*/
 
 li i[id = facebook]{
-    color:#4862A;
+    color:aliceblue;
+    background-color: #3b5998;
     width: 30px;
     height: 30px;
     padding: 5px 0px 5px 0px;
-    border: 1px solid #555;
-    border-radius: 2px;
-    line-height: 18px;
-    text-align: center;
-}
-
-li i[id = yt]{
-    color:red;
-    width: 30px;
-    height: 30px;
-    padding: 5px 0px 5px 0px;
-    border: 1px solid #555;
-    border-radius: 2px;
+    border-radius: 25%;
     line-height: 18px;
     text-align: center;
 }
 
 li i[id = tw]{
-    color:lightblue;
+    color:aliceblue;
+    background-color:#1da1f2;
     width: 30px;
     height: 30px;
     padding: 5px 0px 5px 0px;
-    border: 1px solid #555;
-    border-radius: 2px;
+    border-radius: 25%;
     line-height: 18px;
     text-align: center;
 }
 
+li i[id = yt]{
+    color:aliceblue;
+    background-color:red;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 25%;
+    line-height: 18px;
+    text-align: center;
+}
 
 .form-icon {
     position: absolute;
