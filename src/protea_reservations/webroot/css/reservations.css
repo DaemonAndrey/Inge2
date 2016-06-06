@@ -2,15 +2,6 @@
 	background-color: #91BB1B;
 }
 
-.submit{
-    display: inline;
-    margin: 5px;
-}
-
-#btnRegresar{
-    margin: 5px;
-}
-
 .poligp{ 
 width:20px; 
 height:20px; 
@@ -29,4 +20,5 @@ font-family:arial;
 font-weight:bold; 
 color:#91BB1B; 
 border-radius: 25% 25%; 
-}
+} 
+
