@@ -39,7 +39,8 @@ class ReservationsController extends AppController
                     'conditions' => 'resources.id = Reservations.resource_id'
                 ]
             ])
-            ->andWhere(['Reservations.state = ' => 0]);
+            ->andWhere(['Reservations.state = ' => 0])
+            ->order(['Reservations.start_date' => 'ASC']);
             //->hydrate(false);
     }
     
