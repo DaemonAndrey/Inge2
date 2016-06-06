@@ -200,11 +200,19 @@
                     <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?=
-                    $this->Form->input('Reservations.admin_comment', [  'label' => false,
+                    <?php
+                        $comentarioAdmin = '';
+                        
+                        if($reservation->administrator_comment == '')
+                            $comentarioAdmin = '-';
+                        else
+                            $comentarioAdmin = $reservation->administrator_comment;
+                    ?>
+                    <?= $this->Form->label('Reservations.administrator_comment', $comentarioAdmin, ['class' => 'form-control', 'readonly' => 'readonly'])
+                    /*$this->Form->input('Reservations.admin_comment', [  'label' => false,
                                                                         'type' => 'textarea',
                                                                         'class' => 'form-control',
-                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); 
+                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); */
                     ?>
                 </div>
                 <div class="col-xs-12">
@@ -218,8 +226,7 @@
         <div class="row text-center">
             <div class='col-xs-8 col-xs-offset-2'>
                 <?php 
-                    echo $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion'));
-                    echo $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); 
+                    echo $this->Form->submit('Cancelar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion'));
                     echo $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar'))
                 ?>
             </div>
