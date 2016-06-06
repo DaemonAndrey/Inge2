@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>1.3 Correo Repetido</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">1.3 Correo Repetido</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/ProyectoProtea/src/protea_reservations/pages/home</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Inicio</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Ingresar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>monica@ucr.ac.cr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>monicamonica</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Cuentas de Usuarios</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Agregar usuario</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=first-name</td>
+	<td>Alvaro</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=last-name</td>
+	<td>Campos Monge</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>12345678</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=repass</td>
+	<td>12345678</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>alvaro.campos@ucr.ac.cr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=telephone-number</td>
+	<td>84848484</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.error-message</td>
+	<td>Este correo ya está registrado.</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

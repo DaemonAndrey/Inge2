@@ -1543,8 +1543,8 @@ padding: 8px 15px;
 .contact_txt li p{
     color: #555;
 }
-.social-contact li i{
-    color: #555;
+/*.social-contact li i{
+    color:blue;
     width: 30px;
     height: 30px;
     padding: 5px 0px 5px 0px;
@@ -1553,6 +1553,50 @@ padding: 8px 15px;
     line-height: 18px;
     text-align: center;
 }
+.social-contact li i fa-facebook{
+    color:brown;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}*/
+
+li i[id = facebook]{
+    color:#4862A;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}
+
+li i[id = yt]{
+    color:red;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}
+
+li i[id = tw]{
+    color:lightblue;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}
+
 
 .form-icon {
     position: absolute;
