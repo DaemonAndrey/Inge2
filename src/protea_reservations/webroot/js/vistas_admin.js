@@ -42,6 +42,7 @@
                 
                 if( openModal )
                 {
+
                     jQuery('#mdlReservaciones').modal('show');
                     globalDate = date;
                     fecha = document.getElementById("fecha");

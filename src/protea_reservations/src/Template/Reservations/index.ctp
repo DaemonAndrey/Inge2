@@ -150,7 +150,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4><font color="red">* </font>Tipo de recurso</h4>
+                            <h4>Tipo de recurso: <font color="red"> *</font></h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="tipoRecurso" class="form-control" role="listbox" aria-label="Tipo de recurso" aria-required="true" onchange="getResources(this);activateButton(this, getElementById('check'));" id="resource_type">
