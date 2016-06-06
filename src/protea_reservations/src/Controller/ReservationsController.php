@@ -39,7 +39,8 @@ class ReservationsController extends AppController
                     'conditions' => 'resources.id = Reservations.resource_id'
                 ]
             ])
-            ->andWhere(['Reservations.state = ' => 0]);
+            ->andWhere(['Reservations.state = ' => 0])
+            ->order(['start_date' => 'ASC']);
             //->hydrate(false);
     }
     
@@ -331,13 +332,68 @@ class ReservationsController extends AppController
     
     public function view($id)
     {
-        
+        if($id != null)
+        {
+            if($this->Auth->user())
+            {
+                // Carga la reservación que se desea editar
+                $reservation = $this->Reservations->get($id, [
+                    'contain' => ['Users', 'Resources'],
+                    'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'administrator_comment', 'event_name', 'user_id', 'resource_id', 'Users.username', 'Users.first_name', 'Users.last_name', 'Resources.resource_name', 'Resources.resource_code']
+                ]);  
+
+                $reservacionPermitida = ($this->Auth->user('id') == $reservation['user_id']) ? true : false;
+
+                if($reservacionPermitida)
+                {
+                    if($this->request->is(array('post', 'put')))
+                    {
+                        $this->Reservations->patchEntity($reservation, $this->request->data);
+                                                
+                        if($this->request->data['accion'] == 'Cancelar')
+                            $this->cancel($reservation);
+                    }
+
+                    $this->set('reservation', $reservation);
+                }
+                else
+                {
+                    $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
+                    return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
+                }
+            }
+        }
+        else
+        {
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar'), ['clear' => true, 'key' => 'nullReservation']);
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+        }
     }
     
-    public function cancel($reservation = null, $adminComment = null)
+    public function cancel($reservation = null)
     {
         if($reservation != null)
         {
+            $this->loadModel('Resources');
+            
+            /*$resource = $this->Resources->find('all', [
+                'contain' => ['ResourceTypes'],
+                //'fields' => ['ResourceTypes.days_before_reservation'],
+                'condition' => ['resource_id = ' => $reservation['resource_id'], 'ResourceTypes.id = ' => 'resource_type_id']]);*/
+               
+            $resource = $this->Resources->find('all')
+                ->contain(['ResourceTypes'])
+                ->where(['resource_id' => $reservation['resource_id'], 'ResourceTypes.id' => 'resource_type_id']);
+            
+            //debug($resource['days_before_reservation']);
+            
+            $startDate = date_format($reservation['start_date'], 'd/m/Y');
+
+            //debug($resource['ResourceTypes.days_before_reservation']);
+            //date_add($startDate, date_interval_create_from_date_string($resource['ResourceTypes.days_before_reservation']));
+            
+            /*if( $startDate > date('d/m/Y') )
+            
             $this->loadModel('HistoricReservations');
             $historicReservation = $this->HistoricReservations->newEntity();
             $historicReservation->reservation_start_date = $reservation['start_date'];
@@ -359,7 +415,7 @@ class ReservationsController extends AppController
             {
                 $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
                 return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
-            }
+            }*/
         }
         else
         {
