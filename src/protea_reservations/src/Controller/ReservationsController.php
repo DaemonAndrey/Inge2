@@ -94,7 +94,7 @@ class ReservationsController extends AppController
                 $bordercolor = '#FAAC58';
                 $backgroundcolor = '#FAAC58';
                 
-                if($key['state'] == 2)
+                if($key['state'] == 1)
                 {
                     $backgroundcolor = '#91BB1B';
                     $bordercolor = '#91BB1B';
