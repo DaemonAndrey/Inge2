@@ -91,7 +91,16 @@
                 <?php
             }
         ?>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="col-xs-12">
+                    <h5>Campos obligatorios (<font color="red">*</font>) </h5>
+                </div>
+            </div>
+        </div>
+        
    </fieldset>
+    
     
     <!-- BOTONES -->
     <div class='row  text-center' id="btnRegistrar">
