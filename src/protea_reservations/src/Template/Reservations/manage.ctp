@@ -47,7 +47,7 @@
             </th>
             <th>
                 <?php
-                    echo $this->Paginator->sort('Resources.resource_name', 'Recurso');
+                    echo $this->Paginator->sort('resources.resource_name', 'Recurso');
                 ?>
             </th>
             <th>
@@ -75,7 +75,10 @@
                 <!-- FECHA -->
                 <td>
                     <?php
-                        echo date_format($reservation['start_date'], "d/M/Y");
+                        if($reservation['start_date'] != null)
+                            echo date_format($reservation['start_date'], "d/M/Y");
+                        elseif($reservation['reservation_start_date'] != null)
+                            echo date_format($reservation['reservation_start_date'], "d/M/Y")
                     ?>
                 </td>
                 <!-- FIN FECHA -->
@@ -83,7 +86,10 @@
                 <!-- HORA INICIO -->
                 <td>
                     <?php 
-                        echo date_format($reservation['start_date'], 'H:i');
+                        if($reservation['start_date'] != null)
+                            echo date_format($reservation['start_date'], "H:i");
+                        elseif($reservation['reservation_start_date'] != null)
+                            echo date_format($reservation['reservation_start_date'], "H:i")
                     ?>
                 </td>
                 <!-- FIN HORA INICIO -->
@@ -91,7 +97,10 @@
                 <!-- HORA FIN -->
                 <td>
                     <?php 
-                        echo date_format($reservation['end_date'], 'H:i');
+                        if($reservation['end_date'] != null)
+                            echo date_format($reservation['end_date'], "H:i");
+                        elseif($reservation['reservation_end_date'] != null)
+                            echo date_format($reservation['reservation_end_date'], "H:i")
                     ?>
                 </td>
                 <!-- FIN HORA FIN -->
@@ -99,10 +108,10 @@
                 <!-- NOMBRE RECURSO -->
                 <td>
                     <?php 
-                        if($this->request->session()->read('Auth.User.role_id') == 1) 
-                            echo $reservation['resource']['resource_name'];
-                        else
-                            echo $reservation['Resources']['resource_name'];
+                        //if($this->request->session()->read('Auth.User.role_id') == 1) 
+                        //    echo $reservation['Resources']['resource_name'];
+                        //else
+                            echo $reservation['resources']['resource_name'];
                     ?>
                 </td>
                 <!-- FIN NOMBRE RECURSO -->

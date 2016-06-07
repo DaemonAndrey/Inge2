@@ -186,7 +186,7 @@
                         else
                             $comentarioUsuario = $reservation->user_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly']); ?>
+                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly', 'style' => 'display:inline-table;', 'templates' => ['formGroup' => '<div>{{label}}</div>']]); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>

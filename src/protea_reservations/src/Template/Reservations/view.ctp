@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <legend>
                 <div class="text-center">
-                    <h2>Reservación de <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name); ?></h2>
+                    <h2>Reservación de <?= $this->Form->label('reservations.resource_id', $reservation['resources']['resource_name']); ?></h2>
                     <br>
                 </div>
             </legend>
@@ -20,27 +20,13 @@
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
         <div class="row">
-            <!-- RECURSO -->
-            <!--<div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', 'Recurso:'); ?>
-                </div>
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
-                </div>
-                <div class="col-xs-12">
-                    <br>
-                </div>
-            </div>-->
-            <!-- FIN RECURSO -->
-            
             <!-- PLACA / MODELO DEL RECURSO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Resources.resource_code', 'Placa / Modelo:'); ?>
+                    <?= $this->Form->label('resources.resource_code', 'Placa / Modelo:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_code, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.resource_id', $reservation['resources']['resource_code'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -145,10 +131,10 @@
             <!-- USUARIO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.user_id', 'Usuario:'); ?>
+                    <?= $this->Form->label('reservations.user_id', 'Usuario:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.user_id', $reservation->user->first_name.' '.$reservation->user->last_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.user_id', $reservation['users']['first_name'].' '.$reservation['users']['last_name'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>

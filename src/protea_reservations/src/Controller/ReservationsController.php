@@ -21,25 +21,25 @@ class ReservationsController extends AppController
         parent::beforeFilter($event);
         
         $this->pendingReservations = $this->Reservations->find('all')
-            ->select(['Reservations.id', 'Reservations.start_date', 'Reservations.end_date', 'Resources.resource_name', 'Reservations.event_name', 'Reservations.state', 'Resources.resource_code'])
+            ->select(['id', 'start_date', 'end_date', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code'])
             ->join([
                 'users' => [
-                    'table' => 'Users',
+                    'table' => 'users',
                     'type' => 'INNER',
-                    'conditions' => 'users.id = Reservations.user_id'
+                    'conditions' => 'users.id = reservations.user_id'
                 ],
                 'resources_users' => [
-                    'table' => 'Resources_Users',
+                    'table' => 'resources_users',
                     'type' => 'INNER',
                     'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
                 ],
                 'resources' => [
-                    'table' => 'Resources',
+                    'table' => 'resources',
                     'type' => 'INNER',
-                    'conditions' => 'resources.id = Reservations.resource_id'
+                    'conditions' => 'resources.id = reservations.resource_id'
                 ]
             ])
-            ->andWhere(['Reservations.state = ' => 0])
+            ->andWhere(['reservations.state = ' => 0])
             ->order(['start_date' => 'ASC']);
             //->hydrate(false);
     }
@@ -122,15 +122,26 @@ class ReservationsController extends AppController
     */
     public function manage()
     {
+        // Si es administrador solo ve las reservaciones pendientes
         if($this->Auth->User('role_id') != 1)
+        {
             // Pagina la tabla de recursos
             $this->set('reservations', $this->paginate($this->pendingReservations));
+        }
+        // Si es usuario regular puede ver todas las reservaciones pendientes, aceptadas, rechazadas y canceladas
         else
-        {    
-            $userReservations = $this->Reservations->find('all', [
-                'contain' => ['Resources'],
-                'conditions' => ['Reservations.user_id = ' => $this->Auth->User('id')]
-            ]);
+        {   
+            $userReservations = $this->Reservations->find('all')
+                ->select(['id', 'start_date', 'end_date', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code'])
+                ->join([
+                    'resources' => [
+                        'table' => 'resources',
+                        'type' => 'INNER',
+                        'conditions' => 'resources.id = reservations.resource_id'
+                    ]
+                ])
+                ->andWhere(['reservations.user_id = ' => $this->Auth->User('id')])
+                ->order(['start_date' => 'ASC']);
                
             // Pagina la tabla de recursos
             $this->set('reservations', $this->paginate($userReservations));
@@ -246,29 +257,32 @@ class ReservationsController extends AppController
     {
         if($reservation != null)
         {
-            $this->loadModel('HistoricReservations');
-            $historicReservation = $this->HistoricReservations->newEntity();
-            $historicReservation->reservation_start_date = $reservation['start_date'];
-            $historicReservation->reservation_end_date = $reservation['end_date'];
-            $historicReservation->resource_name = $reservation['resource']['resource_name'];
-            $historicReservation->user_username = $reservation['user']['username'];
-            $historicReservation->user_first_name = $reservation['user']['first_name'];
-            $historicReservation->user_last_name = $reservation['user']['last_name'];
-            $historicReservation->user_comment = $reservation['user_comment'];
-            $historicReservation->administrator_comment = $adminComment;
-            $historicReservation->state = 1;
-            
-            $reservation->state = 1;
-            
-            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
+            if($this->Auth->user())
             {
-                $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
-            }
-            else
-            {
-                $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde'), ['clear' => true, 'key' => 'acceptReservationError']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                $this->loadModel('HistoricReservations');
+                $historicReservation = $this->HistoricReservations->newEntity();
+                $historicReservation->reservation_start_date = $reservation['start_date'];
+                $historicReservation->reservation_end_date = $reservation['end_date'];
+                $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                $historicReservation->user_username = $reservation['user']['username'];
+                $historicReservation->user_first_name = $reservation['user']['first_name'];
+                $historicReservation->user_last_name = $reservation['user']['last_name'];
+                $historicReservation->user_comment = $reservation['user_comment'];
+                $historicReservation->administrator_comment = $adminComment;
+                $historicReservation->state = 1;
+
+                $reservation->state = 1;
+
+                if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
+                {
+                    $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
+                    return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                }
+                else
+                {
+                    $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde'), ['clear' => true, 'key' => 'acceptReservationError']);
+                    return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                }
             }
         }
         else
@@ -287,28 +301,30 @@ class ReservationsController extends AppController
     {        
         if($reservation != null)
         {
-            $this->loadModel('HistoricReservations');
-            $historicReservation = $this->HistoricReservations->newEntity();
-            $historicReservation->reservation_start_date = $reservation['start_date'];
-            $historicReservation->reservation_end_date = $reservation['end_date'];
-            $historicReservation->resource_name = $reservation['resource']['resource_name'];
-            $historicReservation->user_username = $reservation['user']['username'];
-            $historicReservation->user_first_name = $reservation['user']['first_name'];
-            $historicReservation->user_last_name = $reservation['user']['last_name'];
-            $historicReservation->user_comment = $reservation['user_comment'];
-            $historicReservation->administrator_comment = $adminComment;
-            $historicReservation->state = 2;
-            
-            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+            if($this->Auth->user())
             {
-                $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
-            }
-            else
-            {
-                $this->Flash->set(__('La reservación no se pudo rechazar, inténtelo más tarde'), ['clear' => true, 'key' => 'rejectReservationError']);
-                //$this->Flash->error('La reservación no se pudo rechazar, inténtelo más tarde', ['key', 'rejectReservationError']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                $this->loadModel('HistoricReservations');
+                $historicReservation = $this->HistoricReservations->newEntity();
+                $historicReservation->reservation_start_date = $reservation['start_date'];
+                $historicReservation->reservation_end_date = $reservation['end_date'];
+                $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                $historicReservation->user_username = $reservation['user']['username'];
+                $historicReservation->user_first_name = $reservation['user']['first_name'];
+                $historicReservation->user_last_name = $reservation['user']['last_name'];
+                $historicReservation->user_comment = $reservation['user_comment'];
+                $historicReservation->administrator_comment = $adminComment;
+                $historicReservation->state = 2;
+
+                if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                {
+                    $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
+                    return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                }
+                else
+                {
+                    $this->Flash->set(__('La reservación no se pudo rechazar, inténtelo más tarde'), ['clear' => true, 'key' => 'rejectReservationError']);
+                    return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                }
             }
         }
         else
@@ -318,18 +334,39 @@ class ReservationsController extends AppController
         }
     }
     
-    public function view($id)
+    /**
+    * Permite al usuario visualizar la información de su reservación
+    * @param integer $id
+    */
+    public function view($id = null)
     {
         if($id != null)
         {
             if($this->Auth->user())
             {
-                // Carga la reservación que se desea editar
-                $reservation = $this->Reservations->get($id, [
-                    'contain' => ['Users', 'Resources'],
-                    'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'administrator_comment', 'event_name', 'user_id', 'resource_id', 'Users.username', 'Users.first_name', 'Users.last_name', 'Resources.resource_name', 'Resources.resource_code']
-                ]);  
+                // Carga la reservación que se desea editar                
+                $reservations = $this->Reservations->find('all')
+                ->select(['id', 'start_date', 'end_date', 'user_comment', 'administrator_comment', 'event_name', 'user_id', 'resource_id', 'users.username', 'users.first_name', 'users.last_name', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code', 'resourceTypes.days_before_reservation'])
+                ->join([
+                    'resources' => [
+                        'table' => 'resources',
+                        'type' => 'INNER',
+                        'conditions' => 'resources.id = reservations.resource_id'
+                    ],
+                    'users' => [
+                        'table' => 'users',
+                        'type' => 'INNER',
+                        'conditions' => ['users.id = reservations.user_id']
+                    ],
+                    'resourceTypes' => [
+                        'table' => 'resource_types',
+                        'type' => 'INNER',
+                        'conditions' => ['resources.resource_type_id = resourceTypes.id']
+                    ]
+                ])
+                ->andWhere(['reservations.user_id = ' => $this->Auth->User('id'), 'reservations.id = ' => $id]);
 
+                $reservation = $reservations->first();
                 $reservacionPermitida = ($this->Auth->user('id') == $reservation['user_id']) ? true : false;
 
                 if($reservacionPermitida)
@@ -362,48 +399,60 @@ class ReservationsController extends AppController
     {
         if($reservation != null)
         {
-            $this->loadModel('Resources');
-            
-            /*$resource = $this->Resources->find('all', [
-                'contain' => ['ResourceTypes'],
-                //'fields' => ['ResourceTypes.days_before_reservation'],
-                'condition' => ['resource_id = ' => $reservation['resource_id'], 'ResourceTypes.id = ' => 'resource_type_id']]);*/
-               
-            $resource = $this->Resources->find('all')
-                ->contain(['ResourceTypes'])
-                ->where(['resource_id' => $reservation['resource_id'], 'ResourceTypes.id' => 'resource_type_id']);
-            
-            //debug($resource['days_before_reservation']);
-            
-            $startDate = date_format($reservation['start_date'], 'd/m/Y');
+            if($this->Auth->user())
+            {
+                $this->loadModel('Resources');
+                $resources = $this->Resources->find('all')
+                    ->select(['id', 'resource_type_id', 'resource_name', 'resource_code', 'description', 'active', 'resourceTypes.days_before_reservation'])
+                    ->join([
+                        'resourceTypes' => [
+                            'table' => 'resource_types',
+                            'type' => 'INNER',
+                            'conditions' => ['resources.id = ' => $reservation['resource_id'], 'resourceTypes.id = resources.resource_type_id']
+                        ]
+                    ]);
+                
+                $resource = $resources->first();
 
-            //debug($resource['ResourceTypes.days_before_reservation']);
-            //date_add($startDate, date_interval_create_from_date_string($resource['ResourceTypes.days_before_reservation']));
-            
-            /*if( $startDate > date('d/m/Y') )
-            
-            $this->loadModel('HistoricReservations');
-            $historicReservation = $this->HistoricReservations->newEntity();
-            $historicReservation->reservation_start_date = $reservation['start_date'];
-            $historicReservation->reservation_end_date = $reservation['end_date'];
-            $historicReservation->resource_name = $reservation['resource']['resource_name'];
-            $historicReservation->user_username = $reservation['user']['username'];
-            $historicReservation->user_first_name = $reservation['user']['first_name'];
-            $historicReservation->user_last_name = $reservation['user']['last_name'];
-            $historicReservation->user_comment = $reservation['user_comment'];
-            $historicReservation->administrator_comment = $adminComment;
-            $historicReservation->state = 3;
-            
-            if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
-            {
-                $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                $dias = $resource['resourceTypes']['days_before_reservation'].' days';    
+                $startDate = date_format($reservation['start_date'], 'Y/m/d');            
+                $fecha = date_create($startDate);
+                $fechaLimite = date_sub($fecha, date_interval_create_from_date_string($dias));
+                $fechaLimiteCancelacion = date_format($fechaLimite, 'Y/m/d');
+                
+                /*debug('startDate: '.$startDate);
+                debug('fecha: '.date_format($fecha, 'Y/m/d'));                
+                debug('fechaLimite: '.date_format($fechaLimite, 'Y/m/d'));
+                debug('fechaLimiteCancelacion: '.$fechaLimiteCancelacion);
+                debug('fechaHoy: '.date('Y/m/d'));*/
+                
+                if( date('Y/m/d') <= $fechaLimiteCancelacion )
+                {
+                    $this->loadModel('HistoricReservations');
+                    $historicReservation = $this->HistoricReservations->newEntity();
+                    $historicReservation->reservation_start_date = $reservation['start_date'];
+                    $historicReservation->reservation_end_date = $reservation['end_date'];
+                    $historicReservation->resource_name = $reservation['resources']['resource_name'];
+                    $historicReservation->user_username = $reservation['users']['username'];
+                    $historicReservation->user_first_name = $reservation['users']['first_name'];
+                    $historicReservation->user_last_name = $reservation['users']['last_name'];
+                    $historicReservation->user_comment = $reservation['user_comment'];
+                    //$historicReservation->administrator_comment = $adminComment;
+                    $historicReservation->state = 3;
+
+                    if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                    {
+                        $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                    else
+                    {
+                        $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                    //debug($reservation);
+                }
             }
-            else
-            {
-                $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
-                return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
-            }*/
         }
         else
         {
@@ -418,6 +467,10 @@ class ReservationsController extends AppController
     */
     public function isAuthorized($user)
     {
+        // Todos los usuarios pueden ingresar a la vista de administración de reservaciones ('manage')
+        if($this->request->action === 'manage')
+            return true;
+        
         // Solo los administradores pueden aceptar las reservaciones pendientes
         if($this->request->action === 'accept' && $user['role_id'] == 1)
             return false;
@@ -425,10 +478,6 @@ class ReservationsController extends AppController
         // Solo los administradores pueden rechazar las reservaciones pendientes
         if($this->request->action === 'reject' && $user['role_id'] == 1)
             return false;
-        
-        // Todos los usuarios pueden ingresar a la vista de administración de reservaciones ('manage')
-        if($this->request->action === 'manage')
-            return true;
         
         // Solo los administradores pueden ingresar a la vista de 'edit'
         if($this->request->action === 'edit' && $user['role_id'] != 1)
@@ -440,6 +489,10 @@ class ReservationsController extends AppController
         
         // Todos los usuarios pueden cancelar una reservación que les pertenezca o administren
         if($this->request->action === 'cancel')
+            return true;
+        
+        // 
+        if($this->request->action === 'index')
             return true;
         
         return parent::isAuthorized($user);   
