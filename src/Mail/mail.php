@@ -3,8 +3,8 @@
 
 require_once('PHPMailer/PHPMailerAutoload.php');
 
-define('GUSER', 'proyecto.ecci.protea@gmail.com');
-define('GPWD', 'ecciprotea');
+define('GUSER', 'robin.perez@ucr.ac.cr');
+define('GPWD', '');
 
 global $error;
 
@@ -15,11 +15,11 @@ $mail->isSMTP();
 $mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
 $mail->SMTPAuth = true;  // authentication enabled
 $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'smtp.ucr.ac.cr';
 $mail->Port = 465; 
 $mail->Username = GUSER;  
 $mail->Password = GPWD;           
-$mail->SetFrom($_POST['from'], 'PROTEA');
+$mail->SetFrom($_POST['from'], 'Andrey');
 $mail->Subject = 'Hacked!!';
 $mail->Body = $_POST['message'];
 $mail->AddAddress($_POST['to']);

@@ -149,12 +149,17 @@
                                         <span class="glyphicon glyphicon-tasks"></span> Administrar <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
+                                        <!-- ADMINISTRAR RESERVACIONES -->
+                                        <li role="reservaciones"><?php echo $this->Html->link('Reservaciones',
+                                                                 array('controller'=>'reservations','action' => 'manage'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                        
                                         <?php
                                         if($this->request->session()->read('Auth.User.role_id') == '3')
                                         {
                                             ?>
                                             <!-- ADMINISTRAR CUENTAS DE USUARIO -->
-                                            <li role="recursos"><?php echo $this->Html->link('Cuentas de Usuarios',
+                                            <li role="usuarios"><?php echo $this->Html->link('Cuentas de Usuarios',
                                                                      array('controller'=>'users','action' => 'index'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
                                             <?php
@@ -172,8 +177,8 @@
                                     </ul>
                                 </li>
                             
-                                    <!-- VER RESERVAS -->
-                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-book"></span> Ver Reservas',
+                                    <!-- VER CALENDARIO -->
+                                    <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-calendar"></span> Ver Calendario',
                                                                      array('controller'=>'reservations','action' => 'index'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
                                 <?php

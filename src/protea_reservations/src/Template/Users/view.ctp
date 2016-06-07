@@ -19,156 +19,92 @@
     <!-- CAMPOS A CONSULTAR -->
     <fieldset>
         
-        <!-- Correo -->
         <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.username', 'Correo: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.username',
-                                           $user->username,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
+            <!-- CORREO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.username', 'Correo: ');
+                ?>
+                <?=
+                    $this->Form->label('Users.username',
+                                       $user->username,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
+            </div>
+            <!-- NUMERO DE TELEFONO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.telephone_number', 'Teléfono: ');
+                ?>
+                <?=
+                    $this->Form->label('Users.telephone_number',
+                                       $user->telephone_number,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
             </div>
         </div>
         
-        <!-- NOMBRE -->
-        <!--
         <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.first_name', 'Nombre Completo: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.first_name',
-                                           $user->first_name . ' ' . $user->last_name,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
+            <!-- UNIDAD ACADÉMICA -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.department', 'Unidad Académica: ');
+                ?>
+                <?=
+                    $this->Form->label('Users.department',
+                                       $user->department,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
+            </div>
+            <!-- PUESTO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.position', 'Puesto: ');
+                ?>
+                <?=
+                    $this->Form->label('Users.position',
+                                       $user->position,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
             </div>
         </div>
-        -->
         
-        <!-- APELLIDO -->
-        <!--<div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.last_name', 'Apellido: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.last_name',
-                                           $user->last_name,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-        -->
-        
-        <!-- NUMERO DE TELEFONO -->
         <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.telephone_number', 'Teléfono: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.telephone_number',
-                                           $user->telephone_number,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
+            <!-- ROL -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Roles.role_name', 'Rol: ');
+                ?>
+                <?=
+                    $this->Form->label('Roles.role_name',
+                                       $user->_matchingData['Roles']->role_name,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
+            </div>
+            <!-- VACÍO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
             </div>
         </div>
-        
-        <!-- Departamento -->
-        <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.department', 'Unidad Académica: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.department',
-                                           $user->department,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Departamento -->
-        <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.position', 'Puesto: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Users.position',
-                                           $user->position,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Rol -->
-        <div class="row">
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class='col-lg-3 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Roles.role_name', 'Rol: ');
-                    ?>
-                </div>
-                <div class='col-lg-3 col-md-3 col-sm-3 col-xs-12'>
-                    <?=
-                        $this->Form->label('Roles.role_name',
-                                           $user->_matchingData['Roles']->role_name,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
-                    ?>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-        
         
     </fieldset> <!-- FIN CAMPOS A CONSULTAR -->
 

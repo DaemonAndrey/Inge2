@@ -31,6 +31,7 @@
         
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
+                
                 var today = new Date();
                 var selectedDay = date.format("DD");
                 var selectedMonth = date.format("MM");
@@ -44,9 +45,11 @@
                 {
                     jQuery('#mdlReservaciones').modal('show');
                     globalDate = date;
+
                     fecha = document.getElementById("fecha");
                     fecha.innerHTML = date.format("DD MMMM YYYY");
                     document.getElementById("Reservar").disabled = true;
+                    getResources(document.getElementById("resource_type"));
                 }
             },
             header: {
@@ -75,6 +78,7 @@
             {
                 if(xhttp.readyState == 4 && xhttp.status == 200)
                 {
+
                     obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
                     fillResources(); //Llama a este método para llegar el select
                 }
@@ -94,10 +98,13 @@
             var dateFormat = globalDate.format("DD MMMM YYYY");
             var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
 
-            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,true);
+
+            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,false);
 
             xhttp.send();
         }
+
+        return true;
     }  
     
     function getFormatedHour(number)
@@ -120,13 +127,21 @@
     {
 
         html = "";
-        var len = obj.length;
-        document.getElementById("resource_description").innerHTML = obj[0].resource.description;
+        var len = obj.available.length;
+        document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
 
         for (var i = 0; i < len; ++i) 
         {
-            html += "<option id ="+i+">"+obj[i].resource.resource_name+"</option>";
+            html += "<option id ="+i+">"+obj.available[i].resource.resource_name+"</option>";
         }
+
+        len = obj.reserved.length;
+
+        for (var i = 0; i < len; ++i)
+        {
+            html += "<option id ="+i+" disabled>"+obj.reserved[i].resource.resource_name+"</option>";
+        }
+
         document.getElementById("resource").innerHTML = html;
     }
 
@@ -144,16 +159,10 @@
                     setTimeout(function(){location.reload();},2000);
                 }
 
-                if(xhttp.status == 404 && xhttp.readyState == 4)
-                {
-                    showModal( "Lo sentimos, alguien acaba de reservar este recurso.");
-                    setTimeout(function(){location.reload();},2000); 
-                }
-
                 if(xhttp.readyState == 4 && xhttp.status == 500)
                 {
-                    showModal( "Ocurrió un error inesperado. Intente más tarde"); 
-                    setTimeout(function(){location.reload();},2000); 
+                    showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
+                    setTimeout(function(){location.reload();},10000);
  
                 }
 
@@ -271,7 +280,7 @@
     
     function showDescription(element)
     {
-        document.getElementById("resource_description").innerHTML = obj[element[element.selectedIndex].id].resource.description;
+        document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
     }
 
     function activateButton(select, checkbox)
@@ -289,10 +298,7 @@
 
     function showModal(text)
     {
-        document.getElementById("callbackText").innerHTML = text; 
-        
-        jQuery('#callback').modal('show');
-        $('#mdlReservaciones').modal('show');
-        //setTimeout(function(){location.reload();},2000); 
+        document.getElementById("callbackText").innerHTML = text;
+        $('#callback').modal('show');
     }
     

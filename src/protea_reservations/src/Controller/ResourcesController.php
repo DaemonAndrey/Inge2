@@ -373,16 +373,16 @@ class ResourcesController extends AppController
                
             $subquery = $this->Resources->Reservations->find() /** Me devuelve todos los recursos reservados**/
                 ->hydrate(false)
-                ->select(['r.resource_name'])
+                ->select(['resource.resource_name'])
                 ->join([
                      'table'=>'resources',
-                     'alias'=>'r',
+                     'alias'=>'resource',
                      'type' => 'RIGHT',
-                     'conditions'=>'r.id = Reservations.resource_id'
+                     'conditions'=>'resource.id = Reservations.resource_id'
                     ])
 
 
-                    ->where(['DATE(Reservations.start_date)'=>$date])
+                    ->andwhere(['DATE(Reservations.start_date)'=>$date, 'resource.resource_type_id'=>$id])
                     ->where(function ($exp) use ($start,$end,$date) {
 
             /************** Pregunta si el intervalo de reserva está dentro del intervalo reservado  **/
@@ -433,8 +433,17 @@ class ResourcesController extends AppController
                     ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
                     ->group(['resource.resource_name']);
             $query = $query->toArray();
-            $query = json_encode($query);
-           die($query);
+            $subquery = $subquery->toArray();
+
+            $resources['available'] = $query;
+            $resources['reserved'] = $subquery;
+
+            $resources = json_encode($resources);
+
+
+           die($resources);
+
+
         }
     }
     

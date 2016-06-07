@@ -48,7 +48,7 @@
                 <h4 class="modal-title">Confirmación</h4>
             </div>
             <div class="modal-body">
-                <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
+                <h4 id="callbackText" style="color: green;">¡Su reservación está siendo procesada!</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
