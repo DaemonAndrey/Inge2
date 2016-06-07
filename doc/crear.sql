@@ -120,7 +120,7 @@ CREATE TABLE historic_reservations
 	resource_name 			VARCHAR( 70 ),
 	reservation_end_date 	DATETIME,
 	user_username 			VARCHAR( 50 ),
-	user_first_name 			VARCHAR( 64 ),
+	user_first_name 		VARCHAR( 64 ),
 	user_last_name 			VARCHAR( 64 ),
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
