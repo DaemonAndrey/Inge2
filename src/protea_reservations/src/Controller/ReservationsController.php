@@ -75,7 +75,7 @@ class ReservationsController extends AppController
                       'title'=>'Reservations.event_name'])//,'state'])
             ->join([
                 'resources' => [
-                    'table' => 'Resources',
+                    'table' => 'resources',
                     'type' => 'INNER',
                     'conditions' => ['resources.id = Reservations.resource_id', 'resources.resource_type_id' => 1 ]
                 ]
