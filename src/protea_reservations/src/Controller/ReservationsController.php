@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\Mailer\MailerAwareTrait;
+use Cake\Mailer\Email;
 
 class ReservationsController extends AppController
 {
@@ -179,6 +181,8 @@ class ReservationsController extends AppController
         }            
 	}
     
+    use MailerAwareTrait;
+    
     /**
     * Actualiza el estado de la reservación dependiendo de si el administrador
     * la acepta o la rechaza. También agrega los comentarios del administrador
@@ -270,6 +274,10 @@ class ReservationsController extends AppController
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 1;
                 $reservation->state = 1;
+                
+                $this->loadModel('Users');
+                $user = $this->Users->get($this->request->session()->read('Auth.User.id'));
+                
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
                     $this->getMailer('User')->send('confirmReservation', [$user]);
@@ -314,6 +322,10 @@ class ReservationsController extends AppController
                 $historicReservation->user_comment = $reservation['user_comment'];
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 2;
+                
+                $this->loadModel('Users');
+                $user = $this->Users->get($this->request->session()->read('Auth.User.id'));
+                
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
                     $this->getMailer('User')->send('rejectReservation', [$user]);
