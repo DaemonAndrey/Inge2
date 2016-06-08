@@ -6,14 +6,14 @@
 </div>
 <!-- Simbología -->
 <div class="row"> 
-    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9">
+    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9">
         <label>Estado de reservación</label>
     </div>
 </div>
 
 <div class="row" >
-    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9 ">
-        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
+    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
+        <div class="col-md-3 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
             Pendiente
         </div>
         <div class="poligp">    
@@ -23,7 +23,7 @@
 
 
 <div class="row">
-    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9 ">
+    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
         <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
             Aceptada
         </div>
@@ -168,8 +168,8 @@
                 
                 <!-- Fila 3 (Nombre del evento) -->
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="col-xs-12 text-center">
                             <h4>Nombre del Evento o Curso</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
