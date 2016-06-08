@@ -6,14 +6,14 @@
 </div>
 <!-- Simbología -->
 <div class="row"> 
-    <div class="col-md-3 col-md-offset-10 col-sm-6 col-sm-offset-9 col-xs-9 col-xs-offset-6">
+    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9">
         <label>Estado de reservación</label>
     </div>
 </div>
 
 <div class="row" >
-    <div class="col-md-3 col-md-offset-10 col-sm-6 col-sm-offset-9 col-xs-9 col-xs-offset-6 ">
-        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-1 ">
+    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9 ">
+        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
             Pendiente
         </div>
         <div class="poligp">    
@@ -21,9 +21,10 @@
     </div>
 </div>
 
+
 <div class="row">
-    <div class="col-md-3 col-md-offset-10 col-sm-6 col-sm-offset-9 col-xs-9 col-xs-offset-6 ">
-        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-1 ">
+    <div class="col-md-3 col-md-offset-9 col-sm-6 col-sm-offset-9 col-xs-3 col-xs-offset-9 ">
+        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
             Aceptada
         </div>
         <div class="poliga">    
