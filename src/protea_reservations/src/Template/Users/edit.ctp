@@ -4,8 +4,16 @@
 <div class="users form">
     <div style="text-align:center">
         <?= $this->Flash->render('addUserSuccess') ?>   
-        <?= $this->Flash->render('addUserError') ?>   
+        <?= $this->Flash->render('addUserError') ?>
+
     </div>
+    <!-- MENSAJES -->
+<div class="lead text-danger" style="text-align:center">
+    <?= $this->Flash->render('editUserError') ?> 
+</div> 
+<div class="lead text-info" style="text-align:center">
+    <?= $this->Flash->render('editUserSuccess') ?>
+</div> <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create($user) ?>
 
