@@ -132,7 +132,7 @@ class ReservationsController extends AppController
                         'conditions' => 'resources.id = reservations.resource_id'
                     ]
                 ])
-                ->andWhere(['reservations.user_id = ' => $this->Auth->User('id')])
+                ->andWhere(['reservations.user_id = ' => $this->Auth->User('id'), 'reservations.start_date > NOW()'])
                 ->order(['start_date' => 'ASC']);
                
             // Pagina la tabla de recursos

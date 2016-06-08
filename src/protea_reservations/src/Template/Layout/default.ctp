@@ -173,9 +173,13 @@
                                     </a>
                                     <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
                                         <!-- ADMINISTRAR RESERVACIONES -->
-                                        <li role="reservaciones"><?php echo $this->Html->link('Reservaciones',
+                                        <li role="reservaciones"><?php echo $this->Html->link('Reservaciones pendientes',
                                                                  array('controller'=>'reservations','action' => 'manage'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
+                                        
+                                        <li role="mis_reservaciones"><?php echo $this->Html->link('Historial de reservaciones',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
                                         
                                         <?php
                                         if($this->request->session()->read('Auth.User.role_id') == '3')
@@ -221,9 +225,20 @@
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                     
                                     <!-- MIS RESERVACIONES -->
-                                    <li role="mis_reservaciones"><?php echo $this->Html->link('Mis Reservaciones',
-                                                                 array('controller'=>'pages','action' => 'home'),
-                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                        if($this->request->session()->read('Auth.User.role_id') == 1 )
+                                        {
+                                    ?>
+                                            <li role="mis_reservaciones"><?php echo $this->Html->link('Mis Reservaciones',
+                                                                         array('controller'=>'reservations','action' => 'manage'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                        
+                                            <li role="mis_reservaciones"><?php echo $this->Html->link('Historial de reservaciones',
+                                                                         array('controller'=>'pages','action' => 'home'),
+                                                                         array('target' => '_self', 'escape' => false)) ?> </li>
+                                    <?php
+                                        }
+                                    ?>
                                     </ul>
                                 </li>
 
