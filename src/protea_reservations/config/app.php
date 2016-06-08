@@ -183,7 +183,7 @@ return [
             'port' => 465,
             'timeout' => 30,
             'username' => 'proyecto.ecci.protea@gmail.com',
-            'password' => 'ecciprotea', //Acá debe ir la contraseña del correo
+            'password' => '', //Acá debe ir la contraseña del correo
             'client' => null,
             'tls' => null
             //'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),

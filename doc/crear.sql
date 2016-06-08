@@ -53,7 +53,7 @@ CREATE TABLE resource_types
 (
 	id 						INT UNSIGNED AUTO_INCREMENT,
 	description		VARCHAR( 20 ) UNIQUE NOT NULL,
-	days_before_reservation		INT UNSIGNED,
+	days_before_reservation		INT UNSIGNED DEFAULT 0,
 	
 	PRIMARY KEY ( id )
 );
@@ -101,6 +101,7 @@ CREATE TABLE reservations
 	administrator_seen 		TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	user_id 						INT UNSIGNED NOT NULL,
 	event_name 				VARCHAR( 70 ),
+	state					TINYINT(1) DEFAULT 0, -- 0: Pendiente, 1: Aceptado
 	
 	PRIMARY KEY ( id ),
 	FOREIGN KEY ( resource_id ) REFERENCES resources( id )
@@ -120,11 +121,11 @@ CREATE TABLE historic_reservations
     event_name              VARCHAR( 70 ),
 	reservation_end_date 	DATETIME,
 	user_username 			VARCHAR( 50 ),
-	user_first_name 			VARCHAR( 64 ),
+	user_first_name 		VARCHAR( 64 ),
 	user_last_name 			VARCHAR( 64 ),
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	state 						INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada
+	state 					INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada
 	
 	PRIMARY KEY ( id ),
 	UNIQUE KEY ( reservation_start_date, resource_name, user_username )

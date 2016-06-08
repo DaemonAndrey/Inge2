@@ -41,13 +41,14 @@ class ReservationsController extends AppController
             ])
             ->andWhere(['reservations.state = ' => 0])
             ->order(['start_date' => 'ASC']);
-            //->hydrate(false);
     }
     
     /** 
      * Paginador de recursos.
      */
-    public $paginate = array('limit' => 10, 'order' => array('Reservation.start_date' => 'asc'));
+    public $paginate = array('limit' => 10,
+                             'order' => array('Reservation.start_date' => 'asc')
+                            );
     
     /**
     * Carga el calendario principal con las reservas.
@@ -61,28 +62,25 @@ class ReservationsController extends AppController
                         ->hydrate(false)
                         ->select(['description']);
 
-        $resource_type = $resource_type->toArray();
-			        
+        $resource_type = $resource_type->toArray();	
+        
 		if($this->request->is('post'))
 		{
             /** Consulta para mostrar en el calendarios solo las reservacionesque corresponden a recursos tipo sala 
             y que esten aceptadas o pendientes **/
             $resources = $this->Reservations->find('all')
             ->select(['id', 'start'=>'Reservations.start_date', 'end'=>'Reservations.end_date', 
-                      'title'=>'Reservations.event_name'])//,'state'])
+                      'title'=>'Reservations.event_name','state'])
             ->join([
                 'resources' => [
                     'table' => 'Resources',
                     'type' => 'INNER',
                     'conditions' => ['resources.id = Reservations.resource_id', 'resources.resource_type_id' => 1 ]
                 ]
-            ])
-            ;/*->where([ 
-                'Reservations.state IN' => [1,2] 
-            ]);*/
+            ]);
             
-			$resources = $resources->toArray();            
-		
+			$resources = $resources->toArray();
+            
 			$events = array();
 			array_push($events, $resources);
             
@@ -92,25 +90,20 @@ class ReservationsController extends AppController
             {
                 $bordercolor = '#FAAC58';
                 $backgroundcolor = '#FAAC58';
-                
-                if($key['state'] == 2)
+                if($key['state'] == 1)
                 {
                     $backgroundcolor = '#91BB1B';
                     $bordercolor = '#91BB1B';
                 }
-                
                 $key['backgroundColor'] = $backgroundcolor; //array('backgroundColor'=>'#00000');  
-                $key['borderColor'] = $bordercolor; 
+                $key['borderColor'] = $bordercolor;    
             }
-            
-           // debug($events);
             
 			$events =  json_encode($events);
 			$events = str_replace(".",",",$events);
 	
 			//$events = substr($events, 1,strlen($events)-2);
 			die($events);
-			
 		}
 		
 		$this->set('types',$resource_type);
@@ -118,7 +111,6 @@ class ReservationsController extends AppController
     
     /*
     * Carga las reservaciones pendientes que le corresponden al administrador que está en la sesión
-    * o al usuario que quiere revisar sus reservaciones en general
     */
     public function manage()
     {
@@ -157,7 +149,7 @@ class ReservationsController extends AppController
         if($this->Auth->user())
         {
             $reservation = $this->Reservations->newEntity();
-     
+
             if($this->request->is('post'))
             {
                 $start_date = $this->request->data['start_date'];
@@ -177,15 +169,12 @@ class ReservationsController extends AppController
 
                 $reservation->resource_id = $resource_id;
                 $reservation->user_id = $this->Auth->User('id');
+            
 
                 if ($this->Reservations->save($reservation))
-                {
                     $this->response->statusCode(200);
-                }
                 else
-                {
                     $this->response->statusCode(404);   
-                }
             }
         }            
 	}
@@ -201,13 +190,7 @@ class ReservationsController extends AppController
         if($id != null)
         {
             if($this->Auth->user())
-            {
-                // Carga la reservación que se desea editar
-                /*$reservation = $this->Reservations->get($id, [
-                    'contain' => ['Users', 'Resources'],
-                    'fields' => ['id', 'start_date', 'end_date', 'user_comment', 'event_name', 'users.username', 'users.first_name', 'users.last_name', 'resources.resource_name', 'resources.resource_code']
-                ]);*/
-                
+            {        
                 $reservations = $this->Reservations->find('all')
                     ->select(['id', 'start_date', 'end_date', 'user_comment', 'event_name', 'user.username', 'user.first_name', 'user.last_name', 'resource.resource_name', 'resource.resource_code'])
                     ->join([
@@ -235,13 +218,11 @@ class ReservationsController extends AppController
                         break;
                     }
                 }
-
                 if($reservacionPermitida)
                 {
                     if($this->request->is(array('post', 'put')))
                     {
                         $this->Reservations->patchEntity($reservation, $this->request->data);
-
                         if($this->request->data['accion'] == 'Aceptar')
                             $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
                         elseif($this->request->data['accion'] == 'Rechazar')
@@ -249,7 +230,6 @@ class ReservationsController extends AppController
                         elseif($this->request->data['accion'] == 'Cancelar')
                             $this->cancel($reservation);
                     }
-
                     $this->set('reservation', $reservation);
                 }
                 else
@@ -282,15 +262,14 @@ class ReservationsController extends AppController
                 $historicReservation->reservation_start_date = $reservation['start_date'];
                 $historicReservation->reservation_end_date = $reservation['end_date'];
                 $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                $historicReservation->event_name = $reservation['event_name'];
                 $historicReservation->user_username = $reservation['user']['username'];
                 $historicReservation->user_first_name = $reservation['user']['first_name'];
                 $historicReservation->user_last_name = $reservation['user']['last_name'];
                 $historicReservation->user_comment = $reservation['user_comment'];
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 1;
-
                 $reservation->state = 1;
-
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
                     $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
@@ -326,13 +305,13 @@ class ReservationsController extends AppController
                 $historicReservation->reservation_start_date = $reservation['start_date'];
                 $historicReservation->reservation_end_date = $reservation['end_date'];
                 $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                $historicReservation->event_name = $reservation['event_name'];
                 $historicReservation->user_username = $reservation['user']['username'];
                 $historicReservation->user_first_name = $reservation['user']['first_name'];
                 $historicReservation->user_last_name = $reservation['user']['last_name'];
                 $historicReservation->user_comment = $reservation['user_comment'];
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 2;
-
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
                     $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
@@ -383,10 +362,9 @@ class ReservationsController extends AppController
                     ]
                 ])
                 ->andWhere(['reservations.id = ' => $id]);
-
                 $reservation = $reservations->first();
+                
                 $reservacionPermitida = ($this->Auth->user('id') == $reservation['user_id']) ? true : false;
-
                 if($reservacionPermitida)
                 {
                     if($this->request->is(array('post', 'put')))
@@ -396,7 +374,6 @@ class ReservationsController extends AppController
                         if($this->request->data['accion'] == 'Cancelar')
                             $this->cancel($reservation);
                     }
-
                     $this->set('reservation', $reservation);
                 }
                 else
@@ -413,6 +390,11 @@ class ReservationsController extends AppController
         }
     }
     
+    /**
+    * Método que cancela la reservación de un usuario, la guarda en la tabla HistoricReservations con estado 3 y además la elimina
+    * de la tabla Reservations.
+    * @param 
+    */
     public function cancel($reservation = null)
     {
         if($reservation != null)
@@ -431,18 +413,11 @@ class ReservationsController extends AppController
                     ]);
                 
                 $resource = $resources->first();
-
                 $dias = $resource['resourceTypes']['days_before_reservation'].' days';    
                 $startDate = date_format($reservation['start_date'], 'Y/m/d');            
                 $fecha = date_create($startDate);
                 $fechaLimite = date_sub($fecha, date_interval_create_from_date_string($dias));
                 $fechaLimiteCancelacion = date_format($fechaLimite, 'Y/m/d');
-                
-                /*debug('startDate: '.$startDate);
-                debug('fecha: '.date_format($fecha, 'Y/m/d'));                
-                debug('fechaLimite: '.date_format($fechaLimite, 'Y/m/d'));
-                debug('fechaLimiteCancelacion: '.$fechaLimiteCancelacion);
-                debug('fechaHoy: '.date('Y/m/d'));*/
                 
                 if( date('Y/m/d') <= $fechaLimiteCancelacion )
                 {
@@ -458,7 +433,6 @@ class ReservationsController extends AppController
                     $historicReservation->user_comment = $reservation['user_comment'];
                     $historicReservation->administrator_comment = $reservation['administrator_comment'];
                     $historicReservation->state = 3;
-
                     if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                     {
                         $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);

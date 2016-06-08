@@ -29,6 +29,18 @@
                 <br>
             </div>
         </div>
+        <!-- DÍAS ANTICIPACIÓN -->
+        <div class='row'>
+            <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+                <?=
+                    $this->Form->input('ResourceTypes.days_before_reservation', ['label' => 'Días de anticipación para reservarlo: ',
+                                                                                 'type' => 'number',
+                                                                                 'placeholder' => '0+',
+                                                                                 'class' => 'form-control']);
+                ?>
+                <br>
+            </div>
+        </div>
     </fieldset> <!-- FIN CAMPOS A LLENAR -->
 
     <!-- BOTONES -->

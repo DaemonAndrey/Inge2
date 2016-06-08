@@ -4,11 +4,55 @@
       <h2>Calendario de Reservas</h2>
   </div>
 </div>
+<!-- Simbología -->
+<div class="row">
+    <div class="col-md-3 col-md-offset-9">
+        <div class="col-md-3 col-md-offset-3">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>Estado de reservación</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-3 col-md-offset-9">
+    <div class="col-md-3 col-md-offset-3">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-6 ">
+            Pendiente
+        </div>
+    </div>
+    <div class="poligp"> 
+    </div> 
+  </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-md-3 col-md-offset-9">
+    <div class="col-md-3 col-md-offset-3">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-6">
+            Aceptada
+        </div>
+    </div>
+    <div class="poliga"> 
+    </div> 
+  </div>
+            </div>
+    </div>
+</div>
+<!-- Fin Simbología -->
 
 <br>
 <div id='calendar'></div>   
 <br>
 <br>
+
+
 
 <div id="callback" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -52,7 +96,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Hora de inicio</h4>
+                            <h4><font color="red">* </font>Hora de inicio</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaInicio" class="form-control" role="listbox" aria-label="Hora de inicio" aria-required="true" id="start" onchange="changeEndHour(); getResources(document.getElementById('resource_type'));">                            
@@ -76,7 +120,7 @@
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Hora de fin</h4>
+                            <h4><font color="red">* </font>Hora de fin</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaFin" class="form-control" role="listbox" aria-label="Hora de fin" aria-required="true" id="end" onchange="getResources(document.getElementById('resource_type'))">
@@ -106,10 +150,10 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Tipo de recurso</h4>
+                            <h4><font color="red">* </font>Tipo de recurso</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <select name="tipoRecurso" class="form-control" role="listbox" aria-label="Tipo de recurso" aria-required="true" onchange="getResources(this)" id="resource_type">
+                            <select name="tipoRecurso" class="form-control" role="listbox" aria-label="Tipo de recurso" aria-required="true" onchange="getResources(this);activateButton(this, getElementById('check'));" id="resource_type">
                                 <option value="Seleccionar" selected disabled>Seleccionar</option>
                                 <?php
                                     foreach ($types as $value) 
@@ -123,7 +167,7 @@
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Recursos disponibles</h4>
+                            <h4><font color="red">* </font>Recursos disponibles</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="recursosDisponibles" class="form-control" role="listbox" aria-label="Recursos disponibles" aria-required="true" id="resource" onchange="showDescription(this)">
@@ -136,19 +180,19 @@
                 
                 <br>
                 
-                <!-- Fila 3 (Sigla y nombre del curso) -->
+                <!-- Fila 3 (Nombre del evento) -->
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                            <h4>Nombre del Evento o Curso</h4>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                            <h4><font color="red">* </font>Nombre del Evento o Curso</h4>
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <input class="form-control" type="text" id="event_name" role="textbox" aria-label="Nombre del evento" placeholder="FD-1312">
                         </div>
                     </div>
                     
                 </div>
-                <!-- Fin Fila 3 (Sigla y nombre del curso) -->
+                <!-- Fin Fila 3 (Nombre del evento) -->
                 
                 <br>
 
@@ -175,18 +219,30 @@
                 <!-- Fin Fila 4 (Comentario) -->
                 
                 <br>
-                <!-- Fila 5 (Comentario) -->
+                
+                <!-- Fila 5 (Checkbox) -->
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="col-xs-12">
-                            <label><input type="checkbox" value="" unchecked id="check" name="terms" required> He leído y acepto los </label>
+                            <label><input type="checkbox" value="" unchecked id="check" name="terms" onchange="activateButton(document.getElementById('resource_type'), this)"> He leído y acepto los </label>
                             <?php echo $this->Html->link('Términos y Condiciones de Uso',
                                          array('controller'=>'pages','action' => 'policy'),
                                          array('target' => '_blank', 'escape' => false, 'title'=>'Condiciones de Uso')) ?>
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 5 (Comentario) -->
+                <!-- Fin Fila 5 (Checkbox) -->
+                
+                <br>
+                <!-- Fila 5 (Campos obligatorios) -->
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="col-xs-12">
+                            <h5>Campos obligatorios (<font color="red">*</font>) </h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Fila 5 (Campos obligatorios) -->
                 
                 <br>
 
