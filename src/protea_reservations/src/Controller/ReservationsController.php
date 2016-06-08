@@ -272,7 +272,7 @@ class ReservationsController extends AppController
                 $reservation->state = 1;
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
-                    //$this->getMailer('User')->send('rejectUser', [$user]);
+                    $this->getMailer('User')->send('confirmReservation', [$user]);
                     
                     $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -316,6 +316,8 @@ class ReservationsController extends AppController
                 $historicReservation->state = 2;
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
+                    $this->getMailer('User')->send('rejectReservation', [$user]);
+                    
                     $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                 }
