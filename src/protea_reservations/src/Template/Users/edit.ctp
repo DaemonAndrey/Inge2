@@ -58,7 +58,7 @@
                 {
                     ?>
                     <?=
-                        $this->Form->label('Users.first_name', 'Nombre: ');
+                        $this->Form->label('Users.first_name', 'Nombre Completo: ');
                     ?>
                     <?=
                         $this->Form->label('Users.first_name', $user->first_name . ' ' . $user->last_name,
