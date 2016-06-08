@@ -29,3 +29,11 @@
 
 6- Rechazar Solicitid de Registro
 	6-1 Rechazar solicitid de registro exitosamente
+
+7- Agregar Tipo de Recurso (Días Anticipación)
+	7-1 Agregar tipo de recurso exitosamente
+	7-2 Días de anticipación negativo
+
+7- Actualizar Tipo de Recurso (Días Anticipación)
+	7-1 Actualizar tipo de recurso exitosamente
+	7-2 Días de anticipación negativo

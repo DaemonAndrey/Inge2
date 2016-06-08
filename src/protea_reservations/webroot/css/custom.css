@@ -1503,10 +1503,10 @@ padding: 8px 15px;
     margin-bottom: 15px;
     letter-spacing: 0.5px;
     color: #000000;/*#7F7F7F;*/
-    padding: 15px 15px 12px;
+    padding: 15px 0px 12px;
     border-radius:0px;
     /* text-transform: capitalize!important; */
-    padding-left: 70px;
+    /* padding-left: 70px; */
 }
  .right textarea{
     width: 100%;
@@ -1543,13 +1543,56 @@ padding: 8px 15px;
 .contact_txt li p{
     color: #555;
 }
-.social-contact li i{
-    color: #555;
+/*.social-contact li i{
+    color:blue;
     width: 30px;
     height: 30px;
     padding: 5px 0px 5px 0px;
     border: 1px solid #555;
     border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}
+.social-contact li i fa-facebook{
+    color:brown;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid #555;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+}*/
+
+li i[id = facebook]{
+    color:aliceblue;
+    background-color: #3b5998;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 25%;
+    line-height: 18px;
+    text-align: center;
+}
+
+li i[id = tw]{
+    color:aliceblue;
+    background-color:#1da1f2;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 25%;
+    line-height: 18px;
+    text-align: center;
+}
+
+li i[id = yt]{
+    color:aliceblue;
+    background-color:red;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 25%;
     line-height: 18px;
     text-align: center;
 }

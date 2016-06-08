@@ -69,13 +69,36 @@
 
 <div id="navbar-background">
 
-  <?php
-    $imgUcrLogo = $this->Html->image('logo-ucr.png', [ 'alt' => 'Protea','id'=>'logo_ucr']);
+  <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-3">
+        <?php
+            $imgUcrLogo = $this->Html->image('logo-ucr.png', [ 'alt' => 'Protea','id'=>'logo_ucr']);
 
                     // Hace el link con la imagen
-    echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
+            echo $this->Html->link($imgUcrLogo,'http://www.ucr.ac.cr',
                                            ['target'=>'_blank', 'escape' => false]);
- ?>
+        ?>
+
+     
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            </br>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            <div>
+                    </br>
+                    <ul class="text-right" style="margin-top:3px">
+                        <ul class="social-contact list-inline">
+                        
+                            <li><a target="_blank" href="https://www.facebook.com/pages/Facultad-de-Educaci%C3%B3n-UCR/179257438867025"><i class="fa fa-facebook" id="facebook"></i></a></li>
+                            <li><a target="_blank" href="http://www.twitter.com/proteaed"><i class="fa fa-twitter" id="tw"></i></a></li>
+                            <li><a target="_blank" href="http://www.youtube.com/proteaeducacion"><i class="fa fa-youtube-play" id="yt"></i></a></li>
+                        </ul>
+                    </ul>
+                </div>
+        </div>
+       
+    </div>
     <nav class="navbar">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -185,9 +208,25 @@
                                 } ?>
                             
                                 <!-- MI CUENTA -->
-                                <li><?php echo $this->Html->link( '<span class="glyphicon glyphicon-cog"></span> '.$this->request->session()->read('Auth.User.username'),
+                                <li class="dropdown">
+                                    
+                                        <?php echo $this->Html->link(''.$this->request->session()->read('Auth.User.username').'<span class="caret"></span>','#',array('class' => 'dropdown-toggle', 'data-delay' => '1000', 'data-hover' => 'dropdown', 'escape' => false)); ?>
+                                        
+                                    </a>
+                                    <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
+                                    
+                                    <!-- MIS DATOS -->
+                                    <li role="mi_cuenta"><?php echo $this->Html->link('Mi Cuenta',
                                                                  array('controller'=>'users','action' => 'edit', $this->request->session()->read('Auth.User.id')),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
+                                    
+                                    <!-- MIS RESERVACIONES -->
+                                    <li role="mis_reservaciones"><?php echo $this->Html->link('Mis Reservaciones',
+                                                                 array('controller'=>'pages','action' => 'home'),
+                                                                 array('target' => '_self', 'escape' => false)) ?> </li>
+                                    </ul>
+                                </li>
+
                             
                                 <!-- LOGOUT -->
                                 <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',
