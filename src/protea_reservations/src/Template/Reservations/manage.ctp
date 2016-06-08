@@ -127,7 +127,22 @@
                 <!-- ESTADO -->
                 <td>
                     <?php
-                        echo ($reservation['state']) ? "Aceptada" : "Pendiente";
+                        switch($reservation['state'])
+                        {
+                            case 0:
+                                echo "Pendiente";
+                                break;
+                            case 1:
+                                echo "Aceptada";
+                                break;
+                            case 2:
+                                echo "Rechazada";
+                                break;
+                            case 3:
+                                echo "Cancelada";
+                                break;
+                        }
+                        //echo ($reservation['state']) ? "Aceptada" : "Pendiente";
                     ?>
                 </td>
                 <!-- FIN ESTADO -->

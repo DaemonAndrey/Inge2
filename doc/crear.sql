@@ -117,6 +117,7 @@ CREATE TABLE historic_reservations
 	id 								INT UNSIGNED AUTO_INCREMENT,
 	reservation_start_date	DATETIME,
 	resource_name 			VARCHAR( 70 ),
+    event_name              VARCHAR( 70 ),
 	reservation_end_date 	DATETIME,
 	user_username 			VARCHAR( 50 ),
 	user_first_name 			VARCHAR( 64 ),
