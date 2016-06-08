@@ -78,7 +78,6 @@
             {
                 if(xhttp.readyState == 4 && xhttp.status == 200)
                 {
-
                     obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
                     fillResources(); //Llama a este método para llegar el select
                 }

@@ -318,7 +318,13 @@ class UsersController extends AppController
                 {
                     //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se han editado correctamente los datos del usuario', ['key' => 'editUserSuccess']);
-                    return $this->redirect(['controller' => 'Users','action' => 'index']);
+                    if($user['role_id'] == 3 ){
+                        return $this->redirect(['controller' => 'Users','action' => 'index']);
+                    }
+                    else{
+                        return $this->redirect(['controller' => 'Users','action' => 'edit']);
+                    }
+                    
                 }
                 else
                 {

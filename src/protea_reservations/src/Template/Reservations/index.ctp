@@ -49,7 +49,7 @@
                 <h4 class="modal-title">Confirmación</h4>
             </div>
             <div class="modal-body">
-                <h4 id="callbackText" style="color: green;">¡Su reservación está siendo procesada!</h4>
+                <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
@@ -82,7 +82,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Hora de inicio</h4>
+                            <h4><font color="red">* </font>Hora de inicio</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaInicio" class="form-control" role="listbox" aria-label="Hora de inicio" aria-required="true" id="start" onchange="changeEndHour(); getResources(document.getElementById('resource_type'));">                            
@@ -106,7 +106,7 @@
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Hora de fin</h4>
+                            <h4><font color="red">* </font>Hora de fin</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaFin" class="form-control" role="listbox" aria-label="Hora de fin" aria-required="true" id="end" onchange="getResources(document.getElementById('resource_type'))">
@@ -153,7 +153,7 @@
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <h4>Recursos disponibles</h4>
+                            <h4><font color="red">* </font>Recursos disponibles</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="recursosDisponibles" class="form-control" role="listbox" aria-label="Recursos disponibles" aria-required="true" id="resource" onchange="showDescription(this)">

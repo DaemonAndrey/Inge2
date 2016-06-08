@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <legend>
                 <div class="text-center">
-                    <h2>Reservación de <?= $this->Form->label('Reservations.resource_id', $reservation['resource']['resource_name']); ?></h2>
+                    <h2>Reservación de <?= $this->Form->label('reservations.resource_id', $reservation['resource']['resource_name']); ?></h2>
                     <br>
                 </div>
             </legend>
@@ -20,27 +20,13 @@
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
         <div class="row">
-            <!-- RECURSO -->
-            <!--<div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', 'Recurso:'); ?>
-                </div>
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
-                </div>
-                <div class="col-xs-12">
-                    <br>
-                </div>
-            </div>-->
-            <!-- FIN RECURSO -->
-            
             <!-- PLACA / MODELO DEL RECURSO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Resources.resource_code', 'Placa / Modelo:'); ?>
+                    <?= $this->Form->label('resources.resource_code', 'Placa / Modelo:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation['resource']['resource_code'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.resource_id', $reservation['resource']['resource_code'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -145,10 +131,10 @@
             <!-- USUARIO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.user_id', 'Usuario:'); ?>
+                    <?= $this->Form->label('reservations.user_id', 'Usuario:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.user_id', $reservation['user']['first_name'].' '.$reservation['user']['last_name'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.user_id', $reservation['user']['first_name'].' '.$reservation['user']['last_name'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -186,7 +172,7 @@
                         else
                             $comentarioUsuario = $reservation->user_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly', 'style' => 'display:inline-table;', 'templates' => ['formGroup' => '<div>{{label}}</div>']]); ?>
+                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly']); ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -200,11 +186,19 @@
                     <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?=
-                    $this->Form->input('Reservations.admin_comment', [  'label' => false,
+                    <?php
+                        $comentarioAdmin = '';
+                        
+                        if($reservation->administrator_comment == '')
+                            $comentarioAdmin = '-';
+                        else
+                            $comentarioAdmin = $reservation->administrator_comment;
+                    ?>
+                    <?= $this->Form->label('Reservations.administrator_comment', $comentarioAdmin, ['class' => 'form-control', 'readonly' => 'readonly'])
+                    /*$this->Form->input('Reservations.admin_comment', [  'label' => false,
                                                                         'type' => 'textarea',
                                                                         'class' => 'form-control',
-                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); 
+                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); */
                     ?>
                 </div>
                 <div class="col-xs-12">
@@ -215,26 +209,18 @@
         </div>
 
         <!-- BOTONES -->
-        <div class="row text-center">
+        <div class="row text-center">        
             <div class="col-xs-12 col-md-offset-5">
                 <div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Aceptar', array('class' => 'btn btn-info', 'div' => false, 'name' => 'accion')); ?>
+                    <?= $this->Form->submit('Cancelar', array('class' => 'btn btn-info', 'div' => false, 'name' => 'accion')); ?>
                     <br>
                 </div>
                 <div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); ?>
-                    <br>
-                </div>
-                <!--<div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Cancelar', array('class' => 'btn btn-warning', 'div' => false, 'name' => 'accion')); ?>
-                    <br>
-                </div>-->
-                <div class='col-xs-12 col-md-1'>
-                    <?= $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-danger', 'id' => 'btnRegresar')); ?>
+                    <?= $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-danger', 'id' => 'btnRegresar')) ?>
                     <br>
                 </div>
             </div>
-        </div> 
+        </div>
         <!-- FIN BOTONES -->
     </fieldset>
     <!-- FIN CAMPOS A MOSTRAR -->
