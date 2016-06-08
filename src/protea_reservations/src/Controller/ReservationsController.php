@@ -272,6 +272,8 @@ class ReservationsController extends AppController
                 $reservation->state = 1;
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
+                    //$this->getMailer('User')->send('rejectUser', [$user]);
+                    
                     $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                 }

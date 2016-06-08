@@ -216,25 +216,24 @@
 
         <!-- BOTONES -->
         <div class="row text-center">
-            <div class="col-xs-12 col-md-offset-4">
+            <div class="col-xs-12 col-md-offset-5">
                 <div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Aceptar', array('class' => 'btn btn-primary', 'div' => false, 'name' => 'accion')); ?>
+                    <?= $this->Form->submit('Aceptar', array('class' => 'btn btn-info', 'div' => false, 'name' => 'accion')); ?>
                     <br>
                 </div>
                 <div class='col-xs-12 col-md-1'>
                     <?= $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); ?>
                     <br>
                 </div>
-                <div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Cancelar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion')); ?>
+                <!--<div class='col-xs-12 col-md-1'>
+                    <?= $this->Form->submit('Cancelar', array('class' => 'btn btn-warning', 'div' => false, 'name' => 'accion')); ?>
                     <br>
-                </div>
+                </div>-->
                 <div class='col-xs-12 col-md-1'>
-                    <?= $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar')); ?>
+                    <?= $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-danger', 'id' => 'btnRegresar')); ?>
                     <br>
                 </div>
             </div>
-
         </div> 
         <!-- FIN BOTONES -->
     </fieldset>
