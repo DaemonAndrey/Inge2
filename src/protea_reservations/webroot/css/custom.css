@@ -1575,6 +1575,17 @@ li i[id = facebook]{
     text-align: center;
 }
 
+li i[id = facebook]:hover{
+    color:red;
+    background-color: #3b5998;
+    width: 30px;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+    border-radius: 25%;
+    line-height: 18px;
+    text-align: center;
+}
+
 li i[id = tw]{
     color:aliceblue;
     background-color:#1da1f2;
@@ -1826,9 +1837,9 @@ li i[id = yt]{
     padding-top: 15px;
     clear:both;
 }
-.single_blog h4:hover{
+/*.single_blog h4:hover{
     color: #00A3C5;
-}
+}*/
 .single_blog p{
     margin: 8px 0px;
     font-size: 13px;
