@@ -9,13 +9,13 @@ INSERT INTO users ( username, password, first_name, last_name, telephone_number,
 ( 'alan@ucr.ac.cr'			, '$2y$10$cqvmVmhPl0fXxqAZtQSOc.Bv7xEM.Q86XDZ/3ob8Ge5SBeuZi3i2a'	, 'Alan'			, 'Calderón'		, '23232323'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 1 	, 1 ); -- alanalan
 
 INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
-( 'jose@ucr.ac.cr'			, '$2y$10$orXwF8quRhrft76ZH9JaFuK44vuFmSWPMv1E3DaN2OG9eDBHbO59S'	, 'Jose'			, 'Jimenez Blanco'	, '23232323'	, 'Escuela Educación Física y Deportes'						, 'Docente'			, 1 ), -- josejose
-( 'katherine@ucr.ac.cr'		, '$2y$10$tD45Fkx8mYANge/j/AEHA.3GbygqLX3aoKjkXEPGzXO4KrbMqH0H.'	, 'Katherine'		, 'Angulo'			, '23232323'	, 'Escuela de Orientación y Educación Especial'				, 'Administrativo'	, 1 ), -- katherinekatherine
-( 'jonathan@ucr.ac.cr'		, '$2y$10$H6d/1Y4oXFH6sCp6F6vog.y2wO40nZSW4dcQwcK20StJxvIyGJNge'	, 'Jonathan'		, 'Fonseca'			, '34343434'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ), -- jonathanjonathan
-( 'eduardo@ucr.ac.cr'		, '$2y$10$or3dcpx8gLghbObmMnzPu.Hf5vJC08/.SnzrsGdVcQCSVgFEX2j7C'	, 'Eduardo'			, 'Picado'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Administrativo'	, 1 ), -- eduardo
-( 'francisco@ucr.ac.cr'		, '$2y$10$IXbB8ICmTRKm7JCozNITeuC1sNdn7mT5J0r7gDOjUlzI1E.yS9I1a'	, 'Francisco'		, 'Zúñiga'			, '34343434'	, 'Instituto de Investigación en Educación INIE'			, 'Administrativo'	, 1 ), -- franciscofrancisco
-( 'andres@ucr.ac.cr'		, '$2y$10$mzaSydN/tGaOyilNOHw5zu5HkmrebOnLwaPiIvRm/N/Ub1J7qf8M.'	, 'Andrés'			, 'Vargas'			, '54545454'	, 'Escuela de Formación Docente'							, 'Docente'			, 1 ), -- andresandres
-( 'andrey@ucr.ac.cr'		, '$2y$10$ThasD/qbLS0Wzj5qnDndj.gbH2ff9RwfzcxmU832nWAGWF8sNmDEO'	, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ); -- andreyandrey
+( 'josecarlos.jimenez@ucr.ac.cr'			, '$2y$10$orXwF8quRhrft76ZH9JaFuK44vuFmSWPMv1E3DaN2OG9eDBHbO59S'	, 'Jose'			, 'Jimenez Blanco'	, '23232323'	, 'Escuela Educación Física y Deportes'						, 'Docente'			, 1 ), -- josejose
+( 'katherine.anguloangulo@ucr.ac.cr'		, '$2y$10$tD45Fkx8mYANge/j/AEHA.3GbygqLX3aoKjkXEPGzXO4KrbMqH0H.'	, 'Katherine'		, 'Angulo'			, '23232323'	, 'Escuela de Orientación y Educación Especial'				, 'Administrativo'	, 1 ), -- katherinekatherine
+( 'jonathan.fonsecavallejo@ucr.ac.cr'		, '$2y$10$H6d/1Y4oXFH6sCp6F6vog.y2wO40nZSW4dcQwcK20StJxvIyGJNge'	, 'Jonathan'		, 'Fonseca'			, '34343434'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ), -- jonathanjonathan
+( 'jose.picadosalas@ucr.ac.cr'				, '$2y$10$or3dcpx8gLghbObmMnzPu.Hf5vJC08/.SnzrsGdVcQCSVgFEX2j7C'	, 'Eduardo'			, 'Picado'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Administrativo'	, 1 ), -- eduardo
+( 'francisco.zunigamadrigal@ucr.ac.cr'		, '$2y$10$IXbB8ICmTRKm7JCozNITeuC1sNdn7mT5J0r7gDOjUlzI1E.yS9I1a'	, 'Francisco'		, 'Zúñiga'			, '34343434'	, 'Instituto de Investigación en Educación INIE'			, 'Administrativo'	, 1 ), -- franciscofrancisco
+( 'danny.vargas@ucr.ac.cr'					, '$2y$10$mzaSydN/tGaOyilNOHw5zu5HkmrebOnLwaPiIvRm/N/Ub1J7qf8M.'	, 'Andrés'			, 'Vargas'			, '54545454'	, 'Escuela de Formación Docente'							, 'Docente'			, 1 ), -- andresandres
+( 'robin.perez@ucr.ac.cr'					, '$2y$10$ThasD/qbLS0Wzj5qnDndj.gbH2ff9RwfzcxmU832nWAGWF8sNmDEO'	, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ); -- andreyandrey
 
 INSERT INTO resource_types ( description, days_before_reservation ) VALUES
 ( 'Sala'		, '3' ),
@@ -107,46 +107,3 @@ INSERT INTO `reservations` (`start_date`, `end_date`, `resource_id`, `user_comme
 ( '2016-11-10 17:04:00', '2016-11-10 20:00:00',  	11, '', 											'', 									0, 		0, 		1, 		3, 		'nec sem duis' 			),
 ( '2016-11-10 17:40:00', '2016-11-10 20:00:00',  	12, '', 											'', 									0, 		0, 		1, 		3, 		'nec sem duis' 			),
 ( '2016-11-12 17:00:00', '2016-11-13 20:00:00',  	7, '', 												'', 									0, 		0, 		1, 		3, 		'nec sem duis' 			);
-
-INSERT INTO `historic_reservations` (`reservation_start_date`, `reservation_end_date`, `resource_name`, `user_username`, `user_first_name`, `user_last_name`, `user_comment`, `administrator_comment`, `state`) VALUES
-( '2016-01-20 07:00:00', '2016-01-20 09:00:00',  	'Sala de audiovisuales', 	'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Integer vel accumsan tellus nisi eu orci.', 	'Suspendisse accumsan turpis.', 		2),
-( '2016-03-02 12:00:00', '2016-03-02 15:00:00',  	'Laboratorio de Cómputo', 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'sfsdf', 										'', 									1),
-( '2016-03-06 07:00:00', '2016-03-06 09:00:00',  	'Sala de audiovisuales', 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-03-16 08:00:00', '2016-03-16 09:00:00',  	'Televisor LG', 		 	'adrian@ucr.ac.cr', 		'Adrián', 		'Alvarado', 		'Curabitur ut massa volutpat convallis.', 		'Maecenas pulvinar lobortis est.', 		2),
-( '2016-04-12 08:00:00', '2016-04-12 10:00:00',  	'Televisor LG', 		 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									2),
-( '2016-06-07 12:00:00', '2016-06-07 14:00:00', 	'Sala SITEA', 		 		'adrian@ucr.ac.cr', 		'Adrián', 		'Alvarado', 		'', 											'', 									2),
-( '2016-06-13 08:00:00', '2016-06-13 12:00:00', 	'Laboratorio de Cómputo', 	'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Cum sociis natoque penatibus et magnis.', 		'Mauris lacinia sapien quis libero.',	1),
-( '2016-06-16 08:00:00', '2016-06-16 11:00:00',  	'Laboratorio de Cómputo', 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									2),
-( '2016-06-23 14:00:00', '2016-06-23 17:00:00', 	'Sala SITEA', 		 		'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'Nulla tellus. In sagittis dui vel nisl.', 		'Vivamus in felis sapien cursus.', 		2),
-( '2016-06-30 19:00:00', '2016-06-30 21:00:00',  	'Sala de audiovisuales', 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'Vestibulum rutrum rutrum neque.', 				'Maecenas tincidunt lacus velit.', 		1),
-( '2016-07-10 11:00:00', '2016-07-10 13:00:00', 	'DVD Philips', 		 		'adrian@ucr.ac.cr', 		'Adrián', 		'Alvarado', 		'', 											'', 									1),
-( '2016-07-20 14:00:00', '2016-07-20 19:00:00', 	'DVD Philips', 		 		'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									1),
-( '2016-08-03 18:00:00', '2016-08-03 21:00:00',  	'Laboratorio de Cómputo', 	'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'Suspendisse accumsan tortor quis turpis.', 	'Duis aliquam convallis nunc.', 		1),
-( '2016-08-09 17:00:00', '2016-08-09 19:00:00',  	'Sala de audiovisuales', 	'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Nulla suscipit ligula in lacus.', 				'Donec vehicula condimentum.', 			2),
-( '2016-08-16 07:00:00', '2016-08-16 08:00:00', 	'Sala SITEA', 		 		'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-08-28 10:00:00', '2016-08-28 13:00:00', 	'Proyector Epson', 		 	'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									1),
-( '2016-09-13 11:00:00', '2016-09-13 17:00:00', 	'Proyector Epson', 		 	'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Maecenas pulvinar lobortis est.', 				'Suspendisse potenti.', 				3),
-( '2016-09-27 07:00:00', '2016-09-27 11:00:00', 	'Sala de audiovisuales', 	'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-10-07 16:00:00', '2016-10-07 19:00:00', 	'Sala SITEA', 		 		'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'Nullam varius. Nulla facilisi.', 				'Proin leo odio consequat nulla.', 		1),
-( '2016-11-08 13:00:00', '2016-11-08 18:00:00', 	'Proyector Epson', 		 	'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Fusce posuere felis sed lacus.', 				'Morbi non quam nec dui rutrum.', 		1),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00', 	'Sala SITEA', 	 	 		'adrian@ucr.ac.cr', 		'Adrián', 		'Alvarado', 		'Nulla suscipit ligula in lacus.', 				'Nulla neque libero convallis eget.', 	1),
-( '2016-11-10 17:00:00', '2016-11-10 20:00:00',  	'Sala de audiovisuales', 	'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-12-22 11:00:00', '2016-12-22 13:00:00', 	'Sala SITEA', 		 		'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Morbi porttitor lorem id ligula.', 			'Nam nulla.', 							2),
-( '2016-12-25 11:00:00', '2016-12-25 12:00:00',  	'Laboratorio de Cómputo', 	'adrian@ucr.ac.cr', 		'Adrián', 		'Alvarado', 		'', 											'', 									3),
-( '2016-11-10 17:00:00', '2016-11-10 19:00:00', 	'Laboratorio de Cómputo', 	'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:00', '2016-11-10 20:00:00', 	'Televisor LG', 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:00', '2016-11-10 20:00:00', 	'DVD Philips', 		 		'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:00', '2016-11-10 20:00:00', 	'Proyector Epson',  		'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00',  	'Sala 2', 		 			'katherine@ucr.ac.cr', 		'Katherine', 	'Angulo', 			'Integer vel accumsan tellus nisi eu orci.', 	'Suspendisse accumsan turpis.', 		2),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00',  	'Sala 3', 		 			'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00',  	'Laboratorio 2', 			'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00', 	'Televisor SAMSUNG',		'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									1),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00', 	'DVD Sony',		 			'adrian@ucr.ac.cr', 		'Adrian', 		'Alvarado', 		'Curabitur ut massa volutpat convallis.', 		'Maecenas pulvinar lobortis est.', 		2),
-( '2016-11-10 17:00:00', '2016-11-10 18:00:00', 	'Sala 4',		 			'jose@ucr.ac.cr', 			'Jose', 		'Jimenez Blanco', 	'', 											'', 									2),
-( '2016-11-10 14:00:00', '2016-11-10 20:00:00',  	'Sala 3', 		 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 12:00:00', '2016-11-10 20:00:00',  	'Sala 2', 		 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:01', '2016-11-10 20:00:00',  	'Laboratorio 2', 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:00:10', '2016-11-10 20:00:00',  	'Televisor SAMSUNG',		'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:04:00', '2016-11-10 20:00:00',  	'DVD Sony',		 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-10 17:40:00', '2016-11-10 20:00:00',  	'Sala 4',		 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2),
-( '2016-11-12 17:00:00', '2016-11-13 20:00:00',  	'Sala 2', 		 			'alan@ucr.ac.cr', 			'Alan', 		'Calderón', 		'', 											'', 									2);

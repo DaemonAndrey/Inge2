@@ -22,6 +22,8 @@ class ReservationsController extends AppController
     {
         parent::beforeFilter($event);
         
+        $this->set('user_role', $this->Auth->User('role_id'));
+        
         $this->pendingReservations = $this->Reservations->find('all')
             ->select(['id', 'start_date', 'end_date', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code'])
             ->join([
@@ -437,27 +439,58 @@ class ReservationsController extends AppController
                 
                 if( date('Y/m/d') <= $fechaLimiteCancelacion )
                 {
-                    $this->loadModel('HistoricReservations');
-                    $historicReservation = $this->HistoricReservations->newEntity();
-                    $historicReservation->reservation_start_date = $reservation['start_date'];
-                    $historicReservation->reservation_end_date = $reservation['end_date'];
-                    $historicReservation->resource_name = $reservation['resource']['resource_name'];
-                    $historicReservation->event_name = $reservation['event_name'];
-                    $historicReservation->user_username = $reservation['user']['username'];
-                    $historicReservation->user_first_name = $reservation['user']['first_name'];
-                    $historicReservation->user_last_name = $reservation['user']['last_name'];
-                    $historicReservation->user_comment = $reservation['user_comment'];
-                    $historicReservation->administrator_comment = $reservation['administrator_comment'];
-                    $historicReservation->state = 3;
-                    if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                    if($reservation['state'] != 1)
                     {
-                        $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
-                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        $this->loadModel('HistoricReservations');
+                        $historicReservation = $this->HistoricReservations->newEntity();
+                        $historicReservation->reservation_start_date = $reservation['start_date'];
+                        $historicReservation->reservation_end_date = $reservation['end_date'];
+                        $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                        $historicReservation->event_name = $reservation['event_name'];
+                        $historicReservation->user_username = $reservation['user']['username'];
+                        $historicReservation->user_first_name = $reservation['user']['first_name'];
+                        $historicReservation->user_last_name = $reservation['user']['last_name'];
+                        $historicReservation->user_comment = $reservation['user_comment'];
+                        $historicReservation->administrator_comment = $reservation['administrator_comment'];
+                        $historicReservation->state = 3;
+
+                        if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                        {
+                            $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
+                            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        }
+                        else
+                        {
+                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
+                            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        }
                     }
                     else
                     {
-                        $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
-                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        $this->loadModel('HistoricReservations');
+                        $historicReservations = $this->HistoricReservations->find('all')
+                            ->select('id', 'reservation_start_date', 'resource_name', 'user_username', 'state')
+                            ->andWhere(['reservation_start_date = ' => $reservation['start_date'], 'resource_name = ' => $reservation['resource']['resource_name'], 'user_username' => $this->Auth->user('username')]);
+                
+                        $historicReservation = $historicReservations->first();
+                        debug($historicReservation);
+                        
+                        $historicReservationsTable = TableRegistry::get('HistoricReservations');
+                        $historicReservation2 = $historicReservationsTable->get($historicReservation['id']); // Return article with id 12
+                        $historicReservation2->state = 4;
+                        
+                        debug($historicReservation2);
+
+                        if($this->Reservations->delete($reservation) && $this->HistoricReservations->save($historicReservation2))
+                        {
+                            $this->Flash->set(__('La reservación se canceló exitosamente'), ['clear' => true, 'key' => 'cancelReservationSuccess']);
+                            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        }
+                        else
+                        {
+                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde'), ['clear' => true, 'key' => 'cancelReservationError']);
+                            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                        }
                     }
                 }
                 else
@@ -507,6 +540,10 @@ class ReservationsController extends AppController
         // 
         if($this->request->action === 'index')
             return true;
+        
+        //
+        if ($this->request->action === 'add')
+            return true;            
         
         return parent::isAuthorized($user);   
     }

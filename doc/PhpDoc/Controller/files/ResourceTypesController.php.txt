@@ -56,13 +56,13 @@ class ResourceTypesController extends AppController
                                                 });
         
         $query2 = $this->ResourceTypes->find()
-                                      ->select(['id', 'description']);
+                                      ->select(['id', 'description', 'days_before_reservation']);
         
         $query2->innerJoinWith('Resources')
                                 ->where(function ($q) use ($innerQuery){
                                         return $q->In('Resources.id', $innerQuery);
                                         });
-        $query2->group('ResourceTypes.id','ResourceTypes.description');
+        $query2->group('ResourceTypes.id', 'ResourceTypes.description', 'ResourceTypes.days_before_reservation');
         $query2->order(['ResourceTypes.description' => 'ASC']);
         
         $this->set('resourceTypes', $this->paginate($query2));

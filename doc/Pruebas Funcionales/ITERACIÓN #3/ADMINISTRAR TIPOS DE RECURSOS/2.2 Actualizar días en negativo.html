@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/protea/src/protea_reservations" />
+<title>2.2 Actualizar días en negativo</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">2.2 Actualizar días en negativo</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/protea/src/protea_reservations/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Ingresar</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>monica@ucr.ac.cr</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>monicamonica</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Tipos de Recurso</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=i.glyphicon.glyphicon-pencil</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=resourcetypes-days-before-reservation</td>
+	<td>-3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-info</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.error-message</td>
+	<td>La cantidad debe ser mayor o igual a 0</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

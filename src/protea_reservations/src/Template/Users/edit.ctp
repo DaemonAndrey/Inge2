@@ -330,10 +330,22 @@
                 // SI EL USUARIO ESTA ACEPTADO
                 else
                 {
-                ?> 
-                     <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
-                     <?= $this->Html->link('Regresar', array('controller' => 'users', 'action'=> 'index'), array( 'class' => 'btn btn-primary')) ?>
-                    
+                    ?>
+                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
+
+                    <?php if($user_role == 3)
+                    {
+                        ?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger'))?>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-danger')) ?>
+                        <?php
+                    }
+                    ?>
                 <?php     
                 }
                 ?>     

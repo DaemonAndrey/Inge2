@@ -21,8 +21,23 @@
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">
     <div class="col-xs-12">
-        <div class="text-center">
-            <h2>Administrar reservaciones</h2>
+        <div class="text-center" style="color:#000;">
+            <?php
+            if($user_role == 2 || $user_role == 3)
+            {
+                ?>
+                <h2>Administrar Reservaciones Pendientes</h2>
+                <?php
+            }
+            ?>
+            <?php
+            if($user_role == 1)
+            {
+                ?>
+                <h2>Mis Reservaciones</h2>
+                <?php
+            }
+            ?>
             <br>
         </div>
     </div>
@@ -31,7 +46,7 @@
 
 <!-- TABLA -->
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-sm">
+    <table class="table table-striped table-hover table-sm" style="color:#000;">
         <!-- ENCABEZADO -->
         <tr>
             <th>
