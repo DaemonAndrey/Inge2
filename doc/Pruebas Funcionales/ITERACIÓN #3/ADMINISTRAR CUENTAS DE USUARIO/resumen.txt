@@ -34,6 +34,6 @@
 	7-1 Agregar tipo de recurso exitosamente
 	7-2 Días de anticipación negativo
 
-7- Actualizar Tipo de Recurso (Días Anticipación)
-	7-1 Actualizar tipo de recurso exitosamente
-	7-2 Días de anticipación negativo
+8- Actualizar Tipo de Recurso (Días Anticipación)
+	8-1 Actualizar tipo de recurso exitosamente
+	8-2 Días de anticipación negativo
