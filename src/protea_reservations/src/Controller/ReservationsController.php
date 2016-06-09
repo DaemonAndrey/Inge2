@@ -510,6 +510,10 @@ class ReservationsController extends AppController
         if($this->request->action === 'index')
             return true;
         
+        //
+        if ($this->request->action === 'add')
+            return true;            
+        
         return parent::isAuthorized($user);   
     }
 }
