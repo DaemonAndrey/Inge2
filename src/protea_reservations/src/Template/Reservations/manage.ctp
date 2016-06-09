@@ -19,10 +19,10 @@
 </div>
 
 <!-- TÍTULO -->
-<div class="row">
+<div class="row" style="color:#000;">
     <div class="col-xs-12">
         <div class="text-center">
-            <h1>Administrar reservaciones</h1>
+            <h2>Administrar reservaciones</h2>
             <br>
         </div>
     </div>

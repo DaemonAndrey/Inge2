@@ -109,12 +109,10 @@ class UsersController extends AppController
                     {
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
-                            $this->Flash->success('El registro está siendo procesado, la confirmación será enviada al correo ingresado',
-                                                  ['key' => 'addUserSuccess']);
-                            
+                            $this->Flash->set(__('El registro está siendo procesado, la confirmación será enviada al correo ingresado'), ['clear' => true, 'key' => 'addUserSuccess']);                            
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
-                        $this->Flash->success('Su registro está siendo procesado, la confirmación será enviada a su correo',
+                        $this->Flash->set(__('Su registro está siendo procesado, la confirmación será enviada a su correo'),
                                               ['key' => 'addUserSuccess']);
                         
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
@@ -184,7 +182,7 @@ class UsersController extends AppController
         
         if($logout)
         {
-            $this->Flash->success('Se ha cerrado su sesión exitosamente', ['key' => 'logoutSuccess']);
+            $this->Flash->set(__('Se ha cerrado su sesión exitosamente'), ['key' => 'logoutSuccess']);
             return $this->redirect($logout);
         }
     }
@@ -231,13 +229,13 @@ class UsersController extends AppController
                 if ($this->Users->delete($user))
                 {
                     $this->getMailer('User')->send('rejectUser', [$user]);
-                    $this->Flash->success('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.', ['key' => 'rejectUserSuccess']);
+                    $this->Flash->set(__('La solicitud ha sido rechazada correctamente, y el usuario eliminado del sistema.'), ['key' => 'rejectUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('La solicitud no fue rechazada. Por favor inténtelo de nuevo', ['key' => 'rejectUserError']);
+                $this->Flash->set(__('La solicitud no fue rechazada. Por favor inténtelo de nuevo'), ['key' => 'rejectUserError']);
             }
         }
         else
@@ -269,13 +267,13 @@ class UsersController extends AppController
                     $this->getMailer('User')->send('confirmUser', [$user]);
              
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Se ha aceptado la solicitud con éxito.', ['key' => 'confirmUserSuccess']);
+                    $this->Flash->set(__('Se ha aceptado la solicitud con éxito.'), ['key' => 'confirmUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 }
                 else
                 {
                     //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('No se ha podido aceptar la solicitud. Por favor inténtelo de nuevo', ['key' => 'confirmUserError']);
+                    $this->Flash->set(__('No se ha podido aceptar la solicitud. Por favor inténtelo de nuevo'), ['key' => 'confirmUserError']);
                 }
             }
         }
@@ -311,7 +309,7 @@ class UsersController extends AppController
                 if ($this->Users->save($user))
                 {
                     //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Se han editado correctamente los datos del usuario', ['key' => 'editUserSuccess']);
+                    $this->Flash->set(__('Se han editado correctamente los datos del usuario'), ['key' => 'editUserSuccess']);
                     if($user['role_id'] == 3 ){
                         return $this->redirect(['controller' => 'Users','action' => 'index']);
                     }
@@ -323,7 +321,7 @@ class UsersController extends AppController
                 else
                 {
                     //En caso de que no se ha podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('No se han podido editar los datos el usuario', ['key' => 'editUserError']);
+                    $this->Flash->set(__('No se han podido editar los datos el usuario'), ['key' => 'editUserError']);
                 }
             }
             $this->set('user', $user);
@@ -349,13 +347,13 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->Flash->success('El usuario ha sido eliminado éxitosamente', ['key' => 'deleteUserSuccess']);
+                    $this->Flash->set(__('El usuario ha sido eliminado éxitosamente'), ['key' => 'deleteUserSuccess']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('El usuario no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteUserError']);
+                $this->Flash->set(__('El usuario no pudo ser eliminado. Por favor inténtelo de nuevo'), ['key' => 'deleteUserError']);
             }
         }
         else

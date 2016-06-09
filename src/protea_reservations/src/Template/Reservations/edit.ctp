@@ -259,7 +259,7 @@
         <div class="row text-center">
             <div class="col-xs-12">
                 <?php                 
-                    echo $this->Form->submit('Aceptar', array('class' => 'btn btn-success', 'div' => false, 'name' => 'accion'));
+                    echo $this->Form->submit('Aprobar', array('class' => 'btn btn-success', 'div' => false, 'name' => 'accion'));
                     echo $this->Form->submit('Rechazar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion'));
                     echo $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar')); 
                 ?>

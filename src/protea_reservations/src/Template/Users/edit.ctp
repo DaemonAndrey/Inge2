@@ -323,7 +323,7 @@
                                                 array('controller' => 'users','action' => 'reject', $user->id),
                                                 array('escape' => false)); ?>
 
-                    <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-primary', 'style' => 'width:91px')) ?>
+                    <?= $this->Html->link('Regresar', array('controller' => 'users', 'action'=> 'index'), array( 'class' => 'btn btn-primary', 'style' => 'width:91px')) ?>
                    
                 <?php    
                 } 
@@ -332,7 +332,7 @@
                 {
                 ?> 
                      <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
-                     <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger')) ?>
+                     <?= $this->Html->link('Regresar', array('controller' => 'users', 'action'=> 'index'), array( 'class' => 'btn btn-primary')) ?>
                     
                 <?php     
                 }

@@ -227,7 +227,7 @@ class ReservationsController extends AppController
                     if($this->request->is(array('post', 'put')))
                     {
                         $this->Reservations->patchEntity($reservation, $this->request->data);
-                        if($this->request->data['accion'] == 'Aceptar')
+                        if($this->request->data['accion'] == 'Aprobar')
                             $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
                         elseif($this->request->data['accion'] == 'Rechazar')
                             $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
