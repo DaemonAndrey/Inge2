@@ -22,6 +22,8 @@ class ReservationsController extends AppController
     {
         parent::beforeFilter($event);
         
+        $this->set('user_role', $this->Auth->User('role_id'));
+        
         $this->pendingReservations = $this->Reservations->find('all')
             ->select(['id', 'start_date', 'end_date', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code'])
             ->join([

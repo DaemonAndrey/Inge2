@@ -220,7 +220,7 @@
                                     <ul class="dropdown-menu" role="administrar" aria-labelledby="menu1">
                                     
                                     <!-- MIS DATOS -->
-                                    <li role="mi_cuenta"><?php echo $this->Html->link('Mi Cuenta',
+                                    <li role="mi_cuenta"><?php echo $this->Html->link('Actualizar Mi Cuenta',
                                                                  array('controller'=>'users','action' => 'edit', $this->request->session()->read('Auth.User.id')),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                     
