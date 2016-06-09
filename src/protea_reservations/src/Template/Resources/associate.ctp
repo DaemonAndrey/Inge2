@@ -46,7 +46,7 @@
             <!-- BOTON -->
             <div id="btnRegistrar" style="margin-top:25px;">
                 <div class='col-lg-4 col-md-4 col-sm-3 col-xs-4'>
-                    <?= $this->Form->button('Asociar', ['class' => 'btn btn-info']); ?>
+                    <?= $this->Form->button('Asociar', ['class' => 'btn btn-success']); ?>
                 </div>
             </div> <!-- FIN BOTON -->
             
@@ -127,7 +127,7 @@
     <div class='row  text-center' id="btnRegistrar">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'edit', $r_id), array( 'class' => 'btn btn-danger')) ?>
+            <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'edit', $r_id), array( 'class' => 'btn btn-primary')) ?>
         </div>
     </div> <!-- FIN BOTON -->
 

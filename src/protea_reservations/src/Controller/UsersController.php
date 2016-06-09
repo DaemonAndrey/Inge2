@@ -15,7 +15,6 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
-
     }
     
     /** 
@@ -30,7 +29,6 @@ class UsersController extends AppController
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
-     
     }
     
     /** 
@@ -106,8 +104,7 @@ class UsersController extends AppController
                 $user = $this->Users->patchEntity($user, $this->request->data);
                 
                 try
-                {
-                    
+                {                  
                     if ($this->Users->save($user))
                     {
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
@@ -134,7 +131,6 @@ class UsersController extends AppController
         {
             return $this->redirect(['controller'=>'pages','action'=>'home']);
         }
-
     }    
     /**
     * Se encarga del inicio de sesión de un usuario y se pasa a la vista de LOGIN.
@@ -299,9 +295,7 @@ class UsersController extends AppController
         $this->loadModel('Roles');
         $options = $this->Roles->find('list',['keyField' => 'id','valueField' => 'role_name'])->toArray();                              
         $this->set('roles_options', $options);
-        
-
-        
+          
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {

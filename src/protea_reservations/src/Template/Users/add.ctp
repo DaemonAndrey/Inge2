@@ -106,16 +106,16 @@
     <div class='row  text-center' id="btnRegistrar">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <?= $this->Form->button('Enviar Solicitud', ['class' => 'btn btn-info']); ?>
+            <?= $this->Form->button('Enviar Solicitud', ['class' => 'btn btn-success']); ?>
 
             <?php
             if($user_role == 3)
             {
-                echo $this->Html->link('Regresar', array('controller' => 'Users', 'action'=> 'index'), array( 'class' => 'btn btn-danger', 'style' => 'width:123px'));
+                echo $this->Html->link('Regresar', array('controller' => 'Users', 'action'=> 'index'), array( 'class' => 'btn btn-primary', 'style' => 'width:123px'));
             }
             else
             {
-                echo $this->Html->link('Regresar', array('controller' => 'pages', 'action'=> 'home'), array( 'class' => 'btn btn-danger', 'style' => 'width:123px'));
+                echo $this->Html->link('Regresar', array('controller' => 'pages', 'action'=> 'home'), array( 'class' => 'btn btn-primary', 'style' => 'width:123px'));
             }
             ?>
         </div>

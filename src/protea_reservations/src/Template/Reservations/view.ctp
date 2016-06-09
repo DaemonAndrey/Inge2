@@ -26,7 +26,14 @@
                     <?= $this->Form->label('resources.resource_code', 'Placa / Modelo:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('reservations.resource_id', $reservation['resource']['resource_code'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.resource_id', 
+                                           $reservation['resource']['resource_code'], 
+                                           [
+                                               'class' => 'form-control', 
+                                               'readonly' => 'readonly', 
+                                               'templates' => '<div>{{label}}</div>'
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -210,15 +217,11 @@
 
         <!-- BOTONES -->
         <div class="row text-center">        
-            <div class="col-xs-12 col-md-offset-5">
-                <div class='col-xs-12 col-md-1'>
-                    <?= $this->Form->submit('Cancelar', array('class' => 'btn btn-info', 'div' => false, 'name' => 'accion')); ?>
-                    <br>
-                </div>
-                <div class='col-xs-12 col-md-1'>
-                    <?= $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-danger', 'id' => 'btnRegresar')) ?>
-                    <br>
-                </div>
+            <div class="col-xs-12">
+                <?php 
+                    echo $this->Form->submit('Cancelar', array('class' => 'btn btn-danger', 'div' => false, 'name' => 'accion'));
+                    echo $this->Html->link('Regresar', array('controller' => 'reservations','action'=> 'manage'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar')) 
+                ?>
             </div>
         </div>
         <!-- FIN BOTONES -->

@@ -22,8 +22,11 @@ color:#91BB1B;
 border-radius: 25% 25%; 
 } 
 
-.input{
-    margin-left: 5px;
-    margin-right: 5px;
+.submit{
+    display: inline;
+    margin: 5px;
 }
 
+#btnRegresar{
+    margin: 5px;
+}
