@@ -19,28 +19,21 @@
     
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
-        <div class="row">
-            <!-- RECURSO -->
-            <!--<div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', 'Recurso:'); ?>
-                </div>
-                <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation->resource->resource_name, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
-                </div>
-                <div class="col-xs-12">
-                    <br>
-                </div>
-            </div>-->
-            <!-- FIN RECURSO -->
-            
+        <div class="row">        
             <!-- PLACA / MODELO DEL RECURSO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Resources.resource_code', 'Placa / Modelo:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.resource_id', $reservation['resource']['resource_code'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.resource_id', 
+                                           $reservation['resource']['resource_code'], 
+                                           ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]);
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -102,7 +95,15 @@
                         //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
                         $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
                     ?>
-                    <?= $this->Form->label('Reservations.start_date', $fechaEspanol, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.start_date', 
+                                           $fechaEspanol, 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -118,7 +119,15 @@
                     <?= $this->Form->label('Reservations.start_date', 'Hora de inicio:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.start_date', date_format($reservation->start_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.start_date', 
+                                           date_format($reservation->start_date, 'H:i:s'), 
+                                           [
+                                               'class' => 'form-control',                                        
+                                               'style' => 'display:inline-table;',                                            
+                                               'readonly' => 'readonly',                                            
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -132,7 +141,15 @@
                     <?= $this->Form->label('Reservations.end_date', 'Hora de fin:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.end_date', date_format($reservation->end_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.end_date', 
+                                           date_format($reservation->end_date, 'H:i:s'), 
+                                           [
+                                               'class' => 'form-control',                                            
+                                               'style' => 'display:inline-table;',                                            
+                                               'readonly' => 'readonly',                                            
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -148,7 +165,15 @@
                     <?= $this->Form->label('Reservations.user_id', 'Usuario:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.user_id', $reservation['user']['first_name'].' '.$reservation['user']['last_name'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.user_id', 
+                                           $reservation['user']['first_name'].' '.$reservation['user']['last_name'], 
+                                           [
+                                               'class' => 'form-control',                                            
+                                               'style' => 'display:inline-table;',                                            
+                                               'readonly' => 'readonly',                                            
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -162,7 +187,15 @@
                     <?= $this->Form->label('Reservations.event_name', 'Evento o curso:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.event_name', $reservation->event_name, ['class' => 'form-control', 'readonly' => 'readonly', 'style' => 'display:inline-table;', 'templates' => ['formGroup' => '<div>{{label}}</div>']]); ?>
+                    <?= $this->Form->label('Reservations.event_name', 
+                                           $reservation->event_name, 
+                                           [
+                                               'class' => 'form-control', 
+                                               'readonly' => 'readonly', 
+                                               'style' => 'display:inline-table;', 
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -186,7 +219,15 @@
                         else
                             $comentarioUsuario = $reservation->user_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly', 'style' => 'display:inline-table;', 'templates' => ['formGroup' => '<div>{{label}}</div>']]); ?>
+                    <?= $this->Form->label('Reservations.user_comment', 
+                                           $comentarioUsuario, 
+                                           [
+                                               'class' => 'form-control', 
+                                               'readonly' => 'readonly', 
+                                               'style' => 'display:inline-table;', 
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>

@@ -29,9 +29,10 @@
                     <?= $this->Form->label('reservations.resource_id', 
                                            $reservation['resource']['resource_code'], 
                                            [
-                                               'class' => 'form-control', 
-                                               'readonly' => 'readonly', 
-                                               'templates' => '<div>{{label}}</div>'
+                                               'class' => 'form-control',                                            
+                                               'style' => 'display:inline-table;',                                            
+                                               'readonly' => 'readonly',                                            
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
                                            ]); 
                     ?>
                 </div>
@@ -95,7 +96,15 @@
                         //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
                         $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
                     ?>
-                    <?= $this->Form->label('Reservations.start_date', $fechaEspanol, ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.start_date', 
+                                           $fechaEspanol, 
+                                           [
+                                               'class' => 'form-control',                                            
+                                               'style' => 'display:inline-table;',                                            
+                                               'readonly' => 'readonly',                                            
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -111,7 +120,15 @@
                     <?= $this->Form->label('Reservations.start_date', 'Hora de inicio:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.start_date', date_format($reservation->start_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.start_date', 
+                                           date_format($reservation->start_date, 'H:i:s'), 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -125,7 +142,15 @@
                     <?= $this->Form->label('Reservations.end_date', 'Hora de fin:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.end_date', date_format($reservation->end_date, 'H:i:s'), ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('Reservations.end_date', 
+                                           date_format($reservation->end_date, 'H:i:s'), 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -141,7 +166,15 @@
                     <?= $this->Form->label('reservations.user_id', 'Usuario:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('reservations.user_id', $reservation['user']['first_name'].' '.$reservation['user']['last_name'], ['class' => 'form-control', 'readonly' => 'readonly', 'templates' => '<div>{{label}}</div>']); ?>
+                    <?= $this->Form->label('reservations.user_id', 
+                                           $reservation['user']['first_name'].' '.$reservation['user']['last_name'], 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -155,7 +188,15 @@
                     <?= $this->Form->label('Reservations.event_name', 'Evento o curso:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?= $this->Form->label('Reservations.event_name', $reservation->event_name, ['class' => 'form-control', 'readonly' => 'readonly', 'style' => 'display:inline-table;', 'templates' => ['formGroup' => '<div>{{label}}</div>']]); ?>
+                    <?= $this->Form->label('Reservations.event_name', 
+                                           $reservation->event_name, 
+                                           [
+                                               'class' => 'form-control', 
+                                               'readonly' => 'readonly', 
+                                               'style' => 'display:inline-table;', 
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -179,7 +220,15 @@
                         else
                             $comentarioUsuario = $reservation->user_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.user_comment', $comentarioUsuario, ['class' => 'form-control', 'readonly' => 'readonly']); ?>
+                    <?= $this->Form->label('Reservations.user_comment', 
+                                           $comentarioUsuario, 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]); 
+                    ?>
                 </div>
                 <div class="col-xs-12">
                     <br>
@@ -201,11 +250,14 @@
                         else
                             $comentarioAdmin = $reservation->administrator_comment;
                     ?>
-                    <?= $this->Form->label('Reservations.administrator_comment', $comentarioAdmin, ['class' => 'form-control', 'readonly' => 'readonly'])
-                    /*$this->Form->input('Reservations.admin_comment', [  'label' => false,
-                                                                        'type' => 'textarea',
-                                                                        'class' => 'form-control',
-                                                                        'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); */
+                    <?= $this->Form->label('Reservations.administrator_comment', 
+                                           $comentarioAdmin, 
+                                           [
+                                               'class' => 'form-control',
+                                               'style' => 'display:inline-table;',
+                                               'readonly' => 'readonly',
+                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           ]);
                     ?>
                 </div>
                 <div class="col-xs-12">
