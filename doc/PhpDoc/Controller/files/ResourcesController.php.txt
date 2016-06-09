@@ -53,6 +53,7 @@ class ResourcesController extends AppController
         // Pagina la tabla de recursos
         $this->set('resources', $this->paginate($query));
 	}
+    
 
     /**
      * Muestra información más detallada sobre un recurso específico.
@@ -75,7 +76,8 @@ class ResourcesController extends AppController
         $this->loadModel('Users');
         $query = $this->Users->find()
                                         ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '1']);
+                                        ->where(['Users.role_id' => '2'])
+                                        ->orWhere(['Users.role_id' => '3']);
         
         $query->innerJoinWith('Resources', function ($q) use ($id){
                                                 return $q->where(['Resources.id' => $id]);
@@ -179,13 +181,13 @@ class ResourcesController extends AppController
                 //Guarda el recurso con la nueva informacion modificada
                 if ($this->Resources->save($resource))
                 {
-                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
                     $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 }
                 else
                 {
-                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
+                    //En caso de que no se haya podido actualizar la información, despliega un mensaje indicando que hubo error.
                     $this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
                 }
             }
@@ -239,7 +241,8 @@ class ResourcesController extends AppController
         $this->loadModel('Users');
         $query = $this->Users->find()
                                         ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '1']);
+                                        ->where(['Users.role_id' => '2'])
+                                        ->orWhere(['Users.role_id' => '3']);
         
         $query->innerJoinWith('Resources', function ($q) use ($id){
                                                 return $q->where(['Resources.id' => $id]);
@@ -252,14 +255,16 @@ class ResourcesController extends AppController
         // Admins no asociados
         $innerQuery = $this->Users->find()
                                 ->select(['id'])
-                                ->where(['Users.role_id' => '1']);
+                                ->where(['Users.role_id' => '2'])
+                                ->orWhere(['Users.role_id' => '3']);
         
         $innerQuery->innerJoinWith('Resources', function ($q) use ($id){
                                                     return $q->where(['Resources.id' => $id]);
                                                 });
         
         $query2 = $this->Users->find('list',['keyField' => 'id','valueField' => 'username'])
-                                ->where(['Users.role_id' => '1'])
+                                ->where(['Users.role_id' => '2'])
+                                ->orWhere(['Users.role_id' => '3'])
                                 ->where(function ($q) use ($innerQuery){
                                         return $q->notIn('id', $innerQuery);
                                         });
@@ -368,16 +373,16 @@ class ResourcesController extends AppController
                
             $subquery = $this->Resources->Reservations->find() /** Me devuelve todos los recursos reservados**/
                 ->hydrate(false)
-                ->select(['r.resource_name'])
+                ->select(['resource.resource_name'])
                 ->join([
                      'table'=>'resources',
-                     'alias'=>'r',
+                     'alias'=>'resource',
                      'type' => 'RIGHT',
-                     'conditions'=>'r.id = Reservations.resource_id'
+                     'conditions'=>'resource.id = Reservations.resource_id'
                     ])
 
 
-                    ->where(['DATE(Reservations.start_date)'=>$date])
+                    ->andwhere(['DATE(Reservations.start_date)'=>$date, 'resource.resource_type_id'=>$id])
                     ->where(function ($exp) use ($start,$end,$date) {
 
             /************** Pregunta si el intervalo de reserva está dentro del intervalo reservado  **/
@@ -428,8 +433,17 @@ class ResourcesController extends AppController
                     ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
                     ->group(['resource.resource_name']);
             $query = $query->toArray();
-            $query = json_encode($query);
-           die($query);
+            $subquery = $subquery->toArray();
+
+            $resources['available'] = $query;
+            $resources['reserved'] = $subquery;
+
+            $resources = json_encode($resources);
+
+
+           die($resources);
+
+
         }
     }
     
