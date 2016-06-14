@@ -184,7 +184,7 @@ class UsersController extends AppController
         
         if($logout)
         {
-            $this->Flash->success('Sesión cerrada.', ['key' => 'logoutSuccess']);
+            $this->Flash->success('Sesión cerrada.');
             
             return $this->redirect($logout);
         }

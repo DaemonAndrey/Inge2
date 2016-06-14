@@ -255,8 +255,8 @@
 
                 <div class="lead text-info" style="text-align:center; color: #FFFFFF">
                         <br>
-                        <?= $this->Flash->render('addUserSuccess') ?>
-                        <?= $this->Flash->render('logoutSuccess') ?>
+                        <?= $this->Flash->render() ?>
+                        <?= $this->Flash->render() ?>
                 </div>
 
         </div><!-- /.navbar-collapse -->
@@ -330,6 +330,16 @@
 
 
     ?>
+
+    <script>
+        if(document.getElementsByClassName("message").length)
+        {
+            var text = $(".message").text();
+            $(".message").empty();
+
+            alert(text);
+        }
+    </script>
 
     <script>
         // Google Map - with support of gmaps.js
