@@ -135,7 +135,7 @@ class ResourcesController extends AppController
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'addResourceError']);
+                    $this->Flash->error('No se ha podido agregar el recurso -red', ['key' => 'addResourceError']);
                 }
             }
             $this->set('resource', $resource);            
@@ -188,7 +188,7 @@ class ResourcesController extends AppController
                 else
                 {
                     //En caso de que no se haya podido actualizar la información, despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
+                    $this->Flash->error('No se ha podido editar el recurso -red', ['key' => 'addResourceError']);
                 }
             }
             
@@ -222,7 +222,7 @@ class ResourcesController extends AppController
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteResourceError']);
+                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo -red', ['key' => 'deleteResourceError']);
             }
         }
         else
@@ -305,7 +305,7 @@ class ResourcesController extends AppController
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido asociar el administrador con el recurso', ['key' => 'associateResourceAdminError']);
+                    $this->Flash->error('No se ha podido asociar el administrador con el recurso -red', ['key' => 'associateResourceAdminError']);
                 }
             }
             $this->set('resourcesUser', $resourcesUser);            
@@ -344,7 +344,7 @@ class ResourcesController extends AppController
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido desasociar el administrador del recurso', ['key' => 'disassociateResourceAdminError']);
+                $this->Flash->error('No se ha podido desasociar el administrador del recurso -red', ['key' => 'disassociateResourceAdminError']);
             }
         }
         else

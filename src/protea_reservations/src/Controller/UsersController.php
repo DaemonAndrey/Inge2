@@ -122,7 +122,7 @@ class UsersController extends AppController
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error(__('Solicitud de registro NO procesada.'), ['key' => 'addUserError']);
+                    $this->Flash->error(__('Solicitud de registro NO procesada. -red'), ['key' => 'addUserError']);
                 }
             }
             $this->set('user', $user);            
@@ -163,7 +163,7 @@ class UsersController extends AppController
 
                     //Se puede hacer con un if que verifique los datos de $this->request->data['username'] contra la base
 
-                    $this->Flash->error(__('Nombre de usuario o contraseña incorrectos. Inténtelo de nuevo.'), ['key' => 'loginError']);
+                    $this->Flash->error(__('Nombre de usuario o contraseña incorrectos. Inténtelo de nuevo -red'), ['key' => 'loginError']);
                     
                 }
             }            
@@ -240,7 +240,7 @@ class UsersController extends AppController
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('Solicitud NO rechazada. Por favor, inténtelo de nuevo.', ['key' => 'rejectUserError']);
+                $this->Flash->error('Solicitud NO rechazada. Por favor, inténtelo de nuevo. -red', ['key' => 'rejectUserError']);
             }
         }
         else
@@ -280,7 +280,7 @@ class UsersController extends AppController
                 else
                 {
                     //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('Solicitud NO aceptada. Por favor, inténtelo de nuevo.', ['key' => 'confirmUserError']);
+                    $this->Flash->error('Solicitud NO aceptada. Por favor, inténtelo de nuevo. -red', ['key' => 'confirmUserError']);
                 }
             }
         }
@@ -323,7 +323,7 @@ class UsersController extends AppController
                 else
                 {
                     //En caso de que no se ha podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('Datos NO Actualizados.', ['key' => 'editUserError']);
+                    $this->Flash->error('Datos NO Actualizados. -red', ['key' => 'editUserError']);
                 }
             }
             $this->set('user', $user);
@@ -355,7 +355,7 @@ class UsersController extends AppController
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('Usuario NO eliminado. Por favor, inténtelo de nuevo.', ['key' => 'deleteUserError']);
+                $this->Flash->error('Usuario NO eliminado. Por favor, inténtelo de nuevo. -red', ['key' => 'deleteUserError']);
             }
         }
         else

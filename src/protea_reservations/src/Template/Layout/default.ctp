@@ -256,7 +256,6 @@
                 <div class="lead text-info" style="text-align:center; color: #FFFFFF">
                         <br>
                         <?= $this->Flash->render() ?>
-                        <?= $this->Flash->render() ?>
                 </div>
 
         </div><!-- /.navbar-collapse -->
@@ -272,7 +271,34 @@
 
     
     <?= $this->fetch('content') ?> <!-- Trae el contenido de las demás páginas aquí -->
-    
+
+
+
+
+<!-- MODAL PARA LOS MENSAJES FLASH ======================================== -->
+
+<div id="flash" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar">&times;</button>
+                <h4 class="modal-title">Información</h4>
+            </div>
+            <div class="modal-body">
+                <h4 id="flashText"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
     
     <!-- PIE DE PAGINA ======================================== -->
@@ -283,16 +309,7 @@
                     <div class="col-xs-12">
                         <p style="color:#fff;"> Derechos reservados - Facultad de Educación <?php echo date("Y"); ?></p>
                     </div>
-                    <!--<div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="footer_mid pull-right">
-                            <ul class="social-contact list-inline">
-                                <li><a target="_blank" href="http://www.facebook.com/proteaucr"><i class="fa fa-facebook"></i></a></li>
-                                <li><a target="_blank" href="http://www.twitter.com/proteaed"><i class="fa fa-twitter"></i></a></li>
-                                <li><a target="_blank" href="http://www.youtube.com/proteaeducacion"><i class="fa fa-youtube-play"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    -->
+
                 </div>
             </div>
         </div>
@@ -306,17 +323,13 @@
     echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
 
 
-    //echo $this->Html->script('jquery.isotope.js');          // Isotope
-    //echo $this->Html->script('jquery.prettyPhoto.js');      // Pretty Photo
-    //echo $this->Html->script('smooth-scroll.js');           // SmoothScroll
-    //echo $this->Html->script('jquery.fancybox.pack.js');    // Image Fancybox
-   // echo $this->Html->script('jquery.counterup.min.js');    // Counter
-   // echo $this->Html->script('waypoints.min.js');           // waypoints
-   // echo $this->Html->script('jquery.bxslider.min.js');     // Bx slider
-   // echo $this->Html->script('jquery.scrollTo.js');         // Scroll to top
-    //echo $this->Html->script('jquery.easing.1.3.js');       // Easing
-    //echo $this->Html->script('jquery.singlePageNav.js');    // PrettyPhoto
-   // echo $this->Html->script('wow.min.js');                 // Wow Animation
+
+
+
+
+    
+
+
    echo $this->Html->script('gmaps.js');                   // Google Map  Source
 
     //echo $this->Html->script('custom.js');                 // Custom
@@ -331,15 +344,7 @@
 
     ?>
 
-    <script>
-        if(document.getElementsByClassName("message").length)
-        {
-            var text = $(".message").text();
-            $(".message").empty();
 
-            alert(text);
-        }
-    </script>
 
     <script>
         // Google Map - with support of gmaps.js
