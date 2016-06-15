@@ -138,10 +138,7 @@ CREATE TABLE configurations
 	registration_accepted_message 	TEXT,
 	reservation_rejected_message 	TEXT,
 	reservation_accepted_message 	TEXT,
-	reservation_start_hour_weekdays	INT(2),
-	reservation_end_hour_weekdays	INT(2),
-	reservation_start_hour_weekends	INT(2),
-	reservation_end_hour_weekends	INT(2),
-	
+	reservation_start_hour	      INT(2),
+	reservation_end_hour	      INT(2),
 	PRIMARY KEY ( id )
 );
