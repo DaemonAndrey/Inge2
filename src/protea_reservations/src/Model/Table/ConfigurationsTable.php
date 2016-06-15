@@ -53,16 +53,16 @@ class ConfigurationsTable extends Table
                                             ]
             ])
             
-            ->notEmpty('reservation_start_hour_weekdays', 'Ingrese la hora de inicio para las reservaciones.')
-            ->add('reservation_start_hour_weekdays', [
+            ->notEmpty('reservation_start_hour', 'Ingrese la hora de inicio para las reservaciones.')
+            ->add('reservation_start_hour', [
                                     'lengthBetween' => ['rule' => ['lengthBetween', 1, 2],
                                                         'message' => ('Digite una hora válida.')],
                                     'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]+$/'),
                                                         'message' => ('Debe contener solamente números.')]   
             ])
             
-            ->notEmpty('reservation_end_hour_weekdays', 'Ingrese la hora final para las reservaciones.')
-            ->add('reservation_start_hour_weekdays', [
+            ->notEmpty('reservation_end_hour', 'Ingrese la hora final para las reservaciones.')
+            ->add('reservation_start_hour', [
                                     'lengthBetween' => ['rule' => ['lengthBetween', 1, 2],
                                                         'message' => ('Digite una hora válida.')],
                                     'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]+$/'),
