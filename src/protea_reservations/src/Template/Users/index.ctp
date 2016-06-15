@@ -2,7 +2,6 @@
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
-<!--
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('deleteUserError') ?> 
     <?= $this->Flash->render('editUserError') ?> 
@@ -14,7 +13,7 @@
     <?= $this->Flash->render('editUserSuccess') ?>
     <?= $this->Flash->render('rejectUserSuccess') ?>
     <?= $this->Flash->render('confirmUserSuccess') ?>
-</div>-->
+</div>
 <!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->

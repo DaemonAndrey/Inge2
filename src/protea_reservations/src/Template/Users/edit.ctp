@@ -3,13 +3,11 @@
 
 <div class="users form">
     <!-- MENSAJES -->
-    <!--
     <div style="text-align:center">
         <?= $this->Flash->render('addUserSuccess') ?>   
         <?= $this->Flash->render('addUserError') ?>
 
     </div>
-    -->
     <!-- FIN DE MENSAJES -->
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('editUserError') ?> 

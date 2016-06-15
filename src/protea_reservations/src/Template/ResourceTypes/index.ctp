@@ -2,7 +2,6 @@
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
-<!--
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceTypeSuccess') ?>
     <?= $this->Flash->render('addResourceTypeError') ?>
@@ -11,7 +10,7 @@
     <?= $this->Flash->render('deleteResourceTypeSuccess') ?>
     <?= $this->Flash->render('deleteResourceTypeError') ?>
     <?= $this->Flash->render('deleteResourceRelationSuccess') ?>
-</div>-->
+</div>
 <!-- MENSAJES -->
 
 <!-- TÍTULO -->

@@ -4,7 +4,6 @@
 <br>
 
 <!-- MENSAJES -->
-<!--
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('acceptReservationSuccess') ?>
     <?= $this->Flash->render('rejectReservationSuccess') ?>
@@ -17,7 +16,7 @@
     <?= $this->Flash->render('rejectReservationError') ?>
     <?= $this->Flash->render('cancelReservationError') ?>
     <?= $this->Flash->render('nullReservation') ?>
-</div> -->
+</div>
 <!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
