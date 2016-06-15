@@ -4,11 +4,14 @@
 <!-- File: src/Template/Users/ingresar.ctp -->
 <div class="users form">
     <!-- MENSAJES -->
+    <!--
     <div style="text-align:center; color:red">
         <?= $this->Flash->render('loginError') ?>
         <?= $this->Flash->render('loginPendiente') ?>
         <br>
     </div>
+    -->
+    <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  

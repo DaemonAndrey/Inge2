@@ -2,12 +2,15 @@
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
+    <!-- MENSAJES -->
+    <!--
     <div style="text-align:center">
         <?= $this->Flash->render('addUserSuccess') ?>   
         <?= $this->Flash->render('addUserError') ?>
 
     </div>
-    <!-- MENSAJES -->
+    -->
+    <!-- FIN DE MENSAJES -->
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('editUserError') ?> 
 </div> 

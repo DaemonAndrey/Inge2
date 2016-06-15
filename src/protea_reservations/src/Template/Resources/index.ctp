@@ -2,6 +2,7 @@
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
+<!--
 <div class="lead text-info" style="text-align:center">
     <?= $this->Flash->render('addResourceSuccess') ?>
     <?= $this->Flash->render('deleteResourceSuccess') ?>
@@ -11,6 +12,8 @@
     <?= $this->Flash->render('addResourceError') ?>
     <?= $this->Flash->render('deleteResourceError') ?>
 </div>
+-->
+<!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">
