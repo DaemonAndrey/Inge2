@@ -92,7 +92,7 @@ class ResourceTypesController extends AppController
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el tipo de recurso -red', ['key' => 'addResourceTypeError']);
+                    $this->Flash->error('No se ha podido agregar el tipo de recurso', ['key' => 'addResourceTypeError']);
                 }
             }
             $this->set('resourceType', $resourceType);
@@ -132,7 +132,7 @@ class ResourceTypesController extends AppController
                 catch(Exception $ex)
                 {
                     //Si no se ha podido actualizar correctamente el tipo del recurso despliega un mensaje indicando que hubo error
-                    $this->Flash->error('No se ha podido actualizar el tipo de recurso -red', ['key' => 'updateResourceTypeError']);
+                    $this->Flash->error('No se ha podido actualizar el tipo de recurso', ['key' => 'updateResourceTypeError']);
                 }
             }
 
@@ -229,7 +229,7 @@ class ResourceTypesController extends AppController
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido eliminar el tipo de recurso -red',
+                $this->Flash->error('No se ha podido eliminar el tipo de recurso',
                                     ['key' => 'deleteResourceTypeError']);
             }
         }

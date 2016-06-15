@@ -240,14 +240,14 @@ class ReservationsController extends AppController
                 }
                 else
                 {
-                    $this->Flash->error('No se puede acceder a esa reservación -red', ['key' => 'editReservationError']);
+                    $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
                     return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
                 }
             }
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
@@ -289,14 +289,14 @@ class ReservationsController extends AppController
                 }
                 else
                 {
-                    $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo más tarde -red'), ['clear' => true, 'key' => 'acceptReservationError']);
+                    $this->Flash->set(__('La reservación no se pudo aceptar, inténtelo de nuevo'), ['clear' => true, 'key' => 'acceptReservationError']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                 }
             }
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede aceptar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede aceptar'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
@@ -337,14 +337,14 @@ class ReservationsController extends AppController
                 }
                 else
                 {
-                    $this->Flash->set(__('La reservación no se pudo rechazar, inténtelo más tarde -red'), ['clear' => true, 'key' => 'rejectReservationError']);
+                    $this->Flash->set(__('La reservación no se pudo rechazar, inténtelo de nuevo'), ['clear' => true, 'key' => 'rejectReservationError']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                 }
             }
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede rechazar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede rechazar'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
@@ -396,14 +396,14 @@ class ReservationsController extends AppController
                 }
                 else
                 {
-                    $this->Flash->error('No se puede acceder a esa reservación -red', ['key' => 'editReservationError']);
+                    $this->Flash->error('No se puede acceder a esa reservación', ['key' => 'editReservationError']);
                     return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
                 }
             }
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
@@ -461,7 +461,7 @@ class ReservationsController extends AppController
                         }
                         else
                         {
-                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde -red'), ['clear' => true, 'key' => 'cancelReservationError']);
+                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo de nuevo'), ['clear' => true, 'key' => 'cancelReservationError']);
                             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                         }
                     }
@@ -488,21 +488,21 @@ class ReservationsController extends AppController
                         }
                         else
                         {
-                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo más tarde -red'), ['clear' => true, 'key' => 'cancelReservationError']);
+                            $this->Flash->set(__('La reservación no se pudo cancelar, inténtelo de nuevo'), ['clear' => true, 'key' => 'cancelReservationError']);
                             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                         }
                     }
                 }
                 else
                 {
-                    $this->Flash->set(__('Esta reservación ya no se puede cancelar, lo sentimos. -red'), ['clear' => true, 'key' => 'cancelReservationError']);
+                    $this->Flash->set(__('Esta reservación ya no se puede cancelar, lo sentimos.'), ['clear' => true, 'key' => 'cancelReservationError']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
                 }
             }
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede cancelar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo que no se puede cancelar'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
