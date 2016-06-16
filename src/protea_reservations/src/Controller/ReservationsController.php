@@ -67,6 +67,11 @@ class ReservationsController extends AppController
                         ->select(['description']);
 
         $resource_type = $resource_type->toArray();	
+
+        /**El siguiente query obtiene la tupla con las configuraciones**/
+        $this->loadModel('Configurations');
+        $configuration = $this->Configurations->get(1);
+        
         
 		if($this->request->is('post'))
 		{
@@ -111,6 +116,7 @@ class ReservationsController extends AppController
 		}
 		
 		$this->set('types',$resource_type);
+        $this->set('configuration', $configuration);        
 	}
     
     /*
