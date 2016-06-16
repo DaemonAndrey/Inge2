@@ -48,7 +48,7 @@ class ConfigurationsTable extends Table
             ->notEmpty('reservation_accepted_message', 'Ingrese el mensaje de aceptación de reservación.')
             ->add('reservation_accepted_message', [
                             'validFormat' => [
-                                            'rule' => 'alphaNumericPointComa',
+                                            'rule' => array('custom', '|^[0-9a-zA-Z;.,]+$|'),
                                             'message' => 'Debe usar solamente letras, números o signos de puntuación.'
                                             ]
             ])
@@ -69,14 +69,6 @@ class ConfigurationsTable extends Table
                                                         'message' => ('Debe contener solamente números.')]   
             ]);
             
-    }
-    
-    public function alphaNumericPointComa($check) 
-    {
-        $value = array_values($check);
-        $value = $value[0];
-
-        return preg_match('|^[0-9a-zA-Z;.,]+$|', $value);
     }
     
     public function findAuth(Query $query, array $options)
