@@ -24,7 +24,7 @@ class ConfigurationsTable extends Table
             ->notEmpty('registration_rejected_message', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_message', [
                             'validFormat' => [
-                                            'rule' => 'alphaNumericPointComa',
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos de puntuación.'
                                             ]
             ])
@@ -32,7 +32,7 @@ class ConfigurationsTable extends Table
             ->notEmpty('registration_accepted_message', 'Ingrese el mensaje de aceptación de registro.')
             ->add('registration_accepted_message', [
                             'validFormat' => [
-                                            'rule' => 'alphaNumericPointComa',
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos de puntuación.'
                                             ]
             ])
@@ -40,7 +40,7 @@ class ConfigurationsTable extends Table
             ->notEmpty('reservation_rejected_message', 'Ingrese el mensaje de rechazo de reservación.')
             ->add('reservation_rejected_message', [
                             'validFormat' => [
-                                            'rule' => 'alphaNumericPointComa',
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos de puntuación.'
                                             ]
             ])
@@ -48,7 +48,7 @@ class ConfigurationsTable extends Table
             ->notEmpty('reservation_accepted_message', 'Ingrese el mensaje de aceptación de reservación.')
             ->add('reservation_accepted_message', [
                             'validFormat' => [
-                                            'rule' => array('custom', '|^[0-9a-zA-Z;.,]+$|'),
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos de puntuación.'
                                             ]
             ])
