@@ -108,5 +108,5 @@ INSERT INTO `reservations` (`start_date`, `end_date`, `resource_id`, `user_comme
 ( '2016-11-10 17:40:00', '2016-11-10 20:00:00',  	12, '', 											'', 									0, 		0, 		1, 		3, 		'nec sem duis' 			),
 ( '2016-11-12 17:00:00', '2016-11-13 20:00:00',  	7, '', 												'', 									0, 		0, 		1, 		3, 		'nec sem duis' 			);
 
-INSERT INTO `configurations` ( registration_rejected_message, registration_accepted_message, reservation_rejected_message, reservation_accepted_message, reservation_start_hour, reservation_end_hour ) VALUES
-('Su solicitud de registro ha sido rechazada.','Su solicitud de registro ha sido aceptada','Lo sentimos. Su solicitud de reservación ha sido rechazada.','Su solicitud de reservación ha sido aceptada', 7, 22);
+INSERT INTO `configurations` ( registration_rejected_subject, registration_accepted_subject, reservation_rejected_subject, reservation_accepted_subject, registration_rejected_message, registration_accepted_message, reservation_rejected_message, reservation_accepted_message, reservation_start_hour, reservation_end_hour ) VALUES
+('Solicitud de Regitro rechazada(Facultad Educación - PROTEA)','Bienvenid@ al sistema de reservas(Facultad Educación - PROTEA)','Solicitud de Reservación rechazada(Facultad Educación - PROTEA)','Solicitud de Reservación aceptada(Facultad Educación - PROTEA)','Su solicitud de registro ha sido rechazada.','Su solicitud de registro ha sido aceptada','Lo sentimos. Su solicitud de reservación ha sido rechazada.','Su solicitud de reservación ha sido aceptada', 7, 22);

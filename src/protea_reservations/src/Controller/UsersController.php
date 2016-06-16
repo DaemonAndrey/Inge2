@@ -222,6 +222,9 @@ class UsersController extends AppController
     */
     public function reject($id=null)
     {
+        $this->loadModel('Configurations');
+        $configuration = $this->Configurations->get(1);
+        
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
@@ -231,7 +234,7 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->getMailer('User')->send('rejectUser', [$user]);
+                    $this->getMailer('User')->send('rejectUser', [$user, $configuration]);
 
                     $this->Flash->success('Solicitud rechazada. Usuario eliminado del sistema.', ['key' => 'rejectUserSuccess']);
 
