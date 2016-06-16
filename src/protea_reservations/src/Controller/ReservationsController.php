@@ -252,6 +252,16 @@ class ReservationsController extends AppController
         }
     }
     
+    //Metodo qu mostrara los reportes de reservaciones
+    
+    public function reporte($id = null)
+    {
+        if($id != null)
+        {
+            
+        }
+    }
+    
     /*
     * Método auxiliar que cambia el estado de la reservación aceptada.
     * @param integer $id

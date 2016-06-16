@@ -177,8 +177,8 @@
                                                                  array('controller'=>'reservations','action' => 'manage'),
                                                                  array('target' => '_self', 'escape' => false)) ?> </li>
                                         
-                                        <li role="mis_reservaciones"><?php echo $this->Html->link('Historial de reservaciones',
-                                                                         array('controller'=>'pages','action' => 'home'),
+                                        <li role="mis_reservaciones"><?php echo $this->Html->link('Generar Reportes',
+                                                                         array('controller'=>'historicreservations','action' => 'index'),
                                                                          array('target' => '_self', 'escape' => false)) ?> </li>
                                         
                                         <?php
