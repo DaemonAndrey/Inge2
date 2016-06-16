@@ -261,16 +261,14 @@
 
                     <!-- MI CUENTA -->
                     <li class="dropdown">
-                        <a>
-                            <?php
-                            echo $this->Html->link($this->request->session()->read('Auth.User.username').'<span class="caret"></span>',
-                                                   '#',
-                                                   array('class' => 'dropdown-toggle',
-                                                         'data-delay' => '1000',
-                                                         'data-hover' => 'dropdown',
-                                                         'escape' => false));
-                            ?>
-                        </a>
+                        <?php
+                        echo $this->Html->link($this->request->session()->read('Auth.User.username').'<span class="caret"></span>',
+                                               '#',
+                                               array('class' => 'dropdown-toggle',
+                                                     'data-delay' => '1000',
+                                                     'data-hover' => 'dropdown',
+                                                     'escape' => false));
+                        ?>
                         <ul class="dropdown-menu" role="administrar" aria-labelledby="menu2">
                             <!-- ACTUALIZAR MI CUENTA -->
                             <li role="mi_cuenta">
