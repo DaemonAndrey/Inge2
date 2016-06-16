@@ -1,14 +1,10 @@
-<!--FontAwesome -->
-<?php //echo $this->Html->css('font-awesome.min.css'); ?>
-
 <!-- INFORMACION -->
-<div class="acercaDe">
+<div class="ayuda">
     <div class='row'>
         <div class='col-xs-12 text-center'>
             <legend>
                 <br>
-                <h2>Sistema de Reservación de Salas y Equipo Audiovisual</h2>
-                <h2>Facultad de Educación</h2>
+                <h2>Manual de ayuda para usuarios</h2>
             </legend>
         </div>
     </div>
@@ -50,12 +46,3 @@
         </legend>
     </div>
 </div>
-
-<!-- MAPA -->
-<div id="g-map" class="no-padding">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="map" id="map"></div>
-		</div>
-	</div>
-</div> <!-- FIN MAPA -->
