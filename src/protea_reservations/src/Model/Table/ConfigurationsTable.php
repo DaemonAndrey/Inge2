@@ -67,7 +67,7 @@ class ConfigurationsTable extends Table
                                                         'message' => ('Digite una hora válida.')],
                                     'validFormat' =>   ['rule' => array('custom', '/^[0-9 \-\+]+$/'),
                                                         'message' => ('Debe contener solamente números.')]   
-            ])
+            ]);
             
     }
     
