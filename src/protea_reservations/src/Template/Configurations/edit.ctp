@@ -55,7 +55,7 @@
             <!-- MENSAJE DE RESERVACION RECHAZADA -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
-                        $this->Form->input('Configurations.reservation_rejected_message', ['label' => 'Mensaje de Reservación Aceptada: ',
+                        $this->Form->input('Configurations.reservation_rejected_message', ['label' => 'Mensaje de Reservación Rechazada: ',
                                                                                             'class' => 'form-control',
                                                                                             'type' => 'textarea']);
                     ?>

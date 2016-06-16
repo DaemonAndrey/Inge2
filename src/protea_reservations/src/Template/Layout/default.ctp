@@ -189,6 +189,11 @@
                                             <li role="usuarios"><?php echo $this->Html->link('Cuentas de Usuarios',
                                                                      array('controller'=>'users','action' => 'index'),
                                                                      array('target' => '_self', 'escape' => false)) ?> </li>
+                                        
+                                            <!-- ADMINISTRAR CONFIGURACIONES -->
+                                            <li role="usuarios"><?php echo $this->Html->link('Configuraciones',
+                                                                     array('controller'=>'configurations','action' => 'edit'),
+                                                                     array('target' => '_self', 'escape' => false)) ?> </li>
                                             <?php
                                         }?>
                                         
