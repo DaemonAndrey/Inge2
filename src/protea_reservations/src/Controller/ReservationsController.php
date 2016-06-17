@@ -178,6 +178,13 @@ class ReservationsController extends AppController
                 {                        
                     $reservation->state = 1;
                     
+                    $this->loadModel('Users');
+                    $loggedUser = $this->Users->find('all')
+                        ->select(['first_name', 'last_name'])
+                        ->where(['username = ' => $this->Auth->User('username')]);
+                    
+                    $user = $loggedUser->first();
+                    
                     $this->loadModel('HistoricReservations');
                     $historicReservation = $this->HistoricReservations->newEntity();
                     $historicReservation->reservation_start_date = $start_date;
@@ -185,8 +192,8 @@ class ReservationsController extends AppController
                     $historicReservation->resource_name = $resource;
                     $historicReservation->event_name = $event_name;
                     $historicReservation->user_username = $this->Auth->User('username');
-                    $historicReservation->user_first_name = $reservation['user']['first_name'];
-                    $historicReservation->user_last_name = $reservation['user']['last_name'];
+                    $historicReservation->user_first_name = $user['first_name'];
+                    $historicReservation->user_last_name = $user['last_name'];
                     $historicReservation->user_comment = $user_comment;
                     $historicReservation->administrator_comment = $adminComment;
                     $historicReservation->state = 1;
