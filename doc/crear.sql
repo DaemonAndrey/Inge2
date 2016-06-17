@@ -134,10 +134,10 @@ CREATE TABLE historic_reservations
 CREATE TABLE configurations
 (
 	id 								INT UNSIGNED AUTO_INCREMENT,
-	registration_rejected_subject 	TEXT,
-	registration_accepted_subject	TEXT,
-	reservation_rejected_subject 	TEXT,
-	reservation_accepted_subject	TEXT,
+	registration_rejected_subject 	VARCHAR( 80 ),
+	registration_accepted_subject	VARCHAR( 80 ),
+	reservation_rejected_subject 	VARCHAR( 80 ),
+	reservation_accepted_subject	VARCHAR( 80 ),
 	registration_rejected_message 	TEXT,
 	registration_accepted_message 	TEXT,
 	reservation_rejected_message 	TEXT,

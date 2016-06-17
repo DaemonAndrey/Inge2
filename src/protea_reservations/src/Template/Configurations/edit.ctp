@@ -21,41 +21,84 @@
    
     <!-- CAMPOS A LLENAR -->
     <fieldset>
+        
+        <div class="row">
+            <!-- ASUNTO DEL MENSAJE DE REGISTRO ACEPTADO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                    <?=
+                        $this->Form->input('Configurations.registration_accepted_subject', ['label' => 'Asunto de mensaje de registro aceptado: ',
+                                                                                            'class' => 'form-control']);
+                    ?>
+                <br>
+            </div>
+            <!-- ASUNTO DEL MENSAJE DE REGISTRO RECHAZADO -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                    <?=
+                        $this->Form->input('Configurations.registration_rejected_subject', ['label' => 'Asunto de mensaje de registro rechazado: ',
+                                                                                            'class' => 'form-control']);
+                    ?>
+                <br>
+            </div>
+        </div>
+                
+        
         <div class="row">
             <!-- MENSAJE DE REGISTRO ACEPTADO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                     <?=
-                        $this->Form->input('Configurations.registration_accepted_message', ['label' => 'Mensaje de Registro Aceptado: ',
+                        $this->Form->input('Configurations.registration_accepted_message', ['label' => 'Mensaje de registro aceptado: ',
                                                                                             'class' => 'form-control',
                                                                                             'type' => 'textarea']);
                     ?>
-                    <br>
                 <br>
             </div>
             <!-- MENSAJE DE REGISTRO RECHAZADO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
-                        $this->Form->input('Configurations.registration_rejected_message', ['label' => 'Mensaje de Registro Rechazado: ',
+                        $this->Form->input('Configurations.registration_rejected_message', ['label' => 'Mensaje de registro rechazado: ',
                                                                                             'class' => 'form-control',
                                                                                             'type' => 'textarea']);
                     ?>
+                <br>
             </div>
         </div>
+        
+        <br>
+         
+        <div class="row">
+            <!-- ASUNTO DEL MENSAJE DE RESERVACION ACEPTADA -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                    <?=
+                        $this->Form->input('Configurations.reservation_accepted_subject', ['label' => 'Asunto de mensaje de reservación aceptada: ',
+                                                                                            'class' => 'form-control']);
+                    ?>
+                <br>
+            </div>
+            <!-- ASUNTO DEL MENSAJE DE RESERVACION RECHAZADA -->
+            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                    <?=
+                        $this->Form->input('Configurations.reservation_rejected_subject', ['label' => 'Asunto de mensaje de reservación rechazada: ',
+                                                                                            'class' => 'form-control']);
+                    ?>
+                <br>
+            </div>
+        </div>
+        
         
         <div class="row">
             <!-- MENSAJE DE RESERVACION ACEPTADA -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                     <?=
-                        $this->Form->input('Configurations.reservation_accepted_message', ['label' => 'Mensaje de Reservación Aceptada: ',
+                        $this->Form->input('Configurations.reservation_accepted_message', ['label' => 'Mensaje de reservación aceptada: ',
                                                                                             'class' => 'form-control',
                                                                                             'type' => 'textarea']);
                     ?>
-                <br><br>
+                <br>
             </div>
             <!-- MENSAJE DE RESERVACION RECHAZADA -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
-                        $this->Form->input('Configurations.reservation_rejected_message', ['label' => 'Mensaje de Reservación Rechazada: ',
+                        $this->Form->input('Configurations.reservation_rejected_message', ['label' => 'Mensaje de reservación rechazada: ',
                                                                                             'class' => 'form-control',
                                                                                             'type' => 'textarea']);
                     ?>
