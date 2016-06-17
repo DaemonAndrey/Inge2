@@ -128,14 +128,14 @@ class ResourcesController extends AppController
                         // Si pudo guardar en la tabla 'ResourcesUsers'
                         if ($this->ResourcesUsers->save($resourcesUser))
                         {
-                            $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'addResourceSuccess']);
+                            $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'success']);
                             return $this->redirect(['controller' => 'Resources','action' => 'index']);
                         }
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el recurso -red', ['key' => 'addResourceError']);
+                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'success']);
                 }
             }
             $this->set('resource', $resource);            
@@ -182,13 +182,13 @@ class ResourcesController extends AppController
                 if ($this->Resources->save($resource))
                 {
                     //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
+                    $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 }
                 else
                 {
                     //En caso de que no se haya podido actualizar la información, despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('No se ha podido editar el recurso -red', ['key' => 'addResourceError']);
+                    $this->Flash->error('No se ha podido editar el recurso ', ['key' => 'error']);
                 }
             }
             
@@ -216,13 +216,13 @@ class ResourcesController extends AppController
             {
                 if ($this->Resources->delete($resource))
                 {
-                    $this->Flash->success('El recurso ha sido eliminado éxitosamente', ['key' => 'deleteResourceSuccess']);
+                    $this->Flash->success('El recurso ha sido eliminado éxitosamente', ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo -red', ['key' => 'deleteResourceError']);
+                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo.', ['key' => 'error']);
             }
         }
         else
@@ -299,13 +299,13 @@ class ResourcesController extends AppController
                     // Si pudo guardar en la tabla 'Resources'
                     if ($this->ResourcesUsers->save($resourcesUser))
                     {
-                        $this->Flash->success('Se ha asociado el administrador con el recurso', ['key' => 'associateResourceAdminSuccess']);
+                        $this->Flash->success('Se ha asociado el administrador con el recurso', ['key' => 'success']);
                         return $this->redirect(['controller' => 'Resources','action' => 'associate', $id]);
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido asociar el administrador con el recurso -red', ['key' => 'associateResourceAdminError']);
+                    $this->Flash->error('No se ha podido asociar el administrador con el recurso', ['key' => 'error']);
                 }
             }
             $this->set('resourcesUser', $resourcesUser);            
@@ -338,13 +338,13 @@ class ResourcesController extends AppController
             {
                 if ($this->ResourcesUsers->delete($resourceUser))
                 {
-                    $this->Flash->success('Se ha desasociado el administrador del recurso', ['key' => 'disassociateResourceAdminSuccess']);
+                    $this->Flash->success('Se ha desasociado el administrador del recurso', ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido desasociar el administrador del recurso -red', ['key' => 'disassociateResourceAdminError']);
+                $this->Flash->error('No se ha podido desasociar el administrador del recurso', ['key' => 'error']);
             }
         }
         else

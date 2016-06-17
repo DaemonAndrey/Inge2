@@ -247,3 +247,5 @@
     </div>
 </div>
 <!-- Fin Modal -->
+
+ <?= $this->Html->script('reservations.js'); ?>

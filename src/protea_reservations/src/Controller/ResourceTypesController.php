@@ -86,13 +86,13 @@ class ResourceTypesController extends AppController
                 {
                     if ($this->ResourceTypes->save($resourceType))
                     {
-                        $this->Flash->success('Se ha agregado el nuevo tipo de recurso', ['key' => 'addResourceTypeSuccess']);
+                        $this->Flash->success('Se ha agregado el nuevo tipo de recurso', ['key' => 'success']);
                         return $this->redirect(['controller' => 'ResourceTypes','action' => 'index']);
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el tipo de recurso -red', ['key' => 'addResourceTypeError']);
+                    $this->Flash->error('No se ha podido agregar el tipo de recurso', ['key' => 'error']);
                 }
             }
             $this->set('resourceType', $resourceType);
@@ -125,14 +125,14 @@ class ResourceTypesController extends AppController
                     if ($this->ResourceTypes->save($resource_type))
                     {
                         //Si la información fue guardada correctamente entonces despliega un mensaje de confirmación
-                        $this->Flash->success('Se ha actualizado el tipo de recurso', ['key' => 'updateResourceTypeSuccess']);
+                        $this->Flash->success('Se ha actualizado el tipo de recurso', ['key' => 'success']);
                         return $this->redirect(['action' => 'index']);
                     }
                 }
                 catch(Exception $ex)
                 {
                     //Si no se ha podido actualizar correctamente el tipo del recurso despliega un mensaje indicando que hubo error
-                    $this->Flash->error('No se ha podido actualizar el tipo de recurso -red', ['key' => 'updateResourceTypeError']);
+                    $this->Flash->error('No se ha podido actualizar el tipo de recurso', ['key' => 'error']);
                 }
             }
 
@@ -215,22 +215,22 @@ class ResourceTypesController extends AppController
                     if( $cantActual == $cantTotal)
                     {
                         $this->Flash->success('Se han eliminado todos sus recursos de tipo '.$r_type->description,
-                                              ['key' => 'deleteResourceRelationSuccess']);
+                                              ['key' => 'success']);
                     }
                 }
                 // Si se eliminó el tipo de recurso
                 else
                 {
                     $this->Flash->success('Se ha eliminado el tipo de recurso '.$r_type->description.' junto con todos sus recursos de este tipo',
-                                          ['key' => 'deleteResourceTypeSuccess']);
+                                          ['key' => 'success']);
                 }
                 
                 return $this->redirect(['action' => 'index']);
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido eliminar el tipo de recurso -red',
-                                    ['key' => 'deleteResourceTypeError']);
+                $this->Flash->error('No se ha podido eliminar el tipo de recurso',
+                                    ['key' => 'error']);
             }
         }
         else

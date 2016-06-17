@@ -67,6 +67,8 @@
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
 
+
+
 <div id="navbar-background">
 
   <div class="row">
@@ -286,7 +288,9 @@
                 <h4 class="modal-title">Información</h4>
             </div>
             <div class="modal-body">
-                <h4 id="flashText"></h4>
+
+                <h4 style="color:red;"><?= $this->Flash->render('error') ?></h4>
+                <h4 style='color:green;'><?= $this->Flash->render('success') ?></h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
@@ -315,6 +319,8 @@
         </div>
     </section>
     <!-- FIN PIE DE PAGINA ==================================== -->
+
+
 
 
     <!-- JAVASCRIPT =========================================== -->
