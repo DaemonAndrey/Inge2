@@ -172,7 +172,7 @@
                             <h4><font color="red">* </font>Nombre del evento o curso</h4>
                         </div>
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                            <input class="form-control" type="text" id="event_name" role="textbox" aria-label="Nombre del evento" placeholder="FD-1312 Introducción a la enseñanza primaria">
+                            <input class="form-control" type="text" id="event_name" role="textbox" aria-label="Nombre del evento" placeholder="FD-1312 Introducción a la enseñanza primaria" oninput="setEventName(this); activateButton(document.getElementById('resource_type'), document.getElementById('check')); ">
                         </div>
                     </div>
                     
