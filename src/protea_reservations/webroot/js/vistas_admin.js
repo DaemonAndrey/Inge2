@@ -21,8 +21,6 @@ if(document.getElementsByClassName("message").length)
 }
 
 
-
-
     $(document).ready(function () { // page is now ready, initialize the calendar...
         var xhttp = new XMLHttpRequest();
         var json_events = "";
@@ -31,7 +29,6 @@ if(document.getElementsByClassName("message").length)
             if(xhttp.readyState == 4 && xhttp.status == 200)
             {
                 json_events = xhttp.responseText;               
-                
             }
         };
         
@@ -51,7 +48,6 @@ if(document.getElementsByClassName("message").length)
         xhttp.open("POST", path+append,false);
         xhttp.setRequestHeader("type", "fetch");
         xhttp.send(); 
-        
         
         $('#calendar').fullCalendar({ // put your options and callbacks here
             dayClick: function(date, jsEvent, view){
@@ -148,7 +144,6 @@ if(document.getElementsByClassName("message").length)
     
     function fillResources()
     {
-
         html = "";
         var len = obj.available.length;
         document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
@@ -186,10 +181,7 @@ if(document.getElementsByClassName("message").length)
                 {
                     showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
                     setTimeout(function(){location.reload();},10000);
- 
                 }
-
-
             };
 
             var date = document.getElementById("fecha").innerHTML; 
@@ -213,7 +205,6 @@ if(document.getElementsByClassName("message").length)
                 path = path+"/";
             }            
 
-
             xhttp.open("POST", path+"add");
 
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -225,13 +216,10 @@ if(document.getElementsByClassName("message").length)
                 event_name : event_name, 
                 resource: resource
             })); 
-        
-    
         }
         else
         {
-            showModal( "Debe aceptar los términos y condiciones de uso");
-            
+            showModal( "Debe aceptar los términos y condiciones de uso");   
         }
     }
 
@@ -324,8 +312,3 @@ if(document.getElementsByClassName("message").length)
         document.getElementById("callbackText").innerHTML = text;
         $('#callback').modal('show');
     }
-
-
-
-
-

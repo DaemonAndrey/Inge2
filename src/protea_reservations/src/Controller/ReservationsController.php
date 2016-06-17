@@ -8,7 +8,7 @@ use Cake\Mailer\MailerAwareTrait;
 use Cake\Mailer\Email;
 
 class ReservationsController extends AppController
-{
+{    
     public function initialize()
     {
         parent::initialize();
@@ -173,12 +173,36 @@ class ReservationsController extends AppController
 
                 $reservation->resource_id = $resource_id;
                 $reservation->user_id = $this->Auth->User('id');
-            
-
-                if ($this->Reservations->save($reservation))
-                    $this->response->statusCode(200);
+                
+                if($this->Auth->User('role_id') == 2 || $this->Auth->User('role_id') == 3)
+                {                        
+                    $reservation->state = 1;
+                    
+                    $this->loadModel('HistoricReservations');
+                    $historicReservation = $this->HistoricReservations->newEntity();
+                    $historicReservation->reservation_start_date = $start_date;
+                    $historicReservation->reservation_end_date = $end_date;
+                    $historicReservation->resource_name = $resource;
+                    $historicReservation->event_name = $event_name;
+                    $historicReservation->user_username = $this->Auth->User('username');
+                    $historicReservation->user_first_name = $reservation['user']['first_name'];
+                    $historicReservation->user_last_name = $reservation['user']['last_name'];
+                    $historicReservation->user_comment = $user_comment;
+                    $historicReservation->administrator_comment = $adminComment;
+                    $historicReservation->state = 1;
+                    
+                    if ($this->Reservations->save($reservation) && $this->HistoricReservations->save($historicReservation))
+                        $this->response->statusCode(200);
+                    else
+                        $this->response->statusCode(404); 
+                }
                 else
-                    $this->response->statusCode(404);   
+                {                    
+                    if ($this->Reservations->save($reservation))
+                        $this->response->statusCode(200);
+                    else
+                        $this->response->statusCode(404);   
+                }
             }
         }            
 	}
@@ -247,7 +271,7 @@ class ReservationsController extends AppController
         }
         else
         {
-            $this->Flash->set(__('La reservación no existe, por lo que no se puede editar -red'), ['clear' => true, 'key' => 'nullReservation']);
+            $this->Flash->set(__('La reservación no existe, por lo tanto no se puede editar -red'), ['clear' => true, 'key' => 'nullReservation']);
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
@@ -278,11 +302,11 @@ class ReservationsController extends AppController
                 $reservation->state = 1;
                 
                 $this->loadModel('Users');
-                $user = $this->Users->get($this->request->session()->read('Auth.User.id'));
+                $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
-                    $this->getMailer('User')->send('confirmReservation', [$user]);
+                    $this->getMailer('User')->send('confirmReservation', [$userEmail]);
                     
                     $this->Flash->set(__('La reservación fue aceptada exitosamente'), ['clear' => true, 'key' => 'acceptReservationSuccess']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -326,11 +350,11 @@ class ReservationsController extends AppController
                 $historicReservation->state = 2;
                 
                 $this->loadModel('Users');
-                $user = $this->Users->get($this->request->session()->read('Auth.User.id'));
+                $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
-                    $this->getMailer('User')->send('rejectReservation', [$user]);
+                    $this->getMailer('User')->send('rejectReservation', [$userEmail]);
                     
                     $this->Flash->set(__('La reservación fue rechazada exitosamente'), ['clear' => true, 'key' => 'rejectReservationSuccess']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
