@@ -321,8 +321,8 @@
                 ?>
 
                 <!-- AYUDA -->
-                <li class="active">
-                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-home"></span> Ayuda',
+                <li>
+                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-question-sign"></span> Ayuda',
                                                  array('controller'=>'pages',
                                                        'action' => 'help'),
                                                  array('target' => '_self',
