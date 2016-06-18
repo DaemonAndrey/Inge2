@@ -184,7 +184,7 @@
 
                 <div class="row">
                     <div class="text-center">
-                        <button data-toggle="collapse" class="btn btn-primary" data-target="#resource_description">Información Detallada</button>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#resource_description">Información Detallada</button>
                     </div>
                     <div id="resource_description" class="col-xs-10 col-xs-offset-1 collapse text-center"></div>
                 </div>
@@ -238,7 +238,7 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar" id="Reservar">Reservar</button>
+                <button type="button" class="btn btn-success" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar" id="Reservar">Reservar</button>
                 <button type="button" class="btn btn-danger" style="width:84px;" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
             <!-- Fin Modal footer -->

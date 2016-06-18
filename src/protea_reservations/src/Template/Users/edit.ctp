@@ -332,18 +332,18 @@
                 else
                 {
                     ?>
-                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
+                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-success']); ?>
 
                     <?php if($user_role == 3)
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger'))?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-primary'))?>
                         <?php
                     }
                     else
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-danger')) ?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-primary')) ?>
                         <?php
                     }
                     ?>
