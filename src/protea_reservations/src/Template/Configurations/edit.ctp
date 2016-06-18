@@ -27,7 +27,8 @@
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                     <?=
                         $this->Form->input('Configurations.registration_accepted_subject', ['label' => 'Asunto de mensaje de registro aceptado: ',
-                                                                                            'class' => 'form-control']);
+                                                                                            'class' => 'form-control',
+                                                                                            'type' => 'text']);
                     ?>
                 <br>
             </div>
@@ -35,7 +36,8 @@
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
                         $this->Form->input('Configurations.registration_rejected_subject', ['label' => 'Asunto de mensaje de registro rechazado: ',
-                                                                                            'class' => 'form-control']);
+                                                                                            'class' => 'form-control',
+                                                                                            'type' => 'text']);
                     ?>
                 <br>
             </div>
@@ -70,7 +72,8 @@
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                     <?=
                         $this->Form->input('Configurations.reservation_accepted_subject', ['label' => 'Asunto de mensaje de reservación aceptada: ',
-                                                                                            'class' => 'form-control']);
+                                                                                            'class' => 'form-control',
+                                                                                            'type' => 'text']);
                     ?>
                 <br>
             </div>
@@ -78,7 +81,8 @@
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
                         $this->Form->input('Configurations.reservation_rejected_subject', ['label' => 'Asunto de mensaje de reservación rechazada: ',
-                                                                                            'class' => 'form-control']);
+                                                                                            'class' => 'form-control',
+                                                                                            'type' => 'text']);
                     ?>
                 <br>
             </div>
