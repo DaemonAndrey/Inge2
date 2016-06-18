@@ -9,6 +9,7 @@
         <?= $this->Flash->render('loginPendiente') ?>
         <br>
     </div>
+    <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  

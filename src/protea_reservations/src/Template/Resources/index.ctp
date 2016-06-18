@@ -11,6 +11,7 @@
     <?= $this->Flash->render('addResourceError') ?>
     <?= $this->Flash->render('deleteResourceError') ?>
 </div>
+<!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">

@@ -13,6 +13,7 @@
     <?= $this->Flash->render('associateResourceAdminError') ?>
     <?= $this->Flash->render('disassociateResourceAdminError') ?>
 </div>
+<!-- FIN DE MENSAJES -->
 
 <div class="users form">
     
