@@ -210,11 +210,29 @@
                                                                        'escape' => false)) ?>
                                 </li>
 
+                                <!-- ADMINISTRAR TIPOS DE RECURSOS -->
+                                <li role="tipos de recurso">
+                                    <?php echo $this->Html->link('Tipos de Recurso',
+                                                                 array('controller'=>'resourceTypes',
+                                                                       'action' => 'index'),
+                                                                 array('target' => '_self',
+                                                                       'escape' => false)) ?>
+                                </li>
+
+                                <!-- ADMINISTRAR RECURSOS -->
+                                <li role="recursos">
+                                    <?php echo $this->Html->link('Recursos',
+                                                                 array('controller'=>'resources',
+                                                                       'action' => 'index'),
+                                                                 array('target' => '_self',
+                                                                       'escape' => false)) ?>
+                                </li>
+                                
+                                <!-- ADMINISTRAR CUENTAS DE USUARIO -->
                                 <?php
                                 if($this->request->session()->read('Auth.User.role_id') == '3')
                                 {
                                     ?>
-                                    <!-- ADMINISTRAR CUENTAS DE USUARIO -->
                                     <li role="usuarios">
                                         <?php echo $this->Html->link('Cuentas de Usuarios',
                                                                      array('controller'=>'users',
@@ -225,24 +243,6 @@
                                     <?php
                                 }
                                 ?>
-
-                                <!-- ADMINISTRAR RECURSOS -->
-                                <li role="recursos">
-                                    <?php echo $this->Html->link('Recursos',
-                                                                 array('controller'=>'resources',
-                                                                       'action' => 'index'),
-                                                                 array('target' => '_self',
-                                                                       'escape' => false)) ?>
-                                </li>
-
-                                <!-- ADMINISTRAR TIPOS DE RECURSOS -->
-                                <li role="tipos de recurso">
-                                    <?php echo $this->Html->link('Tipos de Recurso',
-                                                                 array('controller'=>'resourceTypes',
-                                                                       'action' => 'index'),
-                                                                 array('target' => '_self',
-                                                                       'escape' => false)) ?>
-                                </li>
                             </ul>
                         </li>
 
@@ -320,14 +320,23 @@
                 ?>
 
                 <!-- AYUDA -->
-                <li>
-                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-question-sign"></span> Ayuda',
-                                                 array('controller'=>'pages',
-                                                       'action' => 'help'),
-                                                 array('target' => '_self',
-                                                       'escape' => false,
-                                                       'title'=>'Manual de ayuda')) ?>
-                </li>
+                <?php
+                if($this->request->session()->read('Auth.User.role_id') == '1' ||
+                   $this->request->session()->read('Auth.User.role_id') == '2' ||
+                   $this->request->session()->read('Auth.User.role_id') == '3')
+                {
+                    ?>
+                    <li>
+                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-question-sign"></span> Ayuda',
+                                                     array('controller'=>'pages',
+                                                           'action' => 'help'),
+                                                     array('target' => '_self',
+                                                           'escape' => false,
+                                                           'title'=>'Manual de ayuda')) ?>
+                    </li>
+                    <?php
+                }
+                ?>
             </ul>
             <!-- FIN OPCIONES =========== -->
 
