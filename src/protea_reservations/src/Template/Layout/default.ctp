@@ -50,7 +50,6 @@
 
 <!-- CUERPO =============================================== -->
 <body data-spy="scroll" data-target=".navbar-fixed-top">
-    
 <div id="navbar-background">
   <div class="row">
         <!-- LOGO UCR ===================================== -->
@@ -361,7 +360,9 @@
                 <h4 class="modal-title">Información</h4>
             </div>
             <div class="modal-body">
-                <h4 id="flashText"></h4>
+
+                <h4 style="color:red;"><?= $this->Flash->render('error') ?></h4>
+                <h4 style='color:green;'><?= $this->Flash->render('success') ?></h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
@@ -389,14 +390,13 @@
 
 <!-- JAVASCRIPT =========================================== -->
 <?php
-echo $this->Html->script('bootstrap.min.js');           // Bootstrap jQuery
-echo $this->Html->script('gmaps.js');                   // Google Map  Source
+echo $this->Html->script('bootstrap.min.js');   // Bootstrap jQuery
+echo $this->Html->script('gmaps.js');           // Google Map  Source
 echo $this->Html->script('moment.min.js');
 echo $this->Html->script('fullcalendar.js');    //Calendario
 echo $this->Html->script('lang/es.js'); 
 echo $this->Html->script('vistas_admin.js');
 ?>
-
 <script>
     // Google Map - with support of gmaps.js
     var map;

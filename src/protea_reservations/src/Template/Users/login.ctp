@@ -5,8 +5,9 @@
 <div class="users form">
     <!-- MENSAJES -->
     <div style="text-align:center; color:red">
-        <?= $this->Flash->render('loginError') ?>
-        <?= $this->Flash->render('loginPendiente') ?>
+
+        
+        
         <br>
     </div>
     <!-- FIN DE MENSAJES -->

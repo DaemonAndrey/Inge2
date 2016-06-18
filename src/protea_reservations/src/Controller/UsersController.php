@@ -1,7 +1,4 @@
 <?php
-
-// src/Controller/UsersController.php
-
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -24,8 +21,8 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        // Allow users to register and logout.
-        // You should not add the "login" action to allow list. Doing so would
+        
+        // Nomre de usuario y rol de usuario loggeado
         $this->set('user_username', $this->Auth->User('username'));
         $this->set('user_role', $this->Auth->User('role_id'));
         $this->Auth->allow(['add', 'logout']);
@@ -55,7 +52,8 @@ class UsersController extends AppController
                         'Users.last_name',
                         'Users.role_id',
                         'Users.state',
-                        'Roles.role_name']);
+                        'Roles.role_name'
+                       ]);
         
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
@@ -82,7 +80,8 @@ class UsersController extends AppController
                        'Users.telephone_number',
                        'Users.department',
                        'Users.position',
-                       'Roles.role_name']);
+                       'Roles.role_name'
+                      ]);
         
         $this->set('user', $user->first());
     }
@@ -95,6 +94,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        // Si no está loggeado o si es SuperAdmin
         if(!$this->Auth->user() || ($this->Auth->user() && $this->Auth->User('role_id') == 3))
         {
             $user = $this->Users->newEntity();
@@ -103,26 +103,35 @@ class UsersController extends AppController
             {
                 $user = $this->Users->patchEntity($user, $this->request->data);
                 
+                // Si SuperAdmin agrega a usuario, se acepta de una vez.
+                if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
+                {
+                    $user->state = 1;
+                }
+                
                 try
                 {                  
                     if ($this->Users->save($user))
                     {
+                        // Si soy SuperAdmin
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
-                            $this->Flash->success('Procesando solicitud de registro. Una confirmación será enviada al correo ingresado.',
-                                                  ['key' => 'addUserSuccess']);
+                            $this->Flash->success('Usuario agregado.',
+                                                  ['key' => 'success']);
                             
                             return $this->redirect(['controller' => 'Users','action' => 'index']);
                         }
-                        $this->Flash->success('Procesando solicitud de registro. Una confirmación será enviada a su correo.',
-                                              ['key' => 'addUserSuccess']);
+                        
+                        $this->Flash->success('Procesando solicitud de registro. Confirmación enviada al correo electrónico.',
+                                              ['key' => 'success']);
                         
                         return $this->redirect(['controller' => 'Pages','action' => 'home']);                        
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error(__('Solicitud de registro NO procesada.'), ['key' => 'addUserError']);
+                    $this->Flash->error(__('Solicitud de registro NO procesada.'),
+                                        ['key' => 'error']);
                 }
             }
             $this->set('user', $user);            
@@ -147,24 +156,22 @@ class UsersController extends AppController
                 if($user)
                 {                    
                     $this->Auth->setUser($user);
+                    
+                    // Si soy Administrador o SuperAdministrador
                     if($user['role_id'] == 2 || $user['role_id'] == 3)
                     {
                         return $this->redirect(['controller' => 'Reservations','action' => 'manage']);
                     }
+                    // Si soy Usuario regular
                     else if($user['role_id'] == 1)
                     {
                         return $this->redirect(['controller' => 'Reservations','action' => 'index']);
                     }
-                    //return $this->redirect($this->Auth->redirectUrl());  
                 }
                 else
                 {
-                    //TODO: Mostar $this->Flash->error('Su registro aún no ha sido procesado, por favor espere', ['key' => 'loginPendiente']);
-
-                    //Se puede hacer con un if que verifique los datos de $this->request->data['username'] contra la base
-
-                    $this->Flash->error(__('Nombre de usuario o contraseña incorrectos. Inténtelo de nuevo'), ['key' => 'loginError']);
-                    
+                    $this->Flash->error(__('Nombre de usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.'),
+                                        ['key' => 'error']);
                 }
             }            
         }
@@ -184,7 +191,8 @@ class UsersController extends AppController
         
         if($logout)
         {
-            $this->Flash->success('Sesión cerrada.');
+            $this->Flash->success('Sesión cerrada.',
+                                  ['key'=>'success']);
             
             return $this->redirect($logout);
         }
@@ -196,20 +204,30 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-        if ($this->request->action === 'view' && $user['role_id'] != 3) {
-            return false;            
-        }
-
-        if ($this->request->action === 'index' && $user['role_id'] == 2) {
+        // Si no soy SuperAdministrador y la acción es VER Usuario
+        if ($this->request->action === 'view' && $user['role_id'] != 3)
+        {
             return false;            
         }
         
-        if ($this->request->action === 'edit'){
+        // Si soy Administrador y la acción es INDICE de Usuarios
+        if ($this->request->action === 'index' && $user['role_id'] == 2)
+        {
+            return false;            
+        }
+        
+        // Si la acción es ACTUALIZAR Usuario
+        if ($this->request->action === 'edit')
+        {
             // Recupera el id enviado por url    
-            $user_id = $this->request->pass[0];            
-            if ($user['role_id'] == 3 || $user['id'] == $user_id ) {
+            $user_id = $this->request->pass[0];       
+            
+            // Si soy SuperAdministrador o es mi propia cuenta
+            if ($user['role_id'] == 3 || $user['id'] == $user_id )
+            {
                 return true;
             }
+            
             else return false;
         } 
         
@@ -233,14 +251,16 @@ class UsersController extends AppController
                 {
                     $this->getMailer('User')->send('rejectUser', [$user]);
 
-                    $this->Flash->success('Solicitud rechazada. Usuario eliminado del sistema.', ['key' => 'rejectUserSuccess']);
+                    $this->Flash->success('Solicitud rechazada. Usuario eliminado del sistema.',
+                                          ['key' => 'success']);
 
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('Solicitud NO rechazada. Por favor, inténtelo de nuevo.', ['key' => 'rejectUserError']);
+                $this->Flash->error('Solicitud NO rechazada. Por favor, inténtelo de nuevo.',
+                                    ['key' => 'error']);
             }
         }
         else
@@ -270,17 +290,16 @@ class UsersController extends AppController
                 if ($this->Users->save($user))
                 {
                     $this->getMailer('User')->send('confirmUser', [$user]);
-             
-                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
 
-                    $this->Flash->success('Solicitud aceptada.', ['key' => 'confirmUserSuccess']);
+                    $this->Flash->success('Solicitud aceptada.',
+                                          ['key' => 'success']);
 
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 }
                 else
                 {
-                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('Solicitud NO aceptada. Por favor, inténtelo de nuevo.', ['key' => 'confirmUserError']);
+                    $this->Flash->error('Solicitud NO aceptada. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
         }
@@ -298,7 +317,9 @@ class UsersController extends AppController
     {
         // Carga todos roles para el DropDown
         $this->loadModel('Roles');
-        $options = $this->Roles->find('list',['keyField' => 'id','valueField' => 'role_name'])->toArray();                              
+        $options = $this->Roles->find('list',['keyField' => 'id',
+                                              'valueField' => 'role_name'])->toArray();
+        
         $this->set('roles_options', $options);
 
         // Si el usuario tiene permisos
@@ -312,18 +333,18 @@ class UsersController extends AppController
                 //Carga la informacion que se obtiene en el formulario
                 $this->Users->patchEntity($user, $this->request->data,['validate' => 'update']);
                    
-	                //Guarda el recurso con la nueva informacion modificada
+	            //Guarda el recurso con la nueva informacion modificada
                 if ($this->Users->save($user))
                 {
-                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Datos actualizados.', ['key' => 'editUserSuccess']);
+                    $this->Flash->success('Datos actualizados.',
+                                          ['key' => 'success']);
 
                     return $this->redirect(['controller' => 'Users','action' => 'index']);                    
                 }
                 else
                 {
-                    //En caso de que no se ha podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('Datos NO Actualizados.', ['key' => 'editUserError']);
+                    $this->Flash->error('Datos NO actualizados. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
             $this->set('user', $user);
@@ -349,13 +370,15 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->Flash->success('Usuario eliminado.', ['key' => 'deleteUserSuccess']);
+                    $this->Flash->success('Usuario eliminado.',
+                                          ['key' => 'success']);
                     return $this->redirect(['controller' => 'Users','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('Usuario NO eliminado. Por favor, inténtelo de nuevo.', ['key' => 'deleteUserError']);
+                $this->Flash->error('Usuario NO eliminado. Por favor, inténtelo de nuevo.',
+                                    ['key' => 'error']);
             }
         }
         else
@@ -364,5 +387,4 @@ class UsersController extends AppController
         }
     }
 }
-
 ?>
