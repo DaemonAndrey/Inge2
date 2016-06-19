@@ -287,13 +287,10 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
 
     function setEventName(input) {
         eventNameText = input.value;
-        console.log(eventNameText);
     }
 
     function activateButton(select, checkbox)
-    {
-        console.log("Valor del textarea: " + eventNameText);
-        
+    {        
         if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
         {
             document.getElementById("Reservar").disabled = false;
