@@ -1,6 +1,3 @@
-<!--FontAwesome -->
-<?php echo $this->Html->css('font-awesome.min.css'); ?>
-
 <!-- INFORMACION -->
 <div class="acercaDe">
     <div class='row' style="color:black;">

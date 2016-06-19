@@ -17,6 +17,7 @@
     <?= $this->Flash->render('cancelReservationError') ?>
     <?= $this->Flash->render('nullReservation') ?>
 </div>
+<!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">

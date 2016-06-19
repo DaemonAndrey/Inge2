@@ -1,0 +1,30 @@
+ul li
+{
+    font-weight: bold;
+}
+
+ol
+{
+    list-style-type: decimal;
+    padding-left: 25px;
+}
+
+ol li
+{
+    font-weight: normal;
+}
+
+p
+{
+    color: black;
+}
+
+#titulos ul
+{
+    list-style-type: disc;
+}
+
+#pasos ul
+{
+    list-style-type: none;/*upper-roman;*/
+}

@@ -11,6 +11,7 @@
     <?= $this->Flash->render('deleteResourceTypeError') ?>
     <?= $this->Flash->render('deleteResourceRelationSuccess') ?>
 </div>
+<!-- MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">

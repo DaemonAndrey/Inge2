@@ -5,10 +5,12 @@
 <div class="users form">
     <!-- MENSAJES -->
     <div style="text-align:center; color:red">
-        <?= $this->Flash->render('loginError') ?>
-        <?= $this->Flash->render('loginPendiente') ?>
+
+        
+        
         <br>
     </div>
+    <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  
@@ -49,8 +51,8 @@
     <div class='row  text-center'>
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <?= $this->Form->button('Ingresar', ['class' => 'btn btn-info', 'style' => 'width:90px']); ?>
-            <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-danger', 'style' => 'width:90px']); ?>
+            <?= $this->Form->button('Ingresar', ['class' => 'btn btn-success', 'style' => 'width:90px']); ?>
+            <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-primary', 'style' => 'width:90px']); ?>
         </div>
     </div> <!-- FIN BOTONES -->
     

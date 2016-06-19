@@ -1,85 +1,84 @@
-/*global JQuery*/
 
 
-
-//Código para el modal de los flash
-
-if (document.getElementsByClassName("message").length) {
-    jQuery('#flash').modal('show');
-    setTimeout(function () {
-        jQuery('#flash').modal('hide');
-    }, 3000);
-}
-
-
-$(document).ready(function () { // page is now ready, initialize the calendar...
-    var xhttp = new XMLHttpRequest();
-    var json_events = "";
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
-            json_events = xhttp.responseText;
-        }
-    };
-
-    var path = window.location.pathname;
-    var append = "";
-    if (path.charAt(path.length - 1).localeCompare("/") === 0) {
-        append = "index";
-    } else {
-        if (path.charAt(path.length - 1).localeCompare("x") !== 0) {
-            append = "/index";
-        }
-    }
-    xhttp.open("POST", path + append, false);
-    xhttp.setRequestHeader("type", "fetch");
-    xhttp.send();
-
-    $('#calendar').fullCalendar({ // put your options and callbacks here
-        dayClick: function (date, jsEvent, view) {
-            var today = new Date();
-            var selectedDay = date.format("DD");
-            var selectedMonth = date.format("MM");
-
-            // El modal se abre si sucede alguna de las siguientes situaciones:
-            //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
-            //  * Si el mes seleccionado es mayor al actual.
-            var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
-
-            if( openModal )
+    $(document).ready(function () { // page is now ready, initialize the calendar...
+        var xhttp = new XMLHttpRequest();
+        var json_events = "";
+        xhttp.onreadystatechange = function()
+        {
+            if(xhttp.readyState == 4 && xhttp.status == 200)
             {
-                jQuery('#mdlReservaciones').modal('show');
-                globalDate = date;
-
-                fecha = document.getElementById("fecha");
-                fecha.innerHTML = date.format("DD MMMM YYYY");
-                document.getElementById("Reservar").disabled = true;
-                getResources(document.getElementById("resource_type"));
+                json_events = xhttp.responseText;               
+                
             }
-        },
-        header: {
-            left: 'title',
-            center: 'month,basicWeek,agendaDay',
-            right: 'today prev,next'
-        },
-
-        events:  JSON.parse(json_events),//JSON.parse(json_events),                
-        eventLimit: true,
-        views: {
-            basic: {
-                eventLimit: 20// options apply to basicWeek and basicDay views
+        };
+        
+        var path = window.location.pathname;
+        var append = "";
+        if(path.charAt(path.length -1).localeCompare("/") == 0)
+        {
+            append = "index";
+        }
+        else
+        {
+            if(path.charAt(path.length -1).localeCompare("x") != 0)
+            {
+                append = "/index";
             }
         }
+        xhttp.open("POST", path+append,false);
+        xhttp.setRequestHeader("type", "fetch");
+        xhttp.send(); 
+        
+        
+        $('#calendar').fullCalendar({ // put your options and callbacks here
+            dayClick: function(date, jsEvent, view){
+                
+                var today = new Date();
+                var selectedDay = date.format("DD");
+                var selectedMonth = date.format("MM");
+                
+                // El modal se abre si sucede alguna de las siguientes situaciones:
+                //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
+                //  * Si el mes seleccionado es mayor al actual.
+                var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
+                
+                if( openModal )
+                {
+                    jQuery('#mdlReservaciones').modal('show');
+                    globalDate = date;
 
+                    fecha = document.getElementById("fecha");
+                    fecha.innerHTML = date.format("DD MMMM YYYY");
+                    document.getElementById("Reservar").disabled = true;
+                    getResources(document.getElementById("resource_type"));
+                }
+            },
+            header: {
+                left: 'title',
+                center: 'month,basicWeek,agendaDay',
+                right: 'today prev,next'
+            },
+              
+            events:  JSON.parse(json_events),//JSON.parse(json_events),                
+            eventLimit: true,
+            views: {
+                basic: {
+                    eventLimit: 20// options apply to basicWeek and basicDay views
+                }
+            }
+            
+        });
     });
-});
 
     function getResources(element)
     {
-        if(element.value != "Seleccionar") {
+        if(element.value != "Seleccionar")
+        {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function()
             {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                if(xhttp.readyState == 4 && xhttp.status == 200)
+                {
                     obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
                     fillResources(); //Llama a este método para llegar el select
                 }
@@ -88,8 +87,8 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
             var path = window.location.pathname;
             var new_path = path.replace("/reservations/","/resources/"); 
 
-            //algunos navegadores no ponen el último /
-            if(path === new_path) {
+            if(path === new_path) //algunos navegadores no ponen el último /
+            {
                 new_path = path.replace("/reservations","/resources/");                
             }
             
@@ -126,6 +125,7 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
     
     function fillResources()
     {
+
         html = "";
         var len = obj.available.length;
         document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
@@ -163,7 +163,10 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
                 {
                     showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
                     setTimeout(function(){location.reload();},10000);
+ 
                 }
+
+
             };
 
             var date = document.getElementById("fecha").innerHTML; 
@@ -187,6 +190,7 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
                 path = path+"/";
             }            
 
+
             xhttp.open("POST", path+"add");
 
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -198,10 +202,13 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
                 event_name : event_name, 
                 resource: resource
             })); 
+        
+    
         }
         else
         {
-            showModal( "Debe aceptar los términos y condiciones de uso");   
+            showModal( "Debe aceptar los términos y condiciones de uso");
+            
         }
     }
 
@@ -283,7 +290,7 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
     }
 
     function activateButton(select, checkbox)
-    {        
+    {
         if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
         {
             document.getElementById("Reservar").disabled = false;
@@ -298,4 +305,4 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
     {
         document.getElementById("callbackText").innerHTML = text;
         $('#callback').modal('show');
-    }   
+    }

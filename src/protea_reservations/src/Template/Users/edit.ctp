@@ -2,12 +2,13 @@
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
+    <!-- MENSAJES -->
     <div style="text-align:center">
         <?= $this->Flash->render('addUserSuccess') ?>   
         <?= $this->Flash->render('addUserError') ?>
 
     </div>
-    <!-- MENSAJES -->
+    <!-- FIN DE MENSAJES -->
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('editUserError') ?> 
 </div> 
@@ -331,18 +332,18 @@
                 else
                 {
                     ?>
-                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
+                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-success']); ?>
 
                     <?php if($user_role == 3)
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger'))?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-primary'))?>
                         <?php
                     }
                     else
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-danger')) ?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-primary')) ?>
                         <?php
                     }
                     ?>
