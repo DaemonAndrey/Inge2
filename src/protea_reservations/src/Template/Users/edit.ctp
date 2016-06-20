@@ -2,12 +2,13 @@
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
+    <!-- MENSAJES -->
     <div style="text-align:center">
         <?= $this->Flash->render('addUserSuccess') ?>   
         <?= $this->Flash->render('addUserError') ?>
 
     </div>
-    <!-- MENSAJES -->
+    <!-- FIN DE MENSAJES -->
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('editUserError') ?> 
 </div> 
@@ -91,10 +92,41 @@
                 ?> 
                 <br>
             </div>
-            <!-- APELLIDO -->
+            <!-- ROL / APELLIDO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
-                if($user['state'] == true)
+                // SI EL USUARIO NO ESTA ACEPTADO
+                if($user['state'] == false)
+                {
+                    $rol = "";
+                    if($user->role_id == 1)
+                    {
+                        $rol = "Regular";
+                    }
+                    else if($user->role_id == 2)
+                    {
+                            $rol = "Administrador";
+                    }
+                    else if($user->role_id == 3)
+                    {
+                        $rol = "SuperAdministrador";
+                    }
+                    
+                    ?>
+                    <?=
+                        $this->Form->label('Users.role_id', 'Rol: ');
+                    ?>
+                    <?=
+                        $this->Form->label('Users.role_id', $rol,
+                                           ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                    ?>
+                    <br>
+                    <?php    
+                } 
+                else
                 {
                     ?> 
                     <?=
@@ -241,64 +273,31 @@
             </div>
         </div>
         
-        <div class="row">
-            <!-- ROL -->
-            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
-                <?php
-                // SI EL USUARIO NO ESTA ACEPTADO
-                if($user['state'] == false)
-                {
-                    $rol = "";
-                    if($user->role_id == 1)
-                    {
-                        $rol = "Regular";
-                    }
-                    else if($user->role_id == 2)
-                    {
-                            $rol = "Administrador";
-                    }
-                    else if($user->role_id == 3)
-                    {
-                        $rol = "SuperAdministrador";
-                    }
-                    
-                    ?>
-                    <?=
-                        $this->Form->label('Users.role_id', 'Rol: ');
-                    ?>
-                    <?=
-                        $this->Form->label('Users.role_id', $rol,
-                                           ['class' => 'form-control',
-                                            'style' => 'display:inline-table;',
-                                            'readonly' => 'readonly',
-                                            'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+        <?php
+        // SI EL USUARIO ESTA ACEPTADO
+        if($user['state'] == true && $user_role == 3)
+        {
+            ?>
+            <div class="row">
+                <!-- ROL -->
+                <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+                    <?= $this->Form->input('Users.role_id',
+                                           ['label' => 'Rol: ',
+                                            'options' => array(
+                                                '1' => 'Regular',
+                                                '2' => 'Administrador',
+                                                '3' => 'SuperAdministrador'),
+                                            'class' => 'form-control']);
                     ?>
                     <br>
-                    <?php    
-                } 
-                else
-                {
-                    if($user_role == 3)
-                    {
-                        ?>
-                        <?= $this->Form->input('Users.role_id',
-                                               ['label' => 'Rol: ',
-                                                'options' => array(
-                                                    '1' => 'Regular',
-                                                    '2' => 'Administrador',
-                                                    '3' => 'SuperAdministrador'),
-                                                'class' => 'form-control']);
-                        ?>
-                        <?php
-                    }
-                }
-                ?>     
-                <br>
+                </div>
+                <!-- VACÍO -->
+                <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                </div>
             </div>
-            <!-- VACÍO -->
-            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
-            </div>
-        </div>
+            <?php
+        }
+        ?>
         
     </fieldset> <!-- FIN CAMPOS A LLENAR -->
 
@@ -331,18 +330,18 @@
                 else
                 {
                     ?>
-                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-info']); ?>
+                    <?= $this->Form->button('Actualizar', ['class' => 'btn btn-success']); ?>
 
                     <?php if($user_role == 3)
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-danger'))?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-primary'))?>
                         <?php
                     }
                     else
                     {
                         ?>
-                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-danger')) ?>
+                        <?= $this->Html->link('Regresar', array('controller' => 'pages','action'=> 'home'), array( 'class' => 'btn btn-primary')) ?>
                         <?php
                     }
                     ?>

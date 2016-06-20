@@ -1,0 +1,5 @@
+{
+    "require": {
+        "queencitycodefactory/ldap": "^3.2"
+    }
+}

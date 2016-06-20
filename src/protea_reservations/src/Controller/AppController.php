@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Application Controller
@@ -39,11 +40,40 @@ class AppController extends Controller
      */
     public function initialize()
     {
+
         parent::initialize();
         
         $this->loadComponent('Paginator');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'authError' => 'Insufficient privileges to view requested resources. Please login to continue!',
+            'authenticate' => [
+                'Ldap' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ],
+                    'port' => Configure::read('Ldap.port'),
+                    'host' => Configure::read('Ldap.host'),
+                    'domain' => Configure::read('Ldap.domain'),
+                    'baseDN' => Configure::read('Ldap.baseDN'),
+                    'search' => Configure::read('Ldap.search'),
+                    'errors' => Configure::read('Ldap.errors'),
+                    'flash' => [
+                        'key' => 'ldap',
+                        'element' => 'Flash/error',
+                    ]
+                ]
+            ]
+        ]);
+
+        /**
         $this->loadComponent('Auth',['authorize' => ['Controller'],
                                      'authenticate'=>['Form'=>['finder'=> 'auth']],
                                      'loginRedirect' => ['controller' => 'Pages',
@@ -53,12 +83,14 @@ class AppController extends Controller
                                                           'action' => 'home'
                                                          ]
                                     ]);
+
+                                    **/
     }
-    
+
     public function beforeFilter(Event $event)
     {
         //$this->set('user_username', $this->Auth->User('username'));
-        //$this->set('user_role_id', $this->Auth->User('role_id'));
+        $this->set('user_role_id', $this->Auth->User('role_id'));
         $this->Auth->allow([ 'display']);
     }
 
@@ -76,7 +108,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-    
+
     public function isAuthorized($user)
     {
         // El administrador puede acceder cada acción, siempre y cuando su registro esté confirmado
