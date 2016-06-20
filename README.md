@@ -25,15 +25,28 @@ En este momento está en desarrollo. <br>
 </ol>
 
   <br>
-  <p>En este punto debería poder acceder a la aplicación desde la web. Si no le funciona... Probablemente no tenga instalada la extensión intl de PHP, para solucionarlo haga lo siguiente: </p>
+  <p>En este punto debería poder acceder a la aplicación desde la web. Si no le funciona... Probablemente no tenga instalada la extensión intl de PHP o la extensión ldap, para solucionarlo haga lo siguiente: </p>
   
   <br>
-  <h5> Si está usando un equipo Debian o Ubuntu, digite el siguiente comando en la consola:</h5> 
-  <i> sudo apt-get install php5-intl</i>
+  <h5> Si está usando un equipo Debian o Ubuntu, digite el siguiente comando en la consola:</h5>
+  <ol>
+    <li><i> sudo apt-get update</i></li>
+    <li><i> sudo apt-get install php5-intl</i></li>
+    <li><i> sudo apt-get install php5-ldap</i></li>
+  </ol>
+  <br>
+  <br>
+  
   
   <br>
-  <h5> Si está usando un equipo Windows y está usando xampp o wampp:</h5> 
-  <i> Diríjase a la carpeta PHP (de xampp o wampp)y <strong>abra el archivio php.ini y descomente (quite el punto y coma) donde dice intl</strong></i>
+  <h5> Si está usando un equipo con Windows y está usando xampp o wampp deberá hacer lo siguiente:</h5> 
+    <ol>
+    <li><i>Diríjase a la carpeta PHP (de xampp o wampp)</i></li>
+    <li><i>Abra el archivio php.ini</i></li>
+    <li><i>Busque la línea que dice <strong>;intl</strong> y quite el <strong>;</strong></i></li>
+    <li><i>Busque la línea que dice <strong>;ldap</strong> y quite el <strong>;</strong></i></li>
+  </ol>
+  <br>
   
   <br>
   
