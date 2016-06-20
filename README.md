@@ -44,7 +44,7 @@ En este momento está en desarrollo. <br>
     <li><i>Abra el archivio php.ini</i></li>
     <li><i>Busque la línea que dice <strong>;intl</strong> y quite el <strong>;</strong></i></li>
     <li><i>Busque la línea que dice <strong>;ldap</strong> y quite el <strong>;</strong></i></li>
-    <li><i>Apague y encienda el apache del xampp</i></li>
+    <li><i>Apague y encienda el apache del xampp o del wampp</i></li>
   </ol>
   <br>
   
