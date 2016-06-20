@@ -153,9 +153,18 @@ class UsersController extends AppController
             {
                 $user = $this->Auth->identify();
 
-                if($user)
-                {                    
+
+                $secondAuth = $this->Users->validateUserState($user[0]);
+                unset($secondAuth['state']);
+
+                if($user && $secondAuth)
+                {
+
+                    $user = $secondAuth[0];
+
                     $this->Auth->setUser($user);
+
+
                     
                     // Si soy Administrador o SuperAdministrador
                     if($user['role_id'] == 2 || $user['role_id'] == 3)
@@ -167,6 +176,7 @@ class UsersController extends AppController
                     {
                         return $this->redirect(['controller' => 'Reservations','action' => 'index']);
                     }
+
                 }
                 else
                 {
