@@ -21,7 +21,7 @@ En este momento está en desarrollo. <br>
   <li> Descargue el proyecto</li>
   <li> Copie la carpeta src en la ubicación en donde realizará la instalación</li>
   <li> Abra el archivo <strong>src/protea_reservations/config/app.php</strong> </li>
-  <li> Configure a partir de la línea 217 la conexión a la base de datos </li>
+  <li> Configure a partir de la línea 244 la conexión a la base de datos </li>
 </ol>
 
   <br>
