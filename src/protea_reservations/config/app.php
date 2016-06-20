@@ -58,7 +58,7 @@ return [
 
 
     'Ldap' => [
-        'domain' => 'test.com',
+        'domain' => 'ucr.ac.cr',
         /**
         'host' => function() {
             $hosts = ['192.168.1.13', '127.0.0.1'];
@@ -66,10 +66,10 @@ return [
             return $hosts[1];
         },
         **/
-        'host' => '127.0.0.1',
+        'host' => 'ldap.ucr.ac.cr',
         'port' => 389,
         'search' => 'UserPrincipalName',
-        'baseDN' => 'OU=users,DC=test,DC=com'/**function($username, $domain) {
+        'baseDN' => 'ou=people,o=ucr.ac.cr,o=ucr'/**function($username, $domain) {
             if (strpos($username, $domain) !== false) {
                 $baseDN = 'OU=users,DC=test,DC=com';
             } else {

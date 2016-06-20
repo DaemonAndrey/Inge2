@@ -131,7 +131,8 @@ class UsersTable extends Table
                     ->where(['username'=>$username]);
         $user = $user->toArray();
 
-        if($user[0]['state'] != 0)
+
+        if(!empty($user) && ($user[0]['state'] != 0))
         {
             return $user;
         }

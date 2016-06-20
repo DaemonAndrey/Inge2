@@ -150,18 +150,23 @@ class LdapAuthenticate extends BaseAuthenticate
         );
 
         
-            $obj = "cn= ".$username.' , OU=users,DC=test,DC=com';   
+            $obj =  'uid='.$username.',ou=people,o=ucr.ac.cr,o=ucr';//"cn= ".$username.' , OU=users,DC=test,DC=com';
             ldap_set_option($this->ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3); 
             $ldapBind = ldap_bind($this->ldapConnection, $obj, $password);
 
+
+
             //TODO:Poner acá el try
             if ($ldapBind === true) {
-                $searchResults = ldap_search($this->ldapConnection, $this->_config['baseDN'], '(cn='.$username.')');//ldap_search($this->ldapConnection, $this->_config['baseDN']($username, $this->_config['domain']), '(' . $this->_config['search'] . '=' . $username . ')');
+                $searchResults = ldap_search($this->ldapConnection, $this->_config['baseDN'], '(uid='.$username.')');//ldap_search($this->ldapConnection, $this->_config['baseDN']($username, $this->_config['domain']), '(' . $this->_config['search'] . '=' . $username . ')');
+
                 $results = ldap_get_entries($this->ldapConnection, $searchResults);
+
                 $entry = ldap_first_entry($this->ldapConnection, $searchResults);
+
                 $re = ldap_get_attributes($this->ldapConnection, $entry);
          
-                return $re; 
+                return $re['mail'];
             }
            /** 
         } catch (ErrorException $e) {

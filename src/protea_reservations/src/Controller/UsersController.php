@@ -91,7 +91,7 @@ class UsersController extends AppController
                
                 $user = $this->Auth->identify();
 
-                $secondAuth = $this->Users->validateUserState($user['cn'][0]);
+                $secondAuth = $this->Users->validateUserState($user[0]);
                 unset($secondAuth['state']);
 
                 if($user && $secondAuth)
