@@ -16,7 +16,7 @@
     <div class='row'>
         <div class='col-xs-8 col-xs-offset-2' style="color:black;" align="justify">
             <br>
-            La Facultad de Educación dedica este espacio para que el personal docente y administrativo pueda reservar las Sala de Audiovisuales, el Laboratorio de Cómputo y la Sala SITEA, así como equipo audiovisual para el apoyo de sus labores. Para solicitar estos servicios requiere su correo electrónico institucional y llenar un formulario. Consultas a <a href="#cont" class="page-scroll" >protea.educacion@ucr.ac.cr</a>.
+            La Facultad de Educación dedica este espacio para que el personal docente y administrativo pueda reservar las Sala de Audiovisuales, el Laboratorio de Cómputo y la Sala SITEA, así como equipo audiovisual para el apoyo de sus labores. Para solicitar estos servicios requiere su correo electrónico institucional y llenar un formulario.
             <br>
         </div>
     </div>

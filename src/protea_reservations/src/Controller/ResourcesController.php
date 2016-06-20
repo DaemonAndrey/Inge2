@@ -22,7 +22,7 @@ class ResourcesController extends AppController
     {
         parent::beforeFilter($event);
         
-        // Establece el id y el username del usuario actualmente en sesión
+        // Establece el id y el rol del usuario actualmente en sesión
         $this->set('user_id', $this->Auth->User('id'));
         $this->set('user_role', $this->Auth->User('role_id'));
         
@@ -48,12 +48,16 @@ class ResourcesController extends AppController
         
         // Consulta Join de recursos con usuarios, saca los recursos asociados al admin
         $query = $this->Resources->find('all');
-        $query->innerJoinWith('Users', function ($q){return $q->where(['Users.id' => $this->Auth->User('id')]);});
+        $query->innerJoinWith('Users', function ($q)
+                              {
+                                  return $q->where(['Users.id' => $this->Auth->User('id')]);
+                              }
+                             );
         
         // Pagina la tabla de recursos
         $this->set('resources', $this->paginate($query));
 	}
-
+    
     /**
      * Muestra información más detallada sobre un recurso específico.
      * @param  integer $id
@@ -67,20 +71,28 @@ class ResourcesController extends AppController
         // Saca la descripción del tipo de ese recurso específico
         $connection = ConnectionManager::get('default');
         $result = $connection
-                    ->execute('SELECT description FROM resource_types WHERE id = :id', ['id' => $resource->resource_type_id])
+                    ->execute('SELECT description FROM resource_types WHERE id = :id',
+                              ['id' => $resource->resource_type_id]
+                             )
                     ->fetchAll('assoc');
         $this->set('r_type', $result);
         
         // Saca admins asociados
         $this->loadModel('Users');
         $query = $this->Users->find()
-                                        ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '2'])
-                                        ->orWhere(['Users.role_id' => '3']);
+                             ->select(['id',
+                                       'username',
+                                       'first_name',
+                                       'last_name'
+                                      ])
+                             ->where(['Users.role_id' => '2'])
+                             ->orWhere(['Users.role_id' => '3']);
         
-        $query->innerJoinWith('Resources', function ($q) use ($id){
+        $query->innerJoinWith('Resources', function ($q) use ($id)
+                                            {
                                                 return $q->where(['Resources.id' => $id]);
-                                            });
+                                            }
+                             );
         
         $this->set('admins_assoc', $query->toArray());
     }
@@ -93,7 +105,9 @@ class ResourcesController extends AppController
     {
         // Carga todos los tipos de recursos para el DropDown
         $this->loadModel('ResourceTypes');
-        $options = $this->ResourceTypes->find('list',['keyField' => 'id','valueField' => 'description'])->toArray();                              
+        $options = $this->ResourceTypes->find('list',['keyField' => 'id',
+                                                      'valueField' => 'description'])->toArray();   
+        
         $this->set('resource_types_options', $options);
         
         // Si el usuario tiene permisos
@@ -127,14 +141,16 @@ class ResourcesController extends AppController
                         // Si pudo guardar en la tabla 'ResourcesUsers'
                         if ($this->ResourcesUsers->save($resourcesUser))
                         {
-                            $this->Flash->success('Se ha agregado el nuevo recurso', ['key' => 'addResourceSuccess']);
+                            $this->Flash->success('Recurso agregado.',
+                                                  ['key' => 'success']);
                             return $this->redirect(['controller' => 'Resources','action' => 'index']);
                         }
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el recurso', ['key' => 'addResourceError']);
+                    $this->Flash->error('Recurso NO agregado. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'success']);
                 }
             }
             $this->set('resource', $resource);            
@@ -153,7 +169,9 @@ class ResourcesController extends AppController
     {
         // Carga todos los tipos de recursos para el DropDown
         $this->loadModel('ResourceTypes');
-        $options = $this->ResourceTypes->find('list',['keyField' => 'id','valueField' => 'description'])->toArray();                              
+        $options = $this->ResourceTypes->find('list',['keyField' => 'id',
+                                                      'valueField' => 'description'])->toArray();
+        
         $this->set('resource_types_options', $options);
         
         // Si el usuario tiene permisos
@@ -166,28 +184,20 @@ class ResourcesController extends AppController
 		    {
                 //Carga la informacion que se obtiene en el formulario
                 $this->Resources->patchEntity($resource, $this->request->data);
-                
-                //Se crea una entidad recurso que tendra el mismo id del recurso que se desea editar y la informacion ya editada
-                /*$resource = $this->Resources->get($id);
-                $tipoderecurso = $this->request->data['Resources']['resource_type_id'];
-                $resource->resource_type_id = $tipoderecurso;
-                $resource->resource_name = $this->request->data['Resources']['resource_name'];
-                $resource->resource_code = $this->request->data['Resources']['resource_code'];
-                $resource->description = $this->request->data['Resources']['description'];
-                $activo=$this->request->data['Resources']['active'];
-                $resource->active = $activo;*/
 
                 //Guarda el recurso con la nueva informacion modificada
                 if ($this->Resources->save($resource))
                 {
-                    //Muentra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
-                    $this->Flash->success('Se ha editado correctamente el recurso', ['key' => 'addResourceSuccess']);
+                    //Muestra el mensaje de que ha sido modificado correctamente y redirecciona a la pagina principal de editar
+                    $this->Flash->success('Recurso actualizado.',
+                                          ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 }
                 else
                 {
-                    //En caso de que no se haa podido actualizar la nformacion despliega un mensaje indicando que hubo error.
-                    $this->Flash->error('No se ha podido editar el recurso', ['key' => 'addResourceError']);
+                    //En caso de que no se haya podido actualizar la información, despliega un mensaje indicando que hubo error.
+                    $this->Flash->error('Recurso NO actualizado. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
             
@@ -215,13 +225,14 @@ class ResourcesController extends AppController
             {
                 if ($this->Resources->delete($resource))
                 {
-                    $this->Flash->success('El recurso ha sido eliminado éxitosamente', ['key' => 'deleteResourceSuccess']);
+                    $this->Flash->success('Recurso eliminado.', ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'index']);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('El recurso no pudo ser eliminado. Por favor inténtelo de nuevo', ['key' => 'deleteResourceError']);
+                $this->Flash->error('Recurso NO eliminado.Por favor, inténtelo de nuevo.',
+                                    ['key' => 'error']);
             }
         }
         else
@@ -239,13 +250,19 @@ class ResourcesController extends AppController
         // Admins asociados
         $this->loadModel('Users');
         $query = $this->Users->find()
-                                        ->select(['id', 'username', 'first_name', 'last_name'])
-                                        ->where(['Users.role_id' => '2'])
-                                        ->orWhere(['Users.role_id' => '3']);
+                             ->select(['id',
+                                       'username',
+                                       'first_name',
+                                       'last_name'
+                                      ])
+                             ->where(['Users.role_id' => '2'])
+                             ->orWhere(['Users.role_id' => '3']);
         
-        $query->innerJoinWith('Resources', function ($q) use ($id){
+        $query->innerJoinWith('Resources', function ($q) use ($id)
+                                            {
                                                 return $q->where(['Resources.id' => $id]);
-                                            });
+                                            }
+                             );
         
         $this->set('admins_assoc', $query);
         
@@ -272,6 +289,7 @@ class ResourcesController extends AppController
         
         //-------------------------------------------------------------------------------
         
+        // ID del recurso
         $this->set('r_id', $id);
         
         //-------------------------------------------------------------------------------
@@ -298,13 +316,15 @@ class ResourcesController extends AppController
                     // Si pudo guardar en la tabla 'Resources'
                     if ($this->ResourcesUsers->save($resourcesUser))
                     {
-                        $this->Flash->success('Se ha asociado el administrador con el recurso', ['key' => 'associateResourceAdminSuccess']);
+                        $this->Flash->success('Administrador asociado con el recurso.',
+                                              ['key' => 'success']);
                         return $this->redirect(['controller' => 'Resources','action' => 'associate', $id]);
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido asociar el administrador con el recurso', ['key' => 'associateResourceAdminError']);
+                    $this->Flash->error('Administrador NO asociado con el recurso. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
             $this->set('resourcesUser', $resourcesUser);            
@@ -324,9 +344,11 @@ class ResourcesController extends AppController
     {
         // Encontrar el id de la asociación
         $this->loadModel('ResourcesUsers');
-        $id = $this->ResourcesUsers->find('list')->select(['id'])
-                                          ->where(['ResourcesUsers.user_id' => $admin_id,
-                                                   'ResourcesUsers.resource_id' => $resource_id]);
+        $id = $this->ResourcesUsers->find('list')
+                                    ->select(['id'])
+                                    ->where(['ResourcesUsers.user_id' => $admin_id,
+                                             'ResourcesUsers.resource_id' => $resource_id
+                                            ]);
         
         // Si el usuario tiene permisos
         if($this->Auth->user())
@@ -337,13 +359,15 @@ class ResourcesController extends AppController
             {
                 if ($this->ResourcesUsers->delete($resourceUser))
                 {
-                    $this->Flash->success('Se ha desasociado el administrador del recurso', ['key' => 'disassociateResourceAdminSuccess']);
+                    $this->Flash->success('Administrador desasociado con el recurso.',
+                                          ['key' => 'success']);
                     return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
                 } 
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido desasociar el administrador del recurso', ['key' => 'disassociateResourceAdminError']);
+                $this->Flash->error('Administrador NO desasociado con el recurso. Por favor, inténtelo de nuevo.',
+                                    ['key' => 'error']);
             }
         }
         else
@@ -361,7 +385,7 @@ class ResourcesController extends AppController
     {
         if($this->request->is("POST"))
         {
-        /** Obtengo el id del tipo que el usuario escogió **/
+            // Obtengo el id del tipo que el usuario escogió
             $id = $this->Resources->ResourceTypes->find()
                     ->hydrate(false)
                     ->select(['id'])
@@ -369,22 +393,21 @@ class ResourcesController extends AppController
             $id = $id->toArray();
             $id = $id[0]['id'];
 
-               
-            $subquery = $this->Resources->Reservations->find() /** Me devuelve todos los recursos reservados**/
+            // Me devuelve todos los recursos reservados
+            $subquery = $this->Resources->Reservations->find()
                 ->hydrate(false)
-                ->select(['r.resource_name'])
-                ->join([
-                     'table'=>'resources',
-                     'alias'=>'r',
-                     'type' => 'RIGHT',
-                     'conditions'=>'r.id = Reservations.resource_id'
-                    ])
+                ->select(['resource.resource_name'])
+                ->join(['table'=>'resources',
+                        'alias'=>'resource',
+                        'type' => 'RIGHT',
+                        'conditions'=>'resource.id = Reservations.resource_id'
+                       ])
+                ->andwhere(['DATE(Reservations.start_date)'=>$date,
+                            'resource.resource_type_id'=>$id
+                           ])
+                ->where(function ($exp) use ($start,$end,$date) {
 
-
-                    ->where(['DATE(Reservations.start_date)'=>$date])
-                    ->where(function ($exp) use ($start,$end,$date) {
-
-            /************** Pregunta si el intervalo de reserva está dentro del intervalo reservado  **/
+                        // Pregunta si el intervalo de reserva está dentro del intervalo reservado ==================>
                         $firstAnd = $exp->and_(function ($and) use ($start,$end) {
                             return $and->lte('TIME(Reservations.start_date)',$start)
                                 ->gt('TIME(Reservations.end_date)',$start);
@@ -400,7 +423,7 @@ class ResourcesController extends AppController
                                 ->add($secondAnd);
                         });
 
-            /************** Pregunta si el intervalo reservado está dentro del intervalo de reserva **/
+                        // Pregunta si el intervalo reservado está dentro del intervalo de reserva ==================>
 
                         $thirdAnd = $exp->and_(function ($and) use ($start,$end) {
                             return $and->gt('TIME(Reservations.start_date)',$start)
@@ -416,27 +439,31 @@ class ResourcesController extends AppController
                         return $exp
                             ->add($secondOr);
                     });
-                   
-
-
-
-            $query = $this->Resources->Reservations->find() /** Me devuelve todos los recursos que no están reservados y están asociados a un tipo **/
+            
+            // Me devuelve todos los recursos que no están reservados y están asociados a un tipo
+            $query = $this->Resources->Reservations->find() 
                     ->hydrate(false)
                     ->select(['resource.resource_name', 'resource.description'])
-                    ->join([
-                         'table'=>'resources',
-                         'alias'=>'resource',
-                         'type' => 'RIGHT',
-                         'conditions'=>'resource.id = Reservations.resource_id',
-                        ])
-                    ->andwhere(['resource.resource_name NOT IN'=>$subquery, 'resource.resource_type_id'=>$id])
+                    ->join(['table'=>'resources',
+                            'alias'=>'resource',
+                            'type' => 'RIGHT',
+                            'conditions'=>'resource.id = Reservations.resource_id',
+                           ])
+                    ->andwhere(['resource.resource_name NOT IN'=>$subquery,
+                                'resource.resource_type_id'=>$id
+                               ])
                     ->group(['resource.resource_name']);
             $query = $query->toArray();
-            $query = json_encode($query);
-           die($query);
+            $subquery = $subquery->toArray();
+
+            $resources['available'] = $query;
+            $resources['reserved'] = $subquery;
+
+            $resources = json_encode($resources);
+
+           die($resources);
         }
     }
-    
 
     /**
      * Se obtiene la descripcion de un recurso dado.
@@ -456,7 +483,6 @@ class ResourcesController extends AppController
             die($resource_description);
         }
     }
-    
     
     /*
      * Revisa cuáles funciones puede hacer un usuario con cierto rol

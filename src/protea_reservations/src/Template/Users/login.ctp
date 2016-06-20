@@ -2,20 +2,21 @@
 <?php echo $this->Html->css('login.css'); ?>
 
 <!-- File: src/Template/Users/ingresar.ctp -->
-<br>
 <div class="users form">
     <!-- MENSAJES -->
     <div style="text-align:center; color:red">
-        <?= $this->Flash->render('loginError') ?>
-        <?= $this->Flash->render('loginPendiente') ?>
+
+        
+        
         <br>
     </div>
+    <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  
         <legend>
             <div class='text-center'>
-                <h1>Ingresar</h1>
+                <h2>Ingresar</h2>
                 <br>
             </div>
         </legend>
@@ -46,13 +47,16 @@
         </div>
     </fieldset>
     
-    <!-- BOTÓN -->
-    <div class="row" align="center" id="btnIngresar">
-        <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2'>
-            <?= $this->Form->button(__('Ingresar'), ['class' => 'btn btn-info']); ?>
+    <!-- BOTONES -->
+    <div class='row  text-center'>
+        <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+            <br>
+            <?= $this->Form->button('Ingresar', ['class' => 'btn btn-success', 'style' => 'width:90px']); ?>
+            <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-primary', 'style' => 'width:90px']); ?>
         </div>
-    </div>
-    <br>
+    </div> <!-- FIN BOTONES -->
+    
+    <legend><br></legend>
     
     <?= $this->Form->end() ?>
 </div>

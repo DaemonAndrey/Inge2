@@ -42,7 +42,8 @@ class AppController extends Controller
     {
 
         parent::initialize();
-
+        
+        $this->loadComponent('Paginator');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         
@@ -89,7 +90,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         //$this->set('user_username', $this->Auth->User('username'));
-        //$this->set('user_role_id', $this->Auth->User('role_id'));
+        $this->set('user_role_id', $this->Auth->User('role_id'));
         $this->Auth->allow([ 'display']);
     }
 
@@ -115,6 +116,7 @@ class AppController extends Controller
         if(isset($user['role_id']) && ($user['role_id'] == 2 || $user['role_id'] == 3))
             return true;
 
+        
         return false;
     }
 }

@@ -1,0 +1,39 @@
+1- Admin Agrega Usuario
+	1-1 Admin agrega usuario exitosamente
+	1-2 Correo no institucional
+	1-3 Correo repetido
+	1-4 Nombre con números
+	1-5 Apellido con números
+	1-6 Teléfono con menos de 8 dígitos
+	1-7 Teléfono con más de 16 dígitos
+
+2- Eliminar Usuario
+	2-1 Eliminar usuario exitosamente
+
+3- Admin Edita Usuario
+	3-1 Admin edita usuario exitosamente
+	3-2 Nombre con números
+	3-3 Apellido con números
+	3-4 Teléfono con menos de 8 dígitos
+	3-5 Teléfono con más de 16 dígitos
+
+4- Editar Mi Cuenta
+	4-1 Editar mi cuenta exitosamente
+	4-2 Nombre con números
+	4-3 Apellido con números
+	4-4 Teléfono con menos de 8 dígitos
+	4-5 Teléfono con más de 16 dígitos
+
+5- Aprobar Solicitid de Registro
+	5-1 Aprobar solicitid de registro exitosamente
+
+6- Rechazar Solicitid de Registro
+	6-1 Rechazar solicitid de registro exitosamente
+
+7- Agregar Tipo de Recurso (Días Anticipación)
+	7-1 Agregar tipo de recurso exitosamente
+	7-2 Días de anticipación negativo
+
+8- Actualizar Tipo de Recurso (Días Anticipación)
+	8-1 Actualizar tipo de recurso exitosamente
+	8-2 Días de anticipación negativo
