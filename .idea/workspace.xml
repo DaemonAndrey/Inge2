@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a1b842b-e889-470e-a877-597755a6294d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protea_reservations/config/app.php" afterPath="$PROJECT_DIR$/src/protea_reservations/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php" afterPath="$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php" afterPath="$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protea_reservations/src/Model/Table/UsersTable.php" afterPath="$PROJECT_DIR$/src/protea_reservations/src/Model/Table/UsersTable.php" />
     </list>
     <ignored path="PROTEA.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="LdapAuthenticate.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="168" column="35" selection-start-line="168" selection-start-column="35" selection-end-line="168" selection-end-column="35" />
+            <state relative-caret-position="-2086">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -60,8 +59,8 @@
       <file leaf-file-name="UsersTable.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Model/Table/UsersTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="134" column="53" selection-start-line="134" selection-start-column="53" selection-end-line="134" selection-end-column="53" />
+            <state relative-caret-position="-1077">
+              <caret line="32" column="61" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -70,8 +69,8 @@
       <file leaf-file-name="UsersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="93" column="72" selection-start-line="93" selection-start-column="72" selection-end-line="93" selection-end-column="72" />
+            <state relative-caret-position="405">
+              <caret line="106" column="20" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -86,9 +85,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/protea_reservations/config/app.php" />
-        <option value="$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php" />
-        <option value="$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php" />
         <option value="$PROJECT_DIR$/src/protea_reservations/src/Model/Table/UsersTable.php" />
+        <option value="$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php" />
+        <option value="$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php" />
       </list>
     </option>
   </component>
@@ -377,12 +376,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1466393455625</updated>
-      <workItem from="1466393456911" duration="3302000" />
+      <workItem from="1466393456911" duration="4225000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3302000" />
+    <option name="totallyTimeSpent" value="4225000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="30" width="1922" height="1051" extended-state="6" />
@@ -431,26 +430,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php">
+    <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="168" column="35" selection-start-line="168" selection-start-column="35" selection-end-line="168" selection-end-column="35" />
+        <state relative-caret-position="405">
+          <caret line="106" column="20" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Controller/UsersController.php">
+    <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Auth/LdapAuthenticate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="93" column="72" selection-start-line="93" selection-start-column="72" selection-end-line="93" selection-end-column="72" />
+        <state relative-caret-position="-2086">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/protea_reservations/src/Model/Table/UsersTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="134" column="53" selection-start-line="134" selection-start-column="53" selection-end-line="134" selection-end-column="53" />
+        <state relative-caret-position="-1077">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="61" />
           <folding />
         </state>
       </provider>

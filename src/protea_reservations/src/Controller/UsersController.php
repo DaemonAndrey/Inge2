@@ -98,13 +98,13 @@ class UsersController extends AppController
                 {
 
                     $secondAuth = $secondAuth[0];
-                   debug($secondAuth);
+
                     $this->Auth->setUser($secondAuth);
 
 
-                    debug($this->request->session()->read('Auth.User.username'));
 
-                    //return $this->redirect($this->Auth->redirectUrl());
+
+                    return $this->redirect($this->Auth->redirectUrl());
 
                 }
                 else

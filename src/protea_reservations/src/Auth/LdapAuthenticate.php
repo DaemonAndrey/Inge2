@@ -152,11 +152,12 @@ class LdapAuthenticate extends BaseAuthenticate
         
             $obj =  'uid='.$username.',ou=people,o=ucr.ac.cr,o=ucr';//"cn= ".$username.' , OU=users,DC=test,DC=com';
             ldap_set_option($this->ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3); 
-            $ldapBind = ldap_bind($this->ldapConnection, $obj, $password);
 
 
 
-            //TODO:Poner acá el try
+
+            try{
+                $ldapBind = ldap_bind($this->ldapConnection, $obj, $password);
             if ($ldapBind === true) {
                 $searchResults = ldap_search($this->ldapConnection, $this->_config['baseDN'], '(uid='.$username.')');//ldap_search($this->ldapConnection, $this->_config['baseDN']($username, $this->_config['domain']), '(' . $this->_config['search'] . '=' . $username . ')');
 
@@ -168,7 +169,7 @@ class LdapAuthenticate extends BaseAuthenticate
          
                 return $re['mail'];
             }
-           /** 
+
         } catch (ErrorException $e) {
             $this->log($e->getMessage());
             if (ldap_get_option($this->ldapConnection, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extendedError)) {
@@ -185,7 +186,7 @@ class LdapAuthenticate extends BaseAuthenticate
                     }
                 }
             }
-        }**/
+        }
         restore_error_handler();
 
         if (!empty($messages)) {
