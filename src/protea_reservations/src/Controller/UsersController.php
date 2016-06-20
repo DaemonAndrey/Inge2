@@ -162,7 +162,7 @@ class UsersController extends AppController
 
                     $user = $secondAuth[0];
 
-                    $this->Auth->setUser($secondAuth);
+                    $this->Auth->setUser($user);
 
 
                     
