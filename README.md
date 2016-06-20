@@ -12,6 +12,7 @@ En este momento está en desarrollo. <br>
 #### Javascript
 #### Mysql
 #### FullCalendar
+#### LDAP
 <br>
 
 ## Guía de instalación
