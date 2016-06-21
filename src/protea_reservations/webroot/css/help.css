@@ -18,13 +18,3 @@ p
 {
     color: black;
 }
-
-#titulos ul
-{
-    list-style-type: disc;
-}
-
-#pasos ul
-{
-    list-style-type: none;/*upper-roman;*/
-}
