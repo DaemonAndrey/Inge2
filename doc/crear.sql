@@ -34,7 +34,6 @@ CREATE TABLE users
 (
 	id 							INT UNSIGNED AUTO_INCREMENT,
 	username 				VARCHAR( 64 ) UNIQUE NOT NULL,
-	password 				VARCHAR( 255 ) NOT NULL,
 	first_name 				VARCHAR( 50 ) NOT NULL,
 	last_name 				VARCHAR( 50 ) NOT NULL,
 	telephone_number 	VARCHAR( 50 ) NOT NULL,
@@ -134,14 +133,15 @@ CREATE TABLE historic_reservations
 CREATE TABLE configurations
 (
 	id 								INT UNSIGNED AUTO_INCREMENT,
+	registration_rejected_subject 	TEXT,
+	registration_accepted_subject	TEXT,
+	reservation_rejected_subject 	TEXT,
+	reservation_accepted_subject	TEXT,
 	registration_rejected_message 	TEXT,
 	registration_accepted_message 	TEXT,
 	reservation_rejected_message 	TEXT,
 	reservation_accepted_message 	TEXT,
-	reservation_start_hour_weekdays	INT(2),
-	reservation_end_hour_weekdays	INT(2),
-	reservation_start_hour_weekends	INT(2),
-	reservation_end_hour_weekends	INT(2),
-	
+	reservation_start_hour	      INT(2),
+	reservation_end_hour	      INT(2),
 	PRIMARY KEY ( id )
 );

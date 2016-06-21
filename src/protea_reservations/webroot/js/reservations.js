@@ -283,10 +283,15 @@
         document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
     }
 
+    var eventNameText = "";
+
+    function setEventName(input) {
+        eventNameText = input.value;
+    }
+
     function activateButton(select, checkbox)
     {
-        
-        if((select.value != "Seleccionar") && checkbox.checked)
+        if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
         {
             document.getElementById("Reservar").disabled = false;
         }
@@ -301,8 +306,3 @@
         document.getElementById("callbackText").innerHTML = text;
         $('#callback').modal('show');
     }
-
-
-
-
-

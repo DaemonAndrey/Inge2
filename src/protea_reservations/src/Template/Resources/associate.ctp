@@ -1,5 +1,6 @@
 <!-- src/Template/Resources/associate.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
+<?php echo $this->Html->css('resources.css') ?>
 
 <br>
 
@@ -17,17 +18,17 @@
 
 <div class="users form">
     
-    <!-- TÍTULO -->
-    <div class="row" style="color:#000;">
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <legend>
-                <div class='text-center'>
-                    <h2>Asociar Administradores</h2>
-                    <br>
-                </div>
-            </legend>
-        </div>
-    </div> <!-- FIN TÍTULO -->
+<!-- TÍTULO -->
+<div class="row" style="color:#000;">
+    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <legend>
+            <div class='text-center'>
+                <h2>Asociar Administradores</h2>
+                <br>
+            </div>
+        </legend>
+    </div>
+</div> <!-- FIN TÍTULO -->
 
     <?= $this->Form->create($resourcesUser) ?>
     
@@ -59,10 +60,12 @@
     <br><br>
     
     <div class="row">
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <div class='col-xs-12 text-center'>
             <?=
                 $this->Form->label('ResourcesUsers.user_id', 'Administradores asociados');
             ?>
+            <br>
+            <br>
         </div>
     </div>
 
@@ -125,7 +128,7 @@
     </div> <!-- FIN TABLA -->
 
     <!-- BOTON -->
-    <div class='row  text-center' id="btnRegistrar">
+    <div class='row text-center' id="btnRegistrar">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
             <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'edit', $r_id), array( 'class' => 'btn btn-primary')) ?>
