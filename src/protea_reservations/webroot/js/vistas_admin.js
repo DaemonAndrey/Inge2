@@ -73,229 +73,229 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
     });
 });
 
-    function getResources(element)
-    {
-        if(element.value != "Seleccionar") {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function()
-            {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
-                    fillResources(); //Llama a este método para llegar el select
-                }
-            };
-            
-            var path = window.location.pathname;
-            var new_path = path.replace("/reservations/","/resources/"); 
-
-            //algunos navegadores no ponen el último /
-            if(path === new_path) {
-                new_path = path.replace("/reservations","/resources/");                
+function getResources(element)
+{
+    if(element.value != "Seleccionar") {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function()
+        {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
+                fillResources(); //Llama a este método para llegar el select
             }
-            
-            var start = getFormatedHour(document.getElementById("start").value);
-            var end = getFormatedHour(document.getElementById("end").value);
-            
-            var dateFormat = globalDate.format("DD MMMM YYYY");
-            var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
+        };
 
+        var path = window.location.pathname;
+        var new_path = path.replace("/reservations/","/resources/"); 
 
-            xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,false);
-
-            xhttp.send();
+        //algunos navegadores no ponen el último /
+        if(path === new_path) {
+            new_path = path.replace("/reservations","/resources/");                
         }
 
-        return true;
-    }  
-    
-    function getFormatedHour(number)
-    {
-        var hour = "";
-        
-        if(number < 10)
-        {   
-            hour = "0"+number+":00:00";
-        }
-        else
-        {
-            hour = number+":00:00";
-        }
-        
-        return hour;
-    }
-    
-    function fillResources()
-    {
-        html = "";
-        var len = obj.available.length;
-        document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
+        var start = getFormatedHour(document.getElementById("start").value);
+        var end = getFormatedHour(document.getElementById("end").value);
 
-        for (var i = 0; i < len; ++i) 
-        {
-            html += "<option id ="+i+">"+obj.available[i].resource.resource_name+"</option>";
-        }
+        var dateFormat = globalDate.format("DD MMMM YYYY");
+        var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
 
-        len = obj.reserved.length;
 
-        for (var i = 0; i < len; ++i)
-        {
-            html += "<option id ="+i+" disabled>"+obj.reserved[i].resource.resource_name+"</option>";
-        }
+        xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,false);
 
-        document.getElementById("resource").innerHTML = html;
+        xhttp.send();
     }
 
-    function getReservationData()
+    return true;
+}  
+    
+function getFormatedHour(number)
+{
+    var hour = "";
+
+    if(number < 10)
+    {   
+        hour = "0"+number+":00:00";
+    }
+    else
     {
-        if(document.getElementById("check").checked)
-        {
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = function()
-            {
-                if(xhttp.readyState == 4 && xhttp.status == 200)
-                {   
-                    jQuery('#callback').modal('show');
-                    setTimeout(function(){location.reload();},2000);
-                }
-
-                if(xhttp.readyState == 4 && xhttp.status == 500)
-                {
-                    showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
-                    setTimeout(function(){location.reload();},10000);
-                }
-            };
-
-            var date = document.getElementById("fecha").innerHTML; 
-
-            date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
-
-            var start = document.getElementById("start").value;
-            var end = document.getElementById("end").value;
-
-            var start_Date = date + " " + start;
-            var end_Date = date + " " + end;       
-
-            var resource = document.getElementById("resource").value;
-            var event_name = document.getElementById("event_name").value;
-            var user_comment = document.getElementById("comment").value;
-
-            var path = window.location.pathname;
-
-            if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
-            {
-                path = path+"/";
-            }            
-
-            xhttp.open("POST", path+"add");
-
-            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-            xhttp.send(JSON.stringify({
-                start_date : start_Date,
-                end_date : end_Date,
-                user_comment : user_comment,
-                event_name : event_name, 
-                resource: resource
-            })); 
-        }
-        else
-        {
-            showModal( "Debe aceptar los términos y condiciones de uso");   
-        }
+        hour = number+":00:00";
     }
 
-    function getDate(date)
+    return hour;
+}
+    
+function fillResources()
+{
+    html = "";
+    var len = obj.available.length;
+    document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
+
+    for (var i = 0; i < len; ++i) 
     {
-        var months = new Array();
-
-        months['enero'] = 01;
-        months['febrero'] = 02;
-        months['marzo'] = 03;
-        months['abril'] = 04;
-        months['mayo'] = 05;
-        months['junio'] = 06;
-        months['julio'] = 07;
-        months['agosto'] = 08;
-        months['septiembre'] = 09;
-        months['octubre'] = 10;
-        months['noviembre'] = 11;
-        months['diciembre'] = 12;
-
-        var dateElements = date.split(" ");
-        var dateFormated = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
-
-        return dateFormated; 
+        html += "<option id ="+i+">"+obj.available[i].resource.resource_name+"</option>";
     }
-    
-    function changeEndHour()
+
+    len = obj.reserved.length;
+
+    for (var i = 0; i < len; ++i)
     {
-        restartEndHours();
-        
-        var start_Ddl = document.getElementById("start");
-        var end_Ddl = document.getElementById("end");
-        
-        var startHour = start_Ddl.options[0].value; 
-        var selectedStartHour = start_Ddl.options[start_Ddl.selectedIndex].value;
-        
-        for(var i = parseInt(selectedStartHour) - parseInt(startHour) - 1; i >= 0; i--)
-        {
-            end_Ddl.remove(i);
-        }
-        
-        end_Ddl.selectedIndex = end_Ddl.options[0];
+        html += "<option id ="+i+" disabled>"+obj.reserved[i].resource.resource_name+"</option>";
     }
-    
-    function restartEndHours()
+
+    document.getElementById("resource").innerHTML = html;
+}
+
+function getReservationData()
+{
+    if(document.getElementById("check").checked)
     {
-        var start_Ddl = document.getElementById("start");
-        var end_Ddl = document.getElementById("end");
-    
-        var startTime = start_Ddl.options[0].value;
-        var lastEndTime = end_Ddl.options[0].value;
-        
-        for(var i = parseInt(lastEndTime) - 1; i > parseInt(startTime); i--)
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function()
         {
-            var optionName = (i < 10) ? ("0" + i + ":00:00") : (i + ":00:00");
-            
-            try
-            {
-                end_Ddl.add(new Option(optionName, i), end_Ddl.options[0]) //add new option to beginning of "sample"
+            if(xhttp.readyState == 4 && xhttp.status == 200)
+            {   
+                jQuery('#callback').modal('show');
+                setTimeout(function(){location.reload();},2000);
             }
-            catch(e) //in IE, try the below version instead of add()
-            { 
-                end_Ddl.add(new Option(optionName, i), 0) //add new option to beginning of "sample"
+
+            if(xhttp.readyState == 4 && xhttp.status == 500)
+            {
+                showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
+                setTimeout(function(){location.reload();},10000);
             }
-        }
-        
-        end_Ddl.selectedIndex = end_Ddl.options[0];
-    }    
+        };
+
+        var date = document.getElementById("fecha").innerHTML; 
+
+        date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
+
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+
+        var start_Date = date + " " + start;
+        var end_Date = date + " " + end;       
+
+        var resource = document.getElementById("resource").value;
+        var event_name = document.getElementById("event_name").value;
+        var user_comment = document.getElementById("comment").value;
+
+        var path = window.location.pathname;
+
+        if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
+        {
+            path = path+"/";
+        }            
+
+        xhttp.open("POST", path+"add");
+
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhttp.send(JSON.stringify({
+            start_date : start_Date,
+            end_date : end_Date,
+            user_comment : user_comment,
+            event_name : event_name, 
+            resource: resource
+        })); 
+    }
+    else
+    {
+        showModal( "Debe aceptar los términos y condiciones de uso");   
+    }
+}
+
+function getDate(date)
+{
+    var months = new Array();
+
+    months['enero'] = 01;
+    months['febrero'] = 02;
+    months['marzo'] = 03;
+    months['abril'] = 04;
+    months['mayo'] = 05;
+    months['junio'] = 06;
+    months['julio'] = 07;
+    months['agosto'] = 08;
+    months['septiembre'] = 09;
+    months['octubre'] = 10;
+    months['noviembre'] = 11;
+    months['diciembre'] = 12;
+
+    var dateElements = date.split(" ");
+    var dateFormated = dateElements[2]+"-"+months[dateElements[1]]+"-"+dateElements[0];
+
+    return dateFormated; 
+}
     
-    function showDescription(element)
+function changeEndHour()
+{
+    restartEndHours();
+
+    var start_Ddl = document.getElementById("start");
+    var end_Ddl = document.getElementById("end");
+
+    var startHour = start_Ddl.options[0].value; 
+    var selectedStartHour = start_Ddl.options[start_Ddl.selectedIndex].value;
+
+    for(var i = parseInt(selectedStartHour) - parseInt(startHour) - 1; i >= 0; i--)
     {
-        document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
+        end_Ddl.remove(i);
     }
 
-    var eventNameText = "";
+    end_Ddl.selectedIndex = end_Ddl.options[0];
+}
+    
+function restartEndHours()
+{
+    var start_Ddl = document.getElementById("start");
+    var end_Ddl = document.getElementById("end");
 
-    function setEventName(input) {
-        eventNameText = input.value;
-    }
+    var startTime = start_Ddl.options[0].value;
+    var lastEndTime = end_Ddl.options[0].value;
 
-    function activateButton(select, checkbox)
-    {        
-        if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
-        {
-            document.getElementById("Reservar").disabled = false;
-        }
-        else
-        {
-            document.getElementById("Reservar").disabled = true;
-        }
-    }
-
-    function showModal(text)
+    for(var i = parseInt(lastEndTime) - 1; i > parseInt(startTime); i--)
     {
-        document.getElementById("callbackText").innerHTML = text;
-        $('#callback').modal('show');
-    }   
+        var optionName = (i < 10) ? ("0" + i + ":00:00") : (i + ":00:00");
+
+        try
+        {
+            end_Ddl.add(new Option(optionName, i), end_Ddl.options[0]) //add new option to beginning of "sample"
+        }
+        catch(e) //in IE, try the below version instead of add()
+        { 
+            end_Ddl.add(new Option(optionName, i), 0) //add new option to beginning of "sample"
+        }
+    }
+
+    end_Ddl.selectedIndex = end_Ddl.options[0];
+}    
+
+function showDescription(element)
+{
+    document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
+}
+
+var eventNameText = "";
+
+function setEventName(input) {
+    eventNameText = input.value;
+}
+
+function activateButton(select, checkbox)
+{        
+    if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
+    {
+        document.getElementById("Reservar").disabled = false;
+    }
+    else
+    {
+        document.getElementById("Reservar").disabled = true;
+    }
+}
+
+function showModal(text)
+{
+    document.getElementById("callbackText").innerHTML = text;
+    $('#callback').modal('show');
+}   

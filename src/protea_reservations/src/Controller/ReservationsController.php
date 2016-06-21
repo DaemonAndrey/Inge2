@@ -136,6 +136,9 @@ class ReservationsController extends AppController
         {
             // Pagina la tabla de recursos
             $this->set('reservations', $this->paginate($this->pendingReservations));
+            
+            $res = $this->pendingReservations;
+            echo json_encode($res);
         }
         // Si es usuario regular puede ver todas las reservaciones pendientes, aceptadas, rechazadas y canceladas
         else
