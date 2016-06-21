@@ -3,19 +3,15 @@ INSERT INTO roles ( role_name ) VALUES
 ( 'Administrador' ), 		-- Role_id: 2
 ( 'SuperAdministrador' ); 	-- Role_id: 3
 
-INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
-( 'monica@ucr.ac.cr'		, '$2y$10$D5lesEdZ1GPoOr3S17Oz9uAYwkA7S9DarVjr8sQy0Ph/Qre66m6Ki'	, 'Mónica'			, 'Villalobos'		, '24242424'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 3		, 1 ), -- monicamonica
-( 'adrian@ucr.ac.cr'		, '$2y$10$vYhA8Docqa4mSDqrZ4yJIOiUsG512Ni77akuz3nTwH3MGwkfpcwhG'	, 'Adrián'			, 'Alvarado'		, '43434343'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 2		, 1 ), -- adrianadrian
-( 'alan@ucr.ac.cr'			, '$2y$10$cqvmVmhPl0fXxqAZtQSOc.Bv7xEM.Q86XDZ/3ob8Ge5SBeuZi3i2a'	, 'Alan'			, 'Calderón'		, '23232323'	, 'Escuela de Formación Docente'	, 'Administrativo'	, 1 	, 1 ); -- alanalan
-
-INSERT INTO users ( username, password, first_name, last_name, telephone_number, department, position, role_id ) VALUES
-( 'josecarlos.jimenez@ucr.ac.cr'			, '$2y$10$orXwF8quRhrft76ZH9JaFuK44vuFmSWPMv1E3DaN2OG9eDBHbO59S'	, 'Jose'			, 'Jimenez Blanco'	, '23232323'	, 'Escuela Educación Física y Deportes'						, 'Docente'			, 1 ), -- josejose
-( 'katherine.anguloangulo@ucr.ac.cr'		, '$2y$10$tD45Fkx8mYANge/j/AEHA.3GbygqLX3aoKjkXEPGzXO4KrbMqH0H.'	, 'Katherine'		, 'Angulo'			, '23232323'	, 'Escuela de Orientación y Educación Especial'				, 'Administrativo'	, 1 ), -- katherinekatherine
-( 'jonathan.fonsecavallejo@ucr.ac.cr'		, '$2y$10$H6d/1Y4oXFH6sCp6F6vog.y2wO40nZSW4dcQwcK20StJxvIyGJNge'	, 'Jonathan'		, 'Fonseca'			, '34343434'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ), -- jonathanjonathan
-( 'jose.picadosalas@ucr.ac.cr'				, '$2y$10$or3dcpx8gLghbObmMnzPu.Hf5vJC08/.SnzrsGdVcQCSVgFEX2j7C'	, 'Eduardo'			, 'Picado'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Administrativo'	, 1 ), -- eduardo
-( 'francisco.zunigamadrigal@ucr.ac.cr'		, '$2y$10$IXbB8ICmTRKm7JCozNITeuC1sNdn7mT5J0r7gDOjUlzI1E.yS9I1a'	, 'Francisco'		, 'Zúñiga'			, '34343434'	, 'Instituto de Investigación en Educación INIE'			, 'Administrativo'	, 1 ), -- franciscofrancisco
-( 'danny.vargas@ucr.ac.cr'					, '$2y$10$mzaSydN/tGaOyilNOHw5zu5HkmrebOnLwaPiIvRm/N/Ub1J7qf8M.'	, 'Andrés'			, 'Vargas'			, '54545454'	, 'Escuela de Formación Docente'							, 'Docente'			, 1 ), -- andresandres
-( 'robin.perez@ucr.ac.cr'					, '$2y$10$ThasD/qbLS0Wzj5qnDndj.gbH2ff9RwfzcxmU832nWAGWF8sNmDEO'	, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 1 ); -- andreyandrey
+INSERT INTO users ( username, first_name, last_name, telephone_number, department, position, role_id, state ) VALUES
+( 'josecarlos.jimenez@ucr.ac.cr'			, 'Jose'			, 'Jimenez Blanco'	, '23232323'	, 'Escuela Educación Física y Deportes'						, 'Docente'			, 3  , 1 ),
+( 'katherine.anguloangulo@ucr.ac.cr'		, 'Katherine'		, 'Angulo'			, '23232323'	, 'Escuela de Orientación y Educación Especial'				, 'Administrativo'	, 3  , 1 ),
+( 'jonathan.fonsecavallejo@ucr.ac.cr'		, 'Jonathan'		, 'Fonseca'			, '34343434'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 3  , 1 ),
+( 'jose.picadosalas@ucr.ac.cr'				, 'Eduardo'			, 'Picado'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Administrativo'	, 3  , 1 ),
+( 'francisco.zunigamadrigal@ucr.ac.cr'		, 'Francisco'		, 'Zúñiga'			, '34343434'	, 'Instituto de Investigación en Educación INIE'			, 'Administrativo'	, 3  , 1 ),
+( 'danny.vargas@ucr.ac.cr'					, 'Andrés'			, 'Vargas'			, '54545454'	, 'Escuela de Formación Docente'							, 'Docente'			, 3  , 1 ),
+( 'robin.perez@ucr.ac.cr'					, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 3  , 1 ),
+( 'adrian.alvarado_r@ucr.ac.cr'				, 'Andrey'			, 'Pérez'			, '23232323'	, 'Escuela Bibliotecología y Ciencias de la Información'	, 'Docente'			, 3  , 1 );
 
 INSERT INTO resource_types ( description, days_before_reservation ) VALUES
 ( 'Sala'		, '3' ),

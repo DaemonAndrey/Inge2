@@ -25,17 +25,6 @@
             </div>
         </div>
         
-        <div class="row">
-            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
-                    <?= $this->Form->input('password', ['type' => 'password', 'label' => 'Contraseña * ', 'placeholder' => 'Al menos 8 caractéres', 'class' => 'form-control']) ?>
-                    <br>
-            </div>
-            <div class='col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
-                    <?= $this->Form->input('repass', ['type' => 'password', 'label' => 'Reingrese la contraseña * ', 'placeholder' => 'Al menos 8 caractéres', 'class' => 'form-control']) ?>
-                    <br>
-            </div>
-        </div> 
-        
         <div class ="row">
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?= $this->Form->input('username', ['type' => 'email','label' => 'Correo Institucional * ', 'placeholder' => 'usuario@ucr.ac.cr', 'class' => 'form-control']) ?>
@@ -51,18 +40,16 @@
         <div class="row">
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?= $this->Form->input('department', ['label' => 'Unidad Académica * ',
-                                        'options' => array(
-                                                        'Escuela Administración Educativa'  => 'Escuela Administración Educativa',
-                                                        'Escuela Bibliotecología y Ciencias de la Información'  => 'Escuela Bibliotecología y Ciencias de la Información',
-                                                        'Escuela Educación Física y Deportes'   => 'Escuela Educación Física y Deportes',
-                                                        'Escuela de Formación Docente'  => 'Escuela de Formación Docente',
-                                            
-                                                        'Escuela de Orientación y Educación Especial'   => 'Escuela de Orientación y Educación Especial',
-                                                        'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
-                                                        'Biblioteca'    => 'Biblioteca',
-                                                        'Decanato'    => 'Decanato'
-
-                ),  'class' => 'form-control']) ?>
+                                        'options' => array('Biblioteca' => 'Biblioteca',
+                                                           'Decanato' => 'Decanato',
+                                                           'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
+                                                           'Escuela Administración Educativa' => 'Escuela Administración Educativa',
+                                                           'Escuela Bibliotecología y Ciencias de la Información' => 'Escuela Bibliotecología y Ciencias de la Información',
+                                                           'Escuela Educación Física y Deportes' => 'Escuela Educación Física y Deportes',
+                                                           'Escuela de Formación Docente' => 'Escuela de Formación Docente',
+                                                           'Escuela de Orientación y Educación Especial' => 'Escuela de Orientación y Educación Especial'
+                                                          ),
+                                                      'class' => 'form-control']) ?>
                 <br>
             </div>
 
