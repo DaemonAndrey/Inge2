@@ -41,10 +41,10 @@ class UsersController extends AppController
 	{        
         // Carga el modelo de 'Roles' para sacar el rol del usuario
         $this->loadModel('Roles');                             
-        
+
         // Consulta Join de usuarios con roles
         $query = $this->Users->find('all');
-        
+
         $query->innerJoinWith('Roles')
               ->select(['Users.id',
                         'Users.username',
@@ -54,7 +54,7 @@ class UsersController extends AppController
                         'Users.state',
                         'Roles.role_name'
                        ]);
-        
+
         // Pagina la consulta
         $this->set('users', $this->paginate($query));
 	}
@@ -220,8 +220,8 @@ class UsersController extends AppController
             return false;            
         }
         
-        // Si soy Administrador y la acción es INDICE de Usuarios
-        if ($this->request->action === 'index' && $user['role_id'] == 2)
+        // Si no soy SuperAdministrador y la acción es INDICE de Usuarios
+        if ($this->request->action === 'index' && $user['role_id'] != 3)
         {
             return false;            
         }
@@ -250,6 +250,9 @@ class UsersController extends AppController
     */
     public function reject($id=null)
     {
+        $this->loadModel('Configurations');
+        $configuration = $this->Configurations->get(1);
+        
         // Si el usuario tiene permisos
         if($this->Auth->user())
         {
@@ -259,7 +262,7 @@ class UsersController extends AppController
             {
                 if ($this->Users->delete($user))
                 {
-                    $this->getMailer('User')->send('rejectUser', [$user]);
+                    $this->getMailer('User')->send('rejectUser', [$user, $configuration]);
 
                     $this->Flash->success('Solicitud rechazada. Usuario eliminado del sistema.',
                                           ['key' => 'success']);
@@ -348,8 +351,14 @@ class UsersController extends AppController
                 {
                     $this->Flash->success('Datos actualizados.',
                                           ['key' => 'success']);
+                    
+                    // Si soy SuperAdmin
+                    if($this->Auth->User('role_id') == 3)
+                    {
+                        return $this->redirect(['controller' => 'Users','action' => 'index']);  
+                    }
 
-                    return $this->redirect(['controller' => 'Users','action' => 'index']);                    
+                    //return $this->redirect(['controller' => 'Pages','action' => 'index']);  
                 }
                 else
                 {

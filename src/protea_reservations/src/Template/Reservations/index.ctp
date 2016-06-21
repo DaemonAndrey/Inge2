@@ -87,17 +87,15 @@
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaInicio" class="form-control" role="listbox" aria-label="Hora de inicio" aria-required="true" id="start" onchange="changeEndHour(); getResources(document.getElementById('resource_type'));">                            
                                 <?php
-                                    $inicioBD = 7;
-                                    $finBD = 21;
+                                    $inicioBD = $configuration['reservation_start_hour'];
+                                    $finBD = $configuration['reservation_end_hour'];
 
-                                    for($i = $inicioBD; $i < 10; $i++)
+                                    for($i = $inicioBD; $i < $finBD; $i++)
                                     {
-                                        echo "<option value=".$i."> 0".$i.":00:00</option>";
-                                    }
-
-                                    for($i = 10; $i < $finBD; $i++)
-                                    {
-                                        echo "<option value=".$i."> ".$i.":00:00</option>";
+                                        if($i<10)
+                                            echo "<option value=".$i."> 0".$i.":00:00</option>";
+                                        else 
+                                            echo "<option value=".$i."> ".$i.":00:00</option>";
                                     }
                                 ?>
                             </select>
@@ -111,17 +109,15 @@
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <select name="horaFin" class="form-control" role="listbox" aria-label="Hora de fin" aria-required="true" id="end" onchange="getResources(document.getElementById('resource_type'))">
                                 <?php
-                                    $inicioBD = 8;
-                                    $finBD = 22;
+                                    $inicioBD = $configuration['reservation_start_hour'] + 1;
+                                    $finBD = $configuration['reservation_end_hour'] + 1;
 
-                                    for($i = $inicioBD; $i < 10; $i++)
+                                    for($i = $inicioBD; $i < $finBD; $i++)
                                     {
-                                        echo "<option value=".$i."> 0".$i.":00:00"."</option>";
-                                    }
-
-                                    for($i = 10; $i < $finBD; $i++)
-                                    {
-                                        echo "<option value=".$i."> ".$i.":00:00"."</option>";
+                                        if($i<10)
+                                            echo "<option value=".$i."> 0".$i.":00:00</option>";
+                                        else 
+                                            echo "<option value=".$i."> ".$i.":00:00</option>";
                                     }
                                 ?>
                             </select>
