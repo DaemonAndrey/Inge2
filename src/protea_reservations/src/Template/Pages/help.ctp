@@ -55,6 +55,59 @@
     </div>
     <!-- FIN DE INTRODUCCION ======================================================== -->
     
+    <!-- PRUEBA ===================================================================== -->
+    <div class="row">
+        <div class='col-xs-8 col-xs-offset-2' style="color:black;">
+            <button data-toggle="collapse" class="btn btn-info" data-target="#prueba">Información detallada</button>
+        </div>
+        <div id="prueba" class="col-xs-10 col-xs-offset-1 collapse">
+            HOLA
+        </div>
+    </div>
+    <!-- FIN DE PRUEBA ============================================================== -->
+    
+    <!-- MANUAL ===================================================================== -->
+    <div class='row'>
+        <div class='col-xs-8 col-xs-offset-2' style="color:black;">
+            <br>
+            <h4><b>Funciones:</b></h4>
+            <br>
+            <?php
+            // SI SOY ADMINISTRADOR
+            if($user_role_id == 2 || $user_role_id == 3)
+            {
+                ?>
+                <?php
+            }
+            // SI SOY USUARIO REGULAR
+            else if($user_role_id == 1)
+            {
+                ?>
+                <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioCalendario">
+                    Revisar el calendario para ver eventos
+                </button>
+                <div id="usuarioCalendario" class="collapse">
+                    <p>
+                        Descripción de función
+
+                        <ol>
+                            <li>
+                                Paso
+                            </li>
+                            <li>
+                                Paso
+                            </li>
+                            <li>
+                                Paso
+                            </li>
+                        </ol>
+                    </p>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
     
     <!-- MANUAL ===================================================================== -->
     <div class='row'>
