@@ -7,14 +7,17 @@ ol
 {
     list-style-type: decimal;
     padding-left: 25px;
+    font-weight: bold;
 }
 
 ol li
 {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 p
 {
     color: black;
+    font-weight: normal;
+    text-align: justify;
 }

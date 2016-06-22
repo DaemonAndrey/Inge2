@@ -32,45 +32,56 @@
     
     <!-- INTRODUCCION =============================================================== -->
     <div class='row' id="introduccion">
-        <div class='col-xs-8 col-xs-offset-2' style="color:black;" align="justify">
-            <br>
-            <?php
-            // SI SOY ADMINISTRADOR
-            if($user_role_id == 2 || $user_role_id == 3)
-            {
-                ?>
-                Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+        <div class='col-xs-8 col-xs-offset-2'>
+            <div style="text-align:justify;color:black;">
+                <br>
+                <p>
                 <?php
-            }
-            // SI SOY USUARIO REGULAR
-            else if($user_role_id == 1)
-            {
+                // SI SOY ADMINISTRADOR
+                if($user_role_id == 2 || $user_role_id == 3)
+                {
+                    ?>
+                    Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    <?php
+                }
+                // SI SOY USUARIO REGULAR
+                else if($user_role_id == 1)
+                {
+                    ?>
+                    Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    <?php
+                }
                 ?>
-                Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
-                <?php
-            }
-            ?>
-            <br>
+                </p>
+            </div>
         </div>
     </div>
     <!-- FIN DE INTRODUCCION ======================================================== -->
     
-    <div class='row'>
-        <div class='col-xs-12'>
-            <br>
-        </div>
-    </div>
     
-    <div class='row'>
-            <div class='col-xs-8 col-xs-offset-2' style="color:black;">
-                <h4><b>Funciones:</b></h4>
+    <!-- TITULO FUNCIONES =========================================================== -->
+    <?php
+    if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
+    {
+        ?>
+        <div class='row'>
+                <div class='col-xs-8 col-xs-offset-2' style="color:black;">
+                    <p>
+                        <h4><b>Funciones:</b></h4>
+                    </p>
+                    <br>
+                </div>
             </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
+    <!-- FIN TITULO FUNCIONES ======================================================= -->
+
     
     <!-- MANUAL ===================================================================== -->
     <div class='row'>
-        <div class='col-xs-12' style="color:black;">            
+        <div class='col-xs-12' style="color:black; text-align:justify;">            
             <?php
             // SI SOY ADMINISTRADOR
             if($user_role_id == 2 || $user_role_id == 3)
@@ -78,7 +89,9 @@
                 ?>
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
-                    <h4><u>Administrar reservaciones pendientes</u></h4>
+                    <p>
+                        <h4><u>Administrar reservaciones pendientes</u></h4>
+                    </p>
                 </div>
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -88,19 +101,24 @@
                     <div id="adminReservacionesPendientes" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </li>
-                                <li>
-                                    Paso sdflkjsdfjasdfj sdfkhsdf adskfjsd adskjdsfhsd ñksadf
-                                </li>
-                                <li>
-                                    Paso djjs sksd dsjs djs sjdsfsd fg sdjd sjdf ,jhdsf sldkjhs dsndjsd dksdjdfh
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -114,19 +132,24 @@
                     <div id="adminCancelar" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -144,19 +167,24 @@
                     <div id="adminHistorial" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -174,19 +202,24 @@
                     <div id="adminAgregarTipo" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -200,19 +233,24 @@
                     <div id="adminActualizarTipo" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -226,19 +264,24 @@
                     <div id="adminEliminarTipo" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -256,19 +299,24 @@
                     <div id="adminAgregarRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -282,19 +330,24 @@
                     <div id="adminVerRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -308,19 +361,24 @@
                     <div id="adminActualizarRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -334,19 +392,24 @@
                     <div id="adminEliminarRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -360,19 +423,24 @@
                     <div id="adminAsociarRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -386,19 +454,24 @@
                     <div id="adminDesasociarRecurso" class="collapse">
                         <p>
                             Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -422,20 +495,25 @@
                         </button>
                         <div id="adminAgregarUsuario" class="collapse">
                             <p>
-                                Descripción de función
-
-                                <ol>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                </ol>
-                            </p>
+                            Descripción de función
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -448,20 +526,25 @@
                         </button>
                         <div id="adminVerUsuarios" class="collapse">
                             <p>
-                                Descripción de función
-
-                                <ol>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                </ol>
-                            </p>
+                            Descripción de función
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                </p>
+                            </li>
+                        </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -475,19 +558,24 @@
                         <div id="adminUsuariosPendientes" class="collapse">
                             <p>
                                 Descripción de función
-
-                                <ol>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                </ol>
                             </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -501,19 +589,24 @@
                         <div id="adminActualizarUsuarios" class="collapse">
                             <p>
                                 Descripción de función
-
-                                <ol>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                </ol>
                             </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -527,19 +620,24 @@
                         <div id="adminEliminarUsuarios" class="collapse">
                             <p>
                                 Descripción de función
-
-                                <ol>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                    <li>
-                                        Paso
-                                    </li>
-                                </ol>
                             </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -562,20 +660,35 @@
                     </button>
                     <div id="usuarioCalendario" class="collapse">
                         <p>
-                            Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
+                            Revisar el calendario de eventos permite dar a conocer las fechas y horas en las que hay salas reservadas y los eventos para los cuales están reservadas.
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Reservar</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá un calendario con las salas que tienen asignado un evento, ya sea un curso, una conferencia, etc... El número que aparece antes del nombre es la hora para la que está reservado el evento.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar la visualización del calendario haciendo click sobre <strong>Mes</strong>, <strong>Semana</strong>, o <strong>Día</strong>, para ver con mejor detalle la duración de los eventos. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en las flechas <strong>◄</strong> (anterior)  o <strong>►</strong> (siguiente) para cambiar la vista del calendario al Mes, Semana, Día anterior o siguiente, respectivamente. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en el botón <strong>Hoy</strong> para regresear inmediatamente al día actual, ya sea en la vista de Mes, Semana o Día. 
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -588,20 +701,52 @@
                     </button>
                     <div id="usuarioReservacion" class="collapse">
                         <p>
-                            Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
+                            Reservar salas o equipo audiovisual durante un tiempo determinado, para que una vez confirmada la reservación poder utilizarlo hasta la hora establecida.
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Reservar</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en la <strong>casilla del calendario</strong> del día en que desea hacer uso del recurso.
+                                    Aparecerá una ventana emergente con la información de la reservación.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Establecer la duración de uso del recurso, seleccionando la <strong>Hora de Inicio</strong> y la <strong>Hora de Fin</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccionar un <strong>Tipo de Recurso</strong> y a su vez el <strong>Recurso</strong> que desea reservar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Escribir el <strong>Nombre del Evento</strong> (curso, conferencia, etc...) en el que se va a utilizar el recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Información Detallada</strong> para ver las especificaciones del recurso. En caso de necesitar algo adicional a lo especificado en la descripción, escribirlo en el campo de <strong>comentarios</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si está de acuerdo con los términos y condiciones de uso, chequear la casilla.
+                                    En caso de desconocerlos, hacer click en <strong>Términos y Condiciones de Uso</strong> para ser redirijido a una página donde los puede consultar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Finalmente, hacer click en <strong>Reservar</strong>. En caso de haber reservado una <strong>Sala</strong> correctamente, aparecerá su reservación en el calendario.
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -614,20 +759,31 @@
                     </button>
                     <div id="usuarioActualizar" class="collapse">
                         <p>
-                            Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
+                            Modificar la información de mi cuenta para tener los datos más actualizados.
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar Mi Cuenta</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -635,25 +791,39 @@
                 </div>
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
-                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioPendientes">
-                        Revisar mis reservaciones actuales
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioCancelar">
+                        Cancelar mis reservaciones actuales
                     </button>
-                    <div id="usuarioPendientes" class="collapse">
+                    <div id="usuarioCancelar" class="collapse">
                         <p>
-                            Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
+                            Cancelar una reservación pendiente o aceptada cuya fecha esté después o sea igual que la fecha actual, en caso de que ya no desee hacer uso del recurso.
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Mis Reservaciones</strong>.
+                                    Aparecerá un índice con la información básica de la reservación, donde además se podrá ver si está <strong>Pendiente</strong> o <strong>Aceptada</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong>check</strong> de la reservación que quiere revisar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá la información más detallada de la reservación.
+                                    Hacer click en <strong>Cancelar</strong>.
+                                    Independientemente de si la reservación está Pendiente o Aceptada, se podrá cancelar siempre y cuando el tiempo de anticipación con que la esté cancelando esté dentro del tiempo establecido por los administradores.
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
@@ -666,20 +836,25 @@
                     </button>
                     <div id="usuarioHistorial" class="collapse">
                         <p>
-                            Descripción de función
-
-                            <ol>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                                <li>
-                                    Paso
-                                </li>
-                            </ol>
+                            Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
                         </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                        </ol>
                     </div>
                 </div>
                 <div class='col-xs-8 col-xs-offset-2'>
