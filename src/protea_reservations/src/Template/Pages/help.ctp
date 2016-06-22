@@ -105,17 +105,37 @@
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Reservaciones Pendientes</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones pendientes de confirmación.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong>check</strong> de la reservación que quiere revisar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá la información más detallada de la reservación.
+                                    En caso de rechazarla, puede escribir un <strong>comentario</strong> que podrá leer el usuario que hizo esa reservación, explicando por qué su reservación fue rechazada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea aprobar la reservación, hacer click en <strong>Aprobar</strong>.
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue aprobada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea rechazar la reservación, hacer click en <strong>Rechazar</strong>.
+                                    La reservación se eliminará de la lista de pendientes, pero se mantendrá en un historial de reservaciones. 
                                 </p>
                             </li>
                         </ol>
@@ -723,6 +743,7 @@
                             <li>
                                 <p>
                                     Seleccionar un <strong>Tipo de Recurso</strong> y a su vez el <strong>Recurso</strong> que desea reservar.
+                                    Si no puede seleccionar un recurso, es porque ya está reservado a esa hora, por lo que debe seleccionar otra Hora de Incio.
                                 </p>
                             </li>
                             <li>
@@ -808,7 +829,7 @@
                             <li>
                                 <p>
                                     Hacer click en <strong>Mis Reservaciones</strong>.
-                                    Aparecerá un índice con la información básica de la reservación, donde además se podrá ver si está <strong>Pendiente</strong> o <strong>Aceptada</strong>.
+                                    Aparecerá un índice con la información básica de sus reservaciones, donde además se podrá ver si están <strong>Pendientes</strong> o <strong>Aceptadas</strong>.
                                 </p>
                             </li>
                             <li>

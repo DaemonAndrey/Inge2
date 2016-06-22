@@ -299,12 +299,12 @@ class ReservationsController extends AppController
                         // Si la acción es aprobar la reservación
                         if($this->request->data['accion'] == 'Aprobar')
                         {
-                            $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
+                            $this->accept($reservation, $this->request->data['Reservations']['administrator_comment']);
                         }
                         // Si la acción es rechazar la reservación
                         else if($this->request->data['accion'] == 'Rechazar')
                         {
-                            $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
+                            $this->reject($reservation, $this->request->data['Reservations']['administrator_comment']);
                         }
                         // Si la acción es cancelar la reservación
                         else if($this->request->data['accion'] == 'Cancelar')
