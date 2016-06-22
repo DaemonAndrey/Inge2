@@ -28,20 +28,20 @@ class UserMailer extends Mailer
             ->layout('default');
     }
 
-    public function confirmReservation($user, $configuration)
+    public function confirmReservation($userEmail, $configuration)
     {
         $this
-            ->to($user->username)
+            ->to($userEmail)
             ->subject($configuration->reservation_accepted_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
     }
     
-    public function rejectReservation($user, $configuration)
+    public function rejectReservation($userEmail, $configuration)
     {
         $this
-            ->to($user->username)
+            ->to($userEmail)
             ->subject($configuration->reservation_rejected_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
