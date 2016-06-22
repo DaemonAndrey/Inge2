@@ -28,14 +28,16 @@ class ConfigurationsController extends AppController
                     if ($this->Configurations->save($configuration))
                     {
                         //Si la información fue guardada correctamente entonces despliega un mensaje de confirmación
-                        $this->Flash->success('Se ha actualizado la configuración', ['key' => 'updateConfigurationSuccess']);
+                        $this->Flash->success('Se ha actualizado la configuración', 
+                                                ['key' => 'success']);
                         return $this->redirect(['controller' => 'reservations','action'=> 'manage']);
                     }
                 }
                 catch(Exception $ex)
                 {
                     //Si no se ha podido actualizar correctamente el tipo del recurso despliega un mensaje indicando que hubo error
-                    $this->Flash->error('No se ha podido actualizar la configuración', ['key' => 'updateConfigurationError']);
+                    $this->Flash->error('No se ha podido actualizar la configuración', 
+                                        ['key' => 'error']);
                 }
 		    }
 		    $this->set('configuration', $configuration);
