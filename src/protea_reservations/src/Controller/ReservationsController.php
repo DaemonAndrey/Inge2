@@ -37,7 +37,7 @@ class ReservationsController extends AppController
                      ])
             ->join(['users' => ['table' => 'users',
                                 'type' => 'INNER',
-                                'conditions' => 'users.id = reservations.user_id'
+                                'conditions' => 'users.id = Reservations.user_id'
                                ],
                     'resources_users' => ['table' => 'resources_users',
                                           'type' => 'INNER',
@@ -47,10 +47,10 @@ class ReservationsController extends AppController
                                          ],
                     'resources' => ['table' => 'resources',
                                     'type' => 'INNER',
-                                    'conditions' => 'resources.id = reservations.resource_id'
+                                    'conditions' => 'resources.id = Reservations.resource_id'
                                    ]
                    ])
-            ->andWhere(['reservations.state = ' => 0])
+            ->andWhere(['Reservations.state = ' => 0])
             ->order(['start_date' => 'ASC']);
     }
     
