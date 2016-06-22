@@ -2,7 +2,13 @@
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="configurations form">
+    <!-- MENSAJES -->
+    <div style="text-align:center; color:red">
 
+        
+        
+        <br>
+    </div>
         
     <?= $this->Form->create($configuration) ?>
 
