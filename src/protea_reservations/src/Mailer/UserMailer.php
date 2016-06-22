@@ -11,7 +11,7 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject($configuration->reservation_accepted_subject)
+            ->subject($configuration->registration_accepted_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
