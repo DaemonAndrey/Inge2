@@ -100,7 +100,7 @@
                     </button>
                     <div id="adminReservacionesPendientes" class="collapse">
                         <p>
-                            Descripción de función
+                            Aprobar o rechazar reservaciones pendientes para discriminar si el usuario puede o no hacer uso del recurso solicitado.
                         </p>
                         <ol>
                             <li>
@@ -135,7 +135,8 @@
                             <li>
                                 <p>
                                     Si desea rechazar la reservación, hacer click en <strong>Rechazar</strong>.
-                                    La reservación se eliminará de la lista de pendientes, pero se mantendrá en un historial de reservaciones. 
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue rechazada.
+                                    Además, el recurso reservado se habilita de nuevo para que pueda ser reservado por otro usuario.
                                 </p>
                             </li>
                         </ol>
@@ -147,26 +148,26 @@
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
                     <button data-toggle="collapse" class="btn btn-info" data-target="#adminCancelar">
-                        Cancelar reservaciones
+                        Cancelar reservaciones pendientes
                     </button>
                     <div id="adminCancelar" class="collapse">
                         <p>
-                            Descripción de función
+                            Eliminar reservaciones en caso de que se haya pasado la fecha y no pudieron ser Aprobadas ni Rechazadas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                         </ol>
@@ -182,26 +183,26 @@
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
                     <button data-toggle="collapse" class="btn btn-info" data-target="#adminHistorial">
-                        Revisar historial de reservaciones
+                        Generar reportes de reservaciones
                     </button>
                     <div id="adminHistorial" class="collapse">
                         <p>
-                            Descripción de función
+                            Generar documentos en formato PDF para hacer análisis de las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                         </ol>
@@ -221,22 +222,19 @@
                     </button>
                     <div id="adminAgregarTipo" class="collapse">
                         <p>
-                            Descripción de función
+                            Agregar un nuevo tipo de recurso, para luego poder agregar recursos bajo esa categoría.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso.
                                 </p>
                             </li>
                         </ol>
