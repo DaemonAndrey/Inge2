@@ -13,8 +13,10 @@ class UserMailer extends Mailer
             ->to($user->username)
             ->subject($configuration->registration_accepted_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->registration_accepted_message]);
+            
     }
     
     /* Se le envía al usuario que rechazaron su solicitud de registro. */
@@ -24,8 +26,9 @@ class UserMailer extends Mailer
             ->to($user->username)
             ->subject($configuration->registration_rejected_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->registration_rejected_message]);
     }
 
     public function confirmReservation($userEmail, $configuration)
@@ -34,8 +37,9 @@ class UserMailer extends Mailer
             ->to($userEmail)
             ->subject($configuration->reservation_accepted_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->reservation_accepted_message]);
     }
     
     public function rejectReservation($userEmail, $configuration)
@@ -44,8 +48,9 @@ class UserMailer extends Mailer
             ->to($userEmail)
             ->subject($configuration->reservation_rejected_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->reservation_rejected_message]);
     }
 
     public function resetPassword($user, $configuration)
