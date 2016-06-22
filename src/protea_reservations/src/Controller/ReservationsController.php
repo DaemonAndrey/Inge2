@@ -354,6 +354,7 @@ class ReservationsController extends AppController
                 $historicReservation->state = 1;
                 $reservation->state = 1;
                 
+                $this->loadModel('Configurations');
                 $configuration = $this->Configurations->get(1);
                 
                 $this->loadModel('Users');
@@ -393,6 +394,7 @@ class ReservationsController extends AppController
         {
             if($this->Auth->user())
             {
+                $this->loadModel('Configurations');
                 $configuration = $this->Configurations->get(1);
                 
                 $this->loadModel('HistoricReservations');
