@@ -18,11 +18,11 @@ class UserMailer extends Mailer
     }
     
     /* Se le envía al usuario que rechazaron su solicitud de registro. */
-    public function rejectUser($user)
+    public function rejectUser($user, $configuration)
     {
         $this
             ->to($user->username)
-            ->subject('Solicitud de Registro de Cuenta RECHAZADA (Reservaciones Facultad de Educación-UCR)')
+            ->subject($configuration->registration_rejected_message)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');

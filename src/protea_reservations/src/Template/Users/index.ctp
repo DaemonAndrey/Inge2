@@ -13,7 +13,8 @@
     <?= $this->Flash->render('editUserSuccess') ?>
     <?= $this->Flash->render('rejectUserSuccess') ?>
     <?= $this->Flash->render('confirmUserSuccess') ?>
-</div> <!-- FIN DE MENSAJES -->
+</div>
+<!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">

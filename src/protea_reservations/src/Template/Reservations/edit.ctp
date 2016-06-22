@@ -241,8 +241,7 @@
                     <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador:'); ?>
                 </div>
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-                    <?=
-                    $this->Form->input('Reservations.admin_comment', [  'label' => false,
+                    <?= $this->Form->input('Reservations.admin_comment', [  'label' => false,
                                                                         'type' => 'textarea',
                                                                         'class' => 'form-control',
                                                                         'placeholder' => '(Opcional). Indique el motivo de la aceptación o rechazo de la reservación.']); 

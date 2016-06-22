@@ -37,27 +37,6 @@ class UsersTable extends Table
                                             ]
             ])
             
-            ->notEmpty('password', 'Ingrese su contraseña')
-            ->add('password', [
-                           
-                            'lengthBetween' => ['rule' => ['lengthBetween', 8, 50],
-                                        'message' => 'Debe contener mínimo 8 y máximo 50 caracteres.',
-                                        ],
-                            'validFormat' => [
-                                            'rule' => array('custom', '/^[a-zA-Z0-9._]+$/'),
-                                            'message' => 'Solo puede usar: números, letras, puntos y guiones bajos'
-                                            ]
-            ])
-            
-            ->notEmpty('repass', 'Ingrese su contraseña de nuevo.')
-            ->add('repass', [
-                    'compare' => [
-                                'rule' => ['compareWith','password'],
-                                'message' => 'Las contraseñas no coinciden.'
-                                ]
-            ])
-            ->requirePresence('repass')
-            
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
@@ -117,19 +96,7 @@ class UsersTable extends Table
                                             'message' => 'Debe usar el correo institucional.'
                                             ]
             ])
-            
-            ->notEmpty('password', 'Ingrese su contraseña')
-            ->add('password', [
-                           
-                            'lengthBetween' => ['rule' => ['lengthBetween', 8, 50],
-                                        'message' => 'Debe contener mínimo 8 y máximo 50 caracteres.',
-                                        ],
-                            'validFormat' => [
-                                            'rule' => array('custom', '/^[a-zA-Z0-9._]+$/'),
-                                            'message' => 'Solo puede usar: números, letras, puntos y guiones bajos'
-                                            ]
-            ])
-            
+
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', [
                                 'maxLength' =>  ['rule' => ['maxLength', 20],
@@ -185,23 +152,30 @@ class UsersTable extends Table
         
         return true;
     }
-    
-    public function equaltofield($check,$otherfield)
+
+    public function validateUserState($username)
     {
-        //get name of field
-        $fname = '';
-        foreach ($check as $key => $value){
-            $fname = $key;
-            break;
+        $user = $this->find()
+                    ->hydrate(false)
+                    ->select(['id','username', 'role_id', 'state'])
+                    ->where(['username'=>$username]);
+        $user = $user->toArray();
+
+
+        if(!empty($user) && ($user[0]['state'] != 0))
+        {
+            return $user;
         }
-        return $this->data[$this->name][$otherfield] === $this->data[$this->name][$fname];
+
+        return false;
+
     }
 
 
     public function findAuth(Query $query, array $options)
     {
         $query
-            ->select(['id', 'username', 'password','role_id'])
+            ->select(['id', 'username','role_id'])
             ->where(['Users.state' => 1]);
 
         return $query;

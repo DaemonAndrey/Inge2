@@ -1,19 +1,10 @@
+/*global JQuery*/
+
+
+
 //Código para el modal de los flash
 
-if(document.getElementsByClassName("message").length)
-{
-    var text = $(".message").text();
-    $(".message").empty();
-
-    document.getElementById("flashText").style = "color:green";
-    if(text.search("-red") != -1)
-    {
-        document.getElementById("flashText").style = "color:red";
-        text = text.replace("-red", "");
-    }
-
-    document.getElementById("flashText").innerHTML = text;
-
+if (document.getElementsByClassName("message").length) {
     jQuery('#flash').modal('show');
     setTimeout(function () {
         jQuery('#flash').modal('hide');
@@ -21,87 +12,74 @@ if(document.getElementsByClassName("message").length)
 }
 
 
-
-
-    $(document).ready(function () { // page is now ready, initialize the calendar...
-        var xhttp = new XMLHttpRequest();
-        var json_events = "";
-        xhttp.onreadystatechange = function()
-        {
-            if(xhttp.readyState == 4 && xhttp.status == 200)
-            {
-                json_events = xhttp.responseText;               
-                
-            }
-        };
-        
-        var path = window.location.pathname;
-        var append = "";
-        if(path.charAt(path.length -1).localeCompare("/") == 0)
-        {
-            append = "index";
+$(document).ready(function () { // page is now ready, initialize the calendar...
+    var xhttp = new XMLHttpRequest();
+    var json_events = "";
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+            json_events = xhttp.responseText;
         }
-        else
-        {
-            if(path.charAt(path.length -1).localeCompare("x") != 0)
+    };
+
+    var path = window.location.pathname;
+    var append = "";
+    if (path.charAt(path.length - 1).localeCompare("/") === 0) {
+        append = "index";
+    } else {
+        if (path.charAt(path.length - 1).localeCompare("x") !== 0) {
+            append = "/index";
+        }
+    }
+    xhttp.open("POST", path + append, false);
+    xhttp.setRequestHeader("type", "fetch");
+    xhttp.send();
+
+    $('#calendar').fullCalendar({ // put your options and callbacks here
+        dayClick: function (date, jsEvent, view) {
+            var today = new Date();
+            var selectedDay = date.format("DD");
+            var selectedMonth = date.format("MM");
+
+            // El modal se abre si sucede alguna de las siguientes situaciones:
+            //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
+            //  * Si el mes seleccionado es mayor al actual.
+            var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
+
+            if( openModal )
             {
-                append = "/index";
+                jQuery('#mdlReservaciones').modal('show');
+                globalDate = date;
+
+                fecha = document.getElementById("fecha");
+                fecha.innerHTML = date.format("DD MMMM YYYY");
+                document.getElementById("Reservar").disabled = true;
+                getResources(document.getElementById("resource_type"));
+            }
+        },
+        header: {
+            left: 'title',
+            center: 'month,basicWeek,agendaDay',
+            right: 'today prev,next'
+        },
+
+        events:  JSON.parse(json_events),//JSON.parse(json_events),                
+        eventLimit: true,
+        views: {
+            basic: {
+                eventLimit: 20// options apply to basicWeek and basicDay views
             }
         }
-        xhttp.open("POST", path+append,false);
-        xhttp.setRequestHeader("type", "fetch");
-        xhttp.send(); 
-        
-        
-        $('#calendar').fullCalendar({ // put your options and callbacks here
-            dayClick: function(date, jsEvent, view){
-                
-                var today = new Date();
-                var selectedDay = date.format("DD");
-                var selectedMonth = date.format("MM");
-                
-                // El modal se abre si sucede alguna de las siguientes situaciones:
-                //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
-                //  * Si el mes seleccionado es mayor al actual.
-                var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
-                
-                if( openModal )
-                {
-                    jQuery('#mdlReservaciones').modal('show');
-                    globalDate = date;
 
-                    fecha = document.getElementById("fecha");
-                    fecha.innerHTML = date.format("DD MMMM YYYY");
-                    document.getElementById("Reservar").disabled = true;
-                    getResources(document.getElementById("resource_type"));
-                }
-            },
-            header: {
-                left: 'title',
-                center: 'month,basicWeek,agendaDay',
-                right: 'today prev,next'
-            },
-              
-            events:  JSON.parse(json_events),//JSON.parse(json_events),                
-            eventLimit: true,
-            views: {
-                basic: {
-                    eventLimit: 20// options apply to basicWeek and basicDay views
-                }
-            }
-            
-        });
     });
+});
 
     function getResources(element)
     {
-        if(element.value != "Seleccionar")
-        {
+        if(element.value != "Seleccionar") {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function()
             {
-                if(xhttp.readyState == 4 && xhttp.status == 200)
-                {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
                     obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
                     fillResources(); //Llama a este método para llegar el select
                 }
@@ -110,8 +88,8 @@ if(document.getElementsByClassName("message").length)
             var path = window.location.pathname;
             var new_path = path.replace("/reservations/","/resources/"); 
 
-            if(path === new_path) //algunos navegadores no ponen el último /
-            {
+            //algunos navegadores no ponen el último /
+            if(path === new_path) {
                 new_path = path.replace("/reservations","/resources/");                
             }
             
@@ -148,7 +126,6 @@ if(document.getElementsByClassName("message").length)
     
     function fillResources()
     {
-
         html = "";
         var len = obj.available.length;
         document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
@@ -186,10 +163,7 @@ if(document.getElementsByClassName("message").length)
                 {
                     showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
                     setTimeout(function(){location.reload();},10000);
- 
                 }
-
-
             };
 
             var date = document.getElementById("fecha").innerHTML; 
@@ -213,7 +187,6 @@ if(document.getElementsByClassName("message").length)
                 path = path+"/";
             }            
 
-
             xhttp.open("POST", path+"add");
 
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -225,13 +198,10 @@ if(document.getElementsByClassName("message").length)
                 event_name : event_name, 
                 resource: resource
             })); 
-        
-    
         }
         else
         {
-            showModal( "Debe aceptar los términos y condiciones de uso");
-            
+            showModal( "Debe aceptar los términos y condiciones de uso");   
         }
     }
 
@@ -306,10 +276,15 @@ if(document.getElementsByClassName("message").length)
         document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
     }
 
+    var eventNameText = "";
+
+    function setEventName(input) {
+        eventNameText = input.value;
+    }
+
     function activateButton(select, checkbox)
-    {
-        
-        if((select.value != "Seleccionar") && checkbox.checked)
+    {        
+        if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
         {
             document.getElementById("Reservar").disabled = false;
         }
@@ -323,9 +298,4 @@ if(document.getElementsByClassName("message").length)
     {
         document.getElementById("callbackText").innerHTML = text;
         $('#callback').modal('show');
-    }
-
-
-
-
-
+    }   

@@ -1,0 +1,49 @@
+[20-Jun-2016 16:07:21 UTC] PHP Fatal error:  Call to undefined function App\Auth\ldap_connect() in /home/ubuntu/workspace/src/protea_reservations/src/Auth/LdapAuthenticate.php on line 82
+[20-Jun-2016 16:07:21 UTC] PHP Stack trace:
+[20-Jun-2016 16:07:21 UTC] PHP   1. {main}() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:0
+[20-Jun-2016 16:07:21 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:37
+[20-Jun-2016 16:07:21 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[20-Jun-2016 16:07:21 UTC] PHP   4. Cake\Controller\Controller->startupProcess() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:109
+[20-Jun-2016 16:07:21 UTC] PHP   5. Cake\Controller\Controller->dispatchEvent() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Controller.php:495
+[20-Jun-2016 16:07:21 UTC] PHP   6. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[20-Jun-2016 16:07:21 UTC] PHP   7. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[20-Jun-2016 16:07:21 UTC] PHP   8. Cake\Controller\Component\AuthComponent->startup() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[20-Jun-2016 16:07:21 UTC] PHP   9. Cake\Controller\Component\AuthComponent->authCheck() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:263
+[20-Jun-2016 16:07:21 UTC] PHP  10. Cake\Controller\Component\AuthComponent->_getUser() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:297
+[20-Jun-2016 16:07:21 UTC] PHP  11. Cake\Controller\Component\AuthComponent->constructAuthenticate() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:699
+[20-Jun-2016 16:07:21 UTC] PHP  12. App\Auth\LdapAuthenticate->__construct() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:820
+[20-Jun-2016 16:09:33 UTC] PHP Fatal error:  Call to undefined function App\Auth\ldap_connect() in /home/ubuntu/workspace/src/protea_reservations/src/Auth/LdapAuthenticate.php on line 82
+[20-Jun-2016 16:09:33 UTC] PHP Stack trace:
+[20-Jun-2016 16:09:33 UTC] PHP   1. {main}() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:0
+[20-Jun-2016 16:09:33 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:37
+[20-Jun-2016 16:09:33 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[20-Jun-2016 16:09:33 UTC] PHP   4. Cake\Controller\Controller->startupProcess() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:109
+[20-Jun-2016 16:09:33 UTC] PHP   5. Cake\Controller\Controller->dispatchEvent() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Controller.php:495
+[20-Jun-2016 16:09:33 UTC] PHP   6. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[20-Jun-2016 16:09:33 UTC] PHP   7. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[20-Jun-2016 16:09:33 UTC] PHP   8. Cake\Controller\Component\AuthComponent->startup() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[20-Jun-2016 16:09:33 UTC] PHP   9. Cake\Controller\Component\AuthComponent->authCheck() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:263
+[20-Jun-2016 16:09:33 UTC] PHP  10. Cake\Controller\Component\AuthComponent->_getUser() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:297
+[20-Jun-2016 16:09:33 UTC] PHP  11. Cake\Controller\Component\AuthComponent->constructAuthenticate() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:699
+[20-Jun-2016 16:09:33 UTC] PHP  12. App\Auth\LdapAuthenticate->__construct() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php:820
+[21-Jun-2016 05:26:02 UTC] PHP Fatal error:  Call to a member function User() on a non-object in /home/ubuntu/workspace/src/protea_reservations/src/Controller/AppController.php on line 69
+[21-Jun-2016 05:26:02 UTC] PHP Stack trace:
+[21-Jun-2016 05:26:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:0
+[21-Jun-2016 05:26:02 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:37
+[21-Jun-2016 05:26:02 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[21-Jun-2016 05:26:02 UTC] PHP   4. Cake\Controller\Controller->startupProcess() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:109
+[21-Jun-2016 05:26:02 UTC] PHP   5. Cake\Controller\Controller->dispatchEvent() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Controller.php:491
+[21-Jun-2016 05:26:02 UTC] PHP   6. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[21-Jun-2016 05:26:02 UTC] PHP   7. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[21-Jun-2016 05:26:02 UTC] PHP   8. App\Controller\UsersController->beforeFilter() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:386
+[21-Jun-2016 05:26:02 UTC] PHP   9. App\Controller\AppController->beforeFilter() /home/ubuntu/workspace/src/protea_reservations/src/Controller/UsersController.php:23
+[21-Jun-2016 05:27:00 UTC] PHP Fatal error:  Call to a member function User() on a non-object in /home/ubuntu/workspace/src/protea_reservations/src/Controller/AppController.php on line 69
+[21-Jun-2016 05:27:00 UTC] PHP Stack trace:
+[21-Jun-2016 05:27:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:0
+[21-Jun-2016 05:27:00 UTC] PHP   2. Cake\Routing\Dispatcher->dispatch() /home/ubuntu/workspace/src/protea_reservations/webroot/index.php:37
+[21-Jun-2016 05:27:00 UTC] PHP   3. Cake\Routing\Dispatcher->_invoke() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:87
+[21-Jun-2016 05:27:00 UTC] PHP   4. Cake\Controller\Controller->startupProcess() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Routing/Dispatcher.php:109
+[21-Jun-2016 05:27:00 UTC] PHP   5. Cake\Controller\Controller->dispatchEvent() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Controller/Controller.php:491
+[21-Jun-2016 05:27:00 UTC] PHP   6. Cake\Event\EventManager->dispatch() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventDispatcherTrait.php:78
+[21-Jun-2016 05:27:00 UTC] PHP   7. Cake\Event\EventManager->_callListener() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:356
+[21-Jun-2016 05:27:00 UTC] PHP   8. App\Controller\AppController->beforeFilter() /home/ubuntu/workspace/src/protea_reservations/vendor/cakephp/cakephp/src/Event/EventManager.php:386

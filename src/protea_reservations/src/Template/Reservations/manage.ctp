@@ -17,6 +17,7 @@
     <?= $this->Flash->render('cancelReservationError') ?>
     <?= $this->Flash->render('nullReservation') ?>
 </div>
+<!-- FIN DE MENSAJES -->
 
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">
@@ -145,7 +146,11 @@
                         switch($reservation['state'])
                         {
                             case 0:
-                                echo "Pendiente";
+                                ?>
+                                <b>
+                                    <?php echo "Pendiente"; ?>
+                                </b>
+                                <?php
                                 break;
                             case 1:
                                 echo "Aceptada";

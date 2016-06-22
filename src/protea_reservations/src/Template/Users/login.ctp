@@ -5,10 +5,12 @@
 <div class="users form">
     <!-- MENSAJES -->
     <div style="text-align:center; color:red">
-        <?= $this->Flash->render('loginError') ?>
-        <?= $this->Flash->render('loginPendiente') ?>
+
+        
+        
         <br>
     </div>
+    <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  
@@ -22,7 +24,8 @@
         <!-- USERNAME -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2'>
-                <?=  $this->Form->input('username', ['placeholder' => 'Correo Institucional',
+                <?=  $this->Form->input('username', ['title' => 'Correo institucional de la UCR sin @ucr.ac.cr.',
+                                                     'placeholder' => 'Correo Institucional sin @ucr.ac.cr',
                                                      'class' => 'form-control',
                                                      'label' => 'Correo Institucional: ',
                                                      'required',
@@ -35,7 +38,8 @@
         <!-- PASSWORD -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2'>
-                <?=  $this->Form->input('password', ['placeholder' => 'Contraseña',
+                <?=  $this->Form->input('password', ['title' => 'La misma contraseña que utiliza en el correo institucional.',
+                                                     'placeholder' => 'Contraseña del correo institucional',
                                                      'class' => 'form-control',
                                                      'label' => 'Contraseña: ',
                                                      'required',
@@ -49,8 +53,8 @@
     <div class='row  text-center'>
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <?= $this->Form->button('Ingresar', ['class' => 'btn btn-info', 'style' => 'width:90px']); ?>
-            <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-danger', 'style' => 'width:90px']); ?>
+            <?= $this->Form->button('Ingresar', ['class' => 'btn btn-success', 'style' => 'width:90px']); ?>
+            <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-primary', 'style' => 'width:90px']); ?>
         </div>
     </div> <!-- FIN BOTONES -->
     
