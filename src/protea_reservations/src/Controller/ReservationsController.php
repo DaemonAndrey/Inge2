@@ -268,14 +268,14 @@ class ReservationsController extends AppController
                              ])
                     ->join(['resource' => ['table' => 'resources',
                                            'type' => 'INNER',
-                                           'conditions' => ['reservations.resource_id = resource.id']
+                                           'conditions' => ['Reservations.resource_id = resource.id']
                                           ],
                             'user' => ['table' => 'users',
                                        'type' => 'INNER',
-                                       'conditions' => ['reservations.user_id = user.id']
+                                       'conditions' => ['Reservations.user_id = user.id']
                                       ]
                            ])
-                    ->andWhere(['reservations.id = ' => $id]);
+                    ->andWhere(['Reservations.id = ' => $id]);
                 
                 $reservation = $reservations->first();
                 
