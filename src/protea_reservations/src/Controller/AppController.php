@@ -70,7 +70,8 @@ class AppController extends Controller
                         'element' => 'Flash/error',
                     ]
                 ]
-            ]
+            ],
+            'authorize' => ['Controller'], 
         ]);
 
         /**

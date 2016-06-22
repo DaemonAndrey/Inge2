@@ -161,9 +161,10 @@ class UsersController extends AppController
                 {
 
                     $user = $secondAuth[0];
-
+                
                     $this->Auth->setUser($user);
-
+                    
+                
 
                     
                     // Si soy Administrador o SuperAdministrador
@@ -174,7 +175,7 @@ class UsersController extends AppController
                     // Si soy Usuario regular
                     else if($user['role_id'] == 1)
                     {
-                        return $this->redirect(['controller' => 'Reservations','action' => 'index']);
+                        //return $this->redirect(['controller' => 'Reservations','action' => 'index']);
                     }
 
                 }
@@ -214,6 +215,7 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
+        
         // Si no soy SuperAdministrador y la acción es VER Usuario
         if ($this->request->action === 'view' && $user['role_id'] != 3)
         {
