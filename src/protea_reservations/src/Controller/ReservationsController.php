@@ -354,12 +354,14 @@ class ReservationsController extends AppController
                 $historicReservation->state = 1;
                 $reservation->state = 1;
                 
+                $configuration = $this->Configurations->get(1);
+                
                 $this->loadModel('Users');
                 $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
-                    $this->getMailer('User')->send('confirmReservation', [$userEmail]);
+                    $this->getMailer('User')->send('confirmReservation', [$userEmail, $configuration]);
                     
                     $this->Flash->set(__('Reservación aceptada.'), ['clear' => true, 'key' => 'success']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -391,6 +393,8 @@ class ReservationsController extends AppController
         {
             if($this->Auth->user())
             {
+                $configuration = $this->Configurations->get(1);
+                
                 $this->loadModel('HistoricReservations');
                 $historicReservation = $this->HistoricReservations->newEntity();
                 $historicReservation->reservation_start_date = $reservation['start_date'];
@@ -409,7 +413,7 @@ class ReservationsController extends AppController
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
-                    $this->getMailer('User')->send('rejectReservation', [$userEmail]);
+                    $this->getMailer('User')->send('rejectReservation', [$userEmail, $configuration]);
                     
                     $this->Flash->set(__('Reservación rechazada.'), ['clear' => true, 'key' => 'success']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);

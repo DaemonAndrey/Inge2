@@ -7,11 +7,11 @@ use Cake\Mailer\Mailer;
 class UserMailer extends Mailer
 {
     /* Se le envía al usuario que aceptaron su solicitud de registro. */
-    public function confirmUser($user)
+    public function confirmUser($user, $configuration)
     {
         $this
             ->to($user->username)
-            ->subject(sprintf('Bienvenid@ %s al sistema de Reservas', $user->first_name))
+            ->subject($configuration->reservation_accepted_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
@@ -22,33 +22,33 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject($configuration->registration_rejected_message)
+            ->subject($configuration->registration_rejected_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
     }
 
-    public function confirmReservation($user)
+    public function confirmReservation($user, $configuration)
     {
         $this
             ->to($user->username)
-            ->subject('Solicitud de Reservación ACEPTADA (Reservaciones Facultad de Educación-UCR)')
+            ->subject($configuration->reservation_accepted_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
     }
     
-    public function rejectReservation($user)
+    public function rejectReservation($user, $configuration)
     {
         $this
             ->to($user->username)
-            ->subject('Solicitud de Reservación RECHAZADA (Reservaciones Facultad de Educación-UCR)')
+            ->subject($configuration->reservation_rejected_subject)
             ->emailFormat('html')
             ->template() // By default template with same name as method name is used.
             ->layout('default');
     }
 
-    public function resetPassword($user)
+    public function resetPassword($user, $configuration)
     {
         $this
             ->to($user->email)
