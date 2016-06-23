@@ -175,7 +175,7 @@ class UsersController extends AppController
                     // Si soy Usuario regular
                     else if($user['role_id'] == 1)
                     {
-                        //return $this->redirect(['controller' => 'Reservations','action' => 'index']);
+                        return $this->redirect(['controller' => 'Reservations','action' => 'index']);
                     }
 
                 }
