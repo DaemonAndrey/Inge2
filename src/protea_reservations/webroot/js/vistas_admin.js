@@ -69,7 +69,6 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
                 eventLimit: 20// options apply to basicWeek and basicDay views
             }
         }
-
     });
 });
 
