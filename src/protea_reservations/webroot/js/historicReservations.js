@@ -67,6 +67,11 @@ function generarPDF () {
         styles: {overflow: 'linebreak'},
         bodyStyles: {valign: 'top'},
         columnStyles: {email: {columnWidth: 'wrap'}},
+        headerStyles: {
+            fillColor: [145, 187, 27],
+            fontSize: 13,
+            rowHeight: 20
+        },
     });
 
     doc.save("prueba.pdf");
