@@ -81,7 +81,7 @@
     
     <!-- MANUAL ===================================================================== -->
     <div class='row'>
-        <div class='col-xs-12' style="color:black; text-align:justify;">            
+        <div class='col-xs-12' style="color:black; text-align:center;">            
             <?php
             // SI SOY ADMINISTRADOR
             if($user_role_id == 2 || $user_role_id == 3)
@@ -187,7 +187,7 @@
                     </button>
                     <div id="adminHistorial" class="collapse">
                         <p>
-                            Generar documentos en formato PDF para hacer análisis de las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
+                            Generar documentos en formato PDF para hacer análisis sobre las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
                         </p>
                         <ol>
                             <li>
