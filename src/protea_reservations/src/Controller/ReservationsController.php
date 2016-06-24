@@ -157,11 +157,11 @@ class ReservationsController extends AppController
                          ])
                 ->join(['resources' => ['table' => 'resources',
                                         'type' => 'INNER',
-                                        'conditions' => 'resources.id = reservations.resource_id'
+                                        'conditions' => 'resources.id = Reservations.resource_id'
                                        ]
                        ])
-                ->andWhere(['reservations.user_id = ' => $this->Auth->User('id'),
-                            'reservations.start_date > NOW()'
+                ->andWhere(['Reservations.user_id = ' => $this->Auth->User('id'),
+                            'Reservations.start_date > NOW()'
                            ])
                 ->order(['start_date' => 'ASC']);
                
