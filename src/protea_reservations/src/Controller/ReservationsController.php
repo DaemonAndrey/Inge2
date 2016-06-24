@@ -142,6 +142,9 @@ class ReservationsController extends AppController
         {
             // Pagina la tabla de recursos
             $this->set('reservations', $this->paginate($this->pendingReservations));
+            
+            //$res = $this->pendingReservations;
+            //echo json_encode($res);
         }
         // Si es usuario regular puede ver todas las reservaciones pendientes, aceptadas, rechazadas y canceladas
         else
@@ -353,11 +356,12 @@ class ReservationsController extends AppController
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 1;
                 $reservation->state = 1;
-                
+
                 $this->loadModel('Configurations');
                 $configuration = $this->Configurations->get(1);
                 
                 $this->loadModel('Users');
+
                 $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
@@ -409,8 +413,7 @@ class ReservationsController extends AppController
                 $historicReservation->user_comment = $reservation['user_comment'];
                 $historicReservation->administrator_comment = $adminComment;
                 $historicReservation->state = 2;
-                
-                $this->loadModel('Users');
+
                 $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
@@ -623,6 +626,17 @@ class ReservationsController extends AppController
             $this->Flash->set(__('No se puede cancelar la reservación porque no existe.'), ['clear' => true, 'key' => 'error']);
 
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+        }
+    }
+    
+    public function getHistoricReservations()
+    {
+        if($this->request->is('POST'))
+        {
+            $resources = $this->pendingReservations;
+            $resources = json_encode($resources);
+            
+            die($resources);
         }
     }
     
