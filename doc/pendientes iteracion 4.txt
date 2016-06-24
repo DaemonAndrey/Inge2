@@ -1,0 +1,3 @@
+Cancelar de admin
+Fecha de aprobada/rechazada/cancelada en historico
+Indice de historico para usuarios

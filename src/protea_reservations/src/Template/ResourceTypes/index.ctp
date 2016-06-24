@@ -52,10 +52,7 @@
                 ?>
             </th>
             <th>
-                <?php
-                    echo $this->Paginator->sort('days_before_reservation', 'Días de Anticipación ');
-                    echo $this->Html->tag('span', null, array('class' => 'glyphicon glyphicon-sort-by-number'));
-                ?>
+                Días de Anticipación
             </th>
             <th>
                 Actualizar

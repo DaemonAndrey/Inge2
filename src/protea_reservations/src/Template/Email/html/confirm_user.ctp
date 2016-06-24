@@ -1,1 +1,0 @@
-<h1>Usted ha sido aceptado. Ahora puede hacer sus reservaciones.</h1>
