@@ -206,3 +206,11 @@
       </div>
    </div>
 </div> <!-- FIN PAGINADOR -->
+
+
+<button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistorico()">Generar reporte</button>
+
+    
+<?= $this->Html->script('historicReservations.js'); ?>
+<?= $this->Html->script('jspdf.min.js'); ?>
+<?= $this->Html->script('jspdf.plugin.autotable.js'); ?>
