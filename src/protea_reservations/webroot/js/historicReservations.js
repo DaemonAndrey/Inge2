@@ -31,7 +31,6 @@ function solicitarDatosHistorico() {
 }
 
 function getRespuesta() {
-    alert("Actuando");
     if(peticionHTTP.readyState === 4 && peticionHTTP.status === 200) {
         datos = JSON.parse(peticionHTTP.responseText);
         generarPDF();
