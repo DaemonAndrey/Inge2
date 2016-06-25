@@ -164,6 +164,7 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
                     showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
                     setTimeout(function(){location.reload();},10000);
                 }
+                
             };
 
             var date = document.getElementById("fecha").innerHTML; 
@@ -204,6 +205,48 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
             showModal( "Debe aceptar los términos y condiciones de uso");   
         }
     }
+
+function getHistoricReservations(element)
+    {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function()
+            {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
+                    fillReservations(); //Llama a este método para llegar el select
+                }
+            };
+            
+            var path = window.location.pathname;
+            var new_path = path.replace("/historicreservations/","/resources/"); 
+
+            //algunos navegadores no ponen el último /
+            if(path === new_path) {
+                new_path = path.replace("/historicreservations","/resources/");                
+            }
+            
+            var start = getFormatedHour(document.getElementById("start").value);
+            var end = getFormatedHour(document.getElementById("end").value);
+            
+            var dateFormat = globalDate.format("DD MMMM YYYY");
+            var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
+
+
+            xhttp.open("POST", new_path+"getHistoricReservations/"+element.value+"/"+start+"/"+end+"/"+startDate,false);
+
+            xhttp.send();
+
+        return true;
+    }
+
+    function fillReservations()
+    {
+        html = "";
+        var len = obj.available.length;
+
+        document.getElementById("id").innerHTML = html;
+    }
+
 
     function getDate(date)
     {

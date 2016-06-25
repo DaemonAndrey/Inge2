@@ -2,7 +2,7 @@
 <?php echo $this->Html->css('reservations.css'); ?>
 
 <div class="users form">
-    <?= $this->Form->create($reporte) ?>
+   
     
     <!-- TÍTULO -->
     <div class="row">
@@ -16,8 +16,6 @@
         </div>
     </div>
     <!-- FIN TÍTULO -->
-    
-    
 
         <!-- BOTONES -->
         <div class="row text-center">

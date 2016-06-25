@@ -19,53 +19,50 @@ class HistoricReservationsController extends AppController
     */
     public function beforeFilter(Event $event)
     {
-        /*parent::beforeFilter($event);
-        
         $this->set('user_role', $this->Auth->User('role_id'));
         
-        $this->pendingReservations = $this->Reservations->find('all')
-            ->select(['id', 'start_date', 'end_date', 'resources.resource_name', 'event_name', 'state', 'resources.resource_code'])
-            ->join([
-                'users' => [
-                    'table' => 'users',
-                    'type' => 'INNER',
-                    'conditions' => 'users.id = reservations.user_id'
-                ],
-                'resources_users' => [
-                    'table' => 'resources_users',
-                    'type' => 'INNER',
-                    'conditions' => ['resources_users.user_id ='. $this->Auth->User('id'), 'resources_users.resource_id = Reservations.resource_id']
-                ],
-                'resources' => [
-                    'table' => 'resources',
-                    'type' => 'INNER',
-                    'conditions' => 'resources.id = reservations.resource_id'
-                ]
-            ])
-            ->andWhere(['reservations.state = ' => 0])
-            ->order(['start_date' => 'ASC']);*/
+        // Consulta para recuperar reservaciones pendientes
+        $this->loadModel('HistoricReservations');
+        $this->historicReservation = $this->HistoricReservations->find('all');
+        
+        
     }
     
     /** 
      * Paginador de recursos.
      */
+     
     public $paginate = array('limit' => 10,
-                             'order' => array('HistoricReservation.start_date' => 'asc')
+                             'order' => array('HistoricReservations.reservation_start_date' => 'asc')
                             );
     
     /**
-    * Carga el calendario principal con las reservas.
+    * Carga el historico de reservaciones para generar el reporte.
     * 
     */
 	public function index()
 	{
+        $this->set('user_role', $this->Auth->User('role_id'));
+        
+        /*$start_date = $this->request->data['start_date'];
+        $end_date = $this->request->data['start_date'];
+        
+        $this->hReservations = $this->historicreservations->find('all')
+        ->select(['HistoricReservations.reservation_start_date', 
+                  'HistoricReservation.reservation_end_date',
+                  'HistoricReservation.resource_name',
+                  'HistoricReservation.event_name',
+                  'HistoricReservation.user_username',
+                  'HistoricReservation.user_first_name',
+                  'HistoricReservation.user_last_name'])
+        ->where(['HistoricReservations.reservation_start_date BETWEEN :$start_date AND :$end_date']);;*/
+        $this->loadModel('HistoricReservations');
+        $historicReservation = $this->HistoricReservations->find('all');
+        $historicReservation->toArray();
+        
 		
 	}
     
-    /*
-    * Carga las reservaciones pendientes que le corresponden al administrador que está en la sesión
-    */
-   
     public function isAuthorized($user)
     {
         
