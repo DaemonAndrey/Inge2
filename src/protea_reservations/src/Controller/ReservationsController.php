@@ -633,7 +633,24 @@ class ReservationsController extends AppController
     {
         if($this->request->is('POST'))
         {
-            $resources = $this->pendingReservations;
+            $this->loadModel('HistoricReservations');
+            $query = $this->HistoricReservations->find('all');
+            $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
+            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%H:%i'" => 'literal']);
+            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%H:%i'" => 'literal']);
+            $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
+            
+            $query->select([
+                'start_date' => $date,
+                'start_hour' => $start_time,
+                'end_hour' => $end_time,
+                'event_name',
+                'resource_name',
+                'user_comment',
+                'user' => $user
+            ]);
+            
+            $resources = $query;
             $resources = json_encode($resources);
             
             die($resources);

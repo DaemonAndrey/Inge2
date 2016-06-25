@@ -17,37 +17,37 @@ function realizarPeticion(url, metodo, funcion) {
     peticionHTTP.send(null);
 }
 
+function getRespuesta() {
+    if (peticionHTTP.readyState === 4 && peticionHTTP.status === 200) {
+        datos = JSON.parse(peticionHTTP.responseText);
+        generarPDF();
+    }
+}
+
 function solicitarDatosHistorico() {
     inicializarXHR();
     
-    var path = window.location.pathname;
+    var path = window.location.pathname, new_path;
 
     //algunas veces el navegador no pone el último /
-    if(path.charAt(path.length - 1) != '/') {
-        path = path+"/";
-    }   
-    var new_path = path.replace("/manage/","/getHistoricReservations/"); 
+    if (path.charAt(path.length - 1) !== '/') {
+        path = path + "/";
+    }
+    
+    new_path = path.replace("/manage/", "/getHistoricReservations/");
     
     realizarPeticion(new_path, "POST", getRespuesta);
 }
 
-function getRespuesta() {
-    if(peticionHTTP.readyState === 4 && peticionHTTP.status === 200) {
-        datos = JSON.parse(peticionHTTP.responseText);
-        generarPDF();
-    } 
-}
-
 var getColumns = function () {
     return [
-        {title: "ID", dataKey: "id"},
         {title: "Fecha", dataKey: "start_date"},
         {title: "Hora inicio", dataKey: "start_hour"},
         {title: "Hora fin", dataKey: "end_hour"},
         {title: "Evento", dataKey: "event_name"},
         {title: "Recurso", dataKey: "resource_name"},
         {title: "Responsable", dataKey: "user"},
-        {title: "Comentarios", dataKey: "user_comments"}
+        {title: "Comentarios", dataKey: "user_comment"}
     ];
 };
 
@@ -55,64 +55,52 @@ var getRows = function () {
     return datos;
 };
 
-function generarPDF () {
-    var doc = new jsPDF('l', 'pt', 'letter');
-    var columnsLong = getColumns(), rowsLong = getRows();
-    
-    var header = function (data) {
-        doc.setFontSize(16);
-        doc.setTextColor(40);
-        doc.setFontStyle('helvetica', 'normal');
-        doc.addImage(logoUCR, 'PNG', 40, 40, 50, 50);
-        doc.text("Universidad de Costa Rica \n Escuela de Educación", data.settings.margin.left + 100, 50);
-        //doc.text("Universidad de Costa Rica \n Escuela de Educación", data.settings.margin.left + 35, 60);
-    }
-    
-    var totalPagesExp = "{total_pages_count_string}";
-    var footer = function (data) {
-        var str = "Página " + data.pageCount;
-        // Total page number plugin only available in jspdf v1.0+
-        if (typeof doc.putTotalPages === 'function') {
-            str = str + " de " + totalPagesExp;
-        }
-        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 30);
-    };
-
-    var options = {
-        beforePageContent: header,
-        afterPageContent: footer,
-        margin: {top: 100},
-        startY: doc.autoTableEndPosY() + 100,
-        margin: {horizontal: 10},
-        styles: {overflow: 'linebreak'},
-        bodyStyles: {valign: 'top'},
-        columnStyles: {email: {columnWidth: 'wrap'}},
-        headerStyles: {
-            fillColor: [145, 187, 27],
-            fontSize: 12,
-            rowHeight: 20
-        }
-    };
-    
-    //doc.text("Overflow 'linebreak'", 10, doc.autoTableEndPosY() + 30);
-    doc.autoTable(columnsLong, rowsLong, options/*{
-        startY: doc.autoTableEndPosY() + 45,
-        margin: {horizontal: 10},
-        styles: {overflow: 'linebreak'},
-        bodyStyles: {valign: 'top'},
-        columnStyles: {email: {columnWidth: 'wrap'}},
-        headerStyles: {
-            fillColor: [145, 187, 27],
-            fontSize: 13,
-            rowHeight: 20
+function generarPDF() {
+    var doc = new jsPDF('l', 'pt', 'letter'),
+        
+        columnsLong = getColumns(),
+        
+        rowsLong = getRows(),
+        
+        header = function (data) {
+            doc.setFontSize(16);
+            doc.setTextColor(40);
+            doc.setFontStyle('normal');
+            doc.addImage(logoUCR, 'PNG', 40, 40, 70, 70);
+            doc.text("Universidad de Costa Rica \n Escuela de Educación", data.settings.margin.left + 80, 50);
         },
-    }*/);
+        
+        totalPagesExp = "{total_pages_count_string}",
+        
+        footer = function (data) {
+            var str = "Página " + data.pageCount;
+            // Total page number plugin only available in jspdf v1.0+
+            if (typeof doc.putTotalPages === 'function') {
+                str = str + " de " + totalPagesExp;
+            }
+            doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 30);
+        },
+        
+        options = {
+            beforePageContent: header,
+            afterPageContent: footer,
+            //margin: {top: 100, horizontal: 10},
+            startY: doc.autoTableEndPosY() + 130,
+            styles: {overflow: 'linebreak'},
+            bodyStyles: {valign: 'top'},
+            //columnStyles: {email: {columnWidth: 'wrap'}},
+            headerStyles: {
+                fillColor: [145, 187, 27],
+                fontSize: 12,
+                rowHeight: 20
+            }
+        };
+    
+    doc.autoTable(columnsLong, rowsLong, options);
     
     if (typeof doc.putTotalPages === 'function') {
         doc.putTotalPages(totalPagesExp);
     }
     
-    console.log(doc.getFontList());
-
     doc.save("prueba.pdf");
-};
+}
