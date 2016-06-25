@@ -7,14 +7,16 @@ use Cake\Mailer\Mailer;
 class UserMailer extends Mailer
 {
     /* Se le envía al usuario que aceptaron su solicitud de registro. */
-    public function confirmUser($user)
+    public function confirmUser($user, $configuration)
     {
         $this
             ->to($user->username)
-            ->subject(sprintf('Bienvenid@ %s al sistema de Reservas', $user->first_name))
+            ->subject($configuration->registration_accepted_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->registration_accepted_message]);
+            
     }
     
     /* Se le envía al usuario que rechazaron su solicitud de registro. */
@@ -22,33 +24,36 @@ class UserMailer extends Mailer
     {
         $this
             ->to($user->username)
-            ->subject($configuration->registration_rejected_message)
+            ->subject($configuration->registration_rejected_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->registration_rejected_message]);
     }
 
-    public function confirmReservation($user)
+    public function confirmReservation($userEmail, $configuration)
     {
         $this
-            ->to($user->username)
-            ->subject('Solicitud de Reservación ACEPTADA (Reservaciones Facultad de Educación-UCR)')
+            ->to($userEmail)
+            ->subject($configuration->reservation_accepted_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->reservation_accepted_message]);
     }
     
-    public function rejectReservation($user)
+    public function rejectReservation($userEmail, $configuration)
     {
         $this
-            ->to($user->username)
-            ->subject('Solicitud de Reservación RECHAZADA (Reservaciones Facultad de Educación-UCR)')
+            ->to($userEmail)
+            ->subject($configuration->reservation_rejected_subject)
             ->emailFormat('html')
-            ->template() // By default template with same name as method name is used.
-            ->layout('default');
+            ->template('default_message') // By default template with same name as method name is used.
+            ->layout('default')
+            ->viewVars(['mensaje' => $configuration->reservation_rejected_message]);
     }
 
-    public function resetPassword($user)
+    public function resetPassword($user, $configuration)
     {
         $this
             ->to($user->email)

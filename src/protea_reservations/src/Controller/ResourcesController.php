@@ -350,29 +350,44 @@ class ResourcesController extends AppController
                                              'ResourcesUsers.resource_id' => $resource_id
                                             ]);
         
-        // Si el usuario tiene permisos
-        if($this->Auth->user())
+        // Encontrar la cantidad de administradores asociados al recurso
+        $query = $this->ResourcesUsers->find('all',
+                                           ['conditions' => ['ResourcesUsers.resource_id =' => $resource_id]]);
+        $cantUsuarios = $query->count();
+        
+        // Si hay más de un usuario asociado
+        if($cantUsuarios > 1)
         {
-            $this->request->allowMethod(['post', 'delete']);
-            $resourceUser = $this->ResourcesUsers->get($id->toArray());
-            try
+            // Si el usuario tiene permisos
+            if($this->Auth->user())
             {
-                if ($this->ResourcesUsers->delete($resourceUser))
+                $this->request->allowMethod(['post', 'delete']);
+                $resourceUser = $this->ResourcesUsers->get($id->toArray());
+                try
                 {
-                    $this->Flash->success('Administrador desasociado con el recurso.',
-                                          ['key' => 'success']);
-                    return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
-                } 
+                    if ($this->ResourcesUsers->delete($resourceUser))
+                    {
+                        $this->Flash->success('Administrador desasociado del recurso.',
+                                              ['key' => 'success']);
+                        return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
+                    } 
+                }
+                catch(Exception $ex)
+                {
+                    $this->Flash->error('Administrador NO desasociado del recurso. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
+                }
             }
-            catch(Exception $ex)
-            {
-                $this->Flash->error('Administrador NO desasociado con el recurso. Por favor, inténtelo de nuevo.',
-                                    ['key' => 'error']);
+            else
+            {  
+                return $this->redirect(['controller'=>'pages','action'=>'home']);
             }
         }
         else
-        {  
-            return $this->redirect(['controller'=>'pages','action'=>'home']);
+        {
+            $this->Flash->error('Administrador NO desasociado del recurso.',
+                                        ['key' => 'error']);
+            return $this->redirect(['controller' => 'Resources','action' => 'associate', $resource_id]);
         }
 
     }

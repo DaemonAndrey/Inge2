@@ -240,6 +240,14 @@
                                                                      array('target' => '_self',
                                                                            'escape' => false)) ?>
                                     </li>
+                                
+                                    <li role="configuraciones">
+                                        <?php echo $this->Html->link('Configuraciones',
+                                                                     array('controller'=>'configurations',
+                                                                           'action' => 'edit'),
+                                                                     array('target' => '_self',
+                                                                           'escape' => false)) ?>
+                                    </li>
                                     <?php
                                 }
                                 ?>

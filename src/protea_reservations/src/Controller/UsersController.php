@@ -161,9 +161,10 @@ class UsersController extends AppController
                 {
 
                     $user = $secondAuth[0];
-
+                
                     $this->Auth->setUser($user);
-
+                    
+                
 
                     
                     // Si soy Administrador o SuperAdministrador
@@ -214,6 +215,7 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
+        
         // Si no soy SuperAdministrador y la acción es VER Usuario
         if ($this->request->action === 'view' && $user['role_id'] != 3)
         {
@@ -291,8 +293,11 @@ class UsersController extends AppController
          if($this->Auth->user())
         {
             //Carga el usuario se desea editar
+             
             $user = $this->Users->get($id);
             $username = $user->username;
+            $this->loadModel('Configurations');
+            $configuration = $this->Configurations->get(1);
              
             if($this->request->is(array('post', 'put')))
 		    {
@@ -302,7 +307,7 @@ class UsersController extends AppController
                 //Guarda el usuario con la nueva informacion modificada
                 if ($this->Users->save($user))
                 {
-                    $this->getMailer('User')->send('confirmUser', [$user]);
+                    $this->getMailer('User')->send('confirmUser', [$user, $configuration]);
 
                     $this->Flash->success('Solicitud aceptada.',
                                           ['key' => 'success']);

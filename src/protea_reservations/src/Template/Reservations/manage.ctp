@@ -146,7 +146,11 @@
                         switch($reservation['state'])
                         {
                             case 0:
-                                echo "Pendiente";
+                                ?>
+                                <b>
+                                    <?php echo "Pendiente"; ?>
+                                </b>
+                                <?php
                                 break;
                             case 1:
                                 echo "Aceptada";

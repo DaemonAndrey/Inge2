@@ -271,14 +271,14 @@ class ReservationsController extends AppController
                              ])
                     ->join(['resource' => ['table' => 'resources',
                                            'type' => 'INNER',
-                                           'conditions' => ['reservations.resource_id = resource.id']
+                                           'conditions' => ['Reservations.resource_id = resource.id']
                                           ],
                             'user' => ['table' => 'users',
                                        'type' => 'INNER',
-                                       'conditions' => ['reservations.user_id = user.id']
+                                       'conditions' => ['Reservations.user_id = user.id']
                                       ]
                            ])
-                    ->andWhere(['reservations.id = ' => $id]);
+                    ->andWhere(['Reservations.id = ' => $id]);
                 
                 $reservation = $reservations->first();
                 
@@ -302,12 +302,12 @@ class ReservationsController extends AppController
                         // Si la acción es aprobar la reservación
                         if($this->request->data['accion'] == 'Aprobar')
                         {
-                            $this->accept($reservation, $this->request->data['Reservations']['admin_comment']);
+                            $this->accept($reservation, $this->request->data['Reservations']['administrator_comment']);
                         }
                         // Si la acción es rechazar la reservación
                         else if($this->request->data['accion'] == 'Rechazar')
                         {
-                            $this->reject($reservation, $this->request->data['Reservations']['admin_comment']);
+                            $this->reject($reservation, $this->request->data['Reservations']['administrator_comment']);
                         }
                         // Si la acción es cancelar la reservación
                         else if($this->request->data['accion'] == 'Cancelar')
@@ -357,11 +357,16 @@ class ReservationsController extends AppController
                 $historicReservation->state = 1;
                 $reservation->state = 1;
 
+                $this->loadModel('Configurations');
+                $configuration = $this->Configurations->get(1);
+                
+                $this->loadModel('Users');
+
                 $userEmail = $reservation['user']['username'];
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
                 {
-                    $this->getMailer('User')->send('confirmReservation', [$userEmail]);
+                    $this->getMailer('User')->send('confirmReservation', [$userEmail, $configuration]);
                     
                     $this->Flash->set(__('Reservación aceptada.'), ['clear' => true, 'key' => 'success']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -393,6 +398,9 @@ class ReservationsController extends AppController
         {
             if($this->Auth->user())
             {
+                $this->loadModel('Configurations');
+                $configuration = $this->Configurations->get(1);
+                
                 $this->loadModel('HistoricReservations');
                 $historicReservation = $this->HistoricReservations->newEntity();
                 $historicReservation->reservation_start_date = $reservation['start_date'];
@@ -410,7 +418,7 @@ class ReservationsController extends AppController
                 
                 if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
                 {
-                    $this->getMailer('User')->send('rejectReservation', [$userEmail]);
+                    $this->getMailer('User')->send('rejectReservation', [$userEmail, $configuration]);
                     
                     $this->Flash->set(__('Reservación rechazada.'), ['clear' => true, 'key' => 'success']);
                     return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);

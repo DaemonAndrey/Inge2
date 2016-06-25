@@ -32,776 +32,972 @@
     
     <!-- INTRODUCCION =============================================================== -->
     <div class='row' id="introduccion">
-        <div class='col-xs-8 col-xs-offset-2' style="color:black;" align="justify">
-            <br>
+        <div class='col-xs-8 col-xs-offset-2'>
+            <div style="text-align:justify;color:black;">
+                <br>
+                <p>
+                <?php
+                // SI SOY ADMINISTRADOR
+                if($user_role_id == 2 || $user_role_id == 3)
+                {
+                    ?>
+                    Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    <?php
+                }
+                // SI SOY USUARIO REGULAR
+                else if($user_role_id == 1)
+                {
+                    ?>
+                    Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    <?php
+                }
+                ?>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE INTRODUCCION ======================================================== -->
+    
+    
+    <!-- TITULO FUNCIONES =========================================================== -->
+    <?php
+    if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
+    {
+        ?>
+        <div class='row'>
+                <div class='col-xs-8 col-xs-offset-2' style="color:black;">
+                    <p>
+                        <h4><b>Funciones:</b></h4>
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+    <!-- FIN TITULO FUNCIONES ======================================================= -->
+
+    
+    <!-- MANUAL ===================================================================== -->
+    <div class='row'>
+        <div class='col-xs-12' style="color:black; text-align:center;">            
             <?php
             // SI SOY ADMINISTRADOR
             if($user_role_id == 2 || $user_role_id == 3)
             {
                 ?>
-                Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <p>
+                        <h4><u>Administrar reservaciones pendientes</u></h4>
+                    </p>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminReservacionesPendientes">
+                        Aprobar/Rechazar reservaciones pendientes
+                    </button>
+                    <div id="adminReservacionesPendientes" class="collapse">
+                        <p>
+                            <br>
+                            Aprobar o rechazar reservaciones pendientes para discriminar si el usuario puede o no hacer uso del recurso solicitado.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Reservaciones Pendientes</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones pendientes de confirmación.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-check"></i></strong> de la reservación que desee revisar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá la información más detallada de la reservación.
+                                    En caso de rechazarla, puede escribir un <strong>comentario</strong> que podrá leer el usuario que hizo esa reservación, explicando por qué su reservación fue rechazada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea aprobar la reservación, hacer click en <strong>Aprobar</strong>.
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue aprobada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea rechazar la reservación, hacer click en <strong>Rechazar</strong>.
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue rechazada.
+                                    Además, el recurso reservado se habilita de nuevo para que pueda ser reservado por otro usuario.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminCancelar">
+                        Cancelar reservaciones pendientes
+                    </button>
+                    <div id="adminCancelar" class="collapse">
+                        <p>
+                            <br>
+                            Eliminar reservaciones en caso de que se haya pasado la fecha y no pudieron ser Aprobadas ni Rechazadas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <h4><u>Historial de reservaciones</u></h4>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminHistorial">
+                        Generar reportes de reservaciones
+                    </button>
+                    <div id="adminHistorial" class="collapse">
+                        <p>
+                            <br>
+                            Generar documentos en formato PDF para hacer análisis sobre las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <h4><u>Administrar tipos de recursos</u></h4>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminAgregarTipo">
+                        Agregar nuevos tipos de recursos
+                    </button>
+                    <div id="adminAgregarTipo" class="collapse">
+                        <p>
+                            <br>
+                            Agregar un nuevo tipo de recurso, para luego poder agregar recursos bajo esa categoría.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong><span class="glyphicon glyphicon-plus"></span>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Llenar los campos del formulario. El campo de <strong>días de anticipación</strong> se refiere a que todos los recursos bajo ese nuevo tipo de recurso solamente pueden ser reservados esa cantidad de días antes de la fecha deseada. Por ejemplo: si se establece con 1 día de anticipación, los recursos bajo ese tipo no podrán ser reservados el mismo día, sino 1 día antes.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Agregar</strong>. Si sale el error de que el tipo de recurso ya existe, entonces solamente debe ir a <strong>Agregar un Recurso Nuevo</strong> bajo ese tipo.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminActualizarTipo">
+                        Actualizar la información de tipos de recursos
+                    </button>
+                    <div id="adminActualizarTipo" class="collapse">
+                        <p>
+                            <br>
+                            Modificar la información de tipos de recursos que administra en caso de que estos requieran ser actualizados.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Actualizar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> del tipo de recurso que desee actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminEliminarTipo">
+                        Eliminar tipos de recursos
+                    </button>
+                    <div id="adminEliminarTipo" class="collapse">
+                        <p>
+                            <br>
+                            Eliminar tipos de recurso que administra en caso de que no desee administrarlos más.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Eliminar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-trash"></i></strong> del tipo de recurso que desee eliminar. Aparecerá una ventana emergente confirmando su acción.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Aceptar</strong>. Si existieran recursos bajo ese tipo de recurso, también serán eliminados. Además, si existieran más administradores asociados a recursos de ese tipo, el tipo de recurso no se eliminará completamente, únicamente de su índice; de lo contrario, el tipo de recurso sí se eliminará por completo.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <h4><u>Administrar recursos</u></h4>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminAgregarRecurso">
+                        Agregar nuevos recursos
+                    </button>
+                    <div id="adminAgregarRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Agregar nuevos recursos para que los usuarios puedan reservarlos.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong><span class="glyphicon glyphicon-plus"></span>Agregar Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Llenar los campos del formulario. Si no existiera el <strong>Tipo de Recurso</strong> requerido, debe ir primero a <strong>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Agregar</strong>. El nuevo recurso se asociará por defecto a su cuenta de administrador; es decir, inicialmente usted administrará ese recurso.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminVerRecurso">
+                        Ver la información de recursos
+                    </button>
+                    <div id="adminVerRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Consultar la información detallada de los recursos que administra.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Marca/Modelo</strong> o <strong>Placa/Serie</strong>, hacer click en el modelo o la placa del recurso que desee consultar. Aparecerá la información detallada de ese recurso.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminActualizarRecurso">
+                        Actualizar la información de recursos
+                    </button>
+                    <div id="adminActualizarRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Modificar la información de recursos que administra en caso de que estos requieran ser actualizados.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Actualizar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> del recurso que desee actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar. Si no existiera el <strong>Tipo de Recurso</strong> requerido, debe ir primero a <strong>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminEliminarRecurso">
+                        Eliminar recursos
+                    </button>
+                    <div id="adminEliminarRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Eliminar recursos que administra en caso de que no desee administrarlos más.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Eliminar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-trash"></i></strong> del recurso que desee eliminar. Aparecerá una ventana emergente confirmando su acción.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Aceptar</strong>. Si eliminara todos los recursos de un mismo tipo, el tipo de recurso también se eliminará de su índice.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminAsociarRecurso">
+                        Asociar administradores con recursos
+                    </button>
+                    <div id="adminAsociarRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Asociar otros administradores a recursos para que ellos también puedan administrarlos.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong><i class="glyphicon glyphicon-user"></i>Asociar Administradores</strong>.
+                                    Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccione el <strong>administrador</strong> que se asociará al recurso. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Asociar</strong>.
+                                    El nuevo administrador aparecerá en la tabla de administradores asociados a ese recurso. Además, se le agregará ese recurso al índice de recursos. 
+                                    Si el nuevo administrador no administraba recursos de ese tipo, también se le agregará ese tipo de recurso al índice de tipos de recurso.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminDesasociarRecurso">
+                        Desasociar administradores de recursos
+                    </button>
+                    <div id="adminDesasociarRecurso" class="collapse">
+                        <p>
+                            <br>
+                            Desasociar administradores de recursos para que ya no puedan administrarlos.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Asociar Administradores</strong>.
+                                    Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Desasociar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-remove"></i></strong> del administrador que desee desasociar. Si solamente hay un administrador asociado al recurso, no se podrá desasociar.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+
+                <?php
+                // Si soy SuperAdministrador
+                if($user_role_id == 3)
+                {
+                    ?>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <h4><u>Administrar cuentas de usuarios</u></h4>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminAgregarUsuario">
+                            Agregar nuevas cuentas de usuarios
+                        </button>
+                        <div id="adminAgregarUsuario" class="collapse">
+                            <p>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminVerUsuarios">
+                            Ver la información de cuentas de usuarios
+                        </button>
+                        <div id="adminVerUsuarios" class="collapse">
+                            <p>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminUsuariosPendientes">
+                            Aprobar/Rechazar usuarios pendientes
+                        </button>
+                        <div id="adminUsuariosPendientes" class="collapse">
+                            <p>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminActualizarUsuarios">
+                            Actualizar la información de cuentas de usuarios
+                        </button>
+                        <div id="adminActualizarUsuarios" class="collapse">
+                            <p>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminEliminarUsuarios">
+                            Eliminar cuentas de usuarios
+                        </button>
+                        <div id="adminEliminarUsuarios" class="collapse">
+                            <p>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <?php
+                }
+                ?>
                 <?php
             }
             // SI SOY USUARIO REGULAR
             else if($user_role_id == 1)
             {
                 ?>
-                Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioCalendario">
+                        Revisar el calendario para ver eventos
+                    </button>
+                    <div id="usuarioCalendario" class="collapse">
+                        <p>
+                            <br>
+                            Revisar el calendario de eventos permite dar a conocer las fechas y horas en las que hay salas reservadas y los eventos para los cuales están reservadas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Reservar</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá un calendario con las salas que tienen asignado un evento, ya sea un curso, una conferencia, etc... El número que aparece antes del nombre es la hora para la que está reservado el evento.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar la visualización del calendario haciendo click sobre <strong>Mes</strong>, <strong>Semana</strong>, o <strong>Día</strong>, para ver con mejor detalle la duración de los eventos. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en las flechas <strong>◄</strong> (anterior)  o <strong>►</strong> (siguiente) para cambiar la vista del calendario al Mes, Semana, Día anterior o siguiente, respectivamente. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en el botón <strong>Hoy</strong> para regresear inmediatamente al día actual, ya sea en la vista de Mes, Semana o Día. 
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioReservacion">
+                        Hacer reservaciones de salas o equipo
+                    </button>
+                    <div id="usuarioReservacion" class="collapse">
+                        <p>
+                            <br>
+                            Reservar salas o equipo audiovisual durante un tiempo determinado, para que una vez confirmada la reservación poder utilizarlo hasta la hora establecida.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Reservar</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en la <strong>casilla del calendario</strong> del día en que desea hacer uso del recurso.
+                                    Aparecerá una ventana emergente con la información de la reservación.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Establecer la duración de uso del recurso, seleccionando la <strong>Hora de Inicio</strong> y la <strong>Hora de Fin</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccionar un <strong>Tipo de Recurso</strong> y a su vez el <strong>Recurso</strong> que desea reservar.
+                                    Si no puede seleccionar un recurso, es porque ya está reservado a esa hora, por lo que debe seleccionar otra Hora de Incio.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Escribir el <strong>Nombre del Evento</strong> (curso, conferencia, etc...) en el que se va a utilizar el recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Información Detallada</strong> para ver las especificaciones del recurso. En caso de necesitar algo adicional a lo especificado en la descripción, escribirlo en el campo de <strong>comentarios</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si está de acuerdo con los términos y condiciones de uso, chequear la casilla.
+                                    En caso de desconocerlos, hacer click en <strong>Términos y Condiciones de Uso</strong> para ser redirijido a una página donde los puede consultar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Finalmente, hacer click en <strong>Reservar</strong>. En caso de haber reservado una <strong>Sala</strong> correctamente, aparecerá su reservación en el calendario.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioActualizar">
+                        Actualizar información de mi cuenta
+                    </button>
+                    <div id="usuarioActualizar" class="collapse">
+                        <p>
+                            <br>
+                            Modificar la información de mi cuenta para tener los datos más actualizados.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar Mi Cuenta</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioCancelar">
+                        Cancelar mis reservaciones actuales
+                    </button>
+                    <div id="usuarioCancelar" class="collapse">
+                        <p>
+                            <br>
+                            Cancelar una reservación pendiente o aceptada cuya fecha esté después o sea igual que la fecha actual, en caso de que ya no desee hacer uso del recurso.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Mis Reservaciones</strong>.
+                                    Aparecerá un índice con la información básica de sus reservaciones, donde además se podrá ver si están <strong>Pendientes</strong> o <strong>Aceptadas</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-check"></i></strong> de la reservación que desee revisar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá la información más detallada de la reservación.
+                                    Hacer click en <strong>Cancelar</strong>.
+                                    Independientemente de si la reservación está Pendiente o Aceptada, se podrá cancelar siempre y cuando el tiempo de anticipación con que la esté cancelando esté dentro del tiempo establecido por los administradores.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#usuarioHistorial">
+                        Revisar el historial de mis reservaciones
+                    </button>
+                    <div id="usuarioHistorial" class="collapse">
+                        <p>
+                            <br>
+                            Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Paso
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
                 <?php
             }
             ?>
-            <br>
-        </div>
-    </div>
-    <!-- FIN DE INTRODUCCION ======================================================== -->
-    
-    
-    <!-- MANUAL ===================================================================== -->
-    <div class='row'>
-        <div class='col-xs-8 col-xs-offset-2' style="color:black;">
-            <br>
-            <h4><b>Funciones:</b></h4>
-            <br>
-            <!-- TITULOS ============================================================ -->
-            <div id="titulos">
-                <?php
-                // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
-                {
-                    ?>
-                    <ul>
-                        <li>
-                            <h4><u>Administrar reservaciones pendientes</u></h4>
-                            <ul style="list-style-type: circle; padding-left:25px;">
-                                <li>
-                                    <h4><a href="#adminReservacionesPendientes">Aprobar/Rechazar reservaciones pendientes</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminCancelar">Cancelar reservaciones</a></h4>
-                                </li>
-                            </ul>
-                        </li>
-                        <br>
-                        <li>
-                            <h4><u>Historial de reservaciones</u></h4>
-                            <ul style="list-style-type: circle; padding-left:25px;">
-                                <li>
-                                    <h4><a href="#adminHistorial">Revisar historial de reservaciones</a></h4>
-                                </li>
-                            </ul>
-                        </li>
-                        <br>
-                        <li>
-                            <h4><u>Administrar tipos de recursos</u></h4>
-                            <ul style="list-style-type: circle; padding-left:25px;">
-                                <li>
-                                    <h4><a href="#adminAgregarTipo">Agregar nuevos tipos de recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminActualizarTipo">Actualizar la información de tipos de recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminEliminarTipo">Eliminar tipos de recursos</a></h4>
-                                </li>
-                            </ul>
-                        </li>
-                        <br>
-                        <li>
-                            <h4><u>Administrar recursos</u></h4>
-                            <ul style="list-style-type: circle; padding-left:25px;">
-                                <li>
-                                    <h4><a href="#adminAgregarRecurso">Agregar nuevos recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminVerRecurso">Ver la información de recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminActualizarRecurso">Actualizar la información de recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminEliminarRecurso">Eliminar recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminAsociarRecurso">Asociar administradores con recursos</a></h4>
-                                </li>
-                                <li>
-                                    <h4><a href="#adminDesasociarRecurso">Desasociar administradores de recursos</a></h4>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <?php
-                        // Si soy SuperAdministrador
-                        if($user_role_id == 3)
-                        {
-                            ?>
-                            <br>
-                            <li>
-                                <h4><u>Administrar cuentas de usuarios</u></h4>
-                                <ul style="list-style-type: circle; padding-left:25px;">
-                                    <li>
-                                        <h4><a href="#adminAgregarUsuario">Agregar nuevas cuentas de usuarios</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4><a href="#adminVerUsuarios">Ver la información de cuentas de usuarios</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4><a href="#adminUsuariosPendientes">Aprobar/Rechazar usuarios pendientes</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4><a href="#adminActualizarUsuarios">Actualizar la información de cuentas de usuarios</a></h4>
-                                    </li>
-                                    <li>
-                                        <h4><a href="#adminEliminarUsuarios">Eliminar cuentas de usuarios</a></h4>
-                                    </li>
-                                </ul>
-                            </li>
-                          <?php
-                        }
-                        ?>
-                    </ul>
-                    <?php
-                }
-                // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
-                {
-                    ?>
-                    <ul style="list-style-type: circle;">
-                        <li>
-                            <h4><a href="#usuarioCalendario">Revisar el calendario para ver eventos</a></h4>
-                        </li>
-                        <li>
-                            <h4><a href="#usuarioReservacion">Hacer reservaciones de salas o equipo</a></h4>
-                        </li>
-                        <li>
-                            <h4><a href="#usuarioActualizar">Actualizar información de mi cuenta</a></h4>
-                        </li>
-                        <li>
-                            <h4><a href="#usuarioPendientes">Revisar mis reservaciones actuales</a></h4>
-                        </li>
-                        <li>
-                            <h4><a href="#usuarioHistorial">Revisar el historial de mis reservaciones</a></h4>
-                        </li>
-                    </ul>
-                    <?php
-                }
-                ?>
-            </div>
-            <!-- FIN TITULOS ======================================================== -->
-
-            <legend><br></legend>
-            <h4><b>Paso a paso:</b></h4>
-            <br>
-
-            <!-- PASO A PASO ======================================================== -->
-            <div id="pasos">
-                <?php
-                // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
-                {
-                    ?>
-                    <ul>
-                        <li>
-                            <div id="adminReservacionesPendientes">
-                                <h4>
-                                    <b>Aprobar/Rechazar reservaciones pendientes:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminCancelar">
-                                <h4>
-                                    <b>Cancelar reservaciones:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminHistorial">
-                                <h4>
-                                    <b>Revisar historial de reservaciones:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminAgregarTipo">
-                                <h4>
-                                    <b>Agregar nuevos tipos de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminActualizarTipo">
-                                <h4>
-                                    <b>Actualizar la información de tipos de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminEliminarTipo">
-                                <h4>
-                                    <b>Eliminar tipos de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminAgregarRecurso">
-                                <h4>
-                                    <b>Agregar nuevos recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminVerRecurso">
-                                <h4>
-                                    <b>Ver la información de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminActualizarRecurso">
-                                <h4>
-                                    <b>Actualizar la información de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminEliminarRecurso">
-                                <h4>
-                                    <b>Eliminar recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminAsociarRecurso">
-                                <h4>
-                                    <b>Asociar administradores con recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="adminDesasociarRecurso">
-                                <h4>
-                                    <b>Desasociar administradores de recursos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-
-                        <?php
-                        // Si soy SuperAdministrador
-                        if($user_role_id == 3)
-                        {
-                            ?>
-                            <li>
-                                <div id="adminAgregarUsuario">
-                                    <h4>
-                                        <b>Agregar nuevas cuentas de usuarios:</b>
-                                    </h4>
-                                    <p>
-                                        Descripción de función
-
-                                        <ol>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <a href="#titulo">Volver arriba</a>
-                                            </li>
-                                        </ol>
-                                    </p>
-                                </div>
-                            </li>
-                            <br>
-                            <li>
-                                <div id="adminVerUsuarios">
-                                    <h4>
-                                        <b>Ver la información de cuentas de usuarios:</b>
-                                    </h4>
-                                    <p>
-                                        Descripción de función
-
-                                        <ol>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <a href="#titulo">Volver arriba</a>
-                                            </li>
-                                        </ol>
-                                    </p>
-                                </div>
-                            </li>
-                            <br>
-                            <li>
-                                <div id="adminUsuariosPendientes">
-                                    <h4>
-                                        <b>Aprobar/Rechazar usuarios pendientes:</b>
-                                    </h4>
-                                    <p>
-                                        Descripción de función
-
-                                        <ol>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <a href="#titulo">Volver arriba</a>
-                                            </li>
-                                        </ol>
-                                    </p>
-                                </div>
-                            </li>
-                            <br>
-                            <li>
-                                <div id="adminActualizarUsuarios">
-                                    <h4>
-                                        <b>Actualizar la información de cuentas de usuarios:</b>
-                                    </h4>
-                                    <p>
-                                        Descripción de función
-
-                                        <ol>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <a href="#titulo">Volver arriba</a>
-                                            </li>
-                                        </ol>
-                                    </p>
-                                </div>
-                            </li>
-                            <br>
-                            <li>
-                                <div id="adminEliminarUsuarios">
-                                    <h4>
-                                        <b>Eliminar cuentas de usuarios:</b>
-                                    </h4>
-                                    <p>
-                                        Descripción de función
-
-                                        <ol>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li>
-                                                Paso
-                                            </li>
-                                            <li style="list-style-type: none;">
-                                                <a href="#titulo">Volver arriba</a>
-                                            </li>
-                                        </ol>
-                                    </p>
-                                </div>
-                            </li>
-                            <br>
-                            <?php
-                        }
-                        ?>
-                    </ul>
-
-                    <?php
-                }
-                // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
-                {
-                    ?>
-                    <ul>
-                        <li>
-                            <div id="usuarioCalendario">
-                                <h4>
-                                    <b>Revisar el calendario para ver eventos:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="usuarioReservacion">
-                                <h4>
-                                    <b>Hacer reservaciones de salas o equipo:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="usuarioActualizar">
-                                <h4>
-                                    <b>Actualizar la informacón de mi cuenta:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="usuarioPendientes">
-                                <h4>
-                                    <b>Revisar mis reservaciones actuales:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div id="usuarioHistorial">
-                                <h4>
-                                    <b>Revisar el historial de mis reservaciones:</b>
-                                </h4>
-                                <p>
-                                    Descripción de función
-                                    
-                                    <ol>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li>
-                                            Paso
-                                        </li>
-                                        <li style="list-style-type: none;">
-                                            <a href="#titulo">Volver arriba</a>
-                                        </li>
-                                    </ol>
-                                </p>
-                            </div>
-                        </li>
-                        <br>
-                    </ul>
-                    <?php
-                }
-                ?>
-            </div>
-            <!-- FIN PASO A PASO ==================================================== -->
-            <br>
         </div>
     </div>
     <!-- FIN MANUAL ================================================================= -->
-
 
     <div class='row'>
         <div class='col-md-12 col-xs-12 '>

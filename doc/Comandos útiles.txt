@@ -10,4 +10,4 @@ use <database name>; // Este comando cambia a la base de datos.
 
 sudo mysql feucr < Backup/Mysql/database.sql //Este comando toma el script con las instrucciones e inserta todo en la bd
 
-https://protea-daemonandrey-1.c9users.io/phpmyadmin //phpmyadmin desde cloud 9
+Si desea usar phpmyadmin utilice la siguiente configuracion: https://community.c9.io/t/setting-up-phpmyadmin/1723
