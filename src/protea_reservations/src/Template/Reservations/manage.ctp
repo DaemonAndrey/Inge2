@@ -80,6 +80,12 @@
             <th>
                 Revisar
             </th>
+            <?php
+                echo "<th>";
+                    if($this->request->session()->read('Auth.User.role_id') != 1)
+                        echo "Cancelar";
+                echo "</th>";
+            ?>
         </tr>
         <!-- FIN ENCABEZADO -->
         
