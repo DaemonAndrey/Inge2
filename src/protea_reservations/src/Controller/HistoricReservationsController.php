@@ -47,10 +47,12 @@ class HistoricReservationsController extends AppController
             ])
             ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC']);
             
-            $resources = $query;
-            $resources = json_encode($resources);
+            //$resources = $query;
+            //$resources = json_encode($resources);
             
-            die($resources);
+            $query = json_encode($query);
+            
+            die($query);
         }
 	}
     
