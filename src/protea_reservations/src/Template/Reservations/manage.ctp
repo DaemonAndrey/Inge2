@@ -206,5 +206,11 @@
 
     
 <?= $this->Html->script('historicReservations.js'); ?>
-<?= $this->Html->script('jspdf.min.js'); ?>
-<?= $this->Html->script('jspdf.plugin.autotable.js'); ?>
+<?= $this->Html->script('jspdf/jspdf.js'); ?>
+<?= $this->Html->script('jspdf/jspdf.min.js'); ?>
+<?= $this->Html->script('jspdf/jspdf.plugin.autotable.js'); ?>
+<?= $this->Html->script('jspdf/jspdf.plugin.png_support.js'); ?>
+<?= $this->Html->script('jspdf/jspdf.plugin.addimage.js'); ?>
+<?= $this->Html->script('jspdf/png_support/png.js'); ?>
+<?= $this->Html->script('jspdf/png_support/zlib.js'); ?>
+<?= $this->Html->script('jspdf/FileSaver.js'); ?>

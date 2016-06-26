@@ -687,11 +687,11 @@ class ReservationsController extends AppController
         if($this->request->action === 'cancel')
             return true;
         
-        // 
+        // Cualquiera puede ingresar a la vista de 'index'
         if($this->request->action === 'index')
             return true;
         
-        //
+        // Cualquiera puede realizar una reservación
         if ($this->request->action === 'add')
             return true;            
         
