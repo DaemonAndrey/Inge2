@@ -12,22 +12,7 @@ class HistoricReservationsController extends AppController
     {
         parent::initialize();
     }
-    
-    /**
-    * Establece variables importantes de usuario.
-    * @param Event $event
-    */
-    public function beforeFilter(Event $event)
-    {
-        $this->set('user_role', $this->Auth->User('role_id'));
-        
-        // Consulta para recuperar reservaciones pendientes
-        $this->loadModel('HistoricReservations');
-        $this->historicReservation = $this->HistoricReservations->find('all');
-        
-        
-    }
-    
+
     /** 
      * Paginador de recursos.
      */
@@ -40,26 +25,8 @@ class HistoricReservationsController extends AppController
     * Carga el historico de reservaciones para generar el reporte.
     * 
     */
-	public function index()
+	public function generateReports()
 	{
-        //$this->set('user_role', $this->Auth->User('role_id'));
-        
-        /*$start_date = $this->request->data['start_date'];
-        $end_date = $this->request->data['start_date'];
-        
-        $this->hReservations = $this->historicreservations->find('all')
-        ->select(['HistoricReservations.reservation_start_date', 
-                  'HistoricReservation.reservation_end_date',
-                  'HistoricReservation.resource_name',
-                  'HistoricReservation.event_name',
-                  'HistoricReservation.user_username',
-                  'HistoricReservation.user_first_name',
-                  'HistoricReservation.user_last_name'])
-        ->where(['HistoricReservations.reservation_start_date BETWEEN :$start_date AND :$end_date']);;*/
-        
-        /*$this->loadModel('HistoricReservations');
-        $historicReservation = $this->HistoricReservations->find('all');
-        $historicReservation->toArray();*/
         if ($this->request->is('POST'))
         {
             $this->loadModel('HistoricReservations');

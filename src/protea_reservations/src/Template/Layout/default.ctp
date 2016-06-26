@@ -205,7 +205,7 @@
                                 <li role="mis_reservaciones">
                                     <?php echo $this->Html->link('Generar Reportes',
                                                                  array('controller'=>'historicreservations',
-                                                                       'action' => 'index'),
+                                                                       'action' => 'generateReports'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>

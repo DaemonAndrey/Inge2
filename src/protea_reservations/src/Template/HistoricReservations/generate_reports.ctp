@@ -1,6 +1,6 @@
 <!-- src/Template/Reservations/edit.ctp -->
 <?php 
-    $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+    $this->Html->image('logoUCR.jpg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
 
     // CSS
     echo $this->Html->css('reservations.css'); 
