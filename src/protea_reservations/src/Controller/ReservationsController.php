@@ -639,31 +639,88 @@ class ReservationsController extends AppController
         }
     }
     
-    public function getHistoricReservations()
+    
+    /**
+    * Método que cancela la reservación de un usuario, la guarda en la tabla HistoricReservations con estado 3 y además la elimina
+    * de la tabla Reservations.
+    * @param 
+    */
+    public function delete($reservationId = null)
     {
-        if($this->request->is('POST'))
+        if($reservationId != null)
         {
-            $this->loadModel('HistoricReservations');
-            $query = $this->HistoricReservations->find('all');
-            $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
-            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%H:%i'" => 'literal']);
-            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%H:%i'" => 'literal']);
-            $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
+            $reservation = $this->Reservations->get($reservationId);
             
-            $query->select([
-                'start_date' => $date,
-                'start_hour' => $start_time,
-                'end_hour' => $end_time,
-                'event_name',
-                'resource_name',
-                'user_comment',
-                'user' => $user
-            ]);
-            
-            $resources = $query;
-            $resources = json_encode($resources);
-            
-            die($resources);
+            if($this->Auth->user())
+            {        
+                if($reservation['state'] == 0)
+                {
+                    $this->loadModel('HistoricReservations');
+                    $historicReservation = $this->HistoricReservations->newEntity();
+                    $historicReservation->reservation_start_date = $reservation['start_date'];
+                    $historicReservation->reservation_end_date = $reservation['end_date'];
+                    $historicReservation->resource_name = $reservation['resource']['resource_name'];
+                    $historicReservation->event_name = $reservation['event_name'];
+                    $historicReservation->user_username = $reservation['user']['username'];
+                    $historicReservation->user_first_name = $reservation['user']['first_name'];
+                    $historicReservation->user_last_name = $reservation['user']['last_name'];
+                    $historicReservation->user_comment = $reservation['user_comment'];
+                    $historicReservation->administrator_comment = $reservation['administrator_comment'];
+                    $historicReservation->state = 4;
+
+                    if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                    {
+                        $this->Flash->set(__('Reservación eliminada.'), ['clear' => true, 'key' => 'success']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                    else
+                    {
+                        $this->Flash->set(__('Reservación no eliminada. Por favor, inténtelo de nuevo.'), ['clear' => true, 'key' => 'error']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                }
+                else if($reservation['state'] == 1)
+                {
+                    $this->loadModel('HistoricReservations');
+                    $historicReservations = $this->HistoricReservations->find('all')
+                        ->select('id',
+                                 'reservation_start_date',
+                                 'resource_name',
+                                 'user_username',
+                                 'state'
+                                )
+                        ->andWhere(['reservation_start_date = ' => $reservation['start_date'],
+                                    'resource_name = ' => $reservation['resource']['resource_name'],
+                                    'user_username' => $this->Auth->user('username')
+                                   ]);
+
+                    $historicReservation = $historicReservations->first();
+                    debug($historicReservation);
+
+                    $historicReservationsTable = TableRegistry::get('HistoricReservations');
+                    $historicReservation2 = $historicReservationsTable->get($historicReservation['id']); // Return article with id 12
+                    $historicReservation2->state = 4;
+
+                    debug($historicReservation2);
+
+                    if($this->Reservations->delete($reservation) && $this->HistoricReservations->save($historicReservation2))
+                    {
+                        $this->Flash->set(__('Reservación eliminada.'), ['clear' => true, 'key' => 'success']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                    else
+                    {
+                        $this->Flash->set(__('Reservación no eliminada. Por favor, inténtelo de nuevo.'), ['clear' => true, 'key' => 'error']);
+                        return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
+                    }
+                }
+            }
+        }
+        else
+        {
+            $this->Flash->set(__('No se puede eliminar la reservación porque no existe.'), ['clear' => true, 'key' => 'error']);
+
+            return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
     
@@ -693,8 +750,12 @@ class ReservationsController extends AppController
         if($this->request->action === 'view' && $user['role_id'] == 1)
             return true;
         
-        // Todos los usuarios pueden cancelar una reservación que les pertenezca o administren
-        if($this->request->action === 'cancel')
+        // Los usuarios pueden cancelar una reservación que les pertenezca
+        if($this->request->action === 'cancel' && $user['role_id'] == 1)
+            return true;
+        
+        // Los administradores o superadministradores pueden eliminar reservaciones
+        if($this->request->action === 'delete' && ($user['role_id'] == 2 || $user['role_id'] == 3))
             return true;
         
         // Cualquiera puede ingresar a la vista de 'index'

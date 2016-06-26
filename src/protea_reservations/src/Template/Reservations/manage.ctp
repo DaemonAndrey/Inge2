@@ -83,6 +83,14 @@
             <th>
                 Revisar
             </th>
+            <?php 
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                {
+                    echo '<th>';
+                        echo 'Cancelar';
+                    echo '</th>';
+                }
+            ?>
         </tr>
         <!-- FIN ENCABEZADO -->
         
@@ -186,6 +194,20 @@
                     ?>
                 </td>
                 <!-- FIN REVISAR -->
+                
+                <!-- CANCELAR -->
+                <?php 
+                    if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                    {
+                        echo '<td>';
+                            echo $this->Html->link('<i class="glyphicon glyphicon-remove"></i>',
+                                                   array('controller' => 'reservations', 'action' => 'delete', $reservation->id),
+                                                   array('escape' => false)
+                                                  );
+                        echo '</td>';
+                    }
+                ?>
+                <!-- FIN CANCELAR -->
             </tr>
         <?php endforeach; ?>
         <?php unset($reservation); ?>
@@ -203,17 +225,3 @@
       </div>
    </div>
 </div> <!-- FIN PAGINADOR -->
-
-
-<button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistorico()">Generar reporte</button>
-
-    
-<?= $this->Html->script('historicReservations.js'); ?>
-<?= $this->Html->script('jspdf/jspdf.js'); ?>
-<?= $this->Html->script('jspdf/jspdf.min.js'); ?>
-<?= $this->Html->script('jspdf/jspdf.plugin.autotable.js'); ?>
-<?= $this->Html->script('jspdf/jspdf.plugin.png_support.js'); ?>
-<?= $this->Html->script('jspdf/jspdf.plugin.addimage.js'); ?>
-<?= $this->Html->script('jspdf/png_support/png.js'); ?>
-<?= $this->Html->script('jspdf/png_support/zlib.js'); ?>
-<?= $this->Html->script('jspdf/FileSaver.js'); ?>

@@ -6,30 +6,6 @@ CREATE TABLE roles
 	PRIMARY KEY ( id )
 );
 
-CREATE TABLE functions
-(
-	id 						INT UNSIGNED AUTO_INCREMENT,
-	function_name 	VARCHAR(100) UNIQUE NOT NULL,
-	
-	PRIMARY KEY ( id )
-);
-
-CREATE TABLE functions_roles
-(
-	id 				INT UNSIGNED AUTO_INCREMENT,
-	function_id INT UNSIGNED NOT NULL,
-	role_id		INT UNSIGNED NOT NULL,
-	
-	PRIMARY KEY ( id ),
-	FOREIGN KEY ( function_id ) REFERENCES functions ( id )
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	FOREIGN KEY ( role_id ) REFERENCES roles ( id )
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	UNIQUE KEY ( function_id, role_id )
-);
-
 CREATE TABLE users
 (
 	id 							INT UNSIGNED AUTO_INCREMENT,
@@ -124,7 +100,7 @@ CREATE TABLE historic_reservations
 	user_last_name 			VARCHAR( 64 ),
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	state 					INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada
+	state 					INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada por el usuario, 4: Eliminada por el administrador
 	
 	PRIMARY KEY ( id ),
 	UNIQUE KEY ( reservation_start_date, resource_name, user_username )
