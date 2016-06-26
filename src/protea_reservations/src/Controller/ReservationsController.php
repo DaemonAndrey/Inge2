@@ -58,7 +58,7 @@ class ReservationsController extends AppController
      * Paginador de recursos.
      */
     public $paginate = array('limit' => 10,
-                             'order' => array('Reservation.start_date' => 'asc')
+                             'order' => array('Reservation.start_date' => 'asc', 'Reservation.end_date' => 'asc')
                             );
     
     /**

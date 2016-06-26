@@ -110,6 +110,7 @@ function getRespuesta() {
     
     if (peticionHTTP.readyState === 4 && peticionHTTP.status === 200) {
         // Asigna a la variable 'datos' la información que respondió el servidor
+        //alert(peticionHTTP.responseText);
         datos = JSON.parse(peticionHTTP.responseText);
         
         // Luego de obtener la información del servidor se genera el PDF
