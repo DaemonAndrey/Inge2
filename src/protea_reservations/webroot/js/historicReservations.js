@@ -1,7 +1,7 @@
 var peticionHTTP, datos;
 //var logoUCR = 'img/logoUCR.png';
 var logoUCR = new Image();
-logoUCR.src = '../img/logoUCR.jpeg';
+logoUCR.src = 'img/logoUCR.jpeg';
 
 function inicializarXHR() {
     if (window.XMLHttpRequest) {

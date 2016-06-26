@@ -42,7 +42,7 @@ class HistoricReservationsController extends AppController
     */
 	public function index()
 	{
-        $this->set('user_role', $this->Auth->User('role_id'));
+        //$this->set('user_role', $this->Auth->User('role_id'));
         
         /*$start_date = $this->request->data['start_date'];
         $end_date = $this->request->data['start_date'];
@@ -56,18 +56,41 @@ class HistoricReservationsController extends AppController
                   'HistoricReservation.user_first_name',
                   'HistoricReservation.user_last_name'])
         ->where(['HistoricReservations.reservation_start_date BETWEEN :$start_date AND :$end_date']);;*/
-        $this->loadModel('HistoricReservations');
-        $historicReservation = $this->HistoricReservations->find('all');
-        $historicReservation->toArray();
         
-		
+        /*$this->loadModel('HistoricReservations');
+        $historicReservation = $this->HistoricReservations->find('all');
+        $historicReservation->toArray();*/
+        if ($this->request->is('POST'))
+        {
+            $this->loadModel('HistoricReservations');
+            $query = $this->HistoricReservations->find('all');
+            $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
+            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%H:%i'" => 'literal']);
+            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%H:%i'" => 'literal']);
+            $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
+            
+            $query->select([
+                'start_date' => $date,
+                'start_hour' => $start_time,
+                'end_hour' => $end_time,
+                'event_name',
+                'resource_name',
+                'user_comment',
+                'user' => $user
+            ])
+            ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC']);
+            
+            $resources = $query;
+            $resources = json_encode($resources);
+            
+            die($resources);
+        }
 	}
     
     public function isAuthorized($user)
     {
-        
         // Solo los administradores pueden aceptar las reservaciones pendientes
-        if($this->request->action === 'index' && ($user['role_id'] == 2||$user['role_id'] == 3))
+        if ($this->request->action === 'index' && ($user['role_id'] == 2 || $user['role_id'] == 3))
             return true;    
         
         return parent::isAuthorized($user);   

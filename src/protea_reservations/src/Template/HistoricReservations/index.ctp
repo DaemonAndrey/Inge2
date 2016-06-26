@@ -1,9 +1,23 @@
 <!-- src/Template/Reservations/edit.ctp -->
-<?php echo $this->Html->css('reservations.css'); ?>
+<?php 
+    $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+
+    // CSS
+    echo $this->Html->css('reservations.css'); 
+    
+    // Javascript
+    echo $this->Html->script('historicReservations.js'); 
+    echo $this->Html->script('jspdf/jspdf.js'); 
+    echo $this->Html->script('jspdf/jspdf.min.js');
+    echo $this->Html->script('jspdf/jspdf.plugin.autotable.js');
+    echo $this->Html->script('jspdf/jspdf.plugin.png_support.js'); 
+    echo $this->Html->script('jspdf/jspdf.plugin.addimage.js');
+    echo $this->Html->script('jspdf/png_support/png.js');
+    echo $this->Html->script('jspdf/png_support/zlib.js');
+    echo $this->Html->script('jspdf/FileSaver.js'); 
+?>
 
 <div class="users form">
-   
-    
     <!-- TÍTULO -->
     <div class="row">
         <div class="col-xs-12">
@@ -32,3 +46,5 @@
 
     <?= $this->Form->end() ?>
 </div>
+
+<button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistorico()">Generar reporte</button>
