@@ -13,16 +13,16 @@ if (document.getElementsByClassName("message").length) {
 
 
 $(document).ready(function () { // page is now ready, initialize the calendar...
-    var xhttp = new XMLHttpRequest();
-    var json_events = "";
+    var xhttp = new XMLHttpRequest(), json_events = "";
+    
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
             json_events = xhttp.responseText;
         }
     };
 
-    var path = window.location.pathname;
-    var append = "";
+    var path = window.location.pathname, append = "";
+    
     if (path.charAt(path.length - 1).localeCompare("/") === 0) {
         append = "index";
     } else {
@@ -36,17 +36,17 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({ // put your options and callbacks here
         dayClick: function (date, jsEvent, view) {
-            var today = new Date();
-            var selectedDay = date.format("DD");
-            var selectedMonth = date.format("MM");
+            var today = new Date(),
+                selectedDay = date.format("DD"),
+                selectedMonth = date.format("MM"),
+                openModal;
 
             // El modal se abre si sucede alguna de las siguientes situaciones:
             //  * Si el mes seleccionado es el actual y el día es mayor o igual a hoy.
             //  * Si el mes seleccionado es mayor al actual.
-            var openModal = ( (selectedMonth == (today.getMonth() + 1)) && selectedDay >= today.getDate() ) || ( ( selectedMonth > today.getMonth() + 1) );
+            openModal = ((selectedMonth === (today.getMonth() + 1)) && selectedDay >= today.getDate()) || ((selectedMonth > today.getMonth() + 1));
 
-            if( openModal )
-            {
+            if (openModal) {
                 jQuery('#mdlReservaciones').modal('show');
                 globalDate = date;
 
@@ -72,94 +72,78 @@ $(document).ready(function () { // page is now ready, initialize the calendar...
     });
 });
 
-function getResources(element)
-{
-    if(element.value != "Seleccionar") {
+function getResources(element) {
+    if (element.value !== "Seleccionar") {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function()
-        {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
                 obj = JSON.parse(xhttp.responseText); //Parsea el json que le envía el servidor y lo guarda en una variable global
                 fillResources(); //Llama a este método para llegar el select
             }
         };
 
-        var path = window.location.pathname;
-        var new_path = path.replace("/reservations/","/resources/"); 
+        var path = window.location.pathname,
+            new_path = path.replace("/reservations/", "/resources/");
 
         //algunos navegadores no ponen el último /
-        if(path === new_path) {
-            new_path = path.replace("/reservations","/resources/");                
+        if (path === new_path) {
+            new_path = path.replace("/reservations", "/resources/");
         }
 
-        var start = getFormatedHour(document.getElementById("start").value);
-        var end = getFormatedHour(document.getElementById("end").value);
+        var start = getFormatedHour(document.getElementById("start").value),
+            end = getFormatedHour(document.getElementById("end").value),
+            dateFormat = globalDate.format("DD MMMM YYYY"),
+            startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
 
-        var dateFormat = globalDate.format("DD MMMM YYYY");
-        var startDate = getDate(dateFormat); //Formatea la fecha a la que recibe la base de datos
-
-
-        xhttp.open("POST", new_path+"getResources/"+element.value+"/"+start+"/"+end+"/"+startDate,false);
+        xhttp.open("POST", new_path + "getResources/" + element.value + "/" + start + "/" + end + "/" + startDate, false);
 
         xhttp.send();
     }
 
     return true;
-}  
+}
     
-function getFormatedHour(number)
-{
+function getFormatedHour(number) {
     var hour = "";
 
-    if(number < 10)
-    {   
-        hour = "0"+number+":00:00";
-    }
-    else
-    {
-        hour = number+":00:00";
+    if (number < 10) {
+        hour = "0" + number + ":00:00";
+    } else {
+        hour = number + ":00:00";
     }
 
     return hour;
 }
     
-function fillResources()
-{
+function fillResources() {
     html = "";
     var len = obj.available.length;
     document.getElementById("resource_description").innerHTML = obj.available[0].resource.description;
 
-    for (var i = 0; i < len; ++i) 
-    {
+    for (var i = 0; i < len; ++i) {
         html += "<option id ="+i+">"+obj.available[i].resource.resource_name+"</option>";
     }
 
     len = obj.reserved.length;
 
-    for (var i = 0; i < len; ++i)
-    {
+    for (var i = 0; i < len; ++i) {
         html += "<option id ="+i+" disabled>"+obj.reserved[i].resource.resource_name+"</option>";
     }
 
     document.getElementById("resource").innerHTML = html;
 }
 
-function getReservationData()
-{
-    if(document.getElementById("check").checked)
-    {
+function getReservationData() {
+    if (document.getElementById("check").checked) {
         var xhttp = new XMLHttpRequest();
 
-        xhttp.onreadystatechange = function()
-        {
-            if(xhttp.readyState == 4 && xhttp.status == 200)
-            {   
+        xhttp.onreadystatechange = function() {
+            if(xhttp.readyState == 4 && xhttp.status == 200) {   
                 jQuery('#callback').modal('show');
                 setTimeout(function(){location.reload();},2000);
             }
 
-            if(xhttp.readyState == 4 && xhttp.status == 500)
-            {
+            if(xhttp.readyState == 4 && xhttp.status == 500) {
                 showModal( "<p style='color:red'>¡Lo sentimos!. Al parecer alguien más acaba de reservar el recurso. Recargue la página y verifique si aún aparece disponible. De estar disponible y no poder reservar, contacte al administrador.</p>");
                 setTimeout(function(){location.reload();},10000);
             }
@@ -169,20 +153,20 @@ function getReservationData()
 
         date = getDate(date); //Formatea la fecha a la fecha que recibe la base de datos
 
-        var start = document.getElementById("start").value;
-        var end = document.getElementById("end").value;
+        var start = document.getElementById("start").value,
+            end = document.getElementById("end").value,
+            
+            start_Date = date + " " + start,
+            end_Date = date + " " + end,
+            
+            resource = document.getElementById("resource").value,
+            event_name = document.getElementById("event_name").value,
+            user_comment = document.getElementById("comment").value,
 
-        var start_Date = date + " " + start;
-        var end_Date = date + " " + end;       
+            path = window.location.pathname;
 
-        var resource = document.getElementById("resource").value;
-        var event_name = document.getElementById("event_name").value;
-        var user_comment = document.getElementById("comment").value;
-
-        var path = window.location.pathname;
-
-        if(path.charAt(path.length - 1) != '/') //algunas veces el navegador no pone el último /
-        {
+        //algunas veces el navegador no pone el último /
+        if(path.charAt(path.length - 1) != '/') {
             path = path+"/";
         }            
 
@@ -198,14 +182,12 @@ function getReservationData()
             resource: resource
         })); 
     }
-    else
-    {
+    else {
         showModal( "Debe aceptar los términos y condiciones de uso");   
     }
 }
 
-function getDate(date)
-{
+function getDate(date) {
     var months = new Array();
 
     months['enero'] = 01;
@@ -270,8 +252,7 @@ function restartEndHours()
     end_Ddl.selectedIndex = end_Ddl.options[0];
 }    
 
-function showDescription(element)
-{
+function showDescription(element) {
     document.getElementById("resource_description").innerHTML = obj.available[element[element.selectedIndex].id].resource.description;
 }
 
@@ -281,20 +262,15 @@ function setEventName(input) {
     eventNameText = input.value;
 }
 
-function activateButton(select, checkbox)
-{        
-    if((select.value != "Seleccionar") && checkbox.checked && eventNameText != "")
-    {
+function activateButton(select, checkbox) {        
+    if ((select.value != "Seleccionar") && checkbox.checked && eventNameText != "") {
         document.getElementById("Reservar").disabled = false;
-    }
-    else
-    {
+    } else {
         document.getElementById("Reservar").disabled = true;
     }
 }
 
-function showModal(text)
-{
+function showModal(text) {
     document.getElementById("callbackText").innerHTML = text;
     $('#callback').modal('show');
 }   

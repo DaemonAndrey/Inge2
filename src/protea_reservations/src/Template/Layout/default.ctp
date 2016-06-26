@@ -203,9 +203,9 @@
 
                                 <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
                                 <li role="mis_reservaciones">
-                                    <?php echo $this->Html->link('Historial de reservaciones',
-                                                                 array('controller'=>'pages',
-                                                                       'action' => 'home'),
+                                    <?php echo $this->Html->link('Generar Reportes',
+                                                                 array('controller'=>'historicreservations',
+                                                                       'action' => 'index'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>
