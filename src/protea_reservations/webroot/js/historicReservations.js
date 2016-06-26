@@ -160,7 +160,7 @@ var getRows = function () {
 function generarPDF() {
     'use strict';
     
-    var doc = new jsPDF('p', 'pt', 'letter'),
+    var doc = new jsPDF('l', 'pt', 'letter'),
         
         // Obtiene los encabezados de las columnas
         columnsLong = getColumns(),

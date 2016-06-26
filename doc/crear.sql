@@ -101,9 +101,11 @@ CREATE TABLE historic_reservations
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
 	state 					INT UNSIGNED NOT NULL, -- 1: Aceptada, 2: Rechazada, 3: Cancelada por el usuario, 4: Eliminada por el administrador
+    confirmation_date       DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
 	PRIMARY KEY ( id ),
 	UNIQUE KEY ( reservation_start_date, resource_name, user_username )
+    
 );
 
 CREATE TABLE configurations

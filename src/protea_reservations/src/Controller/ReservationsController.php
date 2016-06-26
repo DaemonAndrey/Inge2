@@ -649,7 +649,11 @@ class ReservationsController extends AppController
     {
         if($reservationId != null)
         {
-            $reservation = $this->Reservations->get($reservationId);
+            $reservation = $this->Reservations->get($reservationId, [
+                'contain' => ['Users', 'Resources']
+            ]);
+            
+            debug($reservation);
             
             if($this->Auth->user())
             {        

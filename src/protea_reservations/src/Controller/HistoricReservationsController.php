@@ -13,44 +13,6 @@ class HistoricReservationsController extends AppController
         parent::initialize();
     }
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        
-        $this->loadModel('HistoricReservations');
-        $query = $this->HistoricReservations->find('all')
-            ->join(['resources' => ['table' => 'resources',
-                                'type' => 'INNER',
-                                'conditions' => ['resources.resource_name = HistoricReservations.resource_name']
-                               ],
-                    'resources_users' => ['table' => 'resources_users',
-                                         'type' => 'INNER',
-                                         'conditions' => ['resources.id = resources_users.resource_id']
-                                         ],
-                    'users' => ['table' => 'users',
-                               'type' => 'INNER',
-                               'conditions' => ['users.id = resources_users.user_id', 'users.id = ' => $this->Auth->User('id')]
-                               ]
-               ]);
-        $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
-        $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%H:%i'" => 'literal']);
-        $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%H:%i'" => 'literal']);
-        $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
-
-        $query->select([
-            'start_date' => $date,
-            'start_hour' => $start_time,
-            'end_hour' => $end_time,
-            'event_name',
-            'resource_name',
-            'user_comment',
-            'user' => $user
-        ])
-        ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC'])
-            ->hydrate(false);
-        
-        //debug($query);
-    }
     /** 
      * Paginador de recursos.
      */
@@ -83,8 +45,8 @@ class HistoricReservationsController extends AppController
                                    ]
                    ]);
             $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
-            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%H:%i'" => 'literal']);
-            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%H:%i'" => 'literal']);
+            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%h:%i %p'" => 'literal']);
+            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%h:%i %p'" => 'literal']);
             $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
             
             $query->select([
