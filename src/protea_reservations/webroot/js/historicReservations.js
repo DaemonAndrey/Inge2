@@ -68,12 +68,13 @@ function generarPDF() {
             doc.setTextColor(40);
             doc.setFontStyle('normal');
             doc.addImage(logoUCR, 'JPEG', 40, 40, 70, 70);
-            doc.text("Universidad de Costa Rica \n Escuela de Educación", data.settings.margin.left + 80, 50);
+            doc.text("\nUniversidad de Costa Rica \nEscuela de Educación", data.settings.margin.left + 80, 50);
         },
         
         totalPagesExp = "{total_pages_count_string}",
         
         footer = function (data) {
+            doc.setFontSize(8);
             var str = "Página " + data.pageCount;
             // Total page number plugin only available in jspdf v1.0+
             if (typeof doc.putTotalPages === 'function') {
@@ -85,15 +86,18 @@ function generarPDF() {
         options = {
             beforePageContent: header,
             afterPageContent: footer,
-            startY: doc.autoTableEndPosY() + 130,
+            startY: doc.autoTableEndPosY() + 150,
             styles: {overflow: 'linebreak'},
-            bodyStyles: {valign: 'top'},
+            bodyStyles: {
+                valign: 'top'},
             headerStyles: {
                 fillColor: [145, 187, 27],
                 fontSize: 12,
                 rowHeight: 20
             }
         };
+    
+    doc.text("Reporte de reservaciones", 40, 140);
     
     doc.autoTable(columnsLong, rowsLong, options);
     
