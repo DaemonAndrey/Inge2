@@ -1,5 +1,8 @@
 <!-- src/Template/Reservations/indexAdmin.ctp -->
-<?php echo $this->Html->css('resources.css'); ?>
+<?php 
+    echo $this->Html->css('resources.css'); 
+    $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+?>
 
 <br>
 
