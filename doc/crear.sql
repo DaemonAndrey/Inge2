@@ -72,8 +72,6 @@ CREATE TABLE reservations
 	resource_id 				INT UNSIGNED NOT NULL,
 	user_comment 			TEXT,
 	administrator_comment	TEXT,
-	user_seen 					TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
-	administrator_seen 		TINYINT(1) DEFAULT 0, -- 0: No visto, 1: Visto
 	user_id 						INT UNSIGNED NOT NULL,
 	event_name 				VARCHAR( 70 ),
 	state					TINYINT(1) DEFAULT 0, -- 0: Pendiente, 1: Aceptado
