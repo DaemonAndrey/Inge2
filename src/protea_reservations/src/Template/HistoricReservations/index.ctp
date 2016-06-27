@@ -1,6 +1,16 @@
 <!-- src/Template/Reservations/edit.ctp -->
 <?php echo $this->Html->css('reservations.css');
     echo $this->Html->css('datepicker.css'); ?>
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
 <div class="users form">
     
@@ -21,34 +31,31 @@
     <!-- FIN TÍTULO -->
   
     <div class='row'>
-            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <div class="input-group">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar">
-                            
                         </i>
-                        
                     </div>
                     <?= $this->Form->input('start_date', ['label' => 'Fecha de Inicio * ', 'placeholder' => 'DD/MM/YYYY', 'class' => 'form-control']) ?>
                 </div>
-                
-                    
                 <br>
             </div>
+        
             
-            <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <div class="input-group">
                     <div class="input-group-addon">
                         <i class="fa fa-calendar">
                         </i>
                     </div>
                 
-                    <?= $this->Form->input('end_date', ['label' => 'Fecha de Inicio * ', 'placeholder' => 'DD/MM/YYYY', 'class' => 'form-control']) ?>
+                    <?= $this->Form->input('end_date', ['label' => 'Fecha Final* ', 'placeholder' => 'DD/MM/YYYY', 'class' => 'form-control']) ?>
                 </div>
                 <br>
             </div>
     </div>
-    <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+    <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-4 col-sm-offset-4 col-xs-offset-1'>
         <?=
             $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
                                                             'options' => $resource_types_options,
@@ -70,8 +77,26 @@
         
    </fieldset>
 
-    </fieldset>
     <!-- FIN CAMPOS A MOSTRAR -->
 
     <?= $this->Form->end() ?>
 </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>

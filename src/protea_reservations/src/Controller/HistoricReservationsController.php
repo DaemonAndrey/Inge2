@@ -56,7 +56,6 @@ class HistoricReservationsController extends AppController
             
              if ($this->request->is('post')){
             //Carga la informacion que se obtiene en el formulario    
-        
                 $start_date = $this->request->data['start_date'];
                 $end_date = $this->request->data['start_date'];
                 $resource_type=$this->request->data['resource_type'];
@@ -67,9 +66,34 @@ class HistoricReservationsController extends AppController
              }
              
             $this->set('historic', $historic);
+	   }
+    }
+    public function index2()
+	{
+        $this->set('user_role', $this->Auth->User('role_id'));
+        $this->loadModel('ResourceTypes');
+        $options = $this->ResourceTypes->find('list',['keyField' => 'id',
+                                                      'valueField' => 'description'])->toArray();
         
-		
-	}
+        $this->set('resource_types_options', $options);
+        $this->loadModel('HistoricReservations');
+         if($this->Auth->user())
+        {
+             // Nueva entidad 'Resource'
+            $historic = $this->HistoricReservations->newEntity();
+            
+             if ($this->request->is('post')){
+            //Carga la informacion que se obtiene en el formulario    
+                $start_date = $this->request->data['start_date'];
+                $end_date = $this->request->data['start_date'];
+                $resource_type=$this->request->data['resource_type'];
+                    
+                //Redirigir a la vista de la tabla de reportes
+                $this->redirect(['controller' => 'HistoricReservations','action' => 'table', $start_date,$end_date,$resource_type]);
+             }
+             
+            $this->set('historic', $historic);
+	   }
     }
     
     public function table($start_date, $end_date, $resource_type)
@@ -86,10 +110,10 @@ class HistoricReservationsController extends AppController
                   'HistoricReservations.user_first_name',
                   'HistoricReservations.user_last_name'])
             ->where(['HistoricReservations.user_username'=>$this->Auth->User('username')])
-            /*->where(['HistoricReservations.reservation_start_date BETWEEN :start_date AND :end_date'])
+            ->where(['HistoricReservations.reservation_start_date BETWEEN :start_date AND :end_date'])
             ->where(['HistoricReservations.reservation_end_date BETWEEN :start_date AND :end_date'])
             ->bind(':start_date', $start_date)
-            ->bind(':end_date', $end_date)*/
+            ->bind(':end_date', $end_date)
             ;
         debug($resource_type);
 
