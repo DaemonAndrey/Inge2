@@ -122,7 +122,6 @@ class HistoricReservationsController extends AppController
             ->bind(':start_date', $start_date)
             ->bind(':end_date', $end_date)
             ;
-        debug($resource_type);
 
             // Pagina la tabla de recursos
         $this->set('historic_reservations', $this->paginate($historic_reservations));
@@ -147,8 +146,7 @@ class HistoricReservationsController extends AppController
                 $start_date = $this->request->data['start_date'];
                 $end_date = $this->request->data['start_date'];
                 $resource_type=$this->request->data['resource_type'];
-                $debug($resource_type);
-                    
+                
                 //Redirigir a la vista de la tabla de reportes
                 $this->redirect(['controller' => 'HistoricReservations','action' => 'table', $start_date,$end_date,$resource_type]);
              }
