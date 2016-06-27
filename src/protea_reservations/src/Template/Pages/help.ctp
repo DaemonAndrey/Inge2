@@ -10,14 +10,16 @@
                 <br>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 2 || $user_role_id == 3)
                 {
                     ?>
                     <h2>Manual de Ayuda para Administradores</h2>
                     <?php
                 }
                 // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
+                else if($this->request->session()->read('Auth.User.role_id') == 1)
+                //else if($user_role_id == 1)
                 {
                     ?>
                     <h2>Manual de Ayuda para Usuarios</h2>
@@ -38,14 +40,16 @@
                 <p>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 2 || $user_role_id == 3)
                 {
                     ?>
                     Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
                     <?php
                 }
                 // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
+                else if($this->request->session()->read('Auth.User.role_id') == 1)
+                //else if($user_role_id == 1)
                 {
                     ?>
                     Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
@@ -61,7 +65,8 @@
     
     <!-- TITULO FUNCIONES =========================================================== -->
     <?php
-    if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
+    if($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+    //if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
     {
         ?>
         <div class='row'>
@@ -81,10 +86,11 @@
     
     <!-- MANUAL ===================================================================== -->
     <div class='row'>
-        <div class='col-xs-12' style="color:black; text-align:justify;">            
+        <div class='col-xs-12' style="color:black; text-align:center;">            
             <?php
             // SI SOY ADMINISTRADOR
-            if($user_role_id == 2 || $user_role_id == 3)
+            if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+            //if($user_role_id == 2 || $user_role_id == 3)
             {
                 ?>
                 <!-- ================================================================ -->
@@ -100,22 +106,44 @@
                     </button>
                     <div id="adminReservacionesPendientes" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Aprobar o rechazar reservaciones pendientes para discriminar si el usuario puede o no hacer uso del recurso solicitado.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Reservaciones Pendientes</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones pendientes de confirmación.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-check"></i></strong> de la reservación que desee revisar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá la información más detallada de la reservación.
+                                    En caso de rechazarla, puede escribir un <strong>comentario</strong> que podrá leer el usuario que hizo esa reservación, explicando por qué su reservación fue rechazada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea aprobar la reservación, hacer click en <strong>Aprobar</strong>.
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue aprobada.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si desea rechazar la reservación, hacer click en <strong>Rechazar</strong>.
+                                    Se enviará un correo electrónico al usuario, indicándole que su reservación fue rechazada.
+                                    Además, el recurso reservado se habilita de nuevo para que pueda ser reservado por otro usuario.
                                 </p>
                             </li>
                         </ol>
@@ -127,26 +155,27 @@
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
                     <button data-toggle="collapse" class="btn btn-info" data-target="#adminCancelar">
-                        Cancelar reservaciones
+                        Cancelar reservaciones pendientes
                     </button>
                     <div id="adminCancelar" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Eliminar reservaciones en caso de que se haya pasado la fecha y no pudieron ser Aprobadas ni Rechazadas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                         </ol>
@@ -162,26 +191,27 @@
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
                     <button data-toggle="collapse" class="btn btn-info" data-target="#adminHistorial">
-                        Revisar historial de reservaciones
+                        Generar reportes de reservaciones
                     </button>
                     <div id="adminHistorial" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Generar documentos en formato PDF para hacer análisis sobre las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Paso
                                 </p>
                             </li>
                         </ol>
@@ -201,22 +231,35 @@
                     </button>
                     <div id="adminAgregarTipo" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Agregar un nuevo tipo de recurso, para luego poder agregar recursos bajo esa categoría.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong><span class="glyphicon glyphicon-plus"></span>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Llenar los campos del formulario. El campo de <strong>días de anticipación</strong> se refiere a que todos los recursos bajo ese nuevo tipo de recurso solamente pueden ser reservados esa cantidad de días antes de la fecha deseada. Por ejemplo: si se establece con 1 día de anticipación, los recursos bajo ese tipo no podrán ser reservados el mismo día, sino 1 día antes.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Agregar</strong>. Si sale el error de que el tipo de recurso ya existe, entonces solamente debe ir a <strong>Agregar un Recurso Nuevo</strong> bajo ese tipo.
                                 </p>
                             </li>
                         </ol>
@@ -232,22 +275,35 @@
                     </button>
                     <div id="adminActualizarTipo" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Modificar la información de tipos de recursos que administra en caso de que estos requieran ser actualizados.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Actualizar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> del tipo de recurso que desee actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
                                 </p>
                             </li>
                         </ol>
@@ -263,22 +319,30 @@
                     </button>
                     <div id="adminEliminarTipo" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Eliminar tipos de recurso que administra en caso de que no desee administrarlos más.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Tipos de Recurso</strong>.
+                                    Aparecerá un índice con la información de los tipos de recurso existentes y que debajo de ellos hay recursos que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Eliminar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-trash"></i></strong> del tipo de recurso que desee eliminar. Aparecerá una ventana emergente confirmando su acción.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Aceptar</strong>. Si existieran recursos bajo ese tipo de recurso, también serán eliminados. Además, si existieran más administradores asociados a recursos de ese tipo, el tipo de recurso no se eliminará completamente, únicamente de su índice; de lo contrario, el tipo de recurso sí se eliminará por completo.
                                 </p>
                             </li>
                         </ol>
@@ -298,22 +362,35 @@
                     </button>
                     <div id="adminAgregarRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Agregar nuevos recursos para que los usuarios puedan reservarlos.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong><span class="glyphicon glyphicon-plus"></span>Agregar Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Llenar los campos del formulario. Si no existiera el <strong>Tipo de Recurso</strong> requerido, debe ir primero a <strong>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Agregar</strong>. El nuevo recurso se asociará por defecto a su cuenta de administrador; es decir, inicialmente usted administrará ese recurso.
                                 </p>
                             </li>
                         </ol>
@@ -329,22 +406,25 @@
                     </button>
                     <div id="adminVerRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Consultar la información detallada de los recursos que administra.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Marca/Modelo</strong> o <strong>Placa/Serie</strong>, hacer click en el modelo o la placa del recurso que desee consultar. Aparecerá la información detallada de ese recurso.
                                 </p>
                             </li>
                         </ol>
@@ -360,22 +440,35 @@
                     </button>
                     <div id="adminActualizarRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Modificar la información de recursos que administra en caso de que estos requieran ser actualizados.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Actualizar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> del recurso que desee actualizar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar los campos del formulario que desea actualizar. Si no existiera el <strong>Tipo de Recurso</strong> requerido, debe ir primero a <strong>Agregar Tipo de Recurso</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Actualizar</strong>.
                                 </p>
                             </li>
                         </ol>
@@ -391,22 +484,30 @@
                     </button>
                     <div id="adminEliminarRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Eliminar recursos que administra en caso de que no desee administrarlos más.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la columna <strong>Eliminar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-trash"></i></strong> del recurso que desee eliminar. Aparecerá una ventana emergente confirmando su acción.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Aceptar</strong>. Si eliminara todos los recursos de un mismo tipo, el tipo de recurso también se eliminará de su índice.
                                 </p>
                             </li>
                         </ol>
@@ -422,22 +523,38 @@
                     </button>
                     <div id="adminAsociarRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Asociar otros administradores a recursos para que ellos también puedan administrarlos.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong><i class="glyphicon glyphicon-user"></i>Asociar Administradores</strong>.
+                                    Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccione el <strong>administrador</strong> que se asociará al recurso. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Asociar</strong>.
+                                    El nuevo administrador aparecerá en la tabla de administradores asociados a ese recurso. Además, se le agregará ese recurso al índice de recursos. 
+                                    Si el nuevo administrador no administraba recursos de ese tipo, también se le agregará ese tipo de recurso al índice de tipos de recurso.
                                 </p>
                             </li>
                         </ol>
@@ -453,22 +570,31 @@
                     </button>
                     <div id="adminDesasociarRecurso" class="collapse">
                         <p>
-                            Descripción de función
+                            <br>
+                            Desasociar administradores de recursos para que ya no puedan administrarlos.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Recursos</strong>.
+                                    Aparecerá un índice con la información básica de los recursos existentes que usted administra.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    Hacer click en <strong>Asociar Administradores</strong>.
+                                    Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Desasociar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-remove"></i></strong> del administrador que desee desasociar. Si solamente hay un administrador asociado al recurso, no se podrá desasociar.
                                 </p>
                             </li>
                         </ol>
@@ -481,7 +607,8 @@
 
                 <?php
                 // Si soy SuperAdministrador
-                if($user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 3)
                 {
                     ?>
                     <!-- ================================================================ -->
@@ -495,25 +622,26 @@
                         </button>
                         <div id="adminAgregarUsuario" class="collapse">
                             <p>
-                            Descripción de función
-                        </p>
-                        <ol>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                        </ol>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -526,25 +654,26 @@
                         </button>
                         <div id="adminVerUsuarios" class="collapse">
                             <p>
-                            Descripción de función
-                        </p>
-                        <ol>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                            <li>
-                                <p>
-                                    Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                </p>
-                            </li>
-                        </ol>
+                                <br>
+                                Descripción de función
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                    </p>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -557,6 +686,7 @@
                         </button>
                         <div id="adminUsuariosPendientes" class="collapse">
                             <p>
+                                <br>
                                 Descripción de función
                             </p>
                             <ol>
@@ -588,6 +718,7 @@
                         </button>
                         <div id="adminActualizarUsuarios" class="collapse">
                             <p>
+                                <br>
                                 Descripción de función
                             </p>
                             <ol>
@@ -619,6 +750,7 @@
                         </button>
                         <div id="adminEliminarUsuarios" class="collapse">
                             <p>
+                                <br>
                                 Descripción de función
                             </p>
                             <ol>
@@ -650,7 +782,8 @@
                 <?php
             }
             // SI SOY USUARIO REGULAR
-            else if($user_role_id == 1)
+            else if($this->request->session()->read('Auth.User.role_id') == 1)
+            //else if($user_role_id == 1)
             {
                 ?>
                 <!-- ================================================================ -->
@@ -660,6 +793,7 @@
                     </button>
                     <div id="usuarioCalendario" class="collapse">
                         <p>
+                            <br>
                             Revisar el calendario de eventos permite dar a conocer las fechas y horas en las que hay salas reservadas y los eventos para los cuales están reservadas.
                         </p>
                         <ol>
@@ -701,6 +835,7 @@
                     </button>
                     <div id="usuarioReservacion" class="collapse">
                         <p>
+                            <br>
                             Reservar salas o equipo audiovisual durante un tiempo determinado, para que una vez confirmada la reservación poder utilizarlo hasta la hora establecida.
                         </p>
                         <ol>
@@ -723,6 +858,7 @@
                             <li>
                                 <p>
                                     Seleccionar un <strong>Tipo de Recurso</strong> y a su vez el <strong>Recurso</strong> que desea reservar.
+                                    Si no puede seleccionar un recurso, es porque ya está reservado a esa hora, por lo que debe seleccionar otra Hora de Incio.
                                 </p>
                             </li>
                             <li>
@@ -759,6 +895,7 @@
                     </button>
                     <div id="usuarioActualizar" class="collapse">
                         <p>
+                            <br>
                             Modificar la información de mi cuenta para tener los datos más actualizados.
                         </p>
                         <ol>
@@ -796,6 +933,7 @@
                     </button>
                     <div id="usuarioCancelar" class="collapse">
                         <p>
+                            <br>
                             Cancelar una reservación pendiente o aceptada cuya fecha esté después o sea igual que la fecha actual, en caso de que ya no desee hacer uso del recurso.
                         </p>
                         <ol>
@@ -808,12 +946,12 @@
                             <li>
                                 <p>
                                     Hacer click en <strong>Mis Reservaciones</strong>.
-                                    Aparecerá un índice con la información básica de la reservación, donde además se podrá ver si está <strong>Pendiente</strong> o <strong>Aceptada</strong>.
+                                    Aparecerá un índice con la información básica de sus reservaciones, donde además se podrá ver si están <strong>Pendientes</strong> o <strong>Aceptadas</strong>.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    En la columna <strong>Revisar</strong>, hacer click en el <strong>check</strong> de la reservación que quiere revisar.
+                                    En la columna <strong>Revisar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-check"></i></strong> de la reservación que desee revisar.
                                 </p>
                             </li>
                             <li>
@@ -836,6 +974,7 @@
                     </button>
                     <div id="usuarioHistorial" class="collapse">
                         <p>
+                            <br>
                             Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
                         </p>
                         <ol>

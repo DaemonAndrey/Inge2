@@ -1,102 +1,125 @@
-<!-- src/Template/Reservations/edit.ctp -->
-<?php echo $this->Html->css('reservations.css');
-    echo $this->Html->css('datepicker.css'); ?>
-<!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<?= $this->Html->css('resources.css') ?>
 
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<br>
 
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-
-<div class="users form">
-    
-    <?= $this->Form->create($historic) ?>
-
-    <fieldset>
-        <!-- TÍTULO -->
-    <div class="row">
-        <div class="col-xs-12">
-            <legend>
-                <div class="text-center">
-                    <h2>Reporte de Reservaciones</h2>
-                    <br>
-                </div>
-            </legend>
-        </div>
-    </div>
-    <!-- FIN TÍTULO -->
-  
-    <div class='row'>
-            <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar">
-                        </i>
-                    </div>
-                    <?= $this->Form->input('start_date', ['label' => 'Fecha de Inicio * ', 'placeholder' => 'DD/MM/YYYY', 'class' => 'form-control']) ?>
-                </div>
-                <br>
+<!-- TITULO -->
+<div class="row" style="color:#000;">
+    <div class="col-xs-12">
+        <legend>
+            <div class="text-center">
+                <?php
+                    if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                    {
+                ?>
+                        <h2>Revisar historial de reservaciones</h2>
+                <?php
+                    }
+                    else if ($this->request->session()->read('Auth.User.role_id') == 1)
+                    {
+                ?>
+                        <h2>Mi historial de reservaciones</h2>
+                <?php
+                    }
+                ?>
             </div>
-        
-            
-            <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar">
-                        </i>
-                    </div>
-                
-                    <?= $this->Form->input('end_date', ['label' => 'Fecha Final* ', 'placeholder' => 'DD/MM/YYYY', 'class' => 'form-control']) ?>
-                </div>
-                <br>
-            </div>
+        </legend>
     </div>
-    <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-4 col-sm-offset-4 col-xs-offset-1'>
-        <?=
-            $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
-                                                            'options' => $resource_types_options,
-                                                            'class' => 'form-control']);
-        ?>
-        <br>
-    </div>
-    <div class='row  text-center' id="btnGenerarTabla">
-        <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-            <br>
-            <?= $this->Html->link('Generar Tabla', array('controller' => 'HistoricReservations','action' => 'table', '$start_date','end_date','resource_type'), array( 'class' => 'btn btn-primary', 'style' => 'width:120px')) ?>
-            <?= $this->Form->button('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px']); ?>
-        </div>
-    </div>
-  
-  
-
-
-        
-   </fieldset>
-
-    <!-- FIN CAMPOS A MOSTRAR -->
-
-    <?= $this->Form->end() ?>
 </div>
+<!-- FIN TITULO -->
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- TABLA -->
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-sm" style="color:#000;">
+        <!-- ENCABEZADO -->
+        <tr>
+            <th>
+                <?= $this->Paginator->sort('reservation_start_date', 'Fecha') ?>
+            </th>
+            <th>
+                Hora inicio
+            </th>
+            <th>
+                Hora fin
+            </th>
+            <th>
+                <?= $this->Paginator->sort('resource_name', 'Recurso') ?>
+            </th>
+            <th>
+                <?= $this->Paginator->sort('event_name', 'Curso/Actividad') ?>
+            </th>
+            <th>
+                <?= $this->Paginator->sort('state', 'Estado') ?>
+            </th>
+            <th>
+                Ver
+            </th>
+        </tr>
+        <!-- FIN ENCABEZADO -->
+        
+        <!-- CONTENIDO DE LA TABLA -->
+        <?php
+        foreach($historicReservations as $historicReservation):
+        ?>
+        <tr>
+            <td>
+                <?= date_format($historicReservation['reservation_start_date'], 'd/M/Y') ?>
+            </td>
+            <td>
+                <?= date_format($historicReservation['reservation_start_date'], 'h:i a') ?>
+            </td>
+            <td>
+                <?= date_format($historicReservation['reservation_end_date'], 'h:i a') ?>
+            </td>
+            <td>
+                <?= $historicReservation['resource_name'] ?>
+            </td>
+            <td>
+                <?= $historicReservation['event_name'] ?>
+            </td>
+            <td>
+                <?php
+                    $estado;
+                    
+                    switch($historicReservation['state'])
+                    {
+                        case 1:
+                            $estado = "Aceptada";
+                            break;
+                        case 2:
+                            $estado = "Rechazada";
+                            break;
+                        case 3:
+                            $estado = "Cancelada";
+                            break;
+                        case 4:
+                            $estado = "Eliminada";
+                            break;
+                    }
+                    
+                    echo $estado;
+                ?>
+            </td>
+            <td>
+                <?= $this->Html->link('<i class="glyphicon glyphicon-eye-open"></i>', array('controller' =>  'historicReservations', 'action' => 'view', $historicReservation['id']), array('escape' => false)); ?>
+            </td>
+        </tr>
+        <?php
+        endforeach;
+        unset($historicReservation);
+        ?>
+        <!-- FIN CONTENIDO DE LA TABLA -->
+    </table>
+</div>
+<!-- FIN TABLA -->
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
+<!-- PAGINADOR -->
+<div class="row text-center">
+  <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+      <div class="center_pagination" >
+          <ul class="pagination">
+                <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+          </ul>
+      </div>
+   </div>
+</div>
+<!-- FIN PAGINADOR -->

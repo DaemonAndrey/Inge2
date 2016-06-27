@@ -24,32 +24,32 @@ class ConfigurationsTable extends Table
             ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_subject', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_subject', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_subject', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_subject', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
@@ -57,32 +57,32 @@ class ConfigurationsTable extends Table
             ->notEmpty('registration_rejected_message', 'Ingrese el mensaje de rechazo de registro.')
             ->add('registration_rejected_message', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('registration_accepted_message', 'Ingrese el mensaje de aceptación de registro.')
             ->add('registration_accepted_message', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('reservation_rejected_message', 'Ingrese el mensaje de rechazo de reservación.')
             ->add('reservation_rejected_message', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
             ->notEmpty('reservation_accepted_message', 'Ingrese el mensaje de aceptación de reservación.')
             ->add('reservation_accepted_message', [
                             'validFormat' => [
-                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡()\' ]+$/'),
-                                            'message' => 'Debe usar solamente letras, números o signos (,;.!¡()).'
+                                            'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
+                                            'message' => 'Debe usar solamente letras, números o signos (,;.!¡-()@).'
                                             ]
             ])
             

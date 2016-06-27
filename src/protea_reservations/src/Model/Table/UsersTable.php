@@ -39,16 +39,16 @@ class UsersTable extends Table
             
             ->notEmpty('first_name', 'Ingrese su nombre')
             ->add('first_name', [
-                                'maxLength' =>  ['rule' => ['maxLength', 20],
-                                                'message' => 'Solo se permiten 20 caracteres.'],
+                                'maxLength' =>  ['rule' => ['maxLength', 50],
+                                                'message' => 'Solo se permiten 50 caracteres.'],
                                 'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
             
             ->notEmpty('last_name', 'Ingrese su apellido')
             ->add('last_name', [
-                                'maxLength' =>  ['rule' => ['maxLength', 20],
-                                                'message' => 'Solo se permiten 30 caracteres.'],
+                                'maxLength' =>  ['rule' => ['maxLength', 50],
+                                                'message' => 'Solo se permiten 50 caracteres.'],
                                 'validFormat' =>  ['rule' => array('custom', '/^[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ\' \-]+$/'),
                                                 'message' => 'Debe contener solamente letras.']
             ])
@@ -168,7 +168,6 @@ class UsersTable extends Table
         }
 
         return false;
-
     }
 
 

@@ -1,5 +1,8 @@
-<!-- src/Template/Reservations/indexAdmin.ctp -->
-<?php echo $this->Html->css('resources.css'); ?>
+<!-- src/Template/Reservations/manage.ctp -->
+<?php 
+    echo $this->Html->css('resources.css'); 
+    $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+?>
 
 <br>
 
@@ -22,25 +25,29 @@
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">
     <div class="col-xs-12">
-        <div class="text-center" style="color:#000;">
-            <?php
-            if($user_role == 2 || $user_role == 3)
-            {
-                ?>
-                <h2>Administrar Reservaciones Pendientes</h2>
+        <legend>
+            <div class="text-center">
                 <?php
-            }
-            ?>
-            <?php
-            if($user_role == 1)
-            {
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role == 2 || $user_role == 3)
+                {
                 ?>
-                <h2>Mis Reservaciones</h2>
+                    <h2>Administrar Reservaciones Pendientes</h2>
                 <?php
-            }
-            ?>
-            <br>
-        </div>
+                }
+                ?>
+                <?php
+                if($this->request->session()->read('Auth.User.role_id') == 1)
+                //if($user_role == 1)
+                {
+                ?>
+                    <h2>Mis Reservaciones</h2>
+                <?php
+                }
+                ?>
+                <br>
+            </div>
+        </legend>
     </div>
 </div>
 <!-- FIN TÍTULO -->
@@ -80,6 +87,14 @@
             <th>
                 Revisar
             </th>
+            <?php 
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                {
+                    echo '<th>';
+                        echo 'Cancelar';
+                    echo '</th>';
+                }
+            ?>
         </tr>
         <!-- FIN ENCABEZADO -->
         
@@ -103,9 +118,9 @@
                 <td>
                     <?php 
                         if($reservation['start_date'] != null)
-                            echo date_format($reservation['start_date'], "H:i");
+                            echo date_format($reservation['start_date'], "h:i a");
                         elseif($reservation['reservation_start_date'] != null)
-                            echo date_format($reservation['reservation_start_date'], "H:i")
+                            echo date_format($reservation['reservation_start_date'], "h:i a")
                     ?>
                 </td>
                 <!-- FIN HORA INICIO -->
@@ -114,9 +129,9 @@
                 <td>
                     <?php 
                         if($reservation['end_date'] != null)
-                            echo date_format($reservation['end_date'], "H:i");
+                            echo date_format($reservation['end_date'], "h:i a");
                         elseif($reservation['reservation_end_date'] != null)
-                            echo date_format($reservation['reservation_end_date'], "H:i")
+                            echo date_format($reservation['reservation_end_date'], "h:i a")
                     ?>
                 </td>
                 <!-- FIN HORA FIN -->
@@ -183,6 +198,20 @@
                     ?>
                 </td>
                 <!-- FIN REVISAR -->
+                
+                <!-- CANCELAR -->
+                <?php 
+                    if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                    {
+                        echo '<td>';
+                            echo $this->Html->link('<i class="glyphicon glyphicon-remove"></i>',
+                                                   array('controller' => 'reservations', 'action' => 'delete', $reservation->id),
+                                                   array('escape' => false)
+                                                  );
+                        echo '</td>';
+                    }
+                ?>
+                <!-- FIN CANCELAR -->
             </tr>
         <?php endforeach; ?>
         <?php unset($reservation); ?>
