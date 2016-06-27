@@ -195,19 +195,28 @@
                                 <!-- ADMINISTRAR RESERVACIONES PENDIENTES -->
                                 <li role="reservaciones">
                                     <?php echo $this->Html->link('Reservaciones pendientes',
-                                                                 array('controller'=>'reservations',
+                                                                 array('controller' => 'reservations',
                                                                        'action' => 'manage'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>
 
-                                <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
-                                <li role="mis_reservaciones">
+                                <!-- GENERAR REPORTES -->
+                                <li role="generar_reportes">
                                     <?php echo $this->Html->link('Generar Reportes',
-                                                                 array('controller'=>'historicReservations',
+                                                                 array('controller' => 'historicReservations',
                                                                        'action' => 'generateReports'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
+                                </li>
+                                
+                                <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
+                                <li role="historial_de_reservaciones">
+                                    <?php echo $this->Html->link('Historial de reservaciones',
+                                                                array('controller' => 'historicReservations',
+                                                                     'action' => 'index'),
+                                                                array('target' => '_self',
+                                                                     'escape' => false)) ?>
                                 </li>
 
                                 <!-- ADMINISTRAR TIPOS DE RECURSOS -->
@@ -303,8 +312,8 @@
                                 <!-- HISTORIAL DE MIS RESERVACIONES -->
                                 <li role="mis_reservaciones">
                                     <?php echo $this->Html->link('Historial de reservaciones',
-                                                                 array('controller'=>'pages',
-                                                                       'action' => 'home'),
+                                                                 array('controller'=>'historicReservations',
+                                                                       'action' => 'index'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>

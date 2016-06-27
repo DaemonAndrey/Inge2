@@ -14,12 +14,22 @@ class HistoricReservationsController extends AppController
     }
 
     /** 
-     * Paginador de recursos.
+     * Paginador de reservaciones históricas.
      */
      
     public $paginate = array('limit' => 10,
                              'order' => array('HistoricReservations.reservation_start_date' => 'asc', 'HistoricReservations.reservation_end_date' => 'asc')
                             );
+    
+    public function index()
+    {
+        if ($this->Auth->user())
+        {
+            $historicReservations = $this->HistoricReservations->find('all');
+
+            $this->set('historicReservations', $this->paginate($historicReservations));
+        }
+    }
     
     /**
     * Carga el historico de reservaciones para generar el reporte.
@@ -29,7 +39,6 @@ class HistoricReservationsController extends AppController
 	{
         if ($this->request->is('POST'))
         {
-            $this->loadModel('HistoricReservations');
             $query = $this->HistoricReservations->find('all')
                 ->join(['resources' => ['table' => 'resources',
                                     'type' => 'INNER',
@@ -68,9 +77,13 @@ class HistoricReservationsController extends AppController
     
     public function isAuthorized($user)
     {
-        // Solo los administradores pueden aceptar las reservaciones pendientes
-        if ($this->request->action === 'index' && ($user['role_id'] == 2 || $user['role_id'] == 3))
+        // Cualquier usuario puede ver las reservaciones históricas
+        if ($this->request->action === 'index')
             return true;    
+        
+        // Solo los administradores pueden generar reportes
+        if ($this->request->action === 'generateReports' && ($user['role_id'] == 2 || $user['role_id'] == 3))
+            return true;
         
         return parent::isAuthorized($user);   
     }

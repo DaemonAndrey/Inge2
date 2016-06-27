@@ -10,14 +10,16 @@
                 <br>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 2 || $user_role_id == 3)
                 {
                     ?>
                     <h2>Manual de Ayuda para Administradores</h2>
                     <?php
                 }
                 // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
+                else if($this->request->session()->read('Auth.User.role_id') == 1)
+                //else if($user_role_id == 1)
                 {
                     ?>
                     <h2>Manual de Ayuda para Usuarios</h2>
@@ -38,14 +40,16 @@
                 <p>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 2 || $user_role_id == 3)
                 {
                     ?>
                     Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
                     <?php
                 }
                 // SI SOY USUARIO REGULAR
-                else if($user_role_id == 1)
+                else if($this->request->session()->read('Auth.User.role_id') == 1)
+                //else if($user_role_id == 1)
                 {
                     ?>
                     Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
@@ -61,7 +65,8 @@
     
     <!-- TITULO FUNCIONES =========================================================== -->
     <?php
-    if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
+    if($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+    //if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
     {
         ?>
         <div class='row'>
@@ -84,7 +89,8 @@
         <div class='col-xs-12' style="color:black; text-align:center;">            
             <?php
             // SI SOY ADMINISTRADOR
-            if($user_role_id == 2 || $user_role_id == 3)
+            if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+            //if($user_role_id == 2 || $user_role_id == 3)
             {
                 ?>
                 <!-- ================================================================ -->
@@ -601,7 +607,8 @@
 
                 <?php
                 // Si soy SuperAdministrador
-                if($user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 3)
+                //if($user_role_id == 3)
                 {
                     ?>
                     <!-- ================================================================ -->
@@ -775,7 +782,8 @@
                 <?php
             }
             // SI SOY USUARIO REGULAR
-            else if($user_role_id == 1)
+            else if($this->request->session()->read('Auth.User.role_id') == 1)
+            //else if($user_role_id == 1)
             {
                 ?>
                 <!-- ================================================================ -->

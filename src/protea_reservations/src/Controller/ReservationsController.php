@@ -21,10 +21,7 @@ class ReservationsController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        
-        // Para recuperar el role del usuario loggeado
-        $this->set('user_role', $this->Auth->User('role_id'));
-        
+
         // Consulta para recuperar reservaciones pendientes
         $this->pendingReservations = $this->Reservations->find('all')
             ->select(['id',
