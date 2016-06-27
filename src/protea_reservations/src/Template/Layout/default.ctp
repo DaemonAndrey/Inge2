@@ -204,7 +204,7 @@
                                 <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
                                 <li role="mis_reservaciones">
                                     <?php echo $this->Html->link('Generar Reportes',
-                                                                 array('controller'=>'historicreservations',
+                                                                 array('controller'=>'historicReservations',
                                                                        'action' => 'generateReports'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
