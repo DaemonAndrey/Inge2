@@ -1,6 +1,7 @@
 <!-- src/Template/Reservations/edit.ctp -->
 <?php echo $this->Html->css('reservations.css');
-    echo $this->Html->css('datepicker.css'); ?>
+    echo $this->Html->css('datepicker.css'); 
+    echo $this->Html->script('historicReservations.js'); ?>
 <!--  jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -40,7 +41,7 @@
                         </i>
                     </div>
                     
-                    <input type="date" name='start_date' id = 'start-date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                    <input type="date" name='start_date' id = 'start_date' placeholder='DD/MM/YYYY' class = 'form-control'>
                    
                 </div>
                 <br>
@@ -56,7 +57,7 @@
                         </i>
                     </div>
                     
-                    <input type="date" name='end_date' id = 'end-date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                    <input type="date" name='end_date' id = 'end_date' placeholder='DD/MM/YYYY' class = 'form-control'>
                 </div>
                 <br>
             </div>
@@ -73,7 +74,7 @@
     <div class='row  text-center' id="btnGenerarTabla">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <?= $this->Html->link('Generar Tabla', array('controller' => 'HistoricReservations','action' => 'table', '$start_date','end_date','resource_type'), array( 'class' => 'btn btn-primary', 'style' => 'width:120px')) ?>
+            <button id="VerTabla" class="btn btn-info" onclick="getHistoricReservationData()">Ver Tabla</button>
             <?= $this->Form->button('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px']); ?>
         </div>
     </div>
@@ -124,3 +125,5 @@
     }       
 });
 </script>
+
+ 

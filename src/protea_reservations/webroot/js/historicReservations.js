@@ -226,3 +226,40 @@ function generarPDF() {
     
     doc.save("Reporte de reservaciones.pdf");
 }
+
+
+function getHistoricReservationData() {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if(xhttp.readyState == 4 && xhttp.status == 200) {   
+                alert('onteniendo datos');
+            }
+
+        };
+
+        var start = document.getElementById("start_date").value,
+            end = document.getElementById("end_date").value,
+            
+            start_Date = start,
+            end_Date = end,
+            
+            resource_type = document.getElementById("resource_type_id").value,
+
+            path = window.location.pathname;
+
+        //algunas veces el navegador no pone el último /
+        if(path.charAt(path.length - 1) != '/') {
+            path = path+"/";
+        }            
+
+        xhttp.open("POST", path+"tble");
+
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhttp.send(JSON.stringify({
+            start_date : start_Date,
+            end_date : end_Date,
+            resource_type_id: resource_type
+        })); 
+}
