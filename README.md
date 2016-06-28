@@ -49,7 +49,7 @@ En este momento está en desarrollo. <br>
   </ol>
   <br>
   
-  ## Requerimientos de software
+## Requerimientos de software
   
   <ul>
     <li>PHP 5.6 o más reciente</li>
