@@ -49,6 +49,12 @@ En este momento está en desarrollo. <br>
   </ol>
   <br>
   
+  ## Requerimientos de software
+  
+  <ul>
+    <li>PHP 5.6 o más reciente</li>
+  </ul>
+  
   
   <p> Para mayor información diríjase a la guía de instalación de CakePhp http://book.cakephp.org/3.0/en/installation.html, para inglés o http://book.cakephp.org/3.0/es/installation.html para español. </p>
 
