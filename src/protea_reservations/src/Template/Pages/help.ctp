@@ -95,6 +95,117 @@
                 ?>
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
+                    <h4><u>Calendario de Reservaciones</u></h4>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminCalendario">
+                        Revisar el calendario para ver eventos
+                    </button>
+                    <div id="adminCalendario" class="collapse">
+                        <p>
+                            <br>
+                            Revisar el calendario de eventos permite dar a conocer las fechas y horas en las que hay salas reservadas y los eventos para los cuales están reservadas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Ver Calendario</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Aparecerá un calendario con las salas que tienen asignado un evento, ya sea un curso, una conferencia, etc... El número que aparece antes del nombre es la hora para la que está reservado el evento.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Cambiar la visualización del calendario haciendo click sobre <strong>Mes</strong>, <strong>Semana</strong>, o <strong>Día</strong>, para ver con mejor detalle la duración de los eventos. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en las flechas <strong>◄</strong> (anterior)  o <strong>►</strong> (siguiente) para cambiar la vista del calendario al Mes, Semana, Día anterior o siguiente, respectivamente. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en el botón <strong>Hoy</strong> para regresear inmediatamente al día actual, ya sea en la vista de Mes, Semana o Día. 
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminReservacion">
+                        Hacer reservaciones de salas o equipo
+                    </button>
+                    <div id="adminReservacion" class="collapse">
+                        <p>
+                            <br>
+                            Reservar salas o equipo audiovisual durante un tiempo determinado por si necesita hacer uso de estos recursos, o para usuarios en caso de que no puedan hacerlo ellos mismos.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación hacer click en <strong>Ver Calendario</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en la <strong>casilla del calendario</strong> del día en que desea hacer uso del recurso.
+                                    Aparecerá una ventana emergente con la información de la reservación.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Establecer la duración de uso del recurso, seleccionando la <strong>Hora de Inicio</strong> y la <strong>Hora de Fin</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccionar un <strong>Tipo de Recurso</strong> y a su vez el <strong>Recurso</strong> que desea reservar.
+                                    Si no puede seleccionar un recurso, es porque ya está reservado a esa hora, por lo que debe seleccionar otra Hora de Incio.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Escribir el <strong>Nombre del Evento</strong> (curso, conferencia, etc...) en el que se va a utilizar el recurso.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Información Detallada</strong> para ver las especificaciones del recurso. En caso de necesitar algo adicional a lo especificado en la descripción, escribirlo en el campo de <strong>comentarios</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Si está de acuerdo con los términos y condiciones de uso, chequear la casilla.
+                                    En caso de desconocerlos, hacer click en <strong>Términos y Condiciones de Uso</strong> para ser redirijido a una página donde los puede consultar.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Finalmente, hacer click en <strong>Reservar</strong>. En caso de haber reservado una <strong>Sala</strong> correctamente, aparecerá su reservación en el calendario.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Tome en cuenta que si está haciendo la reservación para un usuario que no pudo hacerla por su cuenta, al final quedará a nombre del administrador que realmente la hizo y será él quien se haga responsable en caso de algún inconveniente con el recurso.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>            
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
                     <p>
                         <h4><u>Administrar reservaciones pendientes</u></h4>
                     </p>
@@ -165,17 +276,19 @@
                         <ol>
                             <li>
                                 <p>
-                                    Paso
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en <strong>Reservaciones Pendientes</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones pendientes de confirmación.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    En la columna <strong>Cancelar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-remove"></i></strong> de la reservación que desee eliminar.
                                 </p>
                             </li>
                         </ol>
@@ -194,7 +307,7 @@
                         Generar reportes de reservaciones
                     </button>
                     <div id="adminHistorial" class="collapse">
-                        <p>
+                        <p style="color: red;">
                             <br>
                             Generar documentos en formato PDF para hacer análisis sobre las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
                         </p>
@@ -424,7 +537,7 @@
                             </li>
                             <li>
                                 <p>
-                                    En la columna <strong>Marca/Modelo</strong> o <strong>Placa/Serie</strong>, hacer click en el modelo o la placa del recurso que desee consultar. Aparecerá la información detallada de ese recurso.
+                                    En la columna <strong>Marca/Modelo</strong> o <strong>Placa/Serie</strong>, hacer click en el modelo o la placa del recurso que desee consultar. Aparecerá la información más detallada de ese recurso.
                                 </p>
                             </li>
                         </ol>
@@ -623,25 +736,37 @@
                         <div id="adminAgregarUsuario" class="collapse">
                             <p>
                                 <br>
-                                Descripción de función
+                                Registrar usuarios en el sistema en caso de que no puedan hacerlo ellos mismos.
                             </p>
                             <ol>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                            </ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Cuentas de Usuarios</strong>.
+                                    Aparecerá un índice con la información básica de las cuentas de usuario existentes.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong><i class="glyphicon glyphicon-plus"></i>Agregar usuario</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Llenar los campos del formulario. Puede escoger el <strong>rol</strong> que tendrá el nuevo usuario en el sistema.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Enviar Solicitud</strong>. Al ser un administrador el que hace el registro, este se aprueba inmediatamente.
+                                </p>
+                            </li>
+                        </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -655,25 +780,27 @@
                         <div id="adminVerUsuarios" class="collapse">
                             <p>
                                 <br>
-                                Descripción de función
+                                Consultar la información detallada de las cuentas de usuario.
                             </p>
                             <ol>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
-                                    </p>
-                                </li>
-                            </ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Cuentas de Usuarios</strong>.
+                                    Aparecerá un índice con la información básica de las cuentas de usuario existentes.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>E-mail</strong>, hacer click en el correo electrónico institucional del usuario que desee consultar. Aparecerá la información más detallada de ese usuario.
+                                </p>
+                            </li>
+                        </ol>
                         </div>
                     </div>
                     <div class='col-xs-8 col-xs-offset-2'>
@@ -687,22 +814,43 @@
                         <div id="adminUsuariosPendientes" class="collapse">
                             <p>
                                 <br>
-                                Descripción de función
+                                Aprobar o rechazar registros de usuarios pendientes para discriminar si el usuario puede o no hacer uso del sistema de reservación de recursos.
                             </p>
                             <ol>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                        Se desplegará una lista de funciones.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        Hacer click en <strong>Cuentas de Usuarios</strong>.
+                                        Aparecerá un índice con la información básica de las cuentas de usuario existentes.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        En la columna <strong>Actualizar</strong> de usuarios que estén <strong>Pendientes</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> de la cuenta que desee Aprobar o Rechazar.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Revisar la información de la cuenta de usuario para determinar si se Aprueba o se Rechaza.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Si desea aprobar el registro de usuario, hacer click en <strong>Aprobar</strong>.
+                                        Se enviará un correo electrónico al usuario, indicándole que su registro fue aprobado.
+                                        De aquí en adelante, el usuario podrá utilizar el sistema de reservación de recursos.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Si desea rechazar el registro de usuario, hacer click en <strong>Rechazar</strong>.
+                                        Se enviará un correo electrónico al usuario, indicándole que su registro fue rechazado.
+                                        El usuario no podrá acceder al sistema de reservación de recursos.
                                     </p>
                                 </li>
                             </ol>
@@ -719,22 +867,34 @@
                         <div id="adminActualizarUsuarios" class="collapse">
                             <p>
                                 <br>
-                                Descripción de función
+                                    Modificar la información de las cuentas de usuarios en caso de que estas requieran ser actualizadas y los usuarios no puedan hacerlo ellos mismos.
                             </p>
                             <ol>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                        Se desplegará una lista de funciones.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        Hacer click en <strong>Cuentas de Usuarios</strong>.
+                                        Aparecerá un índice con la información básica de las cuentas de usuario existentes.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        En la columna <strong>Actualizar</strong> de usuarios que estén <strong>Aceptados</strong>, hacer click en el <strong><i class="glyphicon glyphicon-pencil"></i></strong> de la cuenta que desee Actualizar.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Cambiar los campos del formulario que desea actualizar.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Hacer click en <strong>Actualizar</strong>.
                                     </p>
                                 </li>
                             </ol>
@@ -751,22 +911,71 @@
                         <div id="adminEliminarUsuarios" class="collapse">
                             <p>
                                 <br>
-                                Descripción de función
+                                Eliminar cuentas de usuarios o administradores en caso de que estos estén haciendo un mal uso del sistema de reservación de recursos, o si se deseea hacer una limpieza de usuarios que ya no forman parte de la Universidad de Costa Rica.
+                            </p>
+                            <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Cuentas de Usuarios</strong>.
+                                    Aparecerá un índice con la información básica de las cuentas de usuario existentes.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    En la columna <strong>Eliminar</strong>, hacer click en el <strong><i class="glyphicon glyphicon-trash"></i></strong> de la cuenta de usuario que desee eliminar. Aparecerá una ventana emergente confirmando su acción.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Aceptar</strong>. El usuario o administrador ya no podrá hacer uso del sistema de reservación de recursos.
+                                </p>
+                            </li>
+                        </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <h4><u>Administrar configuraciones</u></h4>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminConfiguracionMensajes">
+                            Actualizar mensajes de Registro y Reservación
+                        </button>
+                        <div id="adminConfiguracionMensajes" class="collapse">
+                            <p>
+                                <br>
+                                Modificar los mensajes que se envían por defecto por correo electrónico a los usuarios cuando se les aprueba o rechaza su registro o sus reservaciones.
                             </p>
                             <ol>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                        Se desplegará una lista de funciones.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        Hacer click en <strong>Configuraciones</strong>.
                                     </p>
                                 </li>
                                 <li>
                                     <p>
-                                        Paso kjsdflk jsdfljs dfljsdfs dfnlmsdnflkjsd flkads flkjsdf kjsdfkj
+                                        Cambiar los mensajes del formulario que desea actualizar.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Hacer click en <strong>Actualizar</strong>.
                                     </p>
                                 </li>
                             </ol>
@@ -776,9 +985,46 @@
                         <br>
                     </div>
                     <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminConfiguracionHorario">
+                            Actualizar el Horario de las Reservaciones
+                        </button>
+                        <div id="adminConfiguracionHorario" class="collapse">
+                            <p>
+                                <br>
+                                Modificar el horario en que los usuarios pueden tener recursos reservados en caso de que requiera ser actualizado.
+                            </p>
+                            <ol>
+                                <li>
+                                    <p>
+                                        En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                        Se desplegará una lista de funciones.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Hacer click en <strong>Configuraciones</strong>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Al final del formulario, cambiar las horas que desea actualizar.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Hacer click en <strong>Actualizar</strong>.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
                     <?php
                 }
-                ?>
+                ?>        
                 <?php
             }
             // SI SOY USUARIO REGULAR
@@ -973,7 +1219,7 @@
                         Revisar el historial de mis reservaciones
                     </button>
                     <div id="usuarioHistorial" class="collapse">
-                        <p>
+                        <p style="color: red;">
                             <br>
                             Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
                         </p>

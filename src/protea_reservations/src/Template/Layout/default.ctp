@@ -314,7 +314,6 @@
                         </ul>
                     </li>
 
-
                     <!-- LOGOUT -->
                     <li>
                         <?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Salir',

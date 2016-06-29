@@ -1,20 +1,14 @@
-<!-- src/Template/Resources/edit.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
-    <!-- MENSAJES -->
-    <div style="text-align:center">
-        <?= $this->Flash->render('addUserSuccess') ?>   
-        <?= $this->Flash->render('addUserError') ?>
-
+    <!-- MENSAJES --> 
+    <div class="lead text-danger" style="text-align:center">
+        <?= $this->Flash->render('editUserError') ?> 
+    </div> 
+    <div class="lead text-info" style="text-align:center">
+        <?= $this->Flash->render('editUserSuccess') ?>
     </div>
     <!-- FIN DE MENSAJES -->
-<div class="lead text-danger" style="text-align:center">
-    <?= $this->Flash->render('editUserError') ?> 
-</div> 
-<div class="lead text-info" style="text-align:center">
-    <?= $this->Flash->render('editUserSuccess') ?>
-</div> <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create($user) ?>
 
@@ -52,7 +46,8 @@
                 </div>
             </legend>
         </div>
-    </div> <!-- FIN TÍTULO -->
+    </div>
+    <!-- FIN TÍTULO -->
 
    
     <!-- CAMPOS A LLENAR -->
@@ -77,7 +72,7 @@
                                             'templates' => ['formGroup' => '<div>{{label}}</div>']]);
                     ?>
                     <br>
-                <?php    
+                    <?php    
                 } 
                 // SI EL USUARIO ESTA ACEPTADO
                 else
@@ -92,6 +87,7 @@
                 ?> 
                 <br>
             </div>
+            
             <!-- ROL / APELLIDO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
@@ -105,13 +101,12 @@
                     }
                     else if($user->role_id == 2)
                     {
-                            $rol = "Administrador";
+                        $rol = "Administrador";
                     }
                     else if($user->role_id == 3)
                     {
                         $rol = "SuperAdministrador";
                     }
-                    
                     ?>
                     <?=
                         $this->Form->label('Users.role_id', 'Rol: ');
@@ -155,6 +150,7 @@
                 ?>
                 <br><br>
             </div>
+            
             <!-- TELÉFONO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
@@ -218,15 +214,15 @@
                     <?=
                         $this->Form->input('Users.department',
                                            ['label' => 'Unidad Académica: ',
-                                            'options' => array(
-                                                'Escuela Administración Educativa'  => 'Escuela Administración Educativa',
-                                                'Escuela Bibliotecología y Ciencias de la Información'  => 'Escuela Bibliotecología y Ciencias de la Información',
-                                                'Escuela Educación Física y Deportes'   => 'Escuela Educación Física y Deportes',
-                                                'Escuela de Formación Docente'  => 'Escuela de Formación Docente',
-                                                'Escuela de Orientación y Educación Especial'   => 'Escuela de Orientación y Educación Especial',
-                                                'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
-                                                'Biblioteca'    => 'Biblioteca',
-                                                'Decanato' => 'Decanato'),
+                                            'options' => ['Biblioteca'    => 'Biblioteca',
+                                                          'Decanato' => 'Decanato',
+                                                          'Instituto de Investigación en Educación INIE' => 'Instituto de Investigación en Educación INIE',
+                                                          'Escuela Administración Educativa'  => 'Escuela Administración Educativa',
+                                                          'Escuela Bibliotecología y Ciencias de la Información'  => 'Escuela Bibliotecología y Ciencias de la Información',
+                                                          'Escuela Educación Física y Deportes'   => 'Escuela Educación Física y Deportes',
+                                                          'Escuela de Formación Docente'  => 'Escuela de Formación Docente',
+                                                          'Escuela de Orientación y Educación Especial'   => 'Escuela de Orientación y Educación Especial'
+                                                         ],
                                             'class' => 'form-control']);
                     ?>
                     <?php     
@@ -234,6 +230,7 @@
                 ?>     
                 <br>
             </div>
+            
             <!-- PUESTO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
@@ -261,9 +258,9 @@
                     <?=
                         $this->Form->input('Users.position',
                                            ['label' => 'Puesto: ',
-                                            'options' => array(
-                                                'Administrativo'  => 'Administrativo',
-                                                'Docente'         => 'Docente'),
+                                            'options' => ['Administrativo'  => 'Administrativo',
+                                                          'Docente'         => 'Docente'
+                                                         ],
                                             'class' => 'form-control']);
                     ?>
                     <?php     
@@ -283,14 +280,15 @@
                 <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                     <?= $this->Form->input('Users.role_id',
                                            ['label' => 'Rol: ',
-                                            'options' => array(
-                                                '1' => 'Regular',
-                                                '2' => 'Administrador',
-                                                '3' => 'SuperAdministrador'),
+                                            'options' => ['1' => 'Regular',
+                                                          '2' => 'Administrador',
+                                                          '3' => 'SuperAdministrador'
+                                                         ],
                                             'class' => 'form-control']);
                     ?>
                     <br>
                 </div>
+                
                 <!-- VACÍO -->
                 <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 </div>
@@ -349,7 +347,8 @@
                 }
                 ?>     
         </div>
-    </div> <!-- FIN BOTONES -->
+    </div>
+    <!-- FIN DE BOTONES -->
 
     <legend>
         <br>

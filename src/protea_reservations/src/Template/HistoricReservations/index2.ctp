@@ -15,7 +15,7 @@
 
 <div class="users form">
     
-    <?= $this->Form->create($historic) ?>
+    <?= $this->Form->create($historic, ['url' => ['action' => 'table']]) ?>
 
     <fieldset>
         <!-- TÍTULO -->
@@ -62,20 +62,32 @@
                 <br>
             </div>
     </div>
-    <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-4 col-sm-offset-4 col-xs-offset-1'>
-        <?=
-            $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
-                                                            'options' => $resource_types_options,
-                                                            'class' => 'form-control']);
-        ?>
-        <br>
+    <div class='row'>
+        <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <?=
+                $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
+                                                                'options' => $resource_types_options,
+                                                                'class' => 'form-control']);
+            ?>
+            <br>
+        </div>
+        <!-- ACTIVO-->
+        <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <?=
+                $this->Form->input('active', ['label' => 'Estado: ',
+                                                        'options' => array('Aceptadas','Rechazadas', 'Canceladas','Eliminadas'),
+                                                        'class' => 'form-control']);
+            ?>
+            <br>
+        </div>
     </div>
     
     <div class='row  text-center' id="btnGenerarTabla">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <button id="VerTabla" class="btn btn-info" onclick="getHistoricReservationData()">Ver Tabla</button>
-            <?= $this->Form->button('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px']); ?>
+            <?= $this->Form->submit('Ver tabla',['name'=>'view_table','style' => 'width:120px','class' => 'btn btn-success',]); ?>
+            <?= $this->Form->submit('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px','name'=>'print']); ?>
+            <?= $this->Form->end(); ?>
         </div>
     </div>
         
@@ -120,8 +132,8 @@
     $(document).ready( function(){
     if(!Modernizr.inputtypes.date)
     {          
-        $('#start-date').datepicker();           
-        $('#end-date').datepicker(); 
+        $('#start_date').datepicker();           
+        $('#end_date').datepicker(); 
     }       
 });
 </script>
