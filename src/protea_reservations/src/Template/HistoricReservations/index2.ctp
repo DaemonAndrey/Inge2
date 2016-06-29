@@ -1,7 +1,9 @@
 <!-- src/Template/Reservations/edit.ctp -->
-<?php echo $this->Html->css('reservations.css');
-    echo $this->Html->css('datepicker.css'); 
-    echo $this->Html->script('historicReservations.js'); ?>
+<?php 
+    echo $this->Html->css('reservations.css');
+    echo $this->Html->css('datepicker.css');
+    echo $this->Html->script('historicReservations.js');
+?>
 <!--  jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -15,7 +17,7 @@
 
 <div class="users form">
     
-    <?= $this->Form->create($historic) ?>
+    <?= $this->Form->create($historic, ['url' => ['action' => 'table']]) ?>
 
     <fieldset>
         <!-- TÍTULO -->
@@ -41,7 +43,7 @@
                         </i>
                     </div>
                     
-                    <input type="date" name='start_date' id = 'start_date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                    <input type="date" name='start_date' id = 'start_date' value="<?php echo date("d-m-Y");?>" placeholder='DD/MM/YYYY' class = 'form-control'>
                    
                 </div>
                 <br>
@@ -56,26 +58,42 @@
                         <i class="fa fa-calendar">
                         </i>
                     </div>
-                    
-                    <input type="date" name='end_date' id = 'end_date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                        <?php 
+                            $fechaFFase= date("Y-m-d");
+                            $nuevafecha = new DateTime($fechaFFase);
+                            $nuevafecha->modify('+7 day');
+                        ?>
+                        <input type="date" name='end_date' id = 'end_date' value="<?php echo $nuevafecha->format('d-m-Y');?>" placeholder='DD/MM/YYYY' class = 'form-control'>
                 </div>
                 <br>
             </div>
     </div>
-    <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-4 col-sm-offset-4 col-xs-offset-1'>
-        <?=
-            $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
-                                                            'options' => $resource_types_options,
-                                                            'class' => 'form-control']);
-        ?>
-        <br>
+    <div class='row'>
+        <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <?=
+                $this->Form->input('resource_type_id', ['label' => 'Tipo: ',
+                                                                'options' => $resource_types_options,
+                                                                'class' => 'form-control']);
+            ?>
+            <br>
+        </div>
+        <!-- ACTIVO-->
+        <div class='col-md-4 col-sm-4 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
+            <?=
+                $this->Form->input('active', ['label' => 'Estado: ',
+                                                        'options' => array('Aceptadas','Rechazadas', 'Canceladas','Eliminadas'),
+                                                        'class' => 'form-control']);
+            ?>
+            <br>
+        </div>
     </div>
     
     <div class='row  text-center' id="btnGenerarTabla">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
-            <button id="VerTabla" class="btn btn-info" onclick="getHistoricReservationData()">Ver Tabla</button>
-            <?= $this->Form->button('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px']); ?>
+            <?= $this->Form->submit('Ver tabla',['name'=>'view_table','style' => 'width:120px','class' => 'btn btn-success',]); ?>
+            <?= $this->Form->submit('Imprimir Tabla', ['class' => 'btn btn-success', 'style' => 'width:120px','name'=>'print']); ?>
+            <?= $this->Form->end(); ?>
         </div>
     </div>
         
@@ -120,8 +138,8 @@
     $(document).ready( function(){
     if(!Modernizr.inputtypes.date)
     {          
-        $('#start-date').datepicker();           
-        $('#end-date').datepicker(); 
+        $('#start_date').datepicker();           
+        $('#end_date').datepicker(); 
     }       
 });
 </script>

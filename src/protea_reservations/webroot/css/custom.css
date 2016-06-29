@@ -301,6 +301,7 @@ section{
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: 0px!important;
 }
+
 .navbar-brand{
     font-size:40px;
     color: #222;
@@ -316,6 +317,8 @@ section{
 
     position:relative;
 }
+
+
 ul.navbar-nav a {
     font-weight: 700;
     font-size: 14px;
@@ -333,6 +336,7 @@ ul.navbar-nav > .active > a{
             border-radius:2px;
 }
 
+
 .nav > li > a:hover{
     background: transparent;
 }
@@ -342,11 +346,15 @@ ul.navbar-nav > .active > a{
     right: auto;
 }
 
+
+
 .dropdown-menu * {
     width: 100%;
     -webkit-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
 }
+
+
 
 .navbar-nav .dropdown-menu{
     background: #555;
@@ -355,8 +363,14 @@ ul.navbar-nav > .active > a{
     min-width: 240px;
     display: block;
     opacity: 0;
-    z-index:1;
+    /**z-index:1;**/
     visibility:hidden;
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    -o-transform: scale(.8);
+    transform: scale(.8);
+
     -webkit-transform: scale(.8);
     -moz-transform: scale(.8);
     -ms-transform: scale(.8);
@@ -377,7 +391,11 @@ ul.navbar-nav > .active > a{
     -ms-transform: scale(1);
     -o-transform: scale(1);
     transform: scale(1);
- }
+}
+
+
+
+
 
  .navbar-nav .dropdown-backdrop {
     visibility: hidden;
@@ -409,6 +427,8 @@ ul.navbar-nav > .active > a{
 .dropdown-menu>li.active>a{
     background: none !important;
 }
+
+
 
 
 
@@ -1575,16 +1595,6 @@ li i[id = facebook]{
     text-align: center;
 }
 
-li i[id = facebook]:hover{
-    color:red;
-    background-color: #3b5998;
-    width: 30px;
-    height: 30px;
-    padding: 5px 0px 5px 0px;
-    border-radius: 25%;
-    line-height: 18px;
-    text-align: center;
-}
 
 li i[id = tw]{
     color:aliceblue;
@@ -1712,9 +1722,6 @@ li i[id = yt]{
 }
 .footer_menu_contact li i{
     width: 20px;
-}
-.footer_menu_contact li span:hover {
-    cursor:pointer;
 }
 
 .tags a{
