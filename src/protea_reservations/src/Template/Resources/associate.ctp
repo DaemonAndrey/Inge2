@@ -1,8 +1,5 @@
-<!-- src/Template/Resources/associate.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 <?php echo $this->Html->css('resources.css') ?>
-
-<br>
 
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
@@ -18,17 +15,18 @@
 
 <div class="users form">
     
-<!-- TÍTULO -->
-<div class="row" style="color:#000;">
-    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <legend>
-            <div class='text-center'>
-                <h2>Asociar Administradores</h2>
-                <br>
-            </div>
-        </legend>
+    <!-- TÍTULO -->
+    <div class="row" style="color:#000;">
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <legend>
+                <div class='text-center'>
+                    <h2>Asociar Administradores</h2>
+                    <br>
+                </div>
+            </legend>
+        </div>
     </div>
-</div> <!-- FIN TÍTULO -->
+    <!-- FIN DE TÍTULO -->
 
     <?= $this->Form->create($resourcesUser) ?>
     
@@ -45,20 +43,23 @@
                 <br>
             </div>
             
-            <!-- BOTON -->
+            <!-- BOTONES -->
             <div id="btnRegistrar" style="margin-top:25px;">
                 <div class='col-lg-4 col-md-4 col-sm-3 col-xs-4'>
                     <?= $this->Form->button('Asociar', ['class' => 'btn btn-success']); ?>
                 </div>
-            </div> <!-- FIN BOTON -->
+            </div>
+            <!-- FIN DE BOTONES -->
             
         </div>
-    </fieldset> <!-- FIN CAMPOS A LLENAR -->
+    </fieldset>
+    <!-- FIN DE CAMPOS A LLENAR -->
     
      <?= $this->Form->end() ?>
     
     <br><br>
     
+    <!-- TÍTULO -->
     <div class="row">
         <div class='col-xs-12 text-center'>
             <?=
@@ -68,6 +69,7 @@
             <br>
         </div>
     </div>
+    <!-- FIN DE TÍTULO -->
 
     <!-- TABLA -->
     <div class="table-responsive">
@@ -86,54 +88,59 @@
                 <th>
                     Desasociar
                 </th>
-            </tr> <!-- FIN ENCABEZADO TABLA -->
+            </tr>
+            <!-- FIN DE ENCABEZADO TABLA -->
 
             <?php 
-                // Recorre todos los recursos y los muestra en la tabla.
-                foreach ( $admins_assoc as $admin ):
-                 ?>
-                        <!-- CORREO -->
-                        <td>
-                            <?php
-                                echo $admin['username'];
-                            ?>
-                        </td>
+            // Recorre todos los recursos y los muestra en la tabla.
+            foreach ( $admins_assoc as $admin ): ?>
+                <tr>
+                    <!-- CORREO -->
+                    <td>
+                        <?php
+                            echo $admin['username'];
+                        ?>
+                    </td>
 
-                        <!-- NOMBRE -->
-                        <td>
-                            <?php
-                                echo $admin['first_name'];
-                            ?>
-                        </td>
+                    <!-- NOMBRE -->
+                    <td>
+                        <?php
+                            echo $admin['first_name'];
+                        ?>
+                    </td>
 
-                        <!-- APELLIDOS -->
-                        <td>
-                            <?php
-                                echo $admin['last_name'];
-                            ?>
-                        </td>
+                    <!-- APELLIDOS -->
+                    <td>
+                        <?php
+                            echo $admin['last_name'];
+                        ?>
+                    </td>
 
-                        <!-- ELIMINAR -->
-                        <td>
-                            <?php
-                                echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-remove')),
-                                                           array('controller' => 'resources','action' => 'disassociate', $admin->id, $r_id),
-                                                           array('escape' => false));
-                            ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php unset($admin); ?>
+                    <!-- ELIMINAR -->
+                    <td>
+                        <?php
+                            echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-remove')),
+                                                       array('controller' => 'resources','action' => 'disassociate', $admin->id, $r_id),
+                                                       array('escape' => false));
+                        ?>
+                    </td>
+                </tr>
+            <?php
+            endforeach;
+            unset($admin);
+            ?>
         </table>
-    </div> <!-- FIN TABLA -->
+    </div>
+    <!-- FIN DE TABLA -->
 
-    <!-- BOTON -->
+    <!-- BOTONES -->
     <div class='row text-center' id="btnRegistrar">
         <div class='col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
             <br>
             <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'edit', $r_id), array( 'class' => 'btn btn-primary')) ?>
         </div>
-    </div> <!-- FIN BOTON -->
+    </div>
+    <!-- FIN DE BOTONES -->
 
     <legend>
         <br>

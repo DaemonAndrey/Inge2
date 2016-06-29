@@ -1,4 +1,3 @@
-<!-- src/Template/Reservations/edit.ctp -->
 <?php echo $this->Html->css('reservations.css'); ?>
 
 <div class="users form">
@@ -15,7 +14,7 @@
             </legend>
         </div>
     </div>
-    <!-- FIN TÍTULO -->
+    <!-- FIN DE TÍTULO -->
     
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
@@ -39,7 +38,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN PLACA / MODELO DEL RECURSO -->
 
             <!-- FECHA DE RESERVACIÓN -->
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -109,7 +107,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN FECHA DE RESERVACIÓN -->
         </div>
         
         <div class="row">
@@ -133,7 +130,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN HORA DE INICIO -->
             
             <!-- FECHA DE FIN -->
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -155,7 +151,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN FECHA DE FIN -->
         </div>
         
         <div class="row">
@@ -179,7 +174,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN USUARIO -->
             
             <!-- EVENTO O ACTIVIDAD -->
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -201,7 +195,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN EVENTO O ACTIVIDAD -->
         </div>
         
         <div class="row">
@@ -233,7 +226,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN COMENTARIO DE USUARIO -->
             
             <!-- COMENTARIO DE ADMINISTRADOR -->
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -251,7 +243,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN COMENTARIO DE ADMINISTRADOR -->
         </div>
 
         <!-- BOTONES -->
@@ -264,9 +255,10 @@
                 ?>
             </div>
         </div> 
-        <!-- FIN BOTONES -->
+        <!-- FIN DE BOTONES -->
+        
     </fieldset>
-    <!-- FIN CAMPOS A MOSTRAR -->
+    <!-- FIN DE CAMPOS A MOSTRAR -->
 
     <?= $this->Form->end() ?>
 </div>

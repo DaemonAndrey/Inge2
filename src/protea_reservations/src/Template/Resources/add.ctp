@@ -1,4 +1,3 @@
-<!-- src/Template/Resources/add.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
@@ -14,7 +13,8 @@
                 </div>
             </legend>
         </div>
-    </div> <!-- FIN TÍTULO -->
+    </div>
+    <!-- FIN DE TÍTULO -->
 
     <!-- CAMPOS A LLENAR -->
     <fieldset>
@@ -27,6 +27,7 @@
                                                                    'class' => 'form-control']);
                 ?>
             </div>
+            
             <!-- MARCA/MODELO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?=
@@ -47,6 +48,7 @@
                                                                    'class' => 'form-control']);
                 ?>
             </div>
+            
             <!-- DESCRIPCIÓN -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?=
@@ -57,7 +59,8 @@
                 <br>
             </div>
         </div>
-    </fieldset> <!-- FIN CAMPOS A LLENAR -->
+    </fieldset>
+    <!-- FIN DE CAMPOS A LLENAR -->
 
     <!-- BOTONES -->
     <div class='row  text-center' id="btnRegistrar">
@@ -66,7 +69,8 @@
             <?= $this->Form->button('Agregar', ['class' => 'btn btn-success', 'style' => 'width:90px']); ?>
             <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'index'), array( 'class' => 'btn btn-primary', 'style' => 'width:90px')) ?>
         </div>
-    </div> <!-- FIN BOTONES -->
+    </div>
+    <!-- FIN DE BOTONES -->
 
     <legend>
         <br>

@@ -1,4 +1,3 @@
-<!-- src/Template/Users/view.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
@@ -14,11 +13,11 @@
                 </div>
             </legend>
         </div>
-    </div> <!-- FIN TÍTULO -->
+    </div>
+    <!-- FIN DE TÍTULO -->
 
     <!-- CAMPOS A CONSULTAR -->
     <fieldset>
-        
         <div class="row">
             <!-- CORREO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
@@ -35,7 +34,8 @@
                 ?>
                 <br><br>
             </div>
-            <!-- NUMERO DE TELEFONO -->
+            
+            <!-- TELÉFONO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?=
                     $this->Form->label('Users.telephone_number', 'Teléfono: ');
@@ -53,6 +53,7 @@
         </div>
         
         <div class="row">
+            
             <!-- UNIDAD ACADÉMICA -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
                 <?=
@@ -68,6 +69,7 @@
                 ?>
                 <br><br>
             </div>
+            
             <!-- PUESTO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?=
@@ -101,12 +103,38 @@
                 ?>
                 <br><br>
             </div>
+            
             <!-- VACÍO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.state', 'Estado: ');
+                ?>
+                <?php
+                $state = "";
+                if($user->state == 0)
+                {
+                    $state = "Pendiente";
+                }
+                else if($user->state == 1)
+                {
+                    $state = "Aceptado";
+                }
+                ?>
+                
+                <?=
+                    $this->Form->label('Users.state',
+                                       $state,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
             </div>
         </div>
         
-    </fieldset> <!-- FIN CAMPOS A CONSULTAR -->
+    </fieldset>
+    <!-- FIN DE CAMPOS A CONSULTAR -->
 
     <!-- BOTONES -->
     <div class='row  text-center' id="btnRegistrar">
@@ -114,7 +142,8 @@
             <br>
             <?= $this->Html->link('Regresar', array('controller' => 'users','action'=> 'index'), array( 'class' => 'btn btn-primary')) ?>
         </div>
-    </div> <!-- FIN BOTONES -->
+    </div>
+    <!-- FIN DE BOTONES -->
 
     <legend>
         <br>

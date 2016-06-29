@@ -1,4 +1,3 @@
-<!-- src/Template/Users/index.ctp -->
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
@@ -26,7 +25,9 @@
             </div>
         </legend>
     </div>
-</div> <!-- FIN TÍTULO -->
+</div>
+<!-- FIN DE TÍTULO -->
+
 
 <!-- BOTONES -->
 <div class="row text-center">
@@ -41,7 +42,9 @@
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <br>
     </div>
-</div> <!-- FIN BOTONES -->
+</div>
+<!-- FIN DE BOTONES -->
+
 
 <!-- TABLA -->
 <div class="table-responsive" style="color:#000;">
@@ -78,69 +81,72 @@
             <th>
                 Eliminar
             </th>
-        </tr> <!-- FIN ENCABEZADO TABLA -->
+        </tr>
+        <!-- FIN DE ENCABEZADO TABLA -->
 
         <?php 
-            // Recorre todos los usuarios y los muestra en la tabla
-            foreach ( $users as $user ):
+        // Recorre todos los usuarios y los muestra en la tabla
+        foreach ( $users as $user ): ?>
+            <tr>
+                <!-- NOMBRE -->
+                <td>
+                    <?php
+                        echo $this->Html->link($user['username'],
+                                               array('controller' => 'users','action' => 'view', $user->id));
+                    ?>
+                </td>
+                <!-- NOMBRE -->
+                <td>
+                    <?php
+                        echo $user['first_name'] . " " . $user['last_name'];
+                    ?>
+                </td>
+                <!-- ROL -->
+                <td>
+                    <?php
+                        echo $user->_matchingData['Roles']->role_name;
+                    ?>
+                </td>
+                <!-- ESTADO -->
+                <td>
+                    <?php
+                    if($user['state'] == true)
+                    {
+                        echo "Aceptado";
+                    }
+                    else
+                    {
+                        ?>
+                        <b> <?php echo "Pendiente"; ?> </b>
+                        <?php
+                    }
+
+                    ?>
+                </td>
+                <!-- EDITAR -->
+                <td>
+                    <?php
+                        echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                                               array('controller' => 'Users','action' => 'edit', $user->id),
+                                               array('escape' => false));
+                    ?>
+                </td>
+                <!-- ELIMINAR -->
+                <td>
+                    <?php
+                        echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
+                                                   array('controller' => 'Users','action' => 'delete', $user->id),
+                                                   array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el usuario?'));
+                    ?>
+                </td>
+            </tr>
+        <?php
+        endforeach;
+        unset($user);
         ?>
-                <tr>
-                    <!-- NOMBRE -->
-                    <td>
-                        <?php
-                            echo $this->Html->link($user['username'],
-                                                   array('controller' => 'users','action' => 'view', $user->id));
-                        ?>
-                    </td>
-                    <!-- NOMBRE -->
-                    <td>
-                        <?php
-                            echo $user['first_name'] . " " . $user['last_name'];
-                        ?>
-                    </td>
-                    <!-- ROL -->
-                    <td>
-                        <?php
-                            echo $user->_matchingData['Roles']->role_name;
-                        ?>
-                    </td>
-                    <!-- ESTADO -->
-                    <td>
-                        <?php
-                        if($user['state'] == true)
-                        {
-                            echo "Aceptado";
-                        }
-                        else
-                        {
-                            ?>
-                            <b> <?php echo "Pendiente"; ?> </b>
-                            <?php
-                        }
-                            
-                        ?>
-                    </td>
-                    <!-- EDITAR -->
-                    <td>
-                        <?php
-                            echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
-                                                   array('controller' => 'Users','action' => 'edit', $user->id),
-                                                   array('escape' => false));
-                        ?>
-                    </td>
-                    <!-- ELIMINAR -->
-                    <td>
-                        <?php
-                            echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
-                                                       array('controller' => 'Users','action' => 'delete', $user->id),
-                                                       array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el usuario?'));
-                        ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php unset($user); ?>
     </table>
-</div> <!-- FIN TABLA -->
+</div>
+<!-- FIN DE TABLA -->
 
 <!-- PAGINADOR -->
 <div class="row text-center">
@@ -151,4 +157,5 @@
           </ul>
       </div>
    </div>
-</div> <!-- FIN PAGINADOR -->
+</div>
+<!-- FIN DE PAGINADOR -->

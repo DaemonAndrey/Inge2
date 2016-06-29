@@ -1,8 +1,6 @@
-<!--FontAwesome -->
-<?php //echo $this->Html->css('font-awesome.min.css'); ?>
-
-<!-- INFORMACION -->
+<!-- INFORMACIÓN -->
 <div class="acercaDe">
+    <!-- TÍTULO -->
     <div class='row'>
         <div class='col-xs-12 text-center'>
             <legend>
@@ -12,7 +10,9 @@
             </legend>
         </div>
     </div>
+    <!-- FIN DE TÍTULO -->
     
+    <!-- DESCRIPCIÓN -->
     <div class='row'>
         <div class='col-xs-8 col-xs-offset-2' style="color:black;" align="justify">
             <br>
@@ -20,7 +20,9 @@
             <br>
         </div>
     </div>
+    <!-- FIN DE DESCRIPCIÓN -->
     
+    <!-- CONTACTO -->
     <div class='row'>
         <div class='col-xs-8 col-xs-offset-2'>
             <br>
@@ -30,7 +32,9 @@
             <br>
         </div>
     </div>
+    <!-- FIN DE CONTACTO -->
     
+    <!-- POLÍTICAS DE USO -->
     <div class='row'>
         <div class='col-xs-8 col-xs-offset-2'>
             <br>
@@ -42,7 +46,10 @@
             <br>
         </div>
     </div>
-</div> <!--/ FIN INFORMACION -->
+    <!-- FIN DE POLÍTICAS DE USO -->
+    
+</div>
+<!-- FIN DE INFORMACIÓN -->
 
 <div class='row'>
     <div class='col-md-12 col-xs-12 '>
@@ -58,4 +65,5 @@
 			<div class="map" id="map"></div>
 		</div>
 	</div>
-</div> <!-- FIN MAPA -->
+</div>
+<!-- FIN DE MAPA -->

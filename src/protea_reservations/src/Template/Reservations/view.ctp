@@ -1,4 +1,3 @@
-<!-- src/Template/Reservations/edit.ctp -->
 <?php echo $this->Html->css('reservations.css'); ?>
 
 <div class="users form">
@@ -15,7 +14,7 @@
             </legend>
         </div>
     </div>
-    <!-- FIN TÍTULO -->
+    <!-- FIN DE TÍTULO -->
     
     <!-- CAMPOS A MOSTRAR -->
     <fieldset>
@@ -40,7 +39,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN PLACA / MODELO DEL RECURSO -->
 
             <!-- FECHA DE RESERVACIÓN -->
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -93,16 +91,14 @@
                                 break;
                         }
 
-                        //$fechaEspanol = date_format($reservation->start_date, 'd').$mesEspanol.$date_format($reservation->start_date, 'Y');
                         $fechaEspanol = strftime('%d', strtotime($reservation->start_date)).'/'.$mesEspanol.'/'.strftime('%Y', strtotime($reservation->start_date));
                     ?>
                     <?= $this->Form->label('Reservations.start_date', 
-                                           $fechaEspanol, 
-                                           [
-                                               'class' => 'form-control',                                            
-                                               'style' => 'display:inline-table;',                                            
-                                               'readonly' => 'readonly',                                            
-                                               'templates' => ['formGroup' => '<div>{{label}}</div>']
+                                           $fechaEspanol,
+                                           ['class' => 'form-control',
+                                            'style' => 'display:inline-table;',
+                                            'readonly' => 'readonly',
+                                            'templates' => ['formGroup' => '<div>{{label}}</div>']
                                            ]); 
                     ?>
                 </div>
@@ -110,11 +106,10 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN FECHA DE RESERVACIÓN -->
         </div>
         
         <div class="row">
-            <!-- HORA DE INICIO -->
+            <!-- HORA INICIO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Reservations.start_date', 'Hora de inicio:'); ?>
@@ -134,9 +129,8 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN HORA DE INICIO -->
             
-            <!-- FECHA DE FIN -->
+            <!-- HORA FIN -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Reservations.end_date', 'Hora de fin:'); ?>
@@ -156,7 +150,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN FECHA DE FIN -->
         </div>
         
         <div class="row">
@@ -180,9 +173,8 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN USUARIO -->
             
-            <!-- EVENTO O ACTIVIDAD -->
+            <!-- EVENTO/CURSO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Reservations.event_name', 'Evento o curso:'); ?>
@@ -202,11 +194,10 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN EVENTO O ACTIVIDAD -->
         </div>
         
         <div class="row">
-            <!-- COMENTARIO DE USUARIO -->
+            <!-- COMENTARIO USUARIO -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Reservations.user_comment', 'Comentario de usuario:'); ?>
@@ -234,9 +225,8 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN COMENTARIO DE USUARIO -->
             
-            <!-- COMENTARIO DE ADMINISTRADOR -->
+            <!-- COMENTARIO ADMINISTRADOR -->
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
                     <?= $this->Form->label('Reservations.admin_comment', 'Comentario del administrador:'); ?>
@@ -264,7 +254,6 @@
                     <br>
                 </div>
             </div>
-            <!-- FIN COMENTARIO DE ADMINISTRADOR -->
         </div>
 
         <!-- BOTONES -->
@@ -276,7 +265,8 @@
                 ?>
             </div>
         </div>
-        <!-- FIN BOTONES -->
+        <!-- FIN DE BOTONES -->
+        
     </fieldset>
     <!-- FIN CAMPOS A MOSTRAR -->
 
