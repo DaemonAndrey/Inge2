@@ -209,15 +209,6 @@
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>
-                                
-                                <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
-                                <li role="historial_de_reservaciones">
-                                    <?php echo $this->Html->link('Historial de reservaciones',
-                                                                array('controller' => 'historicReservations',
-                                                                     'action' => 'index'),
-                                                                array('target' => '_self',
-                                                                     'escape' => false)) ?>
-                                </li>
 
                                 <!-- ADMINISTRAR TIPOS DE RECURSOS -->
                                 <li role="tipos de recurso">
@@ -322,7 +313,6 @@
                             ?>
                         </ul>
                     </li>
-
 
                     <!-- LOGOUT -->
                     <li>

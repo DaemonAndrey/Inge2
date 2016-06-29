@@ -46,6 +46,8 @@ $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
 </div>
 <!-- FIN DE TÍTULO -->
 
+<br>
+
 <!-- TABLA -->
 <div class="table-responsive">
     <table class="table table-striped table-hover table-sm" style="color:#000;">
@@ -213,3 +215,10 @@ $this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
    </div>
 </div>
 <!-- FIN de PAGINADOR -->
+
+<div class="row" style="color:#000;">
+    <div class="col-xs-12">
+        <legend>
+        </legend>
+    </div>
+</div>

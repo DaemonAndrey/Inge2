@@ -106,6 +106,30 @@
             
             <!-- VACÍO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
+                <?=
+                    $this->Form->label('Users.state', 'Estado: ');
+                ?>
+                <?php
+                $state = "";
+                if($user->state == 0)
+                {
+                    $state = "Pendiente";
+                }
+                else if($user->state == 1)
+                {
+                    $state = "Aceptado";
+                }
+                ?>
+                
+                <?=
+                    $this->Form->label('Users.state',
+                                       $state,
+                                       ['class' => 'form-control',
+                                        'style' => 'display:inline-table;',
+                                        'readonly' => 'readonly',
+                                        'templates' => ['formGroup' => '<div>{{label}}</div>']]);
+                ?>
+                <br><br>
             </div>
         </div>
         

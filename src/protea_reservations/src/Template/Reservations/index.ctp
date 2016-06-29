@@ -1,5 +1,7 @@
 <?php echo $this->Html->css('reservations.css');?>
 
+<br>
+
 <!-- TÍTULO -->
 <div class="row text-center">
   <div class="col-xs-12" style="color:#000;">
@@ -7,6 +9,8 @@
   </div>
 </div>
 <!-- FIN DE TÍTULO -->
+
+<br><br>
 
 <!-- SIMBOLOGÍA -->
 <div>
@@ -38,7 +42,7 @@
 </div>
 <!-- FIN DE SIMBOLOGÍA -->
 
-<br>
+<br><br>
 
 <div id='calendar'>
 </div>  
