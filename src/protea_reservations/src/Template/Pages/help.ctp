@@ -1022,6 +1022,24 @@
                     </div>
                     <!-- ================================================================ -->
                     <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminConfiguracionLDAP">
+                            Configuración de LDAP
+                        </button>
+                        <div id="adminConfiguracionLDAP" class="collapse">
+                            <p>
+                                <br>
+                                Modificar las configuraciones de LDAP en el sistema en caso de que requieran ser actualizadas.
+                            </p>
+                            <p>
+                                Descargar <strong><a href="../files/Manual_Configuracion_LDAP.pdf" download="Manual_Configuracion_LDAP.pdf">aquí</a></strong> el manual de configuración de LDAP.
+                            </p>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
                         <h4><u>Cargado de datos</u></h4>
                     </div>
                     <!-- ================================================================ -->
