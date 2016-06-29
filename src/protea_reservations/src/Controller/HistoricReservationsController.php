@@ -116,6 +116,52 @@ class HistoricReservationsController extends AppController
 	   }
     }
     
+    public function view($id = null)
+    {
+        if($id != null)
+        {
+            $historicReservations = $this->HistoricReservations->find('all')
+                             ->select([ 'id',
+                                        'reservation_start_date',
+                                        'resource_name',
+                                        'event_name',
+                                        'user_username',
+                                        'user_first_name',
+                                        'user_last_name',
+                                        'user_comment',
+                                        'administrator_comment',
+                                        'reservation_end_date',
+                                        'resource.resource_code'
+                             ])
+                            ->join(['resource' => ['table' => 'resources',
+                                                   'type' => 'INNER',
+                                                   'conditions' => ['HistoricReservations.resource_name = resource.resource_name']
+                                                  ]
+                                   ])
+                            ->andWhere(['HistoricReservations.id = ' => $id]);
+                            
+            $historicReservation = $historicReservations->first();       
+            
+            $user_role = $this->Auth->User('role_id');
+            
+            //Si el usuario es administrador
+            if($user_role != 1)
+            {        
+                $this->set('historicReservation', $historicReservation); 
+            }    
+            //Si el usuario NO es administrador
+            else if ($user_role == 1 && $historicReservation['user_username'] == $this->Auth->User('username')) 
+            {
+                $this->set('historicReservation', $historicReservation); 
+            }
+            else 
+            {
+                return $this->redirect(['controller' => 'HistoricReservations', 'action' => 'index']);
+            }
+        }
+    }
+    
+    
     public function table($start_date,$end_date,$resource_type)
 	{
             $historic_reservations = $this->HistoricReservations->find()
@@ -158,6 +204,8 @@ class HistoricReservationsController extends AppController
         // Cualquier usuario puede ver las reservaciones históricas
         if ($this->request->action === 'index')
             return true;    
+        if ($this->request->action === 'view')
+            return true;
         
         // Solo los administradores pueden generar reportes
         if ($this->request->action === 'generateReports' && ($user['role_id'] == 2 || $user['role_id'] == 3))
