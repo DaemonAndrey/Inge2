@@ -1022,6 +1022,29 @@
                     <div class='col-xs-8 col-xs-offset-2'>
                         <br>
                     </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <h4><u>Cargado de datos</u></h4>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminBulkInsert">
+                            Cargado masivo de recursos
+                        </button>
+                        <div id="adminBulkInsert" class="collapse">
+                            <p>
+                                <br>
+                                Cargar a la base de datos la información de muchos recursos a la vez, a través de una hoja de cálculo.
+                            </p>
+                            <p>
+                                Descargar <strong><a href="../files/Manual_Cargado_Masivo_Recursos.pdf" download="Manual_Cargado_Masivo_Recursos.pdf">aquí</a></strong> el manual de cargado masivo de recursos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
                     <?php
                 }
                 ?>        
