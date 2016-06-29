@@ -477,18 +477,18 @@ class ReservationsController extends AppController
                          ])
                 ->join(['resource' => ['table' => 'resources',
                                        'type' => 'INNER',
-                                       'conditions' => 'resource.id = reservations.resource_id'
+                                       'conditions' => 'resource.id = Reservations.resource_id'
                                       ],
                         'user' => ['table' => 'users',
                                    'type' => 'INNER',
-                                   'conditions' => ['user.id = reservations.user_id']
+                                   'conditions' => ['user.id = Reservations.user_id']
                                   ],
                         'resourceType' => ['table' => 'resource_types',
                                            'type' => 'INNER',
                                            'conditions' => ['resource.resource_type_id = resourceType.id']
                                           ]
                        ])
-                ->andWhere(['reservations.id = ' => $id]);
+                ->andWhere(['Reservations.id = ' => $id]);
                 $reservation = $reservations->first();
                 
                 $reservacionPermitida = ($this->Auth->user('id') == $reservation['user_id']) ? true : false;
