@@ -15,6 +15,13 @@ En este momento está en desarrollo. <br>
 #### LDAP
 <br>
 
+## Requerimientos de software
+  
+  <ul>
+    <li>PHP 5.6 o más reciente</li>
+  </ul>
+  
+
 ## Guía de instalación
 <br>
 
@@ -48,6 +55,8 @@ En este momento está en desarrollo. <br>
     <li><i>Apague y encienda el apache del xampp o del wampp</i></li>
   </ol>
   <br>
+  
+
   
   
   <p> Para mayor información diríjase a la guía de instalación de CakePhp http://book.cakephp.org/3.0/en/installation.html, para inglés o http://book.cakephp.org/3.0/es/installation.html para español. </p>
