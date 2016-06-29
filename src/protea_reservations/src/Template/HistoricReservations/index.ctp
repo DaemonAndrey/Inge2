@@ -9,13 +9,13 @@
                     if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
                     {
                 ?>
-                        <h2>Revisar historial de reservaciones</h2>
+                        <h2>Revisar Historial de Reservaciones</h2>
                 <?php
                     }
                     else if ($this->request->session()->read('Auth.User.role_id') == 1)
                     {
                 ?>
-                        <h2>Mi historial de reservaciones</h2>
+                        <h2>Historial de Mis Reservaciones</h2>
                 <?php
                     }
                 ?>

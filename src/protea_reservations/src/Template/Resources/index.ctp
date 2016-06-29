@@ -28,11 +28,13 @@
 <!-- BOTONES -->
 <div class="row text-center">
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <?php 
-        echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
-                               array('controller'=>'resources','action' => 'add'),
-                               array('target' => '_self', 'escape' => false)
-                              );
+        <?= $this->Html->link(' Agregar Recurso',
+                              ['controller' => 'Resources',
+                               'action'=> 'add'
+                              ],
+                              ['class' => 'btn btn-info glyphicon glyphicon-plus',
+                               'style' => 'font-family: Arial, Helvetica, sans-serif;'
+                              ])
         ?>
     </div>
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
