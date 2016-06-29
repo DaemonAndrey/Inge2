@@ -1,4 +1,3 @@
-<!-- src/Template/Resources/view.ctp -->
 <?php echo $this->Html->css('registro.css'); ?>
 
 <div class="users form">
@@ -14,7 +13,8 @@
                 </div>
             </legend>
         </div>
-    </div> <!-- FIN TÍTULO -->
+    </div>
+    <!-- FIN DE TÍTULO -->
 
     <!-- CAMPOS A CONSULTAR -->
     <fieldset>
@@ -34,6 +34,7 @@
                 ?>
                 <br><br>
             </div>
+            
             <!-- MARCA/MODELO -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?=
@@ -72,6 +73,7 @@
                     ?>
                     <br><br>
                 </div>
+                
                 <!-- ACTIVO -->
                 <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                     <?=
@@ -119,12 +121,15 @@
                 ?>
                 <br><br>
             </div>
+            
             <!-- ADMINISTRADORES LABEL -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-0 col-sm-offset-0 col-xs-offset-1'>
                 <?php
                 // Si soy administrador o superadmin
                 if( $user_role == 2 || $user_role == 3 )
                 {
+                    ?>
+                    <?php
                     // Recorre todos los recursos y los muestra en la tabla.
                     $todosLosAdmin = "";
                     foreach ( $admins_assoc as $admin ):
@@ -153,7 +158,8 @@
             </div>
         </div>
 
-    </fieldset> <!-- FIN CAMPOS A CONSULTAR -->
+    </fieldset>
+    <!-- FIN DE CAMPOS A CONSULTAR -->
 
     <!-- BOTONES -->
     <div class='row  text-center' id="btnRegistrar">
@@ -161,7 +167,8 @@
             <br>
             <?= $this->Html->link('Regresar', array('controller' => 'resources','action'=> 'index'), array( 'class' => 'btn btn-primary')) ?>
         </div>
-    </div> <!-- FIN BOTONES -->
+    </div>
+    <!-- FIN DE BOTONES -->
 
     <legend>
         <br>

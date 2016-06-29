@@ -1,76 +1,89 @@
 <?php echo $this->Html->css('reservations.css');?>
 
+<!-- TÍTULO -->
 <div class="row text-center">
   <div class="col-xs-12" style="color:#000;">
       <h2>Calendario de Reservas</h2>
   </div>
 </div>
-<!-- Simbología -->
-<div class="row"> 
-    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9">
-        <label>Estado de reservación</label>
-    </div>
-</div>
+<!-- FIN DE TÍTULO -->
 
-<div class="row" >
-    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
-        <div class="col-md-3 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
-            Pendiente
+<!-- SIMBOLOGÍA -->
+<div>
+    <div class="row"> 
+        <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9">
+            <label>Estado de reservación</label>
         </div>
-        <div class="poligp">    
-        </div> 
     </div>
-</div>
 
-
-<div class="row">
-    <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
-        <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
-            Aceptada
+    <div class="row" >
+        <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
+            <div class="col-md-3 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
+                Pendiente
+            </div>
+            <div class="poligp">    
+            </div> 
         </div>
-        <div class="poliga">    
-        </div> 
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-8 col-xs-3 col-xs-offset-9 ">
+            <div class="col-md-3 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-1 ">
+                Aceptada
+            </div>
+            <div class="poliga">    
+            </div> 
+        </div>
     </div>
 </div>
-<!-- Fin Simbología -->
+<!-- FIN DE SIMBOLOGÍA -->
 
 <br>
-<div id='calendar'></div>   
-<br>
-<br>
 
+<div id='calendar'>
+</div>  
 
+<br><br>
+
+<!-- MENSAJES -->
 <div id="callback" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <!-- Modal content-->
+        <!-- MODAL CONTENT -->
         <div class="modal-content">
+            <!-- MODAL HEADER -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar">&times;</button>
                 <h4 class="modal-title">Confirmación</h4>
             </div>
+            
+            <!-- MODAL BODY -->
             <div class="modal-body">
                 <h4 id="callbackText">¡Su reservación está siendo procesada!</h4>
             </div>
+            
+            <!-- MODAL FOOTER -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
         </div>
+        <!-- FIN MODAL CONTENT -->
     </div>
 </div>
+<!-- FIN DE MENSAJES -->
 
-<!-- Modal -->
+<!-- MODAL -->
 <div id="mdlReservaciones" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
-        <!-- Modal content -->
+        <!-- MODAL CONTENT -->
         <div class="modal-content">
-            <!-- Modal header -->
+            
+            <!-- MODAL HEADER -->
             <div class="modal-header label-success" style="color:#fff;">
                 <button type="button" class="close" data-dismiss="modal" role="button" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Reservación</h4>
             </div>
-            <!-- Fin Modal header -->
             
-            <!-- Modal body -->
+            <!-- MODAL BODY -->
             <div class="modal-body" style="color:#000;">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center">
@@ -78,8 +91,8 @@
                     </div>
                 </div>
                 
-                <!-- Fila 1 (Fechas) -->
                 <div class="row">
+                    <!-- HORA INICIO -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4><font color="red">* </font>Hora de inicio</h4>
@@ -102,6 +115,7 @@
                         </div>
                     </div>
                     
+                    <!-- HORA FIN -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4><font color="red">* </font>Hora de fin</h4>
@@ -124,12 +138,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 1 (Fechas) -->
                 
                 <br>
                 
-                <!-- Fila 2 (Recursos) -->
                 <div class="row">
+                    <!-- TIPOS RECURSO -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4><font color="red">* </font>Tipo de recurso</h4>
@@ -147,6 +160,7 @@
                         </div>
                     </div>
                     
+                    <!-- RECURSOS -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4><font color="red">* </font>Recursos disponibles</h4>
@@ -157,13 +171,12 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <!-- Fin Fila 2 (Recursos) -->                 
+                </div>              
                 
                 <br>
                 
-                <!-- Fila 3 (Evento y comentarios) -->
                 <div class="row">
+                    <!-- EVENTO/CURSO -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4><font color="red">* </font>Nombre del evento o curso</h4>
@@ -173,6 +186,7 @@
                         </div>
                     </div>
                     
+                    <!-- COMENTARIOS -->
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                             <h4>Comentarios</h4>
@@ -182,10 +196,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 3 (Evento y comentarios) -->
                     
                 <br>
-
+                
+                <!-- DESCRIPCIÓN DETALLADA -->
                 <div class="row">
                     <div class="text-center">
                         <button data-toggle="collapse" class="btn btn-info" data-target="#resource_description">Información detallada</button>
@@ -195,7 +209,7 @@
                 
                 <br>
                 
-                <!-- Fila 4 (Checkbox) -->
+                <!-- TÉRMINOS Y CONDICIONES DE USO -->
                 <div class="row">
                     <div class="text-center">
                         <div class="col-xs-12">
@@ -206,9 +220,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 5 (Checkbox) -->
                 
-                <!-- Fila 5 (Campos obligatorios) -->
+                <!-- CAMPOS OBLIGATORIOS -->
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="col-xs-12">
@@ -216,20 +229,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin Fila 5 (Campos obligatorios) -->
             </div>
-            <!-- Fin Modal body -->
             
-            <!-- Modal footer -->
+            <!-- MODAL FOOTER -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="getReservationData()" data-dismiss="modal" role="button" aria-label="Reservar" id="Reservar">Reservar</button>
                 <button type="button" class="btn btn-danger" style="width:84px;" data-dismiss="modal" role="button" aria-label="Cerrar">Cerrar</button>
             </div>
-            <!-- Fin Modal footer -->
         </div>
-        <!-- Fin Modal content -->
+        <!-- FIN MODAL CONTENT -->
     </div>
 </div>
-<!-- Fin Modal -->
+<!-- FIN MODAL -->
 
- <?= $this->Html->script('reservations.js'); ?>
+<?= $this->Html->script('reservations.js'); ?>
