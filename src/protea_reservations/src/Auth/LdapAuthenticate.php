@@ -144,7 +144,7 @@ class LdapAuthenticate extends BaseAuthenticate
         );
 
         
-            $obj =  'uid='.$username.',ou=people,o=ucr.ac.cr,o=ucr';
+            $obj =  'uid='.$username.','.$this->_config['baseDN'];
             ldap_set_option($this->ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3); 
 
 
