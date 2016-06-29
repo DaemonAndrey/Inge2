@@ -1244,22 +1244,25 @@
                     <div id="usuarioHistorial" class="collapse">
                         <p style="color: red;">
                             <br>
-                            Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
+                            Revisar el historial para ver la información detallada de todas mis reservaciones, tanto actuales como pasadas, para saber si fueron aprobadas, rechazadas o canceladas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en <strong>Historial de Reservaciones</strong>.
+                                    Aparecerá un índice con la información básica de todas las reservaciones que ha hecho, donde además se podrá ver si están <strong>Aceptadas</strong>, <strong>Rechazadas</strong> o <strong>Canceladas</strong>.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en cualquier columna de la reservación que desee revisar.
+                                    Aparecerá la información más detallada de la reservación.
                                 </p>
                             </li>
                         </ol>

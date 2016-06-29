@@ -1,7 +1,5 @@
 <?= $this->Html->css('resources.css') ?>
 
-<br>
-
 <!-- TITULO -->
 <div class="row" style="color:#000;">
     <div class="col-xs-12">
@@ -25,7 +23,9 @@
         </legend>
     </div>
 </div>
-<!-- FIN TITULO -->
+<!-- FIN DE TITULO -->
+
+<br>
 
 <!-- TABLA -->
 <div class="table-responsive">
@@ -50,11 +50,8 @@
             <th>
                 <?= $this->Paginator->sort('state', 'Estado') ?>
             </th>
-            <th>
-                Ver
-            </th>
         </tr>
-        <!-- FIN ENCABEZADO -->
+        <!-- FIN DE ENCABEZADO -->
         
         <!-- CONTENIDO DE LA TABLA -->
         <?php
@@ -62,23 +59,53 @@
         ?>
         <tr>
             <td>
-                <?= date_format($historicReservation['reservation_start_date'], 'd/M/Y') ?>
-            </td>
-            <td>
-                <?= date_format($historicReservation['reservation_start_date'], 'h:i a') ?>
-            </td>
-            <td>
-                <?= date_format($historicReservation['reservation_end_date'], 'h:i a') ?>
-            </td>
-            <td>
-                <?= $historicReservation['resource_name'] ?>
-            </td>
-            <td>
-                <?= $historicReservation['event_name'] ?>
+                <?php
+                    echo $this->Html->link(date_format($historicReservation['reservation_start_date'], 'd/M/Y'),
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
+                ?>
             </td>
             <td>
                 <?php
-                    $estado;
+                    echo $this->Html->link(date_format($historicReservation['reservation_start_date'], 'h:i a'),
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
+                ?>
+            </td>
+            <td>
+                <?php
+                    echo $this->Html->link(date_format($historicReservation['reservation_end_date'], 'h:i a'),
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
+                ?>
+            </td>
+            <td>
+                <?php
+                    echo $this->Html->link($historicReservation['resource_name'],
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
+                ?>
+            </td>
+            <td>
+                <?php
+                    echo $this->Html->link($historicReservation['event_name'],
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
+                ?>
+            </td>
+            <td>
+                <?php
+                    $estado = "";
                     
                     switch($historicReservation['state'])
                     {
@@ -96,21 +123,22 @@
                             break;
                     }
                     
-                    echo $estado;
+                    echo $this->Html->link($estado,
+                                           ['controller' => 'historicReservations',
+                                            'action' => 'view',
+                                            $historicReservation['id']
+                                           ]);
                 ?>
-            </td>
-            <td>
-                <?= $this->Html->link('<i class="glyphicon glyphicon-eye-open"></i>', array('controller' =>  'historicReservations', 'action' => 'view', $historicReservation['id']), array('escape' => false)); ?>
             </td>
         </tr>
         <?php
         endforeach;
         unset($historicReservation);
         ?>
-        <!-- FIN CONTENIDO DE LA TABLA -->
+        <!-- FIN DE CONTENIDO DE LA TABLA -->
     </table>
 </div>
-<!-- FIN TABLA -->
+<!-- FIN DE TABLA -->
 
 <!-- PAGINADOR -->
 <div class="row text-center">
@@ -122,4 +150,4 @@
       </div>
    </div>
 </div>
-<!-- FIN PAGINADOR -->
+<!-- FIN DE PAGINADOR -->
