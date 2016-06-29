@@ -201,22 +201,13 @@
                                                                        'escape' => false)) ?>
                                 </li>
 
-                                <!-- GENERAR REPORTES -->
-                                <li role="generar_reportes">
-                                    <?php echo $this->Html->link('Generar Reportes',
+                                <!-- HISTORIAL DE RESERVACIONES -->
+                                <li role="historial de reservaciones">
+                                    <?php echo $this->Html->link('Historial de reservaciones',
                                                                  array('controller' => 'historicReservations',
-                                                                       'action' => 'generateReports'),
+                                                                       'action' => 'index2'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
-                                </li>
-                                
-                                <!-- ADMINISTRAR HISTORIAL DE RESERVACIONES -->
-                                <li role="historial_de_reservaciones">
-                                    <?php echo $this->Html->link('Historial de reservaciones',
-                                                                array('controller' => 'historicReservations',
-                                                                     'action' => 'index'),
-                                                                array('target' => '_self',
-                                                                     'escape' => false)) ?>
                                 </li>
 
                                 <!-- ADMINISTRAR TIPOS DE RECURSOS -->
