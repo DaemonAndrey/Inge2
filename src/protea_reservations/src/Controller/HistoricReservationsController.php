@@ -26,11 +26,20 @@ class HistoricReservationsController extends AppController
     
     public function index()
     {
-        if ($this->Auth->user())
+        $user_role = $this->Auth->User('role_id');
+        
+        if($user_role != 1)
         {
             $historicReservations = $this->HistoricReservations->find('all');
-
+        
             $this->set('historicReservations', $this->paginate($historicReservations));
+        }
+        else
+        {
+            $historicReservations = $this->HistoricReservations->find('all')
+                                                        ->where(['user_username = ' => $this->Auth->User('username'),
+                                                                    'reservation_start_date < NOW()']);
+            $this->set('historicReservations', $this->paginate($historicReservations));                                                        
         }
     }
     
