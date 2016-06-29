@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 
 class HistoricReservationsController extends AppController
@@ -11,6 +12,7 @@ class HistoricReservationsController extends AppController
     var $start_date;
     var $end_date;
     var $resource_type;
+    var $state;
     public function initialize()
     {
         parent::initialize();
@@ -95,21 +97,29 @@ class HistoricReservationsController extends AppController
              if ($this->request->is('post')){
             //Carga la informacion que se obtiene en el formulario    
                 $start_date = $this->request->data['start_date'];
-                $start_date = $start_date.' 00:00:00'; 
                 $end_date = $this->request->data['end_date'];
-                $end_date = $end_date.' 23:59:00'; 
-                $resource_type=$this->request->data['resource_type_id'];
-                    
+                $resource_type = $this->request->data['resource_type_id'];
+                
+                $state = $this->request->data['active'];
+                $state = $state + 1;
                 //Redirigir a la vista de la tabla de reportes
-                $this->redirect(['controller' => 'HistoricReservations','action' => 'table',$start_date,$end_date,$resource_type]);
+                $this->redirect(['controller' => 'HistoricReservations','action' => 'table',$start_date,'00:00:00', $end_date,'23:59:00',$resource_type, $state]);
              }
              
             $this->set('historic', $historic);
 	   }
     }
     
-    public function table($start_date,$end_date,$resource_type)
-	{
+    //public function table($start_date, $hora_i, $end_date, $hora_f, $resource_type, $state)
+	public function table(){
+
+        
+
+            $start_date = date('Y-m-d', strtotime(str_replace('/', '-', $this->request->data['start_date'])));
+            $end_date = date('Y-m-d', strtotime(str_replace('/', '-', $this->request->data['end_date'])));
+            
+            $state = $this->request->data['active'] + 1;
+            
             $historic_reservations = $this->HistoricReservations->find()
                 ->select(['reservation_start_date', 
                             'reservation_end_date',
@@ -132,14 +142,13 @@ class HistoricReservationsController extends AppController
                                    'conditions' => ['users.id = resources_users.user_id', 'users.id = ' => $this->Auth->User('id')]
                                    ]
                    ])
-            ->andWhere(['resources.resource_type_id = '=> $resource_type])
-            ->where(['HistoricReservations.reservation_start_date BETWEEN :start_date AND :end_date'])
-            ->bind(':start_date', $start_date)
-            ->bind(':end_date', $end_date)
+            ->andWhere(['resources.resource_type_id '=> $this->request->data['resource_type_id'], 'HistoricReservations.state' => $state])
+            ->where(["HistoricReservations.reservation_start_date BETWEEN '".$start_date." 00:00:00' AND '".$end_date." 23:59:59'" ]);
 
-            ;
+            $this->set('historic_reservations', $this->paginate($historic_reservations)); 
+
         
-        $this->set('historic_reservations', $this->paginate($historic_reservations));
+
         // Pagina la tabla de recursos
         
     }

@@ -233,7 +233,7 @@ function getHistoricReservationData() {
 
         xhttp.onreadystatechange = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {   
-                alert('onteniendo datos');
+               
             }
 
         };
@@ -244,7 +244,8 @@ function getHistoricReservationData() {
             start_Date = start,
             end_Date = end,
             
-            resource_type = document.getElementById("resource_type_id").value,
+            resource_type = document.getElementById("resource-type-id").value,
+            state = document.getElementById("active").value,
 
             path = window.location.pathname;
 
@@ -253,13 +254,14 @@ function getHistoricReservationData() {
             path = path+"/";
         }            
 
-        xhttp.open("POST", path+"tble");
+        xhttp.open("POST", path+"table");
 
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
         xhttp.send(JSON.stringify({
             start_date : start_Date,
             end_date : end_Date,
-            resource_type_id: resource_type
+            resource_type_id: resource_type,
+            state: state
         })); 
 }

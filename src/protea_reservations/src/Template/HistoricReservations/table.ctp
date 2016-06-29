@@ -51,12 +51,12 @@
             </th>
             <th>
                 <?php
-                    echo $this->Paginator->sort('user_first_name', 'Usuario');
+                    echo $this->Paginator->sort('user_first_name', 'Nombre');
                 ?>
             </th>
             <th>
                 <?php
-                    echo $this->Paginator->sort('user_last_name', 'Usuario');
+                    echo $this->Paginator->sort('user_last_name', 'Apellido');
                 ?>
             </th>
         </tr> <!-- FIN ENCABEZADO TABLA -->
