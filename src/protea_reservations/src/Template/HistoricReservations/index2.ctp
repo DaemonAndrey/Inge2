@@ -41,7 +41,7 @@
                         </i>
                     </div>
                     
-                    <input type="date" name='start_date' id = 'start_date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                    <input type="date" name='start_date' id = 'start_date' value="<?php echo date("d-m-Y");?>" placeholder='DD/MM/YYYY' class = 'form-control'>
                    
                 </div>
                 <br>
@@ -56,8 +56,12 @@
                         <i class="fa fa-calendar">
                         </i>
                     </div>
-                    
-                    <input type="date" name='end_date' id = 'end_date' placeholder='DD/MM/YYYY' class = 'form-control'>
+                        <?php 
+                            $fechaFFase= date("Y-m-d");
+                            $nuevafecha = new DateTime($fechaFFase);
+                            $nuevafecha->modify('+7 day');
+                        ?>
+                        <input type="date" name='end_date' id = 'end_date' value="<?php echo $nuevafecha->format('d-m-Y');?>" placeholder='DD/MM/YYYY' class = 'form-control'>
                 </div>
                 <br>
             </div>
