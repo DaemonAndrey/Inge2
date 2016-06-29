@@ -117,7 +117,7 @@ function getRespuesta() {
     }
 }
 
-function solicitarDatosHistorico() {
+function solicitarDatosHistoricos() {
     'use strict';
     
     inicializarXHR();
@@ -230,14 +230,13 @@ function generarPDF() {
     doc.save("Reporte de reservaciones.pdf");
 }
 
-
 function getHistoricReservationData() {
     var xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function() {
-        if(xhttp.readyState == 4 && xhttp.status == 200) {   
-
+    xhttp.onreadystatechange = function () {
+        if(xhttp.readyState === 4 && xhttp.status === 200) {
         }
+    };
 
     var start = document.getElementById("start_date").value,
         end = document.getElementById("end_date").value,
@@ -247,8 +246,6 @@ function getHistoricReservationData() {
 
         resource_type = document.getElementById("resource-type-id").value,
         state = document.getElementById("active").value,
-
-        resource_type = document.getElementById("resource-type-id").value,
 
         path = window.location.pathname;
 
@@ -266,5 +263,5 @@ function getHistoricReservationData() {
         end_date : end_Date,
         resource_type_id: resource_type,
         state: state
-    })); 
+    }));
 }

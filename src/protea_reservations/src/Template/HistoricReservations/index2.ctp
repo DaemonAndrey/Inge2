@@ -1,7 +1,9 @@
 <!-- src/Template/Reservations/edit.ctp -->
-<?php echo $this->Html->css('reservations.css');
-    echo $this->Html->css('datepicker.css'); 
-    echo $this->Html->script('historicReservations.js'); ?>
+<?php 
+    echo $this->Html->css('reservations.css');
+    echo $this->Html->css('datepicker.css');
+    echo $this->Html->script('historicReservations.js');
+?>
 <!--  jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 

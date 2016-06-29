@@ -31,7 +31,7 @@
 
 <div class="col-xs-12">
     <div class="col-xs-2 col-xs-offset-5">
-        <button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistorico()">Generar reporte</button>
+        <button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistoricos()">Generar reporte</button>
     </div>
 </div>
 

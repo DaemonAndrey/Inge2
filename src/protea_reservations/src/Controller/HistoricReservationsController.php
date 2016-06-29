@@ -43,10 +43,9 @@ class HistoricReservationsController extends AppController
     */
 	public function generateReports()
 	{
-        //debug($query);
         if ($this->request->is('POST'))
         {
-            $query = $this->HistoricReservations->find('all')
+            /*$query = $this->HistoricReservations->find('all')
                 ->join(['resources' => ['table' => 'resources',
                                     'type' => 'INNER',
                                     'conditions' => ['resources.resource_name = HistoricReservations.resource_name']
@@ -79,7 +78,7 @@ class HistoricReservationsController extends AppController
                 'user_comment',
                 'user' => $user
             ])
-            ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC']);
+            ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC']);*/
             
             $query = json_encode($query);
             
@@ -133,13 +132,6 @@ class HistoricReservationsController extends AppController
         $state = $this->request->data['active'] + 1;
 
         $historic_reservations = $this->HistoricReservations->find()
-            /*->select(['reservation_start_date', 
-                        'reservation_end_date',
-                        'resource_name',
-                        'event_name',
-                        'user_username',
-                        'user_first_name',
-                        'user_last_name'])*/
             ->join(['resources' => ['table' => 'resources',
                                 'type' => 'INNER',
                                 'conditions' => ['resources.resource_name = HistoricReservations.resource_name'
@@ -176,6 +168,9 @@ class HistoricReservationsController extends AppController
         
         // Pagina la tabla de recursos    
         $this->set('historic_reservations', $this->paginate($historic_reservations));
+        
+        $query = $historic_reservations;
+        debug($query);
     }
 
     
