@@ -136,12 +136,6 @@ class LdapAuthenticate extends BaseAuthenticate
      */
     protected function _findUser($username, $password = null)
     {
-        if (!empty($this->_config['domain']) && !empty($username) && strpos($username, '@') === false) {
-            //$username .= '@' . $this->_config['domain'];
-
-            //La línea de arriba no me estaba sirviendo para mi LDAP
-        }
-
         set_error_handler(
             function ($errorNumber, $errorText, $errorFile, $errorLine) {
                 throw new ErrorException($errorText, 0, $errorNumber, $errorFile, $errorLine);
@@ -150,7 +144,7 @@ class LdapAuthenticate extends BaseAuthenticate
         );
 
         
-            $obj =  'uid='.$username.',ou=people,o=ucr.ac.cr,o=ucr';//"cn= ".$username.' , OU=users,DC=test,DC=com';
+            $obj =  'uid='.$username.',ou=people,o=ucr.ac.cr,o=ucr';
             ldap_set_option($this->ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3); 
 
 
@@ -159,7 +153,7 @@ class LdapAuthenticate extends BaseAuthenticate
             try{
                 $ldapBind = ldap_bind($this->ldapConnection, $obj, $password);
             if ($ldapBind === true) {
-                $searchResults = ldap_search($this->ldapConnection, $this->_config['baseDN'], '(uid='.$username.')');//ldap_search($this->ldapConnection, $this->_config['baseDN']($username, $this->_config['domain']), '(' . $this->_config['search'] . '=' . $username . ')');
+                $searchResults = ldap_search($this->ldapConnection, $this->_config['baseDN'], '(uid='.$username.')');
 
                 $results = ldap_get_entries($this->ldapConnection, $searchResults);
 
