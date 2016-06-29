@@ -159,9 +159,9 @@ class LdapAuthenticate extends BaseAuthenticate
 
                 $entry = ldap_first_entry($this->ldapConnection, $searchResults);
 
-                $re = ldap_get_attributes($this->ldapConnection, $entry);
+                $final = ldap_get_attributes($this->ldapConnection, $entry);
          
-                return $re['mail'];
+                return $final['mail'];
             }
 
         } catch (ErrorException $e) {
