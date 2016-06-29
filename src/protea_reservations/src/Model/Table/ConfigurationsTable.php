@@ -29,24 +29,24 @@ class ConfigurationsTable extends Table
                                             ]
             ])
             
-            ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
-            ->add('registration_rejected_subject', [
+            ->notEmpty('registration_accepted_subject', 'Ingrese el mensaje de aceptación de registro.')
+            ->add('registration_accepted_subject', [
                             'validFormat' => [
                                             'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
-            ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
-            ->add('registration_rejected_subject', [
+            ->notEmpty('reservation_rejected_subject', 'Ingrese el mensaje de rechazo de reservación.')
+            ->add('reservation_rejected_subject', [
                             'validFormat' => [
                                             'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
                                             ]
             ])
             
-            ->notEmpty('registration_rejected_subject', 'Ingrese el mensaje de rechazo de registro.')
-            ->add('registration_rejected_subject', [
+            ->notEmpty('reservation_accepted_subject', 'Ingrese el mensaje de aceptación de registro.')
+            ->add('reservation_accepted_subject', [
                             'validFormat' => [
                                             'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ.,;!¡\-()@\' ]+$/'),
                                             'message' => 'Debe usar solamente letras, números o signos (,;.¡!-()@).'
