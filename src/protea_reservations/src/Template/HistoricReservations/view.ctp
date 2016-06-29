@@ -262,7 +262,7 @@
         <div class="row text-center">
             <div class="col-xs-12">
                 <?php                 
-                    echo $this->Html->link('Regresar', array('controller' => 'historicReservation','action'=> 'index'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar')); 
+                    echo $this->Html->link('Regresar', array('controller' => 'historicReservations','action'=> 'index'), array( 'class' => 'btn btn-primary', 'id' => 'btnRegresar')); 
                 ?>
             </div>
         </div> 
