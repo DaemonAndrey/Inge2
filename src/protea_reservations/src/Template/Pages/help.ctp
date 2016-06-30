@@ -311,27 +311,78 @@
                 <!-- ================================================================ -->
                 <div class='col-xs-8 col-xs-offset-2'>
                     <button data-toggle="collapse" class="btn btn-info" data-target="#adminHistorial">
-                        Generar reportes de reservaciones
+                        Revisar el historial de reservaciones
                     </button>
                     <div id="adminHistorial" class="collapse">
-                        <p style="color: red;">
+                        <p>
                             <br>
-                            Generar documentos en formato PDF para hacer análisis sobre las reservaciones, o para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay salas reservadas.
+                            Revisar el historial de todas las reservaciones para hacer análisis sobre las reservaciones cuyo estado no es Pendiente.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en <strong>Historial de Reservaciones</strong>.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Seleccionar la información por las que desea <strong>filtrar</strong> las reservaciones del historial. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Ver Tabla</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones del historial filtradas.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <br>
+                </div>
+                <!-- ================================================================ -->
+                <div class='col-xs-8 col-xs-offset-2'>
+                    <button data-toggle="collapse" class="btn btn-info" data-target="#adminReportes">
+                        Generar reportes de reservaciones
+                    </button>
+                    <div id="adminReportes" class="collapse">
+                        <p>
+                            <br>
+                            Generar documentos en formato PDF para hacer análisis sobre las reservaciones cuyo estado no es Pendiente. También para presentarle a los encargados de limpieza un reporte de las fechas y horas en que hay reservaciones aprobadas de salas.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    En la barra de navegación posicionarse sobre <strong>Administrar</strong>.
+                                    Se desplegará una lista de funciones.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Historial de Reservaciones</strong>.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Seleccionar la información por las que desea <strong>filtrar</strong> las reservaciones del historial. 
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Ver Tabla</strong>.
+                                    Aparecerá un índice con la información básica de las reservaciones del historial filtradas.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Hacer click en <strong>Generar Reporte</strong> y guardar el documento PDF.
                                 </p>
                             </li>
                         </ol>

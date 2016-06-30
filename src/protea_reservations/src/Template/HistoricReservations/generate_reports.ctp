@@ -1,20 +1,20 @@
 <?php 
-    $this->Html->image('logoUCR.jpg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+$this->Html->image('logoUCR.jpg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
 
-    // CSS
-    echo $this->Html->css('reservations.css'); 
-    echo $this->Html->css('resources.css'); 
-    
-    // Javascript
-    echo $this->Html->script('historicReservations.js'); 
-    echo $this->Html->script('jspdf/jspdf.js'); 
-    echo $this->Html->script('jspdf/jspdf.min.js');
-    echo $this->Html->script('jspdf/jspdf.plugin.autotable.js');
-    echo $this->Html->script('jspdf/jspdf.plugin.png_support.js'); 
-    echo $this->Html->script('jspdf/jspdf.plugin.addimage.js');
-    echo $this->Html->script('jspdf/png_support/png.js');
-    echo $this->Html->script('jspdf/png_support/zlib.js');
-    echo $this->Html->script('jspdf/FileSaver.js'); 
+// CSS
+echo $this->Html->css('reservations.css'); 
+echo $this->Html->css('resources.css'); 
+
+// Javascript
+echo $this->Html->script('historicReservations.js'); 
+echo $this->Html->script('jspdf/jspdf.js'); 
+echo $this->Html->script('jspdf/jspdf.min.js');
+echo $this->Html->script('jspdf/jspdf.plugin.autotable.js');
+echo $this->Html->script('jspdf/jspdf.plugin.png_support.js'); 
+echo $this->Html->script('jspdf/jspdf.plugin.addimage.js');
+echo $this->Html->script('jspdf/png_support/png.js');
+echo $this->Html->script('jspdf/png_support/zlib.js');
+echo $this->Html->script('jspdf/FileSaver.js'); 
 ?>
 
 <!-- TÍTULO -->
@@ -27,11 +27,14 @@
             </div>
         </legend>
     </div>
-</div> <!-- FIN TÍTULO -->
+</div>
+<!-- FIN DE TÍTULO -->
 
-<div class="col-xs-12">
-    <div class="col-xs-2 col-xs-offset-5">
-        <button id="btnReporte" class="btn btn-info" onclick="solicitarDatosHistoricos()">Generar reporte</button>
+<div class="row">
+    <div class="col-xs-12" style="text-align:center;">
+        <div class='col-xs-8 col-xs-offset-2'>
+            <button id="btnReporte" class="btn btn-success" onclick="solicitarDatosHistoricos()">Generar Reporte</button>
+        </div>
     </div>
 </div>
 
@@ -132,7 +135,8 @@
             <?php endforeach; ?>
         <?php unset($historic_reservation); ?>
     </table>
-</div> <!-- FIN TABLA -->
+</div>
+<!-- FIN DE TABLA -->
 
 <!-- PAGINADOR -->
 <div class="row text-center">
@@ -143,7 +147,33 @@
           </ul>
       </div>
    </div>
-</div> <!-- FIN PAGINADOR -->
+</div>
+<!-- FIN DE PAGINADOR -->
+
+<div class="row">
+    <div class="col-xs-12" style="text-align:center;">
+        <div class='col-xs-8 col-xs-offset-2'>
+            <?= $this->Html->link('Regresar',
+                                  ['controller' => 'HistoricReservations',
+                                   'action'=> 'index'
+                                  ],
+                                  ['class' => 'btn btn-primary',
+                                   'style' => 'width:90px'
+                                  ]);
+            ?>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <br>
+</div>
+
+<hr>
+
+<div class="col-xs-12">
+    <br>
+</div>
 
 
 <?php
