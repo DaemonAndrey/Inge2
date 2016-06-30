@@ -4,6 +4,18 @@
     echo $this->Html->css('datepicker.css');
     echo $this->Html->script('historicReservations.js');
 
+    function get_browser_name($user_agent)
+    {
+        if (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')) return 'Opera';
+        elseif (strpos($user_agent, 'Edge')) return 'Edge';
+        elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+        elseif (strpos($user_agent, 'Safari')) return 'Safari';
+        elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+        elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+
+        return 'Other';
+    }
+
     if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
     {
 ?>
@@ -52,7 +64,25 @@
                                 </i>
                             </div>
 
-                            <input type="date" name='start_date' id = 'start_date' value="<?php echo date("d-m-Y");?>" placeholder='DD/MM/YYYY' class = 'form-control'>
+                            <?php 
+                                $fechaFFase = date("Y-m-d");
+                                $nuevafecha = new DateTime($fechaFFase);
+     
+                                $fecha = "";
+     
+                                switch(get_browser_name($_SERVER['HTTP_USER_AGENT']))
+                                {
+                                    case 'Internet Explorer':
+                                    case 'Firefox':
+                                        $fecha = $nuevafecha->format("d/m/Y");
+                                        break;
+                                    case 'Chrome':
+                                    case 'Edge':
+                                        $fecha = $nuevafecha->format("Y-m-d");
+                                        break;
+                                }
+                            ?>
+                            <input type="date" name='start_date' id = 'start_date' value="<?php echo $fecha; ?>" placeholder='DD/MM/YYYY' class = 'form-control'>
 
                         </div>
                     </div>
@@ -75,8 +105,22 @@
                                 $fechaFFase= date("Y-m-d");
                                 $nuevafecha = new DateTime($fechaFFase);
                                 $nuevafecha->modify('+7 day');
+     
+                                $fecha = "";
+     
+                                switch(get_browser_name($_SERVER['HTTP_USER_AGENT']))
+                                {
+                                    case 'Internet Explorer':
+                                    case 'Firefox':
+                                        $fecha = $nuevafecha->format("d/m/Y");
+                                        break;
+                                    case 'Chrome':
+                                    case 'Edge':
+                                        $fecha = $nuevafecha->format("Y-m-d");
+                                        break;
+                                }
                             ?>
-                            <input type="date" name='end_date' id = 'end_date' value="<?php echo $nuevafecha->format('d-m-Y');?>" placeholder='DD/MM/YYYY' class = 'form-control'>
+                            <input type="date" name='end_date' id = 'end_date' value="<?php echo $fecha ?>" placeholder='DD/MM/YYYY' class = 'form-control'>
                         </div>
                     </div>
                     <div class="col-xs-12">
