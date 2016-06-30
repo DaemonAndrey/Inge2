@@ -1,4 +1,3 @@
-<!-- src/Template/Resources/index.ctp -->
 <?php echo $this->Html->css('resources.css'); ?>
 
 <!-- MENSAJES -->
@@ -23,22 +22,26 @@
             </div>
         </legend>
     </div>
-</div> <!-- FIN TÍTULO -->
+</div>
+<!-- FIN DE TÍTULO -->
 
 <!-- BOTONES -->
 <div class="row text-center">
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <?php 
-        echo $this->Html->link('<span class="glyphicon glyphicon-plus"></span> Agregar recurso',
-                               array('controller'=>'resources','action' => 'add'),
-                               array('target' => '_self', 'escape' => false)
-                              );
+        <?= $this->Html->link(' Agregar Recurso',
+                              ['controller' => 'Resources',
+                               'action'=> 'add'
+                              ],
+                              ['class' => 'btn btn-info glyphicon glyphicon-plus',
+                               'style' => 'font-family: Arial, Helvetica, sans-serif;'
+                              ])
         ?>
     </div>
     <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <br>
     </div>
-</div> <!-- FIN BOTONES -->
+</div>
+<!-- FIN DE BOTONES -->
 
 <!-- TABLA -->
 <div class="table-responsive">
@@ -75,88 +78,97 @@
             <th>
                 Eliminar
             </th>
-        </tr> <!-- FIN ENCABEZADO TABLA -->
+        </tr>
+        <!-- FIN DE ENCABEZADO TABLA -->
 
         <?php 
-            // Recorre todos los recursos y los muestra en la tabla.
-            foreach ( $resources as $resource ):
-             ?>
-                <tr>
-                    <!-- TIPO -->
-                    <td>
-                        <?php
-                            // Recorre todos los tipos de recurso hasta encontrar el que se relaciona con ese recurso
-                            foreach ( $resource_types as $type ):
-                                if( $type['id'] == $resource['resource_type_id'] )
-                                {
-                                    echo $type['description'];
-                                }                            
-                            endforeach;
-                            unset($type);
-                        ?>
-                    </td>
-
-                    <!-- MARCA/MODELO -->
-                    <td>
-                        <?php
-                            echo $this->Html->link($resource['resource_name'],
-                                                   array('controller' => 'resources','action' => 'view', $resource->id));
-                        ?>
-                    </td>
-
-                    <!-- SERIE/PLACA -->
-                    <td>
-                        <?php
-                            echo $this->Html->link($resource['resource_code'],
-                                                   array('controller' => 'resources','action' => 'view', $resource->id));
-                        ?>
-                    </td>
-
-                    <!-- ACTIVO -->
-                    <td>
-                        <?php
-                            if( $resource['active'] == 1 )
+        // Recorre todos los recursos y los muestra en la tabla.
+        foreach ( $resources as $resource ):
+         ?>
+            <tr>
+                <!-- TIPO -->
+                <td>
+                    <?php
+                        // Recorre todos los tipos de recurso hasta encontrar el que se relaciona con ese recurso
+                        foreach ( $resource_types as $type ):
+                            if( $type['id'] == $resource['resource_type_id'] )
                             {
-                                echo "Sí";
-                            }
-                            else
-                            {
-                                echo "No";
-                            }
-                        ?>
-                    </td>
+                                echo $type['description'];
+                            }                            
+                        endforeach;
+                        unset($type);
+                    ?>
+                </td>
+
+                <!-- MARCA/MODELO -->
+                <td>
+                    <?php
+                        echo $this->Html->link($resource['resource_name'],
+                                               array('controller' => 'resources','action' => 'view', $resource->id));
+                    ?>
+                </td>
+
+                <!-- SERIE/PLACA -->
+                <td>
+                    <?php
+                        echo $this->Html->link($resource['resource_code'],
+                                               array('controller' => 'resources','action' => 'view', $resource->id));
+                    ?>
+                </td>
+
+                <!-- ACTIVO -->
+                <td>
+                    <?php
+                        if( $resource['active'] == 1 )
+                        {
+                            echo "Sí";
+                        }
+                        else
+                        {
+                            echo "No";
+                        }
+                    ?>
+                </td>
 
 
-                    <!-- EDITAR -->
-                    <td>
-                        <?php
-                            echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
-                                                   array('controller' => 'resources','action' => 'edit', $resource->id),
-                                                   array('escape' => false));
-                        ?>
-                    </td>
+                <!-- EDITAR -->
+                <td>
+                    <?php
+                        echo $this->Html->link('<i class="glyphicon glyphicon-pencil"></i>',
+                                               array('controller' => 'resources','action' => 'edit', $resource->id),
+                                               array('escape' => false));
+                    ?>
+                </td>
 
-                    <!-- ELIMINAR -->
-                    <td>
-                        <?php
-                            echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
-                                                       array('controller' => 'resources','action' => 'delete', $resource->id),
-                                                       array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el recurso?'));
-                        ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php unset($resource); ?>
+                <!-- ELIMINAR -->
+                <td>
+                    <?php
+                        echo $this->Form->postLink($this->Html->tag('span',null,array('class' => 'glyphicon glyphicon-trash')),
+                                                   array('controller' => 'resources','action' => 'delete', $resource->id),
+                                                   array('escape' => false, 'confirm' => '¿Está seguro que desea eliminar el recurso?'));
+                    ?>
+                </td>
+            </tr>
+        <?php
+        endforeach;
+        unset($resource);
+        ?>
     </table>
-</div> <!-- FIN TABLA -->
+</div>
+<!-- FIN DE TABLA -->
 
 <!-- PAGINADOR -->
 <div class="row text-center">
   <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
       <div class="center_pagination" >
           <ul class="pagination">
-                <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+              <li>
+                  <?php
+                  echo $this->Paginator->numbers(array('separator' => ''));
+                  ?>
+              </li>
           </ul>
       </div>
    </div>
-</div> <!-- FIN PAGINADOR -->
+</div>
+<!-- FIN DE PAGINADOR -->

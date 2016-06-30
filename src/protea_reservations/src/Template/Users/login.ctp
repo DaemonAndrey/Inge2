@@ -1,27 +1,23 @@
-<!-- src/Template/Users/ingresar.ctp -->
 <?php echo $this->Html->css('login.css'); ?>
 
-<!-- File: src/Template/Users/ingresar.ctp -->
 <div class="users form">
     <!-- MENSAJES -->
-    <div style="text-align:center; color:red">
-
-        
-        
-        <br>
+    <div class="lead text-danger" style="text-align:center">
     </div>
     <!-- FIN DE MENSAJES -->
     
     <?= $this->Form->create() ?>
     <fieldset>  
+        <!-- TÍTULO -->
         <legend>
             <div class='text-center'>
                 <h2>Ingresar</h2>
                 <br>
             </div>
         </legend>
+        <!-- FIN DE TÍTULO -->
         
-        <!-- USERNAME -->
+        <!-- CORREO -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2'>
                 <?=  $this->Form->input('username', ['title' => 'Correo institucional de la UCR sin @ucr.ac.cr.',
@@ -35,7 +31,7 @@
             </div>
         </div>
         
-        <!-- PASSWORD -->
+        <!-- CONTRASEÑA -->
         <div class="row">
             <div class='col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2'>
                 <?=  $this->Form->input('password', ['title' => 'La misma contraseña que utiliza en el correo institucional.',
@@ -56,7 +52,8 @@
             <?= $this->Form->button('Ingresar', ['class' => 'btn btn-success', 'style' => 'width:90px']); ?>
             <?= $this->Html->link('Regresar', ['controller' => 'pages', 'action'=> 'home'], ['class' => 'btn btn-primary', 'style' => 'width:90px']); ?>
         </div>
-    </div> <!-- FIN BOTONES -->
+    </div>
+    <!-- FIN DE BOTONES -->
     
     <legend><br></legend>
     

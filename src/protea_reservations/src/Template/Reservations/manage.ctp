@@ -1,7 +1,7 @@
-<!-- src/Template/Reservations/indexAdmin.ctp -->
-<?php echo $this->Html->css('resources.css'); ?>
-
-<br>
+<?php 
+echo $this->Html->css('resources.css'); 
+$this->Html->image('logoUCR.jpeg', ['alt' => 'LogoUCR', 'id'=>'logoUCR']);
+?>
 
 <!-- MENSAJES -->
 <div class="lead text-info" style="text-align:center">
@@ -9,7 +9,6 @@
     <?= $this->Flash->render('rejectReservationSuccess') ?>
     <?= $this->Flash->render('cancelReservationSuccess') ?>
 </div>
-
 <div class="lead text-danger" style="text-align:center">
     <?= $this->Flash->render('editReservationError') ?>
     <?= $this->Flash->render('acceptReservationError') ?>
@@ -22,28 +21,32 @@
 <!-- TÍTULO -->
 <div class="row" style="color:#000;">
     <div class="col-xs-12">
-        <div class="text-center" style="color:#000;">
-            <?php
-            if($user_role == 2 || $user_role == 3)
-            {
-                ?>
-                <h2>Administrar Reservaciones Pendientes</h2>
+        <legend>
+            <div class="text-center">
                 <?php
-            }
-            ?>
-            <?php
-            if($user_role == 1)
-            {
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                {
+                    ?>
+                    <h2>Administrar Reservaciones Pendientes</h2>
+                    <?php
+                }
                 ?>
-                <h2>Mis Reservaciones</h2>
                 <?php
-            }
-            ?>
-            <br>
-        </div>
+                if($this->request->session()->read('Auth.User.role_id') == 1)
+                {
+                    ?>
+                    <h2>Mis Reservaciones</h2>
+                    <?php
+                }
+                ?>
+                <br>
+            </div>
+        </legend>
     </div>
 </div>
-<!-- FIN TÍTULO -->
+<!-- FIN DE TÍTULO -->
+
+<br>
 
 <!-- TABLA -->
 <div class="table-responsive">
@@ -52,7 +55,7 @@
         <tr>
             <th>
                 <?php
-                    echo $this->Paginator->sort('start_date', 'Fecha');
+                echo $this->Paginator->sort('start_date', 'Fecha');
                 ?>
             </th>
             <th>
@@ -63,7 +66,7 @@
             </th>
             <th>
                 <?php
-                    echo $this->Paginator->sort('resources.resource_name', 'Recurso');
+                echo $this->Paginator->sort('resources.resource_name', 'Recurso');
                 ?>
             </th>
             <th>
@@ -71,71 +74,73 @@
             </th>
             <th>
                 <?php
-                    if($this->request->session()->read('Auth.User.role_id') == 1)
-                        echo $this->Paginator->sort('state', 'Estado');
-                    else
-                        echo 'Estado';
+                if($this->request->session()->read('Auth.User.role_id') == 1)
+                    echo $this->Paginator->sort('state', 'Estado');
+                else
+                    echo 'Estado';
                 ?>
             </th>
             <th>
                 Revisar
             </th>
+            <?php 
+                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                {
+                    ?>
+                    <th>
+                        Cancelar
+                    </th>
+                    <?php
+                }
+            ?>
         </tr>
-        <!-- FIN ENCABEZADO -->
+        <!-- FIN DE ENCABEZADO -->
         
         <?php
         // Recorre todas las reservaciones y las muestra en la tabla.
-        foreach($reservations as $reservation):
-        ?>
+        foreach($reservations as $reservation): ?>
             <tr>
                 <!-- FECHA -->
                 <td>
                     <?php
-                        if($reservation['start_date'] != null)
-                            echo date_format($reservation['start_date'], "d/M/Y");
-                        elseif($reservation['reservation_start_date'] != null)
-                            echo date_format($reservation['reservation_start_date'], "d/M/Y")
+                    if($reservation['start_date'] != null)
+                        echo date_format($reservation['start_date'], "d/M/Y");
+                    else if($reservation['reservation_start_date'] != null)
+                        echo date_format($reservation['reservation_start_date'], "d/M/Y")
                     ?>
                 </td>
-                <!-- FIN FECHA -->
                 
                 <!-- HORA INICIO -->
                 <td>
                     <?php 
-                        if($reservation['start_date'] != null)
-                            echo date_format($reservation['start_date'], "H:i");
-                        elseif($reservation['reservation_start_date'] != null)
-                            echo date_format($reservation['reservation_start_date'], "H:i")
+                    if($reservation['start_date'] != null)
+                        echo date_format($reservation['start_date'], "h:i a");
+                    else if($reservation['reservation_start_date'] != null)
+                        echo date_format($reservation['reservation_start_date'], "h:i a")
                     ?>
                 </td>
-                <!-- FIN HORA INICIO -->
                 
                 <!-- HORA FIN -->
                 <td>
                     <?php 
-                        if($reservation['end_date'] != null)
-                            echo date_format($reservation['end_date'], "H:i");
-                        elseif($reservation['reservation_end_date'] != null)
-                            echo date_format($reservation['reservation_end_date'], "H:i")
+                    if($reservation['end_date'] != null)
+                        echo date_format($reservation['end_date'], "h:i a");
+                    else if($reservation['reservation_end_date'] != null)
+                        echo date_format($reservation['reservation_end_date'], "h:i a")
                     ?>
                 </td>
-                <!-- FIN HORA FIN -->
                 
                 <!-- NOMBRE RECURSO -->
                 <td>
                     <?php 
-                        //if($this->request->session()->read('Auth.User.role_id') == 1) 
-                        //    echo $reservation['Resources']['resource_name'];
-                        //else
-                            echo $reservation['resources']['resource_name'];
+                    echo $reservation['resources']['resource_name'];
                     ?>
                 </td>
-                <!-- FIN NOMBRE RECURSO -->
                 
                 <!-- ACTIVIDAD -->
                 <td>
                     <?php
-                        echo $reservation['event_name'];
+                    echo $reservation['event_name'];
                     ?>
                 </td>
                 <!-- FIN ACTIVIDAD -->
@@ -145,27 +150,24 @@
                     <?php
                         switch($reservation['state'])
                         {
-                            case 0:
-                                ?>
-                                <b>
-                                    <?php echo "Pendiente"; ?>
-                                </b>
-                                <?php
-                                break;
+                            case 0: ?>
+                                    <b>
+                                        Pendiente
+                                    </b>
+                                    <?php
+                                    break;
                             case 1:
-                                echo "Aceptada";
-                                break;
+                                    echo "Aceptada";
+                                    break;
                             case 2:
-                                echo "Rechazada";
-                                break;
+                                    echo "Rechazada";
+                                    break;
                             case 3:
-                                echo "Cancelada";
-                                break;
+                                    echo "Cancelada";
+                                    break;
                         }
-                        //echo ($reservation['state']) ? "Aceptada" : "Pendiente";
                     ?>
                 </td>
-                <!-- FIN ESTADO -->
                 
                 <!-- REVISAR -->
                 <td>
@@ -182,13 +184,25 @@
                                                   );
                     ?>
                 </td>
-                <!-- FIN REVISAR -->
+                
+                <!-- CANCELAR -->
+                <?php 
+                    if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
+                    {
+                        echo '<td>';
+                            echo $this->Html->link('<i class="glyphicon glyphicon-remove"></i>',
+                                                   array('controller' => 'reservations', 'action' => 'delete', $reservation->id),
+                                                   array('escape' => false)
+                                                  );
+                        echo '</td>';
+                    }
+                ?>
             </tr>
         <?php endforeach; ?>
         <?php unset($reservation); ?>
     </table>
 </div>
-<!-- FIN TABLA -->
+<!-- FIN de TABLA -->
 
 <!-- PAGINADOR -->
 <div class="row text-center">
@@ -199,4 +213,12 @@
           </ul>
       </div>
    </div>
-</div> <!-- FIN PAGINADOR -->
+</div>
+<!-- FIN de PAGINADOR -->
+
+<div class="row" style="color:#000;">
+    <div class="col-xs-12">
+        <legend>
+        </legend>
+    </div>
+</div>

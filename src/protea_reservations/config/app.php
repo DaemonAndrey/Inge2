@@ -59,24 +59,11 @@ return [
 
     'Ldap' => [
         'domain' => 'ucr.ac.cr',
-        /**
-        'host' => function() {
-            $hosts = ['192.168.1.13', '127.0.0.1'];
-            shuffle($hosts);
-            return $hosts[1];
-        },
-        **/
+ 
         'host' => 'ldap.ucr.ac.cr',
         'port' => 389,
         'search' => 'UserPrincipalName',
-        'baseDN' => 'ou=people,o=ucr.ac.cr,o=ucr'/**function($username, $domain) {
-            if (strpos($username, $domain) !== false) {
-                $baseDN = 'OU=users,DC=test,DC=com';
-            } else {
-                $baseDN = 'CN=Users,DC=test,DC=com';
-            }
-            return $baseDN;
-        }**/,
+        'baseDN' => 'ou=people,o=ucr.ac.cr,o=ucr',
         'errors' => [
             'data 773' => 'Some error for Flash',
             'data 532' => 'Some error for Flash',
@@ -257,7 +244,7 @@ return [
             'password' => '',
             'database' => 'protea_db',
             'encoding' => 'utf8',
-            'timezone' => 'UTC',
+            'timezone' => '',
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,

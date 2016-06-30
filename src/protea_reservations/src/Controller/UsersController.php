@@ -80,6 +80,7 @@ class UsersController extends AppController
                        'Users.telephone_number',
                        'Users.department',
                        'Users.position',
+                       'Users.state',
                        'Roles.role_name'
                       ]);
         
@@ -102,24 +103,24 @@ class UsersController extends AppController
             if ($this->request->is('post'))
             {
                 $user = $this->Users->patchEntity($user, $this->request->data);
-                
-                // Si SuperAdmin agrega a usuario, se acepta de una vez.
-                if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
-                {
-                    $user->state = 1;
-                }
-                
+
                 try
-                {                  
+                {
                     if ($this->Users->save($user))
                     {
                         // Si soy SuperAdmin
                         if ($this->Auth->user() && $this->Auth->User('role_id') == 3)
                         {
-                            $this->Flash->success('Usuario agregado.',
-                                                  ['key' => 'success']);
+                            // Se acepta de una vez.
+                            $user->state = 1;
                             
-                            return $this->redirect(['controller' => 'Users','action' => 'index']);
+                            if ($this->Users->save($user))
+                            {
+                                $this->Flash->success('Usuario agregado.',
+                                                      ['key' => 'success']);
+                            
+                                return $this->redirect(['controller' => 'Users','action' => 'index']);
+                            }
                         }
                         
                         $this->Flash->success('Procesando solicitud de registro. Confirmación enviada al correo electrónico.',
@@ -175,7 +176,7 @@ class UsersController extends AppController
                     // Si soy Usuario regular
                     else if($user['role_id'] == 1)
                     {
-                        //return $this->redirect(['controller' => 'Reservations','action' => 'index']);
+                        return $this->redirect(['controller' => 'Reservations','action' => 'index']);
                     }
 
                 }
