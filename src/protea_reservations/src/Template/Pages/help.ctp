@@ -10,8 +10,8 @@
                 <br>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
-                //if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 ||
+                   $this->request->session()->read('Auth.User.role_id') == 3)
                 {
                     ?>
                     <h2>Manual de Ayuda para Administradores</h2>
@@ -19,7 +19,6 @@
                 }
                 // SI SOY USUARIO REGULAR
                 else if($this->request->session()->read('Auth.User.role_id') == 1)
-                //else if($user_role_id == 1)
                 {
                     ?>
                     <h2>Manual de Ayuda para Usuarios</h2>
@@ -33,6 +32,7 @@
     
     
     <!-- INTRODUCCION =============================================================== -->
+    <!--
     <div class='row' id="introduccion">
         <div class='col-xs-8 col-xs-offset-2'>
             <div style="text-align:justify;color:black;">
@@ -40,19 +40,22 @@
                 <p>
                 <?php
                 // SI SOY ADMINISTRADOR
-                if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
-                //if($user_role_id == 2 || $user_role_id == 3)
+                if($this->request->session()->read('Auth.User.role_id') == 2 ||
+                   $this->request->session()->read('Auth.User.role_id') == 3)
                 {
                     ?>
-                    Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    
+                    Administradorum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur                           dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque                             bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus                          urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque                           nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et                                malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi.                                Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id.
+                        
                     <?php
                 }
                 // SI SOY USUARIO REGULAR
                 else if($this->request->session()->read('Auth.User.role_id') == 1)
-                //else if($user_role_id == 1)
                 {
                     ?>
-                    Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                    
+                    Usuarius regularix Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras varius massa augue, nec consectetur                        dui condimentum efficitur. Praesent sodales urna libero, elementum tincidunt ligula tristique sit amet. Quisque                             bibendum non turpis in euismod. Suspendisse aliquam vel orci sit amet porta. Mauris at sagittis arcu. Donec cursus                          urna in erat pulvinar ullamcorper. Suspendisse sollicitudin rhoncus cursus. Aenean at turpis maximus, scelerisque                           nibh id, efficitur odio. Nam tincidunt metus eu mi eleifend rutrum. Nam finibus varius molestie. Interdum et                                malesuada fames ac ante ipsum primis in faucibus. Donec eget dignissim ipsum, at egestas mi. Nulla facilisi. Nunc                           quis lobortis tellus. Sed volutpat sollicitudin tortor, et iaculis nulla sagittis id. Nulla non quam nisl.
+                        
                     <?php
                 }
                 ?>
@@ -60,15 +63,18 @@
             </div>
         </div>
     </div>
+    -->
     <!-- FIN DE INTRODUCCION ======================================================== -->
     
     
     <!-- TITULO FUNCIONES =========================================================== -->
     <?php
-    if($this->request->session()->read('Auth.User.role_id') == 1 || $this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
-    //if($user_role_id == 1 || $user_role_id == 2 || $user_role_id == 3)
+    if($this->request->session()->read('Auth.User.role_id') == 1 ||
+       $this->request->session()->read('Auth.User.role_id') == 2 ||
+       $this->request->session()->read('Auth.User.role_id') == 3)
     {
         ?>
+        <!--
         <div class='row'>
                 <div class='col-xs-8 col-xs-offset-2' style="color:black;">
                     <p>
@@ -78,6 +84,7 @@
                 </div>
             </div>
         </div>
+        -->
         <?php
     }
     ?>
@@ -89,8 +96,8 @@
         <div class='col-xs-12' style="color:black; text-align:center;">            
             <?php
             // SI SOY ADMINISTRADOR
-            if($this->request->session()->read('Auth.User.role_id') == 2 || $this->request->session()->read('Auth.User.role_id') == 3)
-            //if($user_role_id == 2 || $user_role_id == 3)
+            if($this->request->session()->read('Auth.User.role_id') == 2 ||
+               $this->request->session()->read('Auth.User.role_id') == 3)
             {
                 ?>
                 <!-- ================================================================ -->
@@ -654,7 +661,7 @@
                             </li>
                             <li>
                                 <p>
-                                    Hacer click en <strong><i class="glyphicon glyphicon-user"></i>Asociar Administradores</strong>.
+                                    Hacer click en <strong><i class="glyphicon glyphicon-plus"></i>Asociar Administradores</strong>.
                                     Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
                                 </p>
                             </li>
@@ -701,7 +708,7 @@
                             </li>
                             <li>
                                 <p>
-                                    Hacer click en <strong>Asociar Administradores</strong>.
+                                    Hacer click en <strong><i class="glyphicon glyphicon-plus"></i>Asociar Administradores</strong>.
                                     Aparecerá una lista de administradores no asociados al recurso y una tabla de administradores asociados al recurso.
                                 </p>
                             </li>
@@ -721,7 +728,6 @@
                 <?php
                 // Si soy SuperAdministrador
                 if($this->request->session()->read('Auth.User.role_id') == 3)
-                //if($user_role_id == 3)
                 {
                     ?>
                     <!-- ================================================================ -->
@@ -1022,6 +1028,47 @@
                     <div class='col-xs-8 col-xs-offset-2'>
                         <br>
                     </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminConfiguracionLDAP">
+                            Configuración de LDAP
+                        </button>
+                        <div id="adminConfiguracionLDAP" class="collapse">
+                            <p>
+                                <br>
+                                Modificar las configuraciones de LDAP en el sistema en caso de que requieran ser actualizadas.
+                            </p>
+                            <p>
+                                Descargar <strong><a href="../files/Manual_Configuracion_LDAP.pdf" download="Manual_Configuracion_LDAP.pdf">aquí</a></strong> el manual de configuración de LDAP.
+                            </p>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <h4><u>Cargado de datos</u></h4>
+                    </div>
+                    <!-- ================================================================ -->
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <button data-toggle="collapse" class="btn btn-info" data-target="#adminBulkInsert">
+                            Cargado masivo de recursos
+                        </button>
+                        <div id="adminBulkInsert" class="collapse">
+                            <p>
+                                <br>
+                                Cargar a la base de datos la información de muchos recursos a la vez, a través de una hoja de cálculo.
+                            </p>
+                            <p>
+                                Descargar <strong><a href="../files/Manual_Cargado_Masivo_Recursos.pdf" download="Manual_Cargado_Masivo_Recursos.pdf">aquí</a></strong> el manual de cargado masivo de recursos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class='col-xs-8 col-xs-offset-2'>
+                        <br>
+                    </div>
+                    <!-- ================================================================ -->
                     <?php
                 }
                 ?>        
@@ -1029,7 +1076,6 @@
             }
             // SI SOY USUARIO REGULAR
             else if($this->request->session()->read('Auth.User.role_id') == 1)
-            //else if($user_role_id == 1)
             {
                 ?>
                 <!-- ================================================================ -->
@@ -1219,24 +1265,27 @@
                         Revisar el historial de mis reservaciones
                     </button>
                     <div id="usuarioHistorial" class="collapse">
-                        <p style="color: red;">
+                        <p>
                             <br>
-                            Revisar el historial de reservaciones para ver la información de todas mis reservaciones aceptadas, tanto actuales como pasadas.
+                            Revisar el historial para ver la información detallada de todas mis reservaciones, tanto actuales como pasadas, para saber si fueron aprobadas, rechazadas o canceladas.
                         </p>
                         <ol>
                             <li>
                                 <p>
-                                    Paso
+                                    En la barra de navegación posicionarse sobre <strong>usuario@ucr.ac.cr</strong>.
+                                    Se desplegará una lista de funciones.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en <strong>Historial de Reservaciones</strong>.
+                                    Aparecerá un índice con la información básica de todas las reservaciones que ha hecho, donde además se podrá ver si están <strong>Aceptadas</strong>, <strong>Rechazadas</strong> o <strong>Canceladas</strong>.
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Paso
+                                    Hacer click en cualquier columna de la reservación que desee revisar.
+                                    Aparecerá la información más detallada de la reservación.
                                 </p>
                             </li>
                         </ol>

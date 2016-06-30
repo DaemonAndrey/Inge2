@@ -22,11 +22,14 @@
         <!-- ASOCIAR -->
          <div class="row">
             <div class='col-lg-4 col-lg-offset-5 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3 col-xs-10 col-xs-offset-2'>
-                <?=
-                    $this->Html->link('<span class="glyphicon glyphicon-user"></span> Asociar Administradores',
-                                      array('controller' => 'resources','action' => 'associate', $resource->id),
-                                      array('target' => '_self', 'escape' => false)
-                                     );
+                <?= $this->Html->link(' Asociar Administradores',
+                                      ['controller' => 'Resources',
+                                       'action'=> 'associate',
+                                       $resource->id
+                                      ],
+                                      ['class' => 'btn btn-info glyphicon glyphicon-plus',
+                                       'style' => 'font-family: Arial, Helvetica, sans-serif;'
+                                      ])
                 ?>
             <br><br><br>
             </div>

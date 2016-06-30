@@ -173,13 +173,13 @@ class HistoricReservationsController extends AppController
             }
         }
     }
-
+    
     public function isAuthorized($user)
     {
         // Cualquier usuario puede ver las reservaciones históricas
         if ($this->request->action === 'index' && $user['role_id'] == 1)
             return true;    
-        
+
         if ($this->request->action === 'view' && $user['role_id'] == 1)
             return true;
         
