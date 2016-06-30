@@ -40,6 +40,7 @@ class ReservationsTable extends Table
             ->notEmpty('resource_id', 'Este campo es requerido')
             
             /* Reglas para el campo user_comment */
+            ->allowEmpty('user_comment')
             ->add('user_comment', [
                 'maxLength' => [
                     'rule' => ['maxLength', 500], 
@@ -52,6 +53,7 @@ class ReservationsTable extends Table
             ])
             
             /* Reglas para el campo administrator_comment */
+            ->allowEmpty('administrator_comment')
             ->add('administrator_comment', [
                 'maxLength' => [
                     'rule' => ['maxLength', 500], 
@@ -80,5 +82,39 @@ class ReservationsTable extends Table
             ]);
             
             /* Reglas para el campo state */
+    }
+    
+    /*
+     * Se encarga de validar los campos del formulario de editar reservaciones
+     * @param Validator $validator
+     */
+    public function validationUpdate(Validator $validator)
+    {
+        return $validator
+            /* Reglas para el campo user_comment */
+            ->allowEmpty('user_comment')
+            ->add('user_comment', [
+                'maxLength' => [
+                    'rule' => ['maxLength', 500], 
+                    'message' => 'El comentario es muy extenso.'
+                ], 
+                'validFormat' => [
+                    'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ"#$%&:.,_\' \- \n \r]*$/'), 
+                    'message' => 'Hay caracteres no válidos'
+                ]
+            ])
+            
+            /* Reglas para el campo administrator_comment */
+            ->allowEmpty('administrator_comment')
+            ->add('administrator_comment', [
+                'maxLength' => [
+                    'rule' => ['maxLength', 500], 
+                    'message' => 'El comentario es muy extenso.'
+                ], 
+                'validFormat' => [
+                    'rule' => array('custom', '/^[0-9a-zA-ZÁáÉéÍíÓóÚúÜüÑñ"#$%&:.,_\' \- \n \r]*$/'), 
+                    'message' => 'Hay caracteres no válidos'
+                ]
+            ]);
     }
 }

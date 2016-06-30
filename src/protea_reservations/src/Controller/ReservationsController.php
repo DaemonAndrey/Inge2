@@ -294,7 +294,7 @@ class ReservationsController extends AppController
                 {
                     if($this->request->is(array('post', 'put')))
                     {
-                        $this->Reservations->patchEntity($reservation, $this->request->data);
+                        $this->Reservations->patchEntity($reservation, $this->request->data, ['validate' => 'update']);
                         
                         // Si la acción es aprobar la reservación
                         if($this->request->data['accion'] == 'Aprobar')
@@ -328,17 +328,7 @@ class ReservationsController extends AppController
             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
         }
     }
-    
-    //Metodo qu mostrara los reportes de reservaciones
-    
-    public function reporte($id = null)
-    {
-        if($id != null)
-        {
-            
-        }
-    }
-    
+
     /*
     * Método auxiliar que cambia el estado de la reservación aceptada.
     * @param integer $id
@@ -371,7 +361,7 @@ class ReservationsController extends AppController
 
                 $userEmail = $reservation['user']['username'];
                 
-                if($this->HistoricReservations->save($historicReservation) && $this->Reservations->save($reservation))
+                if($this->Reservations->save($reservation) && $this->HistoricReservations->save($historicReservation))
                 {
                     $this->getMailer('User')->send('confirmReservation', [$userEmail, $configuration]);
                     
@@ -423,7 +413,7 @@ class ReservationsController extends AppController
 
                 $userEmail = $reservation['user']['username'];
                 
-                if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                if($this->Reservations->delete($reservation) && $this->HistoricReservations->save($historicReservation))
                 {
                     $this->getMailer('User')->send('rejectReservation', [$userEmail, $configuration]);
                     
@@ -573,7 +563,7 @@ class ReservationsController extends AppController
                         $historicReservation->administrator_comment = $reservation['administrator_comment'];
                         $historicReservation->state = 3;
 
-                        if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                        if($this->Reservations->delete($reservation) && $this->HistoricReservations->save($historicReservation))
                         {
                             $this->Flash->set(__('Reservación cancelada.'), ['clear' => true, 'key' => 'success']);
                             return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
@@ -669,7 +659,7 @@ class ReservationsController extends AppController
                     $historicReservation->administrator_comment = $reservation['administrator_comment'];
                     $historicReservation->state = 4;
 
-                    if($this->HistoricReservations->save($historicReservation) && $this->Reservations->delete($reservation))
+                    if($this->Reservations->delete($reservation) && $this->HistoricReservations->save($historicReservation))
                     {
                         $this->Flash->set(__('Reservación eliminada.'), ['clear' => true, 'key' => 'success']);
                         return $this->redirect(['controller' => 'Reservations', 'action' => 'manage']);
