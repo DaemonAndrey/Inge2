@@ -25,17 +25,7 @@ class HistoricReservationsController extends AppController
     public $paginate = array('limit' => 10,
                              'order' => array('HistoricReservations.reservation_start_date' => 'asc', 'HistoricReservations.reservation_end_date' => 'asc')
                             );
-    
-    /*public function index()
-    {
-        if ($this->Auth->user())
-        {
-            $historicReservations = $this->HistoricReservations->find('all');
 
-            $this->set('historicReservations', $this->paginate($historicReservations));
-        }
-    }*/
-    
     public function index()
 	{
         $user_role = $this->Auth->User('role_id');
@@ -192,6 +182,9 @@ class HistoricReservationsController extends AppController
         
         if ($this->request->action === 'view' && $user['role_id'] == 1)
             return true;
+        
+        if ($this->request->action === 'view' && $user['role_id'] != 1)
+            return false;
         
         // Solo los administradores pueden generar reportes
         if ($this->request->action === 'generateReports' && ($user['role_id'] == 2 || $user['role_id'] == 3))
