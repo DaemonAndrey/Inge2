@@ -261,7 +261,7 @@ function getHistoricReservationData() {
         path = path + "/";
     }
 
-    xhttp.open("POST", path + "table");
+    xhttp.open("POST", path + "generate-reports");
 
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 

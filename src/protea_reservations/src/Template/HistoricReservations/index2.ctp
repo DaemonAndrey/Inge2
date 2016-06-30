@@ -17,7 +17,7 @@
 
 <div class="users form">
     
-    <?= $this->Form->create($historic, ['url' => ['action' => 'table']]) ?>
+    <?= $this->Form->create($historic, ['url' => ['action' => 'generateReports']]) ?>
 
     <fieldset>
         <!-- TÍTULO -->

@@ -36,58 +36,6 @@ class HistoricReservationsController extends AppController
         }
     }
     
-    /**
-    * Carga el historico de reservaciones para generar el reporte.
-    * 
-    */
-	/*public function generateReports()
-	{
-        //error_log('Esta es la consulta: '.$query);
-        if ($this->request->is('get'))
-        {
-            $query = $this->HistoricReservations->find('all')
-                ->join(['resources' => ['table' => 'resources',
-                                    'type' => 'INNER',
-                                    'conditions' => ['resources.resource_name = HistoricReservations.resource_name']
-                                   ],
-                        'resources_users' => ['table' => 'resources_users',
-                                             'type' => 'INNER',
-                                             'conditions' => ['resources.id = resources_users.resource_id']
-                                             ],
-                        'users' => ['table' => 'users',
-                                   'type' => 'INNER',
-                                   'conditions' => ['users.id = resources_users.user_id', 'users.id = ' => $this->Auth->User('id')]
-                                   ]
-                   ])
-                ->andWhere(['resources.resource_type_id = ' => 1])
-                ->where(['HistoricReservations.reservation_start_date BETWEEN :start_date AND :end_date'])
-                ->bind(':start_date', '2016-01-01 00:00:00')
-                //->bind(':start_date', $start_date)
-                ->bind(':end_date', '2016-12-31 23:59:59');
-                //->bind(':end_date', $end_date);
-            
-            $date = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%d-%m-%y'" => 'literal']);
-            $start_time = $query->func()->date_format(['reservation_start_date' => 'identifier', "'%h:%i %p'" => 'literal']);
-            $end_time = $query->func()->date_format(['reservation_end_date' => 'identifier', "'%h:%i %p'" => 'literal']);
-            $user = $query->func()->concat(['user_first_name' => 'identifier', ' ', 'user_last_name' => 'identifier']);
-            
-            $query->select([
-                'start_date' => $date,
-                'start_hour' => $start_time,
-                'end_hour' => $end_time,
-                'event_name',
-                'resource_name',
-                'user_comment',
-                'user' => $user
-            ])
-            ->order(['reservation_start_date' => 'ASC', 'reservation_end_date' => 'ASC']);
-            
-            $query = json_encode($query);
-            
-            die($query);
-        }
-	}*/
-
     public function index2()
 	{
         $this->set('user_role', $this->Auth->User('role_id'));
@@ -119,7 +67,7 @@ class HistoricReservationsController extends AppController
                     $state = $this->request->data['active'];
                     $state = $state + 1;
                     //Redirigir a la vista de la tabla de reportes
-                    $this->redirect(['controller' => 'HistoricReservations','action' => 'table',$start_date,'00:00:00', $end_date,'23:59:00',$resource_type, $state]);
+                    $this->redirect(['controller' => 'HistoricReservations','action' => 'generateReports',$start_date,'00:00:00', $end_date,'23:59:00',$resource_type, $state]);
                 }
             }
         }
@@ -127,7 +75,7 @@ class HistoricReservationsController extends AppController
         $this->set('historic', $historic);
     }
     
-	public function table()
+	public function generateReports()
     {    
         if ($this->request->data != null)
         {
