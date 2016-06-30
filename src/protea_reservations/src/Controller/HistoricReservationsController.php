@@ -34,7 +34,7 @@ class HistoricReservationsController extends AppController
         {
             $historicReservations = $this->HistoricReservations->find('all')
                                                         ->where(['user_username = ' => $this->Auth->User('username')]);
-            $this->set('historicReservations', $this->paginate($historicReservations));                                                        
+            $this->set('historicReservations', $this->paginate($historicReservations));        
         }
         else
         {        
