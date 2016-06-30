@@ -94,7 +94,22 @@ class ResourcesController extends AppController
                                             }
                              );
         
-        $this->set('admins_assoc', $query->toArray());
+        
+        $admins_assoc = $query->toArray();
+        $permitido = false;
+        foreach($admins_assoc as $admin_assoc)
+        {
+            if ($this->Auth->User('username') == $admin_assoc['username']) {
+               $permitido = true;
+            }
+        }
+        if(!$permitido)
+        {
+            $this->Flash->error('No se puede acceder a ese recurso.', ['key' => 'error']);
+            
+            return $this->redirect(['controller' => 'Resources','action' => 'index']);
+        }
+        $this->set('admins_assoc', $admins_assoc);
     }
 
     /**
