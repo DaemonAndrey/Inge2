@@ -21,13 +21,13 @@
         <div class='row'>
             <!-- NOMBRE -->
             <div class='col-md-5 col-sm-5 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
-                <?= $this->Form->input('first_name', ['label' => 'Nombre * ', 'placeholder' => 'Luis Carlos ', 'class' => 'form-control']) ?>
+                <?= $this->Form->input('first_name', ['label' => 'Nombre * ', 'placeholder' => 'Nombre Completo ', 'class' => 'form-control']) ?>
                 <br>
             </div>
             
             <!-- APELLIDOS -->
             <div class='col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
-                <?= $this->Form->input('last_name', ['label' => 'Apellidos * ', 'placeholder' => 'Brenes Aguilar', 'class' => 'form-control']) ?>
+                <?= $this->Form->input('last_name', ['label' => 'Apellidos * ', 'placeholder' => 'Apellido(s)', 'class' => 'form-control']) ?>
                 <br>
             </div>
         </div>
@@ -41,7 +41,7 @@
             
             <!-- TELÉFONO -->
             <div class='col-md-5 col-md-offset-0 col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-1'>
-                <?= $this->Form->input('telephone_number', ['label' => 'Teléfono * ', 'placeholder' => '83833838', 'class' => 'form-control']) ?>
+                <?= $this->Form->input('telephone_number', ['label' => 'Teléfono * ', 'placeholder' => 'Sin guiones ni espacios', 'class' => 'form-control']) ?>
                 <br>
             </div>
         </div>
