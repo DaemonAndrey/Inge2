@@ -100,6 +100,7 @@ class HistoricReservationsTable extends Table
             ])
             
             /* Reglas para el campo user_comment */
+            ->allowEmpty('user_comment')
             ->add('user_comment', [
                 'maxLength' => [
                     'rule' => ['maxLength', 500], 
@@ -112,6 +113,7 @@ class HistoricReservationsTable extends Table
             ])
             
             /* Reglas para el campo administrator_comment */
+            ->allowEmpty('administrator_comment')
             ->add('administrator_comment', [
                 'maxLength' => [
                     'rule' => ['maxLength', 500], 

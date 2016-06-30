@@ -11,7 +11,6 @@ if (document.getElementsByClassName("message").length) {
     }, 3000);
 }
 
-
 $(document).ready(function () { // page is now ready, initialize the calendar...
     var xhttp = new XMLHttpRequest(), json_events = "";
     
