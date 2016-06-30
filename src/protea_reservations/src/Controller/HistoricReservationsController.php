@@ -26,7 +26,7 @@ class HistoricReservationsController extends AppController
                              'order' => array('HistoricReservations.reservation_start_date' => 'asc', 'HistoricReservations.reservation_end_date' => 'asc')
                             );
     
-    public function index()
+    /*public function index()
     {
         if ($this->Auth->user())
         {
@@ -34,45 +34,56 @@ class HistoricReservationsController extends AppController
 
             $this->set('historicReservations', $this->paginate($historicReservations));
         }
-    }
+    }*/
     
-    public function index2()
+    public function index()
 	{
-        $this->set('user_role', $this->Auth->User('role_id'));
-        $this->loadModel('ResourceTypes');
-        $options = $this->ResourceTypes->find('list',
-                                              [
-                                                  'keyField' => 'id',
-                                                  'valueField' => 'description'
-                                              ]
-                                             )->toArray();
+        $user_role = $this->Auth->User('role_id');
         
-        $this->set('resource_types_options', $options);
-
-        if($this->Auth->user())
+        if($user_role == 1)
         {
-            // Nueva entidad 'Resource'
-            $historic = $this->HistoricReservations->newEntity();
+            $historicReservations = $this->HistoricReservations->find('all')
+                                                        ->where(['user_username = ' => $this->Auth->User('username')]);
+            $this->set('historicReservations', $this->paginate($historicReservations));                                                        
+        }
+        else
+        {        
+            //$this->set('user_role', $this->Auth->User('role_id'));
+            $this->loadModel('ResourceTypes');
+            $options = $this->ResourceTypes->find('list',
+                                                  [
+                                                      'keyField' => 'id',
+                                                      'valueField' => 'description'
+                                                  ]
+                                                 )->toArray();
 
-            if ($this->request->is('post'))
+            $this->set('resource_types_options', $options);
+
+            if($this->Auth->user())
             {
-                //Carga la informacion que se obtiene en el formulario    
-                $start_date = $this->request->data['start_date'];
-                $end_date = $this->request->data['end_date'];
-                $resource_type=$this->request->data['resource_type_id'];
+                // Nueva entidad 'Resource'
+                $historic = $this->HistoricReservations->newEntity();
 
-                //Redirigir a la vista de la tabla de reportes
-                if ($start_date != null && $end_date != null && $resource_type != null)
+                if ($this->request->is('post'))
                 {
-                    $state = $this->request->data['active'];
-                    $state = $state + 1;
+                    //Carga la informacion que se obtiene en el formulario    
+                    $start_date = $this->request->data['start_date'];
+                    $end_date = $this->request->data['end_date'];
+                    $resource_type=$this->request->data['resource_type_id'];
+
                     //Redirigir a la vista de la tabla de reportes
-                    $this->redirect(['controller' => 'HistoricReservations','action' => 'generateReports',$start_date,'00:00:00', $end_date,'23:59:00',$resource_type, $state]);
+                    if ($start_date != null && $end_date != null && $resource_type != null)
+                    {
+                        $state = $this->request->data['active'];
+                        $state = $state + 1;
+                        //Redirigir a la vista de la tabla de reportes
+                        $this->redirect(['controller' => 'HistoricReservations','action' => 'generateReports',$start_date,'00:00:00', $end_date,'23:59:00',$resource_type, $state]);
+                    }
                 }
             }
-        }
 
-        $this->set('historic', $historic);
+            $this->set('historic', $historic);
+        }
     }
     
 	public function generateReports()
@@ -124,7 +135,52 @@ class HistoricReservationsController extends AppController
         }
         else
         {
-            $this->redirect(['controller' => 'HistoricReservations','action' => 'index2']);
+            $this->redirect(['controller' => 'HistoricReservations','action' => 'index']);
+        }
+    }
+    
+    public function view($id = null)
+    {
+        if($id != null)
+        {
+            $historicReservations = $this->HistoricReservations->find('all')
+                             ->select([ 'id',
+                                        'reservation_start_date',
+                                        'resource_name',
+                                        'event_name',
+                                        'user_username',
+                                        'user_first_name',
+                                        'user_last_name',
+                                        'user_comment',
+                                        'administrator_comment',
+                                        'reservation_end_date',
+                                        'resource.resource_code'
+                             ])
+                            ->join(['resource' => ['table' => 'resources',
+                                                   'type' => 'INNER',
+                                                   'conditions' => ['HistoricReservations.resource_name = resource.resource_name']
+                                                  ]
+                                   ])
+                            ->andWhere(['HistoricReservations.id = ' => $id]);
+                            
+            $historicReservation = $historicReservations->first();       
+            
+            $user_role = $this->Auth->User('role_id');
+            
+            //Si el usuario es administrador
+            if($user_role != 1)
+            {        
+                $this->set('historicReservation', $historicReservation); 
+            }    
+            //Si el usuario NO es administrador
+            else if ($user_role == 1 && $historicReservation['user_username'] == $this->Auth->User('username')) 
+            {
+                $this->set('historicReservation', $historicReservation); 
+            }
+            else 
+            {
+                return $this->redirect(['controller' => 'HistoricReservations', 'action' => 'index']);
+            }
         }
     }
 
@@ -134,9 +190,8 @@ class HistoricReservationsController extends AppController
         if ($this->request->action === 'index' && $user['role_id'] == 1)
             return true;    
         
-        // Los administradores no pueden entrar a la vista 'index'
-        //if ($this->request->action === 'index' && $user['role_id'] == 3)
-        //    return false;
+        if ($this->request->action === 'view' && $user['role_id'] == 1)
+            return true;
         
         // Solo los administradores pueden generar reportes
         if ($this->request->action === 'generateReports' && ($user['role_id'] == 2 || $user['role_id'] == 3))

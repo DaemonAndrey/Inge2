@@ -205,7 +205,7 @@
                                 <li role="historial de reservaciones">
                                     <?php echo $this->Html->link('Historial de reservaciones',
                                                                  array('controller' => 'historicReservations',
-                                                                       'action' => 'index2'),
+                                                                       'action' => 'index'),
                                                                  array('target' => '_self',
                                                                        'escape' => false)) ?>
                                 </li>
