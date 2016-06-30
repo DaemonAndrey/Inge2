@@ -1,4 +1,0 @@
-* Indice de historico para usuarios
-* pasar links como "agregar nuevo" a botones bootstrap
-* Restriccion de acceso por url para asociar recursos con administradores, solo si me pertenece el recurso.
-* Manual: 
