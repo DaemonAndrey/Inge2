@@ -77,6 +77,7 @@
                                         $fecha = $nuevafecha->format("d/m/Y");
                                         break;
                                     case 'Chrome':
+                                    case 'Opera':
                                     case 'Edge':
                                         $fecha = $nuevafecha->format("Y-m-d");
                                         break;
@@ -115,6 +116,7 @@
                                         $fecha = $nuevafecha->format("d/m/Y");
                                         break;
                                     case 'Chrome':
+                                    case 'Opera':
                                     case 'Edge':
                                         $fecha = $nuevafecha->format("Y-m-d");
                                         break;
