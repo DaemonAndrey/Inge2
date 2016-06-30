@@ -105,13 +105,17 @@ function realizarPeticion(url, metodo, funcion) {
     peticionHTTP.send(null);
 }
 
+
+
 function getRespuesta() {
     'use strict';
     
     if (peticionHTTP.readyState === 4 && peticionHTTP.status === 200) {
         // Asigna a la variable 'datos' la información que respondió el servidor
-        datos = JSON.parse(peticionHTTP.responseText);
 
+        
+        //datos = JSON.parse(peticionHTTP.responseText);
+        alert(datos);
         // Luego de obtener la información del servidor se genera el PDF
         generarPDF();
     }
@@ -120,6 +124,8 @@ function getRespuesta() {
 function solicitarDatosHistoricos() {
     'use strict';
     
+    getRespuesta();
+    /*
     inicializarXHR();
     
     var path = window.location.pathname, new_path, actionIndex;
@@ -136,6 +142,7 @@ function solicitarDatosHistoricos() {
     new_path = path + "generate-reports/";
     
     realizarPeticion(new_path, "POST", getRespuesta);
+    */
 }
 
 // Establece cuáles van a ser las columnas de la tabla
@@ -234,7 +241,7 @@ function getHistoricReservationData() {
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
-        if(xhttp.readyState === 4 && xhttp.status === 200) {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
         }
     };
 
