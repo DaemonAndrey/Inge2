@@ -1,7 +1,4 @@
 <?php
-
-// src/Controller/ResourceTypesController.php
-
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -24,12 +21,9 @@ class ResourceTypesController extends AppController
     {
         parent::beforeFilter($event);
         
-        // Establece el id y el username del usuario actualmente en sesión
+        // Establece el id y el rol del usuario actualmente en sesión
         $this->set('user_id', $this->Auth->User('id'));
         $this->set('user_role', $this->Auth->User('role_id'));
-        
-        // Cualquier tipo de usuario puede acceder al método 'view' de recursos
-        //$this->Auth->allow(['view']);
     }
     
     /** 
@@ -51,18 +45,28 @@ class ResourceTypesController extends AppController
         $innerQuery = $this->Resources->find()
                                       ->select(['Resources.id']);
         
-        $innerQuery->innerJoinWith('Users', function ($q) use ($u_id){
-                                                    return $q->where(['Users.id' => $u_id]);
-                                                });
+        $innerQuery->innerJoinWith('Users', function ($q) use ($u_id)
+                                            {
+                                                return $q->where(['Users.id' => $u_id]);
+                                            }
+                                  );
         
         $query2 = $this->ResourceTypes->find()
-                                      ->select(['id', 'description', 'days_before_reservation']);
+                                      ->select(['id',
+                                                'description',
+                                                'days_before_reservation'
+                                               ]);
         
         $query2->innerJoinWith('Resources')
-                                ->where(function ($q) use ($innerQuery){
-                                        return $q->In('Resources.id', $innerQuery);
-                                        });
-        $query2->group('ResourceTypes.id', 'ResourceTypes.description', 'ResourceTypes.days_before_reservation');
+                                ->where(function ($q) use ($innerQuery)
+                                        {
+                                            return $q->In('Resources.id', $innerQuery);
+                                        }
+                                       );
+        $query2->group('ResourceTypes.id',
+                       'ResourceTypes.description',
+                       'ResourceTypes.days_before_reservation'
+                      );
         $query2->order(['ResourceTypes.description' => 'ASC']);
         
         $this->set('resourceTypes', $this->paginate($query2));
@@ -86,13 +90,15 @@ class ResourceTypesController extends AppController
                 {
                     if ($this->ResourceTypes->save($resourceType))
                     {
-                        $this->Flash->success('Se ha agregado el nuevo tipo de recurso', ['key' => 'addResourceTypeSuccess']);
+                        $this->Flash->success('Tipo de recurso agregado.',
+                                              ['key' => 'success']);
                         return $this->redirect(['controller' => 'ResourceTypes','action' => 'index']);
                     }
                 }
                 catch(Exception $ex)
                 {
-                    $this->Flash->error('No se ha podido agregar el tipo de recurso', ['key' => 'addResourceTypeError']);
+                    $this->Flash->error('Tipo de recurso NO agregado. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
             $this->set('resourceType', $resourceType);
@@ -125,14 +131,16 @@ class ResourceTypesController extends AppController
                     if ($this->ResourceTypes->save($resource_type))
                     {
                         //Si la información fue guardada correctamente entonces despliega un mensaje de confirmación
-                        $this->Flash->success('Se ha actualizado el tipo de recurso', ['key' => 'updateResourceTypeSuccess']);
+                        $this->Flash->success('Tipo de recurso actualizado.',
+                                              ['key' => 'success']);
                         return $this->redirect(['action' => 'index']);
                     }
                 }
                 catch(Exception $ex)
                 {
                     //Si no se ha podido actualizar correctamente el tipo del recurso despliega un mensaje indicando que hubo error
-                    $this->Flash->error('No se ha podido actualizar el tipo de recurso', ['key' => 'updateResourceTypeError']);
+                    $this->Flash->error('Tipo de recurso NO actualizado. Por favor, inténtelo de nuevo.',
+                                        ['key' => 'error']);
                 }
             }
 
@@ -214,23 +222,23 @@ class ResourceTypesController extends AppController
                 {
                     if( $cantActual == $cantTotal)
                     {
-                        $this->Flash->success('Se han eliminado todos sus recursos de tipo '.$r_type->description,
-                                              ['key' => 'deleteResourceRelationSuccess']);
+                        $this->Flash->success('Recursos de tipo '.$r_type->description.' eliminados.',
+                                              ['key' => 'success']);
                     }
                 }
                 // Si se eliminó el tipo de recurso
                 else
                 {
-                    $this->Flash->success('Se ha eliminado el tipo de recurso '.$r_type->description.' junto con todos sus recursos de este tipo',
-                                          ['key' => 'deleteResourceTypeSuccess']);
+                    $this->Flash->success('Tipo '.$r_type->description.' eliminado, junto con todos sus recursos.',
+                                          ['key' => 'success']);
                 }
                 
                 return $this->redirect(['action' => 'index']);
             }
             catch(Exception $ex)
             {
-                $this->Flash->error('No se ha podido eliminar el tipo de recurso',
-                                    ['key' => 'deleteResourceTypeError']);
+                $this->Flash->error('Tipo de recurso NO eliminado. Por favor, inténtelo de nuevo.',
+                                    ['key' => 'error']);
             }
         }
         else
@@ -248,5 +256,4 @@ class ResourceTypesController extends AppController
         return parent::isAuthorized($user);
     }
 }
-
 ?>
